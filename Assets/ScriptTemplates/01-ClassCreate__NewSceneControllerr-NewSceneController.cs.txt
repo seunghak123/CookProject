@@ -1,0 +1,24 @@
+using System;
+using UnityEngine;
+
+namespace Seunghak.SceneManager
+{
+    public class #SCRIPTNAME# : SceneController
+    {
+        protected override void Awake()
+        {
+            base.Awake();
+        }
+        //현재 씬 컨트롤러 초기화 함수
+        public override void InitSceneController() { }
+        //씬 로드 시 씬 매니저에 현재 컨트롤러 등록하는 함수
+        public override void RegistSceneController()
+        {
+            base.RegistSceneController();
+        }
+        public override void RegistSceneStepAction(E_SCENESTEP_TYPE actionType, Action playAction)
+        {
+            base.RegistSceneStepAction(actionType, playAction);
+        }
+    }
+}
