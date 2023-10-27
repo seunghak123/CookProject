@@ -74,3 +74,7 @@ crashlytics-build.properties
 /Assets/Android.meta
 /Assets/Windows.meta
 /Assets/Windows/*
+/Assets/UnityExternalLibrary/Unity Technologies/SignInWithApple/macOS Plugin/UnitySignInWithApple/UnitySignInWithApple.xcodeproj/project.xcworkspace/xcuserdata/davidrogers.xcuserdatad/UserInterfaceState.xcuserstate
+/Assets/UnityExternalLibrary/Unity Technologies/SignInWithApple/macOS Plugin/UnitySignInWithApple/UnitySignInWithApple.xcodeproj/project.xcworkspace/xcuserdata/davidrogers.xcuserdatad/UserInterfaceState.xcuserstate.meta
+/Assets/UnityExternalLibrary/Unity Technologies/SignInWithApple/macOS Plugin/UnitySignInWithApple/UnitySignInWithApple.xcodeproj/xcuserdata/davidrogers.xcuserdatad/xcschemes/xcschememanagement.plist
+/Assets/UnityExternalLibrary/Unity Technologies/SignInWithApple/macOS Plugin/UnitySignInWithApple/UnitySignInWithApple.xcodeproj/xcuserdata/davidrogers.xcuserdatad/xcschemes/xcschememanagement.plist.meta
