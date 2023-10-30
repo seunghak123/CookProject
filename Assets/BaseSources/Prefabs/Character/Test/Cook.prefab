@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7497710969927791420}
   - component: {fileID: 877446313947313470}
   - component: {fileID: 1151235291662123058}
+  - component: {fileID: 9056388872187767580}
   m_Layer: 0
   m_Name: Cook
   m_TagString: Untagged
@@ -158,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitAIType: 0
   unitDirect: {x: 0, y: 0, z: 0}
-  unitAnim: {fileID: 0}
+  unitAnim: {fileID: 4084635089693766945}
   characterController: {fileID: 0}
 --- !u!50 &877446313947313470
 Rigidbody2D:
@@ -207,3 +208,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7922208, y: 1.0799565}
   m_EdgeRadius: 0
+--- !u!58 &9056388872187767580
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4084635089693766947}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06644866, y: 0.5119781}
+  serializedVersion: 2
+  m_Radius: 1

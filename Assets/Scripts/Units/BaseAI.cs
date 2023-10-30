@@ -9,6 +9,7 @@ public class BaseAI : MonoBehaviour
     [Header("UnitInfo")]
     [SerializeField] protected E_INGAME_AI_TYPE unitAIType = E_INGAME_AI_TYPE.NONE;
     [SerializeField] private Vector3 unitDirect = new Vector3();
+    [SerializeField] private bl_Joystick joyStick = null;
     [Space(2)]
     [Header("UnitAnimation")]
     [SerializeField] private Animator unitAnim;
@@ -23,7 +24,6 @@ public class BaseAI : MonoBehaviour
     private Action currentUnitEvent = null;
 
     private BaseAI targetAI = null;
-    private bl_Joystick joyStick = null;
     private bool isGround = true;
     public void Awake()
     {
@@ -83,14 +83,33 @@ public class BaseAI : MonoBehaviour
     protected virtual void UnitMove()
     {
         Vector3 moveDirect = GetMoveDirect();
-        if(isGround)
+
+        if(moveDirect == Vector3.zero)
+        {
+            unitAnim.SetFloat("Speed", 0);
+            ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
+            return;
+        }
+        unitAnim.SetFloat("Speed", moveDirect.magnitude);
+
+        if (isGround)
         {
             //점프중 움직임
         }
         else
         {
-            
+
         }
+
+        if (moveDirect.x < 0)
+        {
+            this.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            this.transform.localScale = new Vector3(1, 1, 1);
+        }
+
         this.transform.Translate(new Vector3(moveDirect.x,0,0) * Time.deltaTime);
         
     }
@@ -107,6 +126,7 @@ public class BaseAI : MonoBehaviour
     {
         if(GetMoveDirect()!=Vector3.zero)
         {
+            ChangeAI(E_INGAME_AI_TYPE.UNIT_MOVE);
             //움직임으로 변경
         }
     }
@@ -130,5 +150,10 @@ public class BaseAI : MonoBehaviour
         {
 
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        //여기에 상호작용 하도록 둘것ㄴ
     }
 }
