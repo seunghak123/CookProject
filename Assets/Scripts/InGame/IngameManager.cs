@@ -59,7 +59,6 @@ public class IngameManager : MonoBehaviour
                 UnitController enemyController = spawnedEnemy.GetComponent<UnitController>();
 
                 enemyController.SetUnitInfo(unitData);
-                enemyController.SetTeamInfo(E_INGAME_TEAM_TYPE.MONSTER_TEAM);
                 enemyUnits.Add(enemyController);
             }
           

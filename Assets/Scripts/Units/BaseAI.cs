@@ -8,8 +8,7 @@ public class BaseAI : MonoBehaviour
 {
     [Header("UnitInfo")]
     [SerializeField] protected E_INGAME_AI_TYPE unitAIType = E_INGAME_AI_TYPE.NONE;
-    [SerializeField] private E_INGAME_TEAM_TYPE unitTeamType;
-
+    [SerializeField] private Vector3 unitDirect = new Vector3();
     [Space(2)]
     [Header("UnitAnimation")]
     [SerializeField] private Animator unitAnim;
@@ -20,11 +19,12 @@ public class BaseAI : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     private Dictionary<E_INGAME_AI_TYPE, Action> userActionDic = new Dictionary<E_INGAME_AI_TYPE, Action>();
     
-    private bool isDead = false;
     private JUnitData aiUnitData = null;
     private Action currentUnitEvent = null;
 
     private BaseAI targetAI = null;
+    private bl_Joystick joyStick = null;
+    private bool isGround = true;
     public void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -34,16 +34,9 @@ public class BaseAI : MonoBehaviour
     private void RegistAction()
     {
         userActionDic[E_INGAME_AI_TYPE.UNIT_IDLE] = UnitIdle;
-        userActionDic[E_INGAME_AI_TYPE.UNIT_ATTACK] = UnitAttack;
         userActionDic[E_INGAME_AI_TYPE.UNIT_MOVE] = UnitMove;
         userActionDic[E_INGAME_AI_TYPE.UNIT_EVENT] = UnitEvent;
-        userActionDic[E_INGAME_AI_TYPE.UNIT_HIT] = UnitHit;
-        userActionDic[E_INGAME_AI_TYPE.UNIT_DEAD] = UnitDead;
 
-    }
-    public void SetTeamType(E_INGAME_TEAM_TYPE teamType)
-    {
-        unitTeamType = teamType;
     }
     protected void ChangeAI(E_INGAME_AI_TYPE nextAIType)
     {
@@ -55,63 +48,30 @@ public class BaseAI : MonoBehaviour
             {
                 switch (unitAIType)
                 {
-                    case E_INGAME_AI_TYPE.UNIT_ATTACK:
-                        unitAnim.SetTrigger("Attack");
+                    case E_INGAME_AI_TYPE.UNIT_INTERACTION:
+                        unitAnim.SetTrigger("InterAct");
                         break;
-                    case E_INGAME_AI_TYPE.UNIT_HIT:
-                        unitAnim.SetTrigger("Hit");
+                    case E_INGAME_AI_TYPE.UNIT_EVENT:
+                        //unitAnim.SetTrigger("Event");
                         break;
-                    case E_INGAME_AI_TYPE.UNIT_DEAD:
-                        unitAnim.SetTrigger("IsDead");
+                    case E_INGAME_AI_TYPE.UNIT_MOVE:
+                        //unitAnim.SetFloat()
                         break;
                 }
             }
         }
     }
     #region UnitFunction
-    private BaseAI FindTargetObject()
+    private void InterActObject()
     {
-        targetAI = null;
-        //팀타입이 아군일떄
-        List<BaseAI> targetLists = IngameManager.currentManager.GetEnemyUnits();
-
-        if (targetLists.Count <= 0)
-        {
-            return null;
-        }
-        BaseAI closeAI = targetLists[0];
-
-        for(int i=1;i< targetLists.Count; i++)
-        {
-            //거리가 가깝고, 죽지 않았다면 해당 타겟으로 가까운 AI지정
-            if(Vector3.Distance( closeAI.transform.position,this.transform.position)>
-                Vector3.Distance(targetLists[i].transform.position,this.transform.position)
-                && !targetLists[i].isDead)
-            {
-                closeAI = targetLists[i];
-            }
-        }
-        //IngameManager
-        // 인근 UnitController 를 찾아서 TeamType이 자신의 Team이 아닌 것을 찾아야한다.
-
-        if (closeAI.isDead)
-        {
-            return null;
-        }
-        targetAI = closeAI;
-        return closeAI;
+        //상호 작용 
     }
     #endregion UnitFunction
 
     #region UnitState
-    protected virtual void UnitHit()
+    protected virtual void UnitJump()
     {
-        //데미지 입었을떄 해당, 만약 현재 HP가 0 이하라면 사망처리
-    }
-    protected virtual void UnitDead()
-    {
-        //사망했을 시 쓰러져 있고, 애니메이션 종료시 이벤트 읽어서 사망처리
-        //물체는 살려둔다
+        
     }
     protected virtual void UnitEvent()
     {
@@ -122,27 +82,33 @@ public class BaseAI : MonoBehaviour
     }
     protected virtual void UnitMove()
     {
-        //타겟의 거리가 공격 거리까지 들어올떄까지 해당 방향으로 이동
+        Vector3 moveDirect = GetMoveDirect();
+        if(isGround)
+        {
+            //점프중 움직임
+        }
+        else
+        {
+            
+        }
+        this.transform.Translate(new Vector3(moveDirect.x,0,0) * Time.deltaTime);
+        
     }
-    protected virtual void UnitAttack()
+    private Vector3 GetMoveDirect()
     {
-        //일반적인 공격력 계산 공식으로 세팅
-        //BaseAI의 경우는 투사체등이 아닌 직접 공격에 해당(무조껀 히트)
+        if (joyStick != null)
+        {
+            Vector3 direct = new Vector3(joyStick.Horizontal, joyStick.Vertical);
+            return direct.normalized;
+        }
+        return Vector3.zero;
     }
     protected virtual void UnitIdle()
     {
-        if(isDead)
+        if(GetMoveDirect()!=Vector3.zero)
         {
-            //죽어있는 상태면 아무것도 하지 않는다
-            return;
+            //움직임으로 변경
         }
-        if (FindTargetObject() != null)
-        {
-            ChangeAI(E_INGAME_AI_TYPE.UNIT_MOVE);
-        }
-        //타겟이 있으면 움직임
-        //타겟 없으면 타겟서치
-
     }
     private void Action()
     {
@@ -158,9 +124,11 @@ public class BaseAI : MonoBehaviour
     #endregion UnitState
     public virtual void Update()
     {
-        if(!isDead)
+        Action();
+
+        if (isGround)
         {
-            Action();
+
         }
     }
 }

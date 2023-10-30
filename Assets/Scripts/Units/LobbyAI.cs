@@ -6,8 +6,8 @@ public class LobbyAI : BaseAI
 {
     private List<E_INGAME_AI_TYPE> playAnimAiLists = new List<E_INGAME_AI_TYPE>()
     {
-        E_INGAME_AI_TYPE.UNIT_ATTACK,
-        E_INGAME_AI_TYPE.UNIT_HIT
+        E_INGAME_AI_TYPE.UNIT_EVENT,
+        E_INGAME_AI_TYPE.UNIT_IDLE,
     };
     public void PlayAnim()
     {
