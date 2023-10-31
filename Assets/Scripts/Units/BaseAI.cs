@@ -18,6 +18,8 @@ public class BaseAI : MonoBehaviour
     [Space(2)]
     [Header("UnitFuction")]
     [SerializeField] private CharacterController characterController;
+    [SerializeField, Range(1, 100)] private float characterJumpPower; 
+    private Rigidbody2D characterRigid;
     private Dictionary<E_INGAME_AI_TYPE, Action> userActionDic = new Dictionary<E_INGAME_AI_TYPE, Action>();
     
     private Action currentUnitEvent = null;
@@ -26,6 +28,7 @@ public class BaseAI : MonoBehaviour
     public void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        characterRigid = GetComponent<Rigidbody2D>();
         unitAnim = GetComponentInChildren<Animator>();
         RegistAction();
     }
@@ -60,11 +63,22 @@ public class BaseAI : MonoBehaviour
                     case E_INGAME_AI_TYPE.UNIT_MOVE:
                         //unitAnim.SetFloat()
                         break;
+                    case E_INGAME_AI_TYPE.UNIT_JUMP:
+                        Jump();
+                        break;
                 }
             }
         }
     }
     #region UnitFunction
+    private void Jump()
+    {
+        if (characterRigid == null)
+        {
+            return;
+        }
+        characterRigid.AddForce(Vector2.up* characterJumpPower, ForceMode2D.Impulse);
+    }
     private void InterActObject()
     {
         if (targetObject != null)
