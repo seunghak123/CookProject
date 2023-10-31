@@ -82,6 +82,7 @@ public enum E_INGAME_AI_TYPE
     UNIT_JUMP,
     UNIT_INTERACTION,
     UNIT_EVENT,
+    UNIT_COOK,
 
     END,
 }

@@ -20,10 +20,8 @@ public class BaseAI : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     private Dictionary<E_INGAME_AI_TYPE, Action> userActionDic = new Dictionary<E_INGAME_AI_TYPE, Action>();
     
-    private JUnitData aiUnitData = null;
     private Action currentUnitEvent = null;
-
-    private BaseAI targetAI = null;
+    private BaseObject targetObject = null;
     private bool isGround = true;
     public void Awake()
     {
@@ -36,7 +34,12 @@ public class BaseAI : MonoBehaviour
         userActionDic[E_INGAME_AI_TYPE.UNIT_IDLE] = UnitIdle;
         userActionDic[E_INGAME_AI_TYPE.UNIT_MOVE] = UnitMove;
         userActionDic[E_INGAME_AI_TYPE.UNIT_EVENT] = UnitEvent;
-
+        userActionDic[E_INGAME_AI_TYPE.UNIT_JUMP] = UnitJump;
+        userActionDic[E_INGAME_AI_TYPE.UNIT_INTERACTION] = InterActObject;
+    }
+    public void DoAction(E_INGAME_AI_TYPE actionType)
+    {
+        ChangeAI(actionType);
     }
     protected void ChangeAI(E_INGAME_AI_TYPE nextAIType)
     {
@@ -64,6 +67,10 @@ public class BaseAI : MonoBehaviour
     #region UnitFunction
     private void InterActObject()
     {
+        if (targetObject != null)
+        {
+
+        }
         //상호 작용 
     }
     #endregion UnitFunction
@@ -71,7 +78,13 @@ public class BaseAI : MonoBehaviour
     #region UnitState
     protected virtual void UnitJump()
     {
-        
+        Vector3 moveDirect = GetMoveDirect();
+
+        if (moveDirect == Vector3.zero)
+        {
+            isGround = true;
+            ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
+        }
     }
     protected virtual void UnitEvent()
     {
@@ -92,14 +105,20 @@ public class BaseAI : MonoBehaviour
         }
         unitAnim.SetFloat("Speed", moveDirect.magnitude);
 
-        if (isGround)
+        Debug.DrawLine(this.transform.position, this.transform.position- Vector3.down/10,Color.red,0.1f);
+        if (Physics2D.Raycast(this.transform.position, Vector3.down, 0.15f, 9))
         {
-            //점프중 움직임
-        }
-        else
-        {
+            isGround = false;
 
         }
+
+        if (isGround)
+        {
+            ChangeAI(E_INGAME_AI_TYPE.UNIT_JUMP);
+            //점프중 움직임
+        }
+
+
 
         if (moveDirect.x < 0)
         {
@@ -154,6 +173,10 @@ public class BaseAI : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if(collision!=null && collision.tag == "InterActObject")
+        {
+            targetObject = collision.GetComponent<BaseObject>();
+        }
         //여기에 상호작용 하도록 둘것ㄴ
     }
 }
