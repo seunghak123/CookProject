@@ -25,6 +25,18 @@ public class BaseAI : MonoBehaviour
     private Action currentUnitEvent = null;
     private BaseObject targetObject = null;
     private bool isGround = true;
+    public bool IsGround
+    {
+        get { return isGround; }
+        set
+        {
+            isGround = value;
+            if (unitAnim != null)
+            {
+                unitAnim.SetBool("IsGround", isGround);
+            }
+        }
+    }
     public void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -58,12 +70,13 @@ public class BaseAI : MonoBehaviour
                         unitAnim.SetTrigger("InterAct");
                         break;
                     case E_INGAME_AI_TYPE.UNIT_EVENT:
-                        //unitAnim.SetTrigger("Event");
+                        unitAnim.SetTrigger("Event");
                         break;
                     case E_INGAME_AI_TYPE.UNIT_MOVE:
                         //unitAnim.SetFloat()
                         break;
                     case E_INGAME_AI_TYPE.UNIT_JUMP:
+                        unitAnim.SetTrigger("Jump");
                         Jump();
                         break;
                 }
@@ -92,11 +105,12 @@ public class BaseAI : MonoBehaviour
     #region UnitState
     protected virtual void UnitJump()
     {
-        Vector3 moveDirect = GetMoveDirect();
+        Vector3 moveDirect = characterRigid.velocity;
 
+        unitAnim.SetFloat("YSpeed", moveDirect.y);
         if (moveDirect == Vector3.zero)
         {
-            isGround = true;
+            IsGround = true;
             ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
         }
     }
@@ -118,21 +132,6 @@ public class BaseAI : MonoBehaviour
             return;
         }
         unitAnim.SetFloat("Speed", moveDirect.magnitude);
-
-        Debug.DrawLine(this.transform.position, this.transform.position- Vector3.down/10,Color.red,0.1f);
-        if (Physics2D.Raycast(this.transform.position, Vector3.down, 0.15f, 9))
-        {
-            isGround = false;
-
-        }
-
-        if (isGround)
-        {
-            ChangeAI(E_INGAME_AI_TYPE.UNIT_JUMP);
-            //점프중 움직임
-        }
-
-
 
         if (moveDirect.x < 0)
         {
@@ -157,7 +156,8 @@ public class BaseAI : MonoBehaviour
     }
     protected virtual void UnitIdle()
     {
-        if(GetMoveDirect()!=Vector3.zero)
+        unitAnim.SetFloat("Speed", 0);
+        if (GetMoveDirect()!=Vector3.zero)
         {
             ChangeAI(E_INGAME_AI_TYPE.UNIT_MOVE);
             //움직임으로 변경
@@ -175,14 +175,16 @@ public class BaseAI : MonoBehaviour
         }
     }
     #endregion UnitState
+    RaycastHit2D hitresult;
     public virtual void Update()
     {
-        Action();
-
-        if (isGround)
+        hitresult = Physics2D.Raycast(this.transform.position, Vector3.down, 0.15f, 1<<9);
+        if (hitresult.collider==null)
         {
-
+            IsGround = false;
         }
+
+        Action();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
