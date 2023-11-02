@@ -50,7 +50,8 @@ public class BaseAI : MonoBehaviour
         userActionDic[E_INGAME_AI_TYPE.UNIT_MOVE] = UnitMove;
         userActionDic[E_INGAME_AI_TYPE.UNIT_EVENT] = UnitEvent;
         userActionDic[E_INGAME_AI_TYPE.UNIT_JUMP] = UnitJump;
-        userActionDic[E_INGAME_AI_TYPE.UNIT_INTERACTION] = InterActObject;
+        userActionDic[E_INGAME_AI_TYPE.UNIT_INTERACTION] = UnitInterAct;
+        userActionDic[E_INGAME_AI_TYPE.UNIT_COOK] = UnitCookAct;
     }
     public void DoAction(E_INGAME_AI_TYPE actionType)
     {
@@ -58,7 +59,7 @@ public class BaseAI : MonoBehaviour
     }
     protected void ChangeAI(E_INGAME_AI_TYPE nextAIType)
     {
-        if (!unitAIType.Equals(nextAIType))
+        //if (!unitAIType.Equals(nextAIType))
         {
             unitAIType = nextAIType;
 
@@ -67,7 +68,7 @@ public class BaseAI : MonoBehaviour
                 switch (unitAIType)
                 {
                     case E_INGAME_AI_TYPE.UNIT_INTERACTION:
-                        unitAnim.SetTrigger("InterAct");
+                        InterActObject();
                         break;
                     case E_INGAME_AI_TYPE.UNIT_EVENT:
                         unitAnim.SetTrigger("Event");
@@ -92,11 +93,47 @@ public class BaseAI : MonoBehaviour
         }
         characterRigid.AddForce(Vector2.up* characterJumpPower, ForceMode2D.Impulse);
     }
-    private void InterActObject()
+    private void UnitCookAct()
     {
-        if (targetObject != null)
+        //재료 들고있거나 특정 조건에 따라 Cook액션 실행
+    }
+    private void UnitInterAct()
+    {
+        //주섬주섬챙기는애면 주섬주섬챙기고
+        //아닌 애들은 아이템 챙기거나 등 행동
+        if(targetObject.GetIsHold())
         {
 
+        }
+        else
+        {
+            Vector3 moveDirect = GetMoveDirect();
+
+            if(moveDirect!=Vector3.zero)
+            {
+                ChangeAI(E_INGAME_AI_TYPE.UNIT_MOVE);
+            }
+            //여기서 움직임 가능
+        }
+    }
+    private void InterActObject()
+    {
+        if(targetObject ==null)
+        {
+            ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
+            return;
+        }
+        if (targetObject.IsWork())
+        {
+            unitAnim.SetBool("IsGrab", false);
+            //일하고 있는 도중에 다시 눌린다면?
+        }
+        else
+        {
+            //이게 뭐 음식이나 도구 집는거라면
+            targetObject.DoWork();
+            unitAnim.SetBool("IsGrab", true);
+            unitAnim.SetTrigger("InterAct");
         }
         //상호 작용 
     }
@@ -183,16 +220,21 @@ public class BaseAI : MonoBehaviour
         {
             IsGround = false;
         }
+        else
+        {
+            IsGround = true;
+        }
 
         Action();
     }
-
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision!=null && collision.tag == "InterActObject")
+        if(targetObject==null)
         {
-            targetObject = collision.GetComponent<BaseObject>();
+            if (collision != null && collision.tag == "InterActObject")
+            {
+                targetObject = collision.GetComponent<BaseObject>();
+            }
         }
-        //여기에 상호작용 하도록 둘것ㄴ
     }
 }

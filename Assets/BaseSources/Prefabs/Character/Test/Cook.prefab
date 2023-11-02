@@ -159,8 +159,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitAIType: 0
   unitDirect: {x: 0, y: 0, z: 0}
+  joyStick: {fileID: 0}
   unitAnim: {fileID: 4084635089693766945}
   characterController: {fileID: 0}
+  characterJumpPower: 6
 --- !u!50 &877446313947313470
 Rigidbody2D:
   serializedVersion: 4
@@ -181,7 +183,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1151235291662123058
 BoxCollider2D:
   m_ObjectHideFlags: 0

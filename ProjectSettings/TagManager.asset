@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UnitPlane
   - Character
+  - InterActObject
   layers:
   - Default
   - TransparentFX
