@@ -6,6 +6,7 @@ using UnityEditor.Build;
 using UnityEditor.Build.Content;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
+#if UNITY_IOS
 using UnityEditor.iOS.Xcode;
 
 public class PostProcessForSignInWithApple : IPostprocessBuildWithReport
@@ -45,11 +46,11 @@ public class PostProcessForSignInWithApple : IPostprocessBuildWithReport
         proj.ReadFromFile(projPath);
 
         // Get the main target GUID
-    #if UNITY_2019_3_OR_NEWER
+#if UNITY_2019_3_OR_NEWER
         var mainTarget = proj.GetUnityMainTargetGuid();
-    #else
+#else
         var mainTarget = proj.TargetGuidByName("Unity-iPhone");
-    #endif
+#endif
         var entitlementsFile = $"{Application.productName}.entitlements";
 
         string entitlementsFileName = proj.GetBuildPropertyForAnyConfig(new [] {
@@ -137,4 +138,5 @@ public class PostProcessForSignInWithApple : IPostprocessBuildWithReport
     }
     
 }
+#endif
 #endif
