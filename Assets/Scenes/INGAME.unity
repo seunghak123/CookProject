@@ -2053,7 +2053,7 @@ GameObject:
   - component: {fileID: 1081902331}
   m_Layer: 0
   m_Name: CookObject
-  m_TagString: Untagged
+  m_TagString: InterActObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
