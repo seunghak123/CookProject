@@ -24,6 +24,7 @@ public class BaseAI : MonoBehaviour
     
     private Action currentUnitEvent = null;
     private BaseObject targetObject = null;
+    private int currentFood = 0;
     private bool isGround = true;
     public bool IsGround
     {
@@ -123,8 +124,21 @@ public class BaseAI : MonoBehaviour
             ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
             return;
         }
+        //현재 재료를 잡고 있으면 ~~
+        bool isGrab = unitAnim.GetBool("IsGrab");
+
+        if (isGrab)
+        {
+
+        }
+        else
+        {
+
+        }
+        //
         if (targetObject.IsWork())
         {
+            //이것은 잘못된 코드
             unitAnim.SetBool("IsGrab", false);
             //일하고 있는 도중에 다시 눌린다면?
         }
