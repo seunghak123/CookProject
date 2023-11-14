@@ -129,7 +129,7 @@ public class BaseAI : MonoBehaviour
 
         if (isGrab)
         {
-
+            //던져버리기
         }
         else
         {
