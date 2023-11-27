@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class BaseObject : MonoBehaviour
 {
-    [SerializeField] private bool holdCharacter = false;
+    [SerializeField] protected bool holdCharacter = false;
+    [SerializeField] protected bool isBlockCharacter = false;
     private bool workEnd = false;
     private bool currentWork = false;
+
+    private int foodBoxId = 1;
+    public virtual void InitObject() 
+    {
+        //기존에는 파일 읽고, Id 세팅한다
+    }
     public bool GetIsHold()
     {
         return holdCharacter;
@@ -16,6 +23,10 @@ public class BaseObject : MonoBehaviour
         currentWork = true;
 
         
+    }
+    public int GetFoodId()
+    {
+        return foodBoxId;
     }
     public bool IsWork()
     {

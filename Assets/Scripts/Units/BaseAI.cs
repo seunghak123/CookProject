@@ -102,7 +102,7 @@ public class BaseAI : MonoBehaviour
     {
         //주섬주섬챙기는애면 주섬주섬챙기고
         //아닌 애들은 아이템 챙기거나 등 행동
-        if(targetObject.GetIsHold())
+        if(targetObject!=null&& targetObject.GetIsHold())
         {
 
         }
@@ -119,22 +119,25 @@ public class BaseAI : MonoBehaviour
     }
     private void InterActObject()
     {
-        if(targetObject ==null)
-        {
-            ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
-            return;
-        }
-        //현재 재료를 잡고 있으면 ~~
+        //해당 코드 싹다 변경
         bool isGrab = unitAnim.GetBool("IsGrab");
-
         if (isGrab)
         {
+
             //던져버리기
         }
         else
         {
 
         }
+
+        if (targetObject ==null)
+        {
+            ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
+            return;
+        }
+        //현재 재료를 잡고 있으면 ~~
+
         //
         if (targetObject.IsWork())
         {
@@ -248,7 +251,17 @@ public class BaseAI : MonoBehaviour
             if (collision != null && collision.tag == "InterActObject")
             {
                 targetObject = collision.GetComponent<BaseObject>();
+
+                //currentFood = targetObject
             }
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (targetObject == collision.gameObject)
+        {
+            targetObject = null;
+        }
+
     }
 }
