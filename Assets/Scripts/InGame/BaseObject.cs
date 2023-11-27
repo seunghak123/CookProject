@@ -8,8 +8,8 @@ public class BaseObject : MonoBehaviour
     [SerializeField] protected bool isBlockCharacter = false;
     private bool workEnd = false;
     private bool currentWork = false;
-
-    private int foodBoxId = 1;
+    private BaseAI currentWorker = null;
+    private BasicMaterialData makedMaterial = null;
     public virtual void InitObject() 
     {
         //기존에는 파일 읽고, Id 세팅한다
@@ -18,15 +18,14 @@ public class BaseObject : MonoBehaviour
     {
         return holdCharacter;
     }
-    public virtual void DoWork()
+    public virtual void DoWork(BaseAI targetAI)
     {
         currentWork = true;
+        currentWorker = targetAI; 
 
-        
-    }
-    public int GetFoodId()
-    {
-        return foodBoxId;
+        //targetAI.SetAnimTrigger()
+        //Invoke or Coroutine
+        //상태에 따라서 달리진행
     }
     public bool IsWork()
     {
@@ -38,6 +37,13 @@ public class BaseObject : MonoBehaviour
         {
             currentWork = false;
 
+
+            BasicMaterialData makedData = null;
+
+            if (currentWorker == null)
+            {
+                //currentWorker.HandleObjectData 
+            }
 
             return true;
         }

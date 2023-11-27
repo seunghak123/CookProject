@@ -24,6 +24,12 @@ public class BaseAI : MonoBehaviour
     
     private Action currentUnitEvent = null;
     private BaseObject targetObject = null;
+    private BasicMaterialData handleObjectData = null;
+    public BasicMaterialData HandleObjectData
+    {
+        set { handleObjectData = value; }
+        get { return handleObjectData; }
+    }
     private int currentFood = 0;
     private bool isGround = true;
     public bool IsGround
@@ -53,6 +59,13 @@ public class BaseAI : MonoBehaviour
         userActionDic[E_INGAME_AI_TYPE.UNIT_JUMP] = UnitJump;
         userActionDic[E_INGAME_AI_TYPE.UNIT_INTERACTION] = UnitInterAct;
         userActionDic[E_INGAME_AI_TYPE.UNIT_COOK] = UnitCookAct;
+    }
+    public void SetAnimTrigger(string triggerName)
+    {
+        if (unitAnim != null)
+        {
+            unitAnim.SetTrigger(triggerName);
+        }
     }
     public void DoAction(E_INGAME_AI_TYPE actionType)
     {
@@ -119,43 +132,23 @@ public class BaseAI : MonoBehaviour
     }
     private void InterActObject()
     {
-        //해당 코드 싹다 변경
-        bool isGrab = unitAnim.GetBool("IsGrab");
-        if (isGrab)
-        {
-
-            //던져버리기
-        }
-        else
-        {
-
-        }
-
         if (targetObject ==null)
         {
             ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
             return;
         }
-        //현재 재료를 잡고 있으면 ~~
 
-        //
+        //가장 큰 문제는 여긴데..
         if (targetObject.IsWork())
         {
-            //이것은 잘못된 코드
-            unitAnim.SetBool("IsGrab", false);
-            //일하고 있는 도중에 다시 눌린다면?
+
         }
         else
         {
-            //이게 뭐 음식이나 도구 집는거라면
-            targetObject.DoWork();
-            unitAnim.SetBool("IsGrab", true);
-            unitAnim.SetTrigger("InterAct");
+            targetObject.DoWork(this);
         }
-        //상호 작용 
     }
     #endregion UnitFunction
-
     #region UnitState
     protected virtual void UnitJump()
     {
@@ -167,6 +160,8 @@ public class BaseAI : MonoBehaviour
             IsGround = true;
             ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
         }
+
+
     }
     protected virtual void UnitEvent()
     {
