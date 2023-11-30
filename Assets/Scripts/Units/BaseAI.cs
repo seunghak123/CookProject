@@ -16,7 +16,8 @@ public class BaseAI : MonoBehaviour
 
     [Space(2)]
     [Header("UnitFuction")]
-    [SerializeField, Range(1, 100)] private float characterJumpPower; 
+    [SerializeField, Range(1, 100)] private float characterJumpPower = 80;
+    [SerializeField, Range(0.5f, 5)] private float characterSpeed = 1;
     private Rigidbody2D characterRigid;
     private Dictionary<E_INGAME_AI_TYPE, Action> userActionDic = new Dictionary<E_INGAME_AI_TYPE, Action>();
     
@@ -190,7 +191,7 @@ public class BaseAI : MonoBehaviour
             this.transform.localScale = new Vector3(1, 1, 1);
         }
 
-        this.transform.Translate(new Vector3(moveDirect.x,0,0) * Time.deltaTime);
+        this.transform.Translate(new Vector3(moveDirect.x,0,0) * Time.deltaTime * characterSpeed);
 
         float xValue = Mathf.Abs(moveDirect.x);
         float yValue = moveDirect.y;

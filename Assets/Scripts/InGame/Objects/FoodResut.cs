@@ -14,8 +14,6 @@ public class FoodResut : BaseObject
         base.DoWork(targetAI, param);
         
         //FoodResult를 요리 투입매니저로 전달 //param.GetFoodResult()
-        //
-        //요리 투입
     }
 
     public override bool WorkEnd()
