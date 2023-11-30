@@ -442,6 +442,8 @@ namespace Seunghak.Common
 
             UpdateAssetBundleObjectMatrial(poolObject);
 
+            poolObject.transform.parent = null;
+
             return poolObject;
         }
         public void UpdateAssetBundleObjectMatrial(GameObject inGameObject)
@@ -562,6 +564,11 @@ namespace Seunghak.Common
 
             return SpawnObject(openUIType.ToString());
         }
+        public void DestroyObject(GameObject targetObject)
+        {
+            targetObject.SetActive(false);
+            targetObject.transform.parent = this.transform;           
+        }
     }
 
     public class ObjectPool
@@ -595,8 +602,11 @@ namespace Seunghak.Common
                     return poolObjects[i];
                 }
             }
-
-            return GameObject.Instantiate(poolObject) as GameObject;
+            GameObject createdObject = GameObject.Instantiate(poolObject) as GameObject;
+            
+            poolObjects.Add(createdObject);
+            
+            return createdObject;
         }
         public void DestoryPool()
         {

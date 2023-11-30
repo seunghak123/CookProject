@@ -8,7 +8,6 @@ public class BaseAI : MonoBehaviour
 {
     [Header("UnitInfo")]
     [SerializeField] protected E_INGAME_AI_TYPE unitAIType = E_INGAME_AI_TYPE.NONE;
-    [SerializeField] private Vector3 unitDirect = new Vector3();
     [SerializeField] private bl_Joystick joyStick = null;
     [Space(2)]
     [Header("UnitAnimation")]
@@ -17,7 +16,6 @@ public class BaseAI : MonoBehaviour
 
     [Space(2)]
     [Header("UnitFuction")]
-    [SerializeField] private CharacterController characterController;
     [SerializeField, Range(1, 100)] private float characterJumpPower; 
     private Rigidbody2D characterRigid;
     private Dictionary<E_INGAME_AI_TYPE, Action> userActionDic = new Dictionary<E_INGAME_AI_TYPE, Action>();
@@ -46,7 +44,6 @@ public class BaseAI : MonoBehaviour
     }
     public void Awake()
     {
-        characterController = GetComponent<CharacterController>();
         characterRigid = GetComponent<Rigidbody2D>();
         unitAnim = GetComponentInChildren<Animator>();
         RegistAction();
@@ -56,9 +53,7 @@ public class BaseAI : MonoBehaviour
         userActionDic[E_INGAME_AI_TYPE.UNIT_IDLE] = UnitIdle;
         userActionDic[E_INGAME_AI_TYPE.UNIT_MOVE] = UnitMove;
         userActionDic[E_INGAME_AI_TYPE.UNIT_EVENT] = UnitEvent;
-        userActionDic[E_INGAME_AI_TYPE.UNIT_JUMP] = UnitJump;
         userActionDic[E_INGAME_AI_TYPE.UNIT_INTERACTION] = UnitInterAct;
-        userActionDic[E_INGAME_AI_TYPE.UNIT_COOK] = UnitCookAct;
     }
     public void SetAnimTrigger(string triggerName)
     {
@@ -87,82 +82,85 @@ public class BaseAI : MonoBehaviour
                     case E_INGAME_AI_TYPE.UNIT_EVENT:
                         unitAnim.SetTrigger("Event");
                         break;
-                    case E_INGAME_AI_TYPE.UNIT_MOVE:
-                        //unitAnim.SetFloat()
-                        break;
-                    case E_INGAME_AI_TYPE.UNIT_JUMP:
-                        unitAnim.SetTrigger("Jump");
-                        Jump();
-                        break;
                 }
             }
         }
     }
     #region UnitFunction
-    private void Jump()
-    {
-        if (characterRigid == null)
-        {
-            return;
-        }
-        characterRigid.AddForce(Vector2.up* characterJumpPower, ForceMode2D.Impulse);
-    }
-    private void UnitCookAct()
-    {
-        //재료 들고있거나 특정 조건에 따라 Cook액션 실행
-    }
+
     private void UnitInterAct()
     {
-        //주섬주섬챙기는애면 주섬주섬챙기고
-        //아닌 애들은 아이템 챙기거나 등 행동
         if(targetObject!=null&& targetObject.GetIsHold())
         {
-
+            //여기서 멈춰있고,
         }
         else
         {
+
+
+
             Vector3 moveDirect = GetMoveDirect();
 
             if(moveDirect!=Vector3.zero)
             {
                 ChangeAI(E_INGAME_AI_TYPE.UNIT_MOVE);
             }
-            //여기서 움직임 가능
         }
     }
     private void InterActObject()
     {
+
         if (targetObject ==null)
         {
+            if (HandleObjectData != null)
+            {
+                ThrowHandlingObject();
+            }
+
             ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
             return;
         }
 
-        //가장 큰 문제는 여긴데..
         if (targetObject.IsWork())
         {
-
+            //현재 일하고 있는중이라 접근 불가
         }
         else
         {
-            targetObject.DoWork(this);
+            targetObject.DoWork(this, HandleObjectData);
+        }
+    }
+    private void ThrowHandlingObject()
+    {
+        GameObject spawnObject = GameResourceManager.Instance.SpawnObject("DroppedObject");
+
+        if (spawnObject == null)
+        {
+            Debug.Log("Something Problem");
+
+            return;
+        }
+        spawnObject.transform.position = this.transform.position + Vector3.up;
+
+        DroppedObject dropObject = spawnObject.GetComponent<DroppedObject>();
+
+        if(dropObject == null)
+        {
+            return;
+        }
+
+        dropObject.SetObjectInfo(0);
+        handleObjectData = null;
+
+        Vector3 throwDirect = new Vector3(this.transform.localScale.x, 1, 0);
+        Rigidbody2D dropRigid = dropObject.GetComponent<Rigidbody2D>();
+        if(dropRigid!=null)
+        {
+            dropRigid.AddForce(throwDirect * dropObject.GetObjectThrowPower() * Time.deltaTime, ForceMode2D.Impulse);
         }
     }
     #endregion UnitFunction
     #region UnitState
-    protected virtual void UnitJump()
-    {
-        Vector3 moveDirect = characterRigid.velocity;
-
-        unitAnim.SetFloat("YSpeed", moveDirect.y);
-        if (moveDirect == Vector3.zero)
-        {
-            IsGround = true;
-            ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
-        }
-
-
-    }
     protected virtual void UnitEvent()
     {
         if (currentUnitEvent != null)
@@ -177,6 +175,7 @@ public class BaseAI : MonoBehaviour
         if(moveDirect == Vector3.zero)
         {
             unitAnim.SetFloat("Speed", 0);
+            IsGround = true;
             ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
             return;
         }
@@ -192,10 +191,32 @@ public class BaseAI : MonoBehaviour
         }
 
         this.transform.Translate(new Vector3(moveDirect.x,0,0) * Time.deltaTime);
-        
+
+        float xValue = Mathf.Abs(moveDirect.x);
+        float yValue = moveDirect.y;
+
+        if (xValue < yValue)
+        {
+            if (characterRigid == null)
+            {
+                return;
+            }
+
+            if (IsGround)
+            {
+                unitAnim.SetTrigger("Jump");
+                characterRigid.AddForce(Vector2.up * characterJumpPower * Time.deltaTime, ForceMode2D.Impulse);
+            }
+        }
+        //현재 점프중
+        Vector3 gravityVector = characterRigid.velocity;
+
+        unitAnim.SetFloat("YSpeed", gravityVector.y);
     }
     private Vector3 GetMoveDirect()
     {
+
+        //Input받기
         if (joyStick != null)
         {
             Vector3 direct = new Vector3(joyStick.Horizontal, joyStick.Vertical);
@@ -209,7 +230,6 @@ public class BaseAI : MonoBehaviour
         if (GetMoveDirect()!=Vector3.zero)
         {
             ChangeAI(E_INGAME_AI_TYPE.UNIT_MOVE);
-            //움직임으로 변경
         }
     }
     private void Action()
@@ -227,8 +247,13 @@ public class BaseAI : MonoBehaviour
     RaycastHit2D hitresult;
     public virtual void Update()
     {
-        hitresult = Physics2D.Raycast(this.transform.position, Vector3.down, 0.15f, 1<<9);
-        if (hitresult.collider==null)
+        Action();
+    }
+
+    public void FixedUpdate()
+    {
+        hitresult = Physics2D.Raycast(this.transform.position, Vector3.down, 0.15f, 1 << 9);
+        if (hitresult.collider == null)
         {
             IsGround = false;
         }
@@ -236,8 +261,6 @@ public class BaseAI : MonoBehaviour
         {
             IsGround = true;
         }
-
-        Action();
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -253,9 +276,9 @@ public class BaseAI : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (targetObject == collision.gameObject)
+        if (targetObject!=null && targetObject.gameObject == collision.gameObject)
         {
-            targetObject = null;
+           targetObject = null;
         }
 
     }

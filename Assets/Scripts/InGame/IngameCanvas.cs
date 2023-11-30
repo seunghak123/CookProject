@@ -15,9 +15,7 @@ public class IngameCanvas : MonoBehaviour
     [SerializeField] private Button exitButton;
 
     [Header("UserUnitAction")]
-    [SerializeField] private Button jumpButton;
     [SerializeField] private Button interActButton;
-    [SerializeField] private Button cookButton;
 
     [SerializeField] private BaseAI userAI;
     public void InitIngameCanvas()
@@ -28,23 +26,15 @@ public class IngameCanvas : MonoBehaviour
     {
         optionButton.onClick.AddListener(OnOffOptionPanel);
         exitButton.onClick.AddListener(ExitInGame);
-        jumpButton.onClick.AddListener(()=> {
-            DoAction(E_INGAME_AI_TYPE.UNIT_JUMP);
-        });
         interActButton.onClick.AddListener(() => {
             DoAction(E_INGAME_AI_TYPE.UNIT_INTERACTION);
-        });
-        cookButton.onClick.AddListener(() => {
-            DoAction(E_INGAME_AI_TYPE.UNIT_COOK);
         });
     }
     private void OnDisable()
     {
         optionButton.onClick.RemoveListener(OnOffOptionPanel);
         exitButton.onClick.RemoveListener(ExitInGame);
-        jumpButton.onClick.RemoveAllListeners();
         interActButton.onClick.RemoveAllListeners();
-        cookButton.onClick.RemoveAllListeners();
     }
     private void DoAction(E_INGAME_AI_TYPE aiType)
     {

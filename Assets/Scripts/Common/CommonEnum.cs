@@ -79,10 +79,8 @@ public enum E_INGAME_AI_TYPE
     NONE,
     UNIT_IDLE,
     UNIT_MOVE,
-    UNIT_JUMP,
     UNIT_INTERACTION,
     UNIT_EVENT,
-    UNIT_COOK,
 
     END,
 }

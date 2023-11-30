@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class RecipeObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private int recipeId = 0;
+    private List<int> recipeFoodList = new List<int>();
+    public void InitRecipe(int targetRecipeId)
     {
-        
+        recipeId = targetRecipeId;
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool IsMakedRecipeFood(BasicMaterialData foodResult)
     {
-        
+        List<int> resultFood = foodResult.GetFoodResult();
+
+        return false;
     }
 }

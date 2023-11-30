@@ -6,12 +6,21 @@ public class BasicMaterialData
 {
     private List<int> materialLists = new List<int>();
     
+    public List<int> GetFoodResult()
+    {
+        return materialLists;
+    }
     public void PushMaterial(int materialId)
     {
-        //레시피가 없을떄 곤죽나온다
-        //재료가 넣어졌을 때
+        //동일한 것이 있을때도 추가
+        materialLists.Add(materialId);
     }  
-
-
-
+    public int GetFirstFoodId()
+    {
+        if(materialLists.Count>0)
+        {
+            return materialLists[0];
+        }
+        return 0;
+    }
 }

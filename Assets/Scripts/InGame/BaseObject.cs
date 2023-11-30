@@ -6,26 +6,36 @@ public class BaseObject : MonoBehaviour
 {
     [SerializeField] protected bool holdCharacter = false;
     [SerializeField] protected bool isBlockCharacter = false;
-    private bool workEnd = false;
-    private bool currentWork = false;
-    private BaseAI currentWorker = null;
-    private BasicMaterialData makedMaterial = null;
+    protected bool workEnd = false;
+    protected bool currentWork = false;
+    protected BaseAI currentWorker = null;
+
+    protected virtual void Awake()
+    {
+        // 오브젝트 초기화
+        InitObject();
+    }
     public virtual void InitObject() 
     {
         //기존에는 파일 읽고, Id 세팅한다
     }
     public bool GetIsHold()
     {
-        return holdCharacter;
+        return holdCharacter && IsWork();
     }
-    public virtual void DoWork(BaseAI targetAI)
+    public virtual void DoWork(BaseAI targetAI, BasicMaterialData param)
     {
         currentWork = true;
         currentWorker = targetAI; 
 
-        //targetAI.SetAnimTrigger()
+        //AI 타입에 따라서 묶어 놓고 Trigger 변경
+        //targetAI.SetAnimTrigger("")
         //Invoke or Coroutine
         //상태에 따라서 달리진행
+    }
+    public virtual IEnumerator Working()
+    {
+        yield break;
     }
     public bool IsWork()
     {
@@ -36,14 +46,6 @@ public class BaseObject : MonoBehaviour
         if (workEnd)
         {
             currentWork = false;
-
-
-            BasicMaterialData makedData = null;
-
-            if (currentWorker == null)
-            {
-                //currentWorker.HandleObjectData 
-            }
 
             return true;
         }
