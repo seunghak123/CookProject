@@ -20,6 +20,7 @@ public class CuttingBoard : BaseObject
     {
 
         //여기서 progress진행
+        //중간에 도마사용을 멈추면 해당 게이지 그대로 가지고 있을것
         yield return WaitTimeManager.WaitForTimeSeconds(workingTime);
 
         workEnd = true;
