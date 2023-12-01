@@ -1,12 +1,12 @@
-﻿using Google.Play.AppUpdate;
-using Google.Play.Common;
-using Seunghak.UIManager;
+﻿using Seunghak.UIManager;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_ANDROID
 using UnityEngine.Android;
+using Google.Play.AppUpdate;
+using Google.Play.Common;
 #elif UNITY_IOS
 using UnityEngine.iOS;
 #endif
@@ -196,7 +196,11 @@ namespace Seunghak.Common
             while (jsonCoroutine.MoveNext())
             {
                 object current = jsonCoroutine.Current;
-                string currentText = current.ToString();
+                string currentText = string.Empty;
+                if (current != null)
+                {
+                    currentText = current.ToString();
+                }
                 if (current is UpdateVersionInfo bundleData)
                 {
                     userData = bundleData;
