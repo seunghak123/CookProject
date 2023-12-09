@@ -198,7 +198,7 @@ namespace Seunghak.Common
                 bundleListInfo.bundleTotalHashCode = totalHashCode;
                 listsDic.AddBundleName(bundleListInfo);
             }
-            string bundleSavePath = $"{Application.dataPath}{FileUtils.GetPlatformString()}";
+            string bundleSavePath = $"{FileUtils.GetStreamingAssetsPath()}{FileUtils.GetPlatformString()}";
             FileUtils.SaveFile<BundleListsDic>(bundleSavePath, FileUtils.BUNDLE_LIST_FILE_NAME, listsDic);
 
             AtlasLists atlasLists;
@@ -288,20 +288,13 @@ namespace Seunghak.Common
                 int a =  UserDataManager.GetPlayerPref<int>(PlayerPrefKey.SaveTest);
             }
         }
-        public IEnumerator SetDownloadDatas()
+        public IEnumerator SetDownloadDatas(BundleListsDic bundleListsDictionary,bool isLocal = false)
         {
             isReady = false;
 
             yield return AssetBundleManager.Instance.GetReadyStatus();
 
-            string bundleLoadPath = $"{Application.persistentDataPath}/{ FileUtils.BUNDLE_LIST_FILE_NAME}";
-#if UNITY_EDITOR
-            if (AssetBundleManager.SimulateAssetBundleInEditor)
-            {
-                bundleLoadPath = $"{FileUtils.GetStreamingAssetsPath()}/{FileUtils.GetPlatformString()}{ FileUtils.BUNDLE_LIST_FILE_NAME}";
-            }
-#endif
-            currentBuildListsDic =  FileUtils.LoadFile<BundleListsDic>(bundleLoadPath);
+            currentBuildListsDic = bundleListsDictionary;
 
             LoadAssetDatas();
 
@@ -316,7 +309,6 @@ namespace Seunghak.Common
         ///이는 CPU 부담이 커질 수 있습니다.
         public void LoadAssetDatas()
         {
-            string bundleLoadPath = $"{Application.persistentDataPath}/{ FileUtils.BUNDLE_LIST_FILE_NAME}";
 #if UNITY_EDITOR
             if (!AssetBundleManager.SimulateAssetBundleInEditor)
 #endif
@@ -438,11 +430,15 @@ namespace Seunghak.Common
                     return null;
                 }
             }
-            GameObject poolObject = prefabObjectpools[objectName].GetPoolObject();
+            GameObject poolObject = null;
+            if (prefabObjectpools.ContainsKey(objectName))
+            {
+                poolObject = prefabObjectpools[objectName].GetPoolObject();
+                poolObject.transform.parent = null;
+            }
 
             UpdateAssetBundleObjectMatrial(poolObject);
 
-            poolObject.transform.parent = null;
 
             return poolObject;
         }
@@ -453,6 +449,19 @@ namespace Seunghak.Common
                 if (inGameObject == null) return;
             }
             {
+                {
+                    var lComList = new List<Renderer>(inGameObject.GetComponentsInChildren<Renderer>(true));
+                    if (lComList != null && lComList.Count > 0)
+                    {
+                        lComList.ForEach((fCom) =>
+                        {
+                            if (fCom != null && fCom.sharedMaterial != null && fCom.sharedMaterial.shader != null)
+                            {
+                                fCom.sharedMaterial.shader = Shader.Find(fCom.sharedMaterial.shader.name);
+                            }
+                        });
+                    }
+                }
                 {
                     var lComList = new List<SpriteRenderer>(inGameObject.GetComponentsInChildren<SpriteRenderer>(true));
                     if (lComList != null && lComList.Count > 0)
@@ -522,7 +531,6 @@ namespace Seunghak.Common
                         {
                             PushObjectPool(objectName, prefabLists[objectName]);
                         }
-                        return prefabLists[objectName];
                     }
                     else
                     {
@@ -536,7 +544,7 @@ namespace Seunghak.Common
             else
             {
                 //해당 내용은 최적화가 쥐뿔도 안되어있기때문에, 차후 수정 요망
-                 string bundleFilePath = $"{Application.dataPath}{FileUtils.GetPlatformString()}{ FileUtils.BUNDLE_LIST_FILE_NAME}";
+                 string bundleFilePath = $"{FileUtils.GetStreamingAssetsPath()}{FileUtils.GetPlatformString()}{ FileUtils.BUNDLE_LIST_FILE_NAME}";
                  
                 BundleListsDic bundleLists = FileUtils.LoadFile<BundleListsDic>(bundleFilePath);
                 for(int i=0;i< bundleLists.bundleNameLists.Count; i++)

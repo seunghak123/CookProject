@@ -256,6 +256,7 @@ namespace Seunghak
             if (bundle == null)
             {
                 error = string.Format("{0} is not a valid asset bundle.", assetBundleName);
+                Debug.Log(assetBundleName + "is not valid assets");
             }
             else
             {
@@ -282,6 +283,7 @@ namespace Seunghak
         public AssetBundleDownloadFileOperation(string assetBundleName, string url, uint crc = 0, ulong offset = 0)
             : base(assetBundleName)
         {
+            Debug.Log("CreateDonwloadFile");
             assetBundleRequest = AssetBundle.LoadFromFileAsync(url, crc, offset);
             webUrl = url;
         }
@@ -483,7 +485,7 @@ namespace Seunghak
             {
                 ///@TODO: When asset bundle download fails this throws an exception...
                 ///
-
+               
                 if (bundle.assetBundle != null)
                 {
                     webRequest = bundle.assetBundle.LoadAssetAsync(assetName, systemType);
@@ -515,6 +517,7 @@ namespace Seunghak
         public AssetBundleLoadManifestOperation(string bundleName, string assetName, System.Type type)
             : base(bundleName, assetName, type)
         {
+            Debug.Log("Create Operation " + bundleName);
         }
 
         public override bool Update()

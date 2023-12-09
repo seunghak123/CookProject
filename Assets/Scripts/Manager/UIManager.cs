@@ -116,6 +116,7 @@ namespace Seunghak.UIManager
 
             if (uicomponent == null)
             {
+                addedWindowLists.Remove(targetUIName);
                 GameObject targetUI = GameResourceManager.Instance.SpawnObject(targetUIName);
 
                 if (targetUI == null)

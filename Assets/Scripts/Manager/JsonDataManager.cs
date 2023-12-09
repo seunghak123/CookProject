@@ -31,14 +31,20 @@ namespace Seunghak.Common
             object loadData = FileUtils.LoadFile<object>(loadPath);
 
             loadedObject = JsonConvert.DeserializeObject<List<T>>(loadData.ToString());
-#else
-            UnityEngine.Object loadObject = GameResourceManager.Instance.LoadObject(loadTypeString.ToLower());
-            loadedObject = JsonConvert.DeserializeObject<List<T>>(loadObject.ToString());
-#endif
+
             if (!dicJsonData.ContainsKey(loadType.ToString()))
             {
                 dicJsonData[loadType.ToString()] = loadData.ToString();
             }
+#else
+            UnityEngine.Object loadObject = GameResourceManager.Instance.LoadObject(loadTypeString.ToLower());
+            loadedObject = JsonConvert.DeserializeObject<List<T>>(loadObject.ToString());
+
+            if (!dicJsonData.ContainsKey(loadType.ToString()))
+            {
+                dicJsonData[loadType.ToString()] = loadObject.ToString();
+            }
+#endif
             return loadedObject;
         }
 

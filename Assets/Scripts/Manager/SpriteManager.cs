@@ -18,12 +18,6 @@ namespace Seunghak.Common
         }
         public Sprite LoadSprite(string spriteName)
         {
-            Object target = GameResourceManager.Instance.LoadObject(spriteName);
-            if (target != null)
-            {
-                return target as Sprite;
-            }
-
             if (spriteAtlasPathDic.ContainsKey(spriteName))
             {
                 SpriteAtlas targetAtlas = spriteAtlasLists.Find(find => find.name == spriteAtlasPathDic[spriteName]);
@@ -36,9 +30,17 @@ namespace Seunghak.Common
             }
             else
             {
-                Debug.Log($"{spriteName} sprite nothing");
-                //없어요 없어!
-                return null;
+                Object target = GameResourceManager.Instance.LoadObject(spriteName);
+                if (target != null)
+                {
+                    return target as Sprite;
+                }
+                else
+                {
+                    Debug.Log($"{spriteName} sprite nothing");
+                    //없어요 없어!
+                    return null;
+                }
             }
         }
         private void InitAtlasLists()
@@ -56,7 +58,7 @@ namespace Seunghak.Common
 #if UNITY_EDITOR
             atlasfilePath = $"{FileUtils.ATLAS_SAVE_PATH}/{FileUtils.ATLAS_LIST_FILE_NAME}";
                      
-            string bundleFilePath = $"{Application.dataPath}{FileUtils.GetPlatformString()}{ FileUtils.BUNDLE_LIST_FILE_NAME}";
+            string bundleFilePath = $"{FileUtils.GetStreamingAssetsPath()}{FileUtils.GetPlatformString()}{ FileUtils.BUNDLE_LIST_FILE_NAME}";
                  
             BundleListsDic bundleLists = FileUtils.LoadFile<BundleListsDic>(bundleFilePath);
             atlasLists = FileUtils.LoadFile<AtlasLists>(atlasfilePath);

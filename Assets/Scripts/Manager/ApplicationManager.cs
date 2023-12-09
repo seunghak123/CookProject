@@ -16,6 +16,7 @@ namespace Seunghak.Common
     {
         [SerializeField] public static string cdnAddressPath = "https://d2fvmix8egxgsw.cloudfront.net/ARDefenceBundle/";
         [SerializeField] private bool isUseBundle;
+        [SerializeField] public bool isStreamingAssetBundles;
         [SerializeField] public GameObject managersObject;
         [Header("Init UI")]
         [SerializeField] TitleWindow usertitleWindow;
@@ -187,35 +188,47 @@ namespace Seunghak.Common
         }
         private IEnumerator BundleUpdate()
         {
-            string jsonPath;//= $"{cdnAddressPath}/Version/{Application.version}{FileUtils.VERSION_INFO_FILE_NAME}";
-            //우선 CDN 테스트가 완료되었기 떄문에, 임시적으로 로컬에서 다운로드
-            jsonPath = $"C:/Users/dhtmd/Desktop/TestLocalStorage/Version/{Application.version}/{FileUtils.VERSION_INFO_FILE_NAME}";
+            if(!isUseBundle)
+            {
+                MoveNextState(E_APPLICATION_STATE.GAME_RESOURCE_LOAD, true);
+                yield break;
+            }
+            Debug.Log("UserBundle");
             UpdateVersionInfo userData = new UpdateVersionInfo();
+
+            string jsonPath;//= $"{cdnAddressPath}/Version/{Application.version}{FileUtils.VERSION_INFO_FILE_NAME}";
+                            //우선 CDN 테스트가 완료되었기 떄문에, 임시적으로 로컬에서 다운로드
+            jsonPath = $"C:/Users/dhtmd/Desktop/TestLocalStorage/Version/{Application.version}/{FileUtils.VERSION_INFO_FILE_NAME}";
 
             IEnumerator jsonCoroutine = FileUtils.RequestTextFile<UpdateVersionInfo>(jsonPath);
             while (jsonCoroutine.MoveNext())
             {
                 object current = jsonCoroutine.Current;
-                string currentText = string.Empty;
-                if (current != null)
-                {
-                    currentText = current.ToString();
-                }
+
                 if (current is UpdateVersionInfo bundleData)
                 {
                     userData = bundleData;
                 }
                 yield return null;
             }
+            Debug.Log("JsonCo");
+
             //CdnPath강제로 가라 처리
             userData.cdnAddressInfoPath = "C://Users/dhtmd/Desktop/TestLocalStorage/Android/09111200";
-            string preCheckDownloadFile = $"{Application.persistentDataPath}/{ FileUtils.BUNDLE_LIST_FILE_NAME}";
+
+            string predownloadPath = Application.persistentDataPath;
+            if (isStreamingAssetBundles)
+            {
+                predownloadPath = $"{FileUtils.GetStreamingAssetsPath()}";
+            }
+            string preCheckDownloadFile = $"{predownloadPath}/{ FileUtils.BUNDLE_LIST_FILE_NAME}";
             BundleListsDic preLoadDic = FileUtils.LoadFile<BundleListsDic>(preCheckDownloadFile);
             //만약 해당 파일이 없을 경우엔 모두 받는것으로 판정
             if (preLoadDic == null)
             {
                 preLoadDic = new BundleListsDic();
             }
+            Debug.Log("PreLoadDic");
 
             BundleListsDic compareLoadDic = new BundleListsDic();
 
@@ -230,6 +243,7 @@ namespace Seunghak.Common
                 }
                 yield return null;
             }
+            Debug.Log("checkDownload");
 
             BundleListsDic finalDownloadDic = FileUtils.CompareDicData(preLoadDic, compareLoadDic);
 
@@ -286,45 +300,100 @@ namespace Seunghak.Common
                 //어플리케이션용 미니게임 또는 서브게임이 출력 또는 가라 게임이 출력
                 yield return WaitTimeManager.WaitForEndFrame();
             }
+            Debug.Log("oper1");
             FileUtils.SaveFile<BundleListsDic>(Application.persistentDataPath, FileUtils.BUNDLE_LIST_FILE_NAME, compareLoadDic);
- 
+            Debug.Log("savepersistent");
             MoveNextState(E_APPLICATION_STATE.GAME_RESOURCE_LOAD,false);
             yield return null;
         }
         private IEnumerator GameResourceLoad(bool isLocal = false)
         {
             //만약 에셋을 다운로드 받지 않았다면 초기화가 필요
+            BundleListsDic loadDic = null;
 #if UNITY_EDITOR
             if (!AssetBundleManager.SimulateAssetBundleInEditor
                 )
 #endif
             {
-                string bundleLoadPath = $"{Application.persistentDataPath}/{ FileUtils.BUNDLE_LIST_FILE_NAME}";
-                AssetBundleManager.BaseDownloadingURL = Application.persistentDataPath;
+                Debug.Log("persistent");
+                string downloadPath = Application.persistentDataPath;
+                if (isLocal || isStreamingAssetBundles)
+                {
+                    downloadPath = $"{FileUtils.GetStreamingAssetsPath()}";
+                }
+                string bundleLoadPath = $"{downloadPath}/{ FileUtils.BUNDLE_LIST_FILE_NAME}";
+                Debug.Log(bundleLoadPath + " downloadpath");
+                if (isStreamingAssetBundles)
+                {
+#if UNITY_EDITOR
+                    AssetBundleManager.BaseDownloadingURL = $"{Application.streamingAssetsPath}";
+#else
+                    AssetBundleManager.BaseDownloadingURL = $"{FileUtils.GetStreamingAssetsPath()}";
+#endif
+                }
+                else
+                {
+                    AssetBundleManager.BaseDownloadingURL = Application.persistentDataPath;
+                }
 
-                BundleListsDic loadDic = FileUtils.LoadFile<BundleListsDic>(bundleLoadPath);
+                loadDic = FileUtils.LoadFile<BundleListsDic>(bundleLoadPath);
+
+                if (isStreamingAssetBundles)
+                {
+                    IEnumerator checkDownloadCoroutine = FileUtils.RequestTextFile<BundleListsDic>(bundleLoadPath);
+                    while (checkDownloadCoroutine.MoveNext())
+                    {
+                        object current = checkDownloadCoroutine.Current;
+                        if (current is BundleListsDic bundleData)
+                        {
+                            loadDic = bundleData;
+                        }
+                        yield return null;
+                    }
+
+                    Debug.Log(loadDic.bundleNameLists == null);
+                }
+                else
+                {
+                    loadDic = FileUtils.LoadFile<BundleListsDic>(bundleLoadPath);
+                }
                 if (isLocal)
                 {
+
                     yield return AssetBundleManager.Initialize().IsDone();
 
                     while (AssetBundleManager.inProgressOperations.Count > 0)
                     {
+                        Debug.Log("still progerss");
                         yield return WaitTimeManager.WaitForEndFrame();
                     }
+                }
+                if(loadDic==null)
+                {
+                    //문제가 있음
+                    Debug.Log("Load Dictionary is null + " + bundleLoadPath);
                 }
                 AssetBundleManager.Instance.InitAssetBundleManager(loadDic);
                 while (AssetBundleManager.inProgressOperations.Count > 0)
                 {
+                    Debug.Log("still progerss2");
                     //게임 리소스하는데 좀 길어진다 싶으면 영상 틀것
                     yield return WaitTimeManager.WaitForEndFrame();
                 }
             }
 
-            StartCoroutine(GameResourceManager.Instance.SetDownloadDatas());
+            StartCoroutine(GameResourceManager.Instance.SetDownloadDatas(loadDic, isLocal));
 
+            int count = 0;
             while (!GameResourceManager.Instance.isReady)
             {
-                yield return WaitTimeManager.WaitForEndFrame();
+                Debug.Log("still notready");
+                if (count>1000)
+                {
+                    yield break;
+                }
+                yield return WaitTimeManager.WaitForTimeSeconds(0.03f);
+                count++;
             }
 
             MoveNextState(E_APPLICATION_STATE.INAPP_UPDATE);
@@ -343,9 +412,9 @@ namespace Seunghak.Common
             SceneManager.SceneManager.Instance.ChangeScene(E_SCENE_TYPE.LOBBY);
             yield break;
         }
-        #endregion ApplicationLogic
+#endregion ApplicationLogic
 
-        #region InsertLogic
+#region InsertLogic
         //FCM 설정
         public void InitializeFCM()
         {
@@ -461,7 +530,7 @@ namespace Seunghak.Common
 //        iOSNotificationCenter.RemoveAllScheduledNotifications();
 //#endif
         }
-        #endregion InsertLogic
+#endregion InsertLogic
     }
     [SerializeField]
     public class UpdateVersionInfo

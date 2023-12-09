@@ -1,4 +1,5 @@
 ﻿using Seunghak.Common;
+using Spine.Unity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ public class BaseAI : MonoBehaviour
     [Space(2)]
     [Header("UnitAnimation")]
     [SerializeField] private Animator unitAnim;
+    [SerializeField] private SkeletonAnimation unitSpineAnim;
     [SerializeField] private UnitStructure unitInfo;
 
     [Space(2)]
@@ -175,6 +177,7 @@ public class BaseAI : MonoBehaviour
 
         if(moveDirect == Vector3.zero)
         {
+            //unitSpineAnim.AnimationState.SetAnimation(0, "Idle", true);
             unitAnim.SetFloat("Speed", 0);
             IsGround = true;
             ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
@@ -246,12 +249,7 @@ public class BaseAI : MonoBehaviour
     }
     #endregion UnitState
     RaycastHit2D hitresult;
-    public virtual void Update()
-    {
-        Action();
-    }
-
-    public void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         hitresult = Physics2D.Raycast(this.transform.position, Vector3.down, 0.15f, 1 << 9);
         if (hitresult.collider == null)
@@ -262,6 +260,8 @@ public class BaseAI : MonoBehaviour
         {
             IsGround = true;
         }
+
+        Action();
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

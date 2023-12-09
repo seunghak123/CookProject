@@ -15,7 +15,7 @@ public class LobbyAI : BaseAI
         unitAIType = E_INGAME_AI_TYPE.NONE;
         ChangeAI(playAnimAiLists[random]);
     }
-    public override void Update()
+    public override void FixedUpdate()
     {
         //Update문을 실행하지 않기 위한 override
     }

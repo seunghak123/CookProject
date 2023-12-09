@@ -150,20 +150,26 @@ namespace Seunghak
 #endif
         public void InitAssetBundleManager()
         {
-            string bundleLoadPath = $"{GetStreamingAssetsPath()}/{FileUtils.GetPlatformString()}{ FileUtils.BUNDLE_LIST_FILE_NAME}";
-
+            string bundleLoadPath = $"{GetStreamingAssetsPath()}/{ FileUtils.BUNDLE_LIST_FILE_NAME}";
+            Debug.Log("bundle path : " + bundleLoadPath);
             BundleListsDic loadDic = FileUtils.LoadFile<BundleListsDic>(bundleLoadPath);
 
-            for(int i=0;i< loadDic.bundleNameLists.Count; i++)
+            if(loadDic!=null && loadDic.bundleNameLists!=null)
             {
-                LoadAssetBundle(loadDic.bundleNameLists[i].bundleName);
+                for (int i = 0; i < loadDic.bundleNameLists.Count; i++)
+                {
+                    LoadAssetBundle(loadDic.bundleNameLists[i].bundleName);
+                }
             }
         }
         public void InitAssetBundleManager(BundleListsDic initBundleLists)
         {
-            for (int i = 0; i < initBundleLists.bundleNameLists.Count; i++)
+            if(initBundleLists!=null && initBundleLists.bundleNameLists!=null)
             {
-                LoadAssetBundle(initBundleLists.bundleNameLists[i].bundleName);
+                for (int i = 0; i < initBundleLists.bundleNameLists.Count; i++)
+                {
+                    LoadAssetBundle(initBundleLists.bundleNameLists[i].bundleName);
+                }
             }
         }
         private static string GetStreamingAssetsPath()
@@ -214,7 +220,10 @@ namespace Seunghak
         static public LoadedAssetBundle GetLoadedAssetBundle(string assetBundleName, out string error)
         {
             if (downloadingErrors.TryGetValue(assetBundleName, out error))
+            {
+                Debug.Log("error" +  error);
                 return null;
+            }
 
             LoadedAssetBundle bundle = null;
             loadedAssetBundles.TryGetValue(assetBundleName, out bundle);
@@ -268,7 +277,7 @@ namespace Seunghak
         static public AssetBundleLoadManifestOperation Initialize(string manifestAssetBundleName)
         {
 #if UNITY_EDITOR
-            // If we're in Editor simulation mode, we don't need the manifest assetBundle.
+            //If we're in Editor simulation mode, we don't need the manifest assetBundle.
             if (SimulateAssetBundleInEditor)
                 return null;
 #endif
@@ -309,6 +318,7 @@ namespace Seunghak
             // Load dependencies.
             if (!isAlreadyProcessed && !isLoadingAssetBundleManifest)
             {
+                Debug.Log("not processed");
                 LoadDependencies(assetBundleName);
             }
         }
@@ -409,6 +419,7 @@ namespace Seunghak
                 ++bundle.referencedCount;
                 return true;
             }
+            Debug.Log(assetBundleName + " bundle is null");
 
             // @TODO: Do we need to consider the referenced count of WWWs?
             // In the demo, we never have duplicate WWWs as we wait LoadAssetAsync()/LoadLevelAsync() to be finished before calling another LoadAssetAsync()/LoadLevelAsync().
@@ -454,7 +465,9 @@ namespace Seunghak
                 // UnityWebRequest also is able to load from there, but we use the former API because:
                 // - UnityWebRequest under Android OS fails to load StreamingAssets files (at least Unity5.50 or less)
                 // - or UnityWebRequest anyway internally calls AssetBundle.LoadFromFileAsync for StreamingAssets files
-                if (url.StartsWith(Application.streamingAssetsPath)){ 
+                if (url.StartsWith(Application.streamingAssetsPath) )
+                {
+                    Debug.Log(assetBundleName + " bundle is steamingAssets");
                     inProgressOperations.Add(new AssetBundleDownloadFileOperation(assetBundleName, url));
                 } 
                 else if (url.StartsWith(Application.persistentDataPath))
@@ -462,12 +475,15 @@ namespace Seunghak
                     inProgressOperations.Add(new AssetBundleLoadPersistentOperation(assetBundleName,url));
                 }
                 else {
-                    
                     UnityWebRequest request = null;
+                    Debug.Log(assetBundleName + " bundle is webRequest");
                     if (isLoadingAssetBundleManifest) {
                         // For manifest assetbundle, always download it as we don't have hash for it.
+                        Debug.Log("url :" + url );
                         request = UnityWebRequest.Get(url);
                     } else {
+                        Debug.Log(assetBundleName + " bundle is webRequest");
+                        Debug.Log("url2 :" + url);
                         request = UnityWebRequest.Get(url);
                     }
                     inProgressOperations.Add(new AssetBundleDownloadWebRequestOperation(assetBundleName, request));
@@ -593,19 +609,29 @@ namespace Seunghak
             string error = string.Empty;
             string assetbundleName = string.Empty;
             LoadedAssetBundle loadedAssets = default;
-            if (subdownload != null)
+            Debug.Log("no assets");
+            if(download!=null)
             {
-                assetbundleName =  string.IsNullOrEmpty(download.assetBundleName)? subdownload.assetBundleName : download.assetBundleName;
-                loadedAssets = download.assetBundle == null? subdownload.assetBundle: download.assetBundle;
-                error = string.IsNullOrEmpty(download.error) ? subdownload.error : download.error;
+                Debug.Log("download");
+                assetbundleName = download.assetBundleName;
+                loadedAssets = download.assetBundle;
+                error = download.error;
+            }
+            else if (subdownload != null)
+            {
+                Debug.Log("subdownload");
+                assetbundleName =  subdownload.assetBundleName;
+                loadedAssets =  subdownload.assetBundle;
+                error =  subdownload.error;
             }
             else if (localdownload != null)
             {
+                Debug.Log("localdownload");
                 assetbundleName = localdownload.assetBundleName;
                 loadedAssets = localdownload.loadedAssetBundle;
                 error = localdownload.err; 
             }
-
+            Debug.Log("download is not null");
             if ( downloadingBundles.ContainsKey(assetbundleName) == true )
             {
                 int nRefCount = downloadingBundles[assetbundleName];
@@ -627,7 +653,8 @@ namespace Seunghak
 
             if (string.IsNullOrEmpty(error))
             {
-                if(loadedAssets.assetBundle!=null)
+                Debug.Log("add loadedAssets");
+                if (loadedAssets!=null && loadedAssets.assetBundle!=null)
                 {
                     Debug.LogError("Add Asset" + assetbundleName);
                     loadedAssetBundles.Add(assetbundleName, loadedAssets);
