@@ -117,7 +117,10 @@ public class Purchase : MonoBehaviour, IStoreListener
     {
         //결제 불가하다 어쩌구 띄우기
     }
-
+    public void OnInitializeFailed(InitializationFailureReason error, string message)
+    {
+        throw new NotImplementedException();
+    }
     public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
     {
         //결제 실패 팝업 띄우기
@@ -166,6 +169,4 @@ public class Purchase : MonoBehaviour, IStoreListener
         }
         return PurchaseProcessingResult.Complete;
     }
-
-
 }
