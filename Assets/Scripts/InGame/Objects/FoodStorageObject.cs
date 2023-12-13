@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodStorageObject : BaseObject
+public class FoodStorageObject : ProgressedBaseObject
 {
     //workingTime은 테이블에서 가져올것
-    private float workingTime = 1.0f;
     protected BasicMaterialData makedMaterial = null;
     private BasicMaterialData preMaterial = null;
     private BaseAI workingAI = null;
@@ -13,15 +12,12 @@ public class FoodStorageObject : BaseObject
     {
         holdCharacter = false;
         isBlockCharacter = true;
+        workingEndAction = WorkingEnd;
     }
-    public override IEnumerator Working()
+    private void WorkingEnd()
     {
-
-        yield return WaitTimeManager.WaitForTimeSeconds(workingTime);
-
         workEnd = true;
-
-        if (WorkEnd())
+        if (IsWorkEnd())
         {
             if (workingAI != null)
             {
@@ -44,7 +40,7 @@ public class FoodStorageObject : BaseObject
         }
     }
 
-    public override bool WorkEnd()
+    public override bool IsWorkEnd()
     {
         if (workEnd)
         {

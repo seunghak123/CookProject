@@ -1,5 +1,5 @@
 [System.Serializable]
-public class JUnitData : JBaseData 
+public class JUnitData
 {
 	public int index;
 	public string unitName;

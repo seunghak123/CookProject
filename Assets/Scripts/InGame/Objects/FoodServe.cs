@@ -16,7 +16,7 @@ public class FoodServe : BaseObject
         //FoodResult를 요리 투입매니저로 전달 //param.GetFoodResult()
     }
 
-    public override bool WorkEnd()
+    public override bool IsWorkEnd()
     {
 
         return true;

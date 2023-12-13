@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Seunghak.Common;
-public class CuttingBoard : BaseObject
+public class CuttingBoard : ProgressedBaseObject
 {
     private int currentCuttingFood = 0;
     protected BasicMaterialData makedMaterial = null;
@@ -25,7 +25,7 @@ public class CuttingBoard : BaseObject
 
         workEnd = true;
 
-        if (WorkEnd())
+        if (IsWorkEnd())
         {
             if(workingAI!=null)
             {
@@ -52,7 +52,7 @@ public class CuttingBoard : BaseObject
         StartCoroutine(Working());
     }
 
-    public override bool WorkEnd()
+    public override bool IsWorkEnd()
     {
         if (workEnd)
         {

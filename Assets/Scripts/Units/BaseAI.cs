@@ -1,4 +1,5 @@
 ﻿using Seunghak.Common;
+using Spine;
 using Spine.Unity;
 using System;
 using System.Collections;
@@ -18,7 +19,7 @@ public class BaseAI : MonoBehaviour
 
     [Space(2)]
     [Header("UnitFuction")]
-    [SerializeField, Range(1, 100)] private float characterJumpPower = 80;
+    [SerializeField, Range(1, 200)] private float characterJumpPower = 80;
     [SerializeField, Range(0.5f, 5)] private float characterSpeed = 1;
     private Rigidbody2D characterRigid;
     private Dictionary<E_INGAME_AI_TYPE, Action> userActionDic = new Dictionary<E_INGAME_AI_TYPE, Action>();
@@ -175,13 +176,21 @@ public class BaseAI : MonoBehaviour
     {
         Vector3 moveDirect = GetMoveDirect();
 
+        TrackEntry track = unitSpineAnim.AnimationState.GetCurrent(0);
         if(moveDirect == Vector3.zero)
         {
-            //unitSpineAnim.AnimationState.SetAnimation(0, "Idle", true);
+            if (track!=null && track.Animation.Name != "idle")
+            {
+                unitSpineAnim.AnimationState.SetAnimation(0, "idle", true);
+            }
             unitAnim.SetFloat("Speed", 0);
             IsGround = true;
             ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
             return;
+        }
+        if(track!=null &&  track.Animation.Name != "walk")
+        {
+            unitSpineAnim.AnimationState.SetAnimation(0, "walk", true);
         }
         unitAnim.SetFloat("Speed", moveDirect.magnitude);
 

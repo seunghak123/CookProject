@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
+using Newtonsoft.Json;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -37,8 +38,7 @@ namespace Seunghak.Common
                 }
                 else
                 {
-                    Debug.Log($"{spriteName} sprite nothing");
-                    //없어요 없어!
+                    Debug.Log($"{spriteName} sprite nothing");          
                     return null;
                 }
             }
@@ -85,7 +85,7 @@ namespace Seunghak.Common
                 }
             }
 #else
-            atlasLists = JsonUtility.FromJson<AtlasLists>(GameResourceManager.Instance.LoadObject("AtlasList").ToString());
+            atlasLists = JsonConvert.DeserializeObject<AtlasLists>(GameResourceManager.Instance.LoadObject("AtlasList").ToString());
 
             for (int i = 0; i < atlasLists.atlaseLists.Count; i++)
             {

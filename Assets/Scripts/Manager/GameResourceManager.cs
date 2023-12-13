@@ -342,6 +342,10 @@ namespace Seunghak.Common
 #if UNITY_EDITOR
             else
             {
+                if(currentBuildListsDic==null)
+                {
+                    return;
+                }
                 for (int i = 0; i < currentBuildListsDic.bundleNameLists.Count; i++)
                 {
  
