@@ -104,7 +104,7 @@ namespace Seunghak.Common
         }
         private void RequestAtlasCallback(string tag, System.Action<SpriteAtlas> callback)
         {
-
+            //추후 Atlas 개발 시 변경
         }
     }
 }

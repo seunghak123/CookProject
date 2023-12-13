@@ -5,12 +5,14 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ProgressedViewDataClass : BaseViewDataClass
 {
+    public bool progressActive = false;
     public float currentPercent;
     public float currentIndex;
 }
 public class ProgressedBaseObject : BaseObject
 {
     private ProgressedViewDataClass progressedViewData;
+    [SerializeField]
     private ProgressObjectView progressedView;
 
     protected Action<ProgressedViewDataClass> workingAction;
@@ -19,20 +21,35 @@ public class ProgressedBaseObject : BaseObject
 
     //테스트 코드
     protected int currentState = 0;
+    [SerializeField]
     private float[] workingTimeArrays = new float[] { 2, 10, 30 };
     //테스트 코드
     public override void InitObject()
     {
+        base.InitObject();
         timerWorkingAction = ChangeProgressBarFront;
         workingEndAction = WorkingEnd;
+
+        UpdateUI();
     }
     protected override void UpdateUI()
     {
-        progressedView.Updated(progressedViewData);
+        if(progressedViewData==null)
+        {
+            progressedViewData = new ProgressedViewDataClass();
+        }
+
+        if(progressedView!=null)
+        {
+            progressedView.Updated(progressedViewData);
+        }
     }
     private void WorkingEnd()
     {
+        ProgressedViewDataClass viewData = new ProgressedViewDataClass();
 
+        progressedViewData = viewData;       
+        UpdateUI();
     }
     private void ChangeProgressBarFront(ProgressedViewDataClass changeBar)
     {
@@ -43,9 +60,15 @@ public class ProgressedBaseObject : BaseObject
     {
         float timer = 0.0f;
         ProgressedViewDataClass viewData = new ProgressedViewDataClass();
+        viewData.progressActive = true;
         for (int i = 0; i < workingTimeArrays.Length;)
         {
-            if(timer> workingTimeArrays[i])
+            if (timerWorkingAction != null)
+            {
+                viewData.currentPercent = timer / workingTimeArrays[i];
+                timerWorkingAction(viewData);
+            }
+            if (timer> workingTimeArrays[i])
             {
                 timer = 0;
                 i++;
@@ -55,13 +78,8 @@ public class ProgressedBaseObject : BaseObject
                     workingAction(viewData);
                 }
             }
-            yield return WaitTimeManager.WaitForEndFrame();
-            if(timerWorkingAction!=null)
-            {
-                viewData.currentPercent = timer / workingTimeArrays[i];
-                timerWorkingAction(viewData);
-            }
             timer += Time.deltaTime;
+            yield return WaitTimeManager.WaitForEndFrame();
         }
 
         workEnd = true;

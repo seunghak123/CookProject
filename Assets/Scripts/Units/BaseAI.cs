@@ -288,6 +288,7 @@ public class BaseAI : MonoBehaviour
     {
         if (targetObject!=null && targetObject.gameObject == collision.gameObject)
         {
+           targetObject.ExitWork();
            targetObject = null;
         }
 

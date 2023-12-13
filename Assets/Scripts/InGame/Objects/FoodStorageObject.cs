@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class FoodStorageObject : ProgressedBaseObject
 {
     //workingTime은 테이블에서 가져올것

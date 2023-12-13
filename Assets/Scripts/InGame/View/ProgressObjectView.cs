@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ProgressObjectView : BaseObjectView    
 {
     [SerializeField] private Image progressFrontBar;
+    [SerializeField] private Transform progressParent;
     public override void Updated(BaseViewDataClass data)
     {
         if (!IsInit())
@@ -18,11 +19,16 @@ public class ProgressObjectView : BaseObjectView
         }
         ProgressedViewDataClass insertData = data as ProgressedViewDataClass;
         progressFrontBar.fillAmount = insertData.currentPercent;
+        progressParent.gameObject.SetActive(insertData.progressActive);
     }
 
     protected override bool IsInit()
     {
         if(progressFrontBar==null)
+        {
+            return false;
+        }
+        if(progressParent==null)
         {
             return false;
         }

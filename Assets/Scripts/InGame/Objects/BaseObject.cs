@@ -9,7 +9,7 @@ public class BaseObject : MonoBehaviour
     protected bool workEnd = false;
     protected bool currentWork = false;
     protected BaseAI currentWorker = null;
-
+    //추가적으로 Teamplte 데이터 값 저장 - 맵 Tool에서 기록 가능
     protected virtual void Awake()
     {
         // 오브젝트 초기화
@@ -35,6 +35,10 @@ public class BaseObject : MonoBehaviour
         //targetAI.SetAnimTrigger("")
         //Invoke or Coroutine
         //상태에 따라서 달리진행
+    }
+    public virtual void ExitWork()
+    {
+        //나가졌을 때 처리하는 방법
     }
     public virtual IEnumerator Working()
     {

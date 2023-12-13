@@ -13,29 +13,9 @@ public class CuttingBoard : ProgressedBaseObject
 
     public override void InitObject()
     {
+        base.InitObject();
         holdCharacter = true;
         isBlockCharacter = false;
-    }
-    public override IEnumerator Working()
-    {
-
-        //여기서 progress진행
-        //중간에 도마사용을 멈추면 해당 게이지 그대로 가지고 있을것
-        yield return WaitTimeManager.WaitForTimeSeconds(workingTime);
-
-        workEnd = true;
-
-        if (IsWorkEnd())
-        {
-            if(workingAI!=null)
-            {
-                workingAI.HandleObjectData = makedMaterial;
-            }
-
-            workingAI = null;
-            preMaterial = null;
-            makedMaterial = null;
-        }
     }
     public override void DoWork(BaseAI targetAI, BasicMaterialData param)
     {
@@ -43,6 +23,11 @@ public class CuttingBoard : ProgressedBaseObject
 
         workingAI = targetAI;
         preMaterial = param;
+
+        if(preMaterial == null)
+        {
+            return;
+        }
 
         //파라미터값으로 int값을 받아서 id세팅
 
@@ -60,6 +45,7 @@ public class CuttingBoard : ProgressedBaseObject
 
             if (preMaterial == null)
             {
+                //재료가 없는데 어떻게 시작하죠?
                 return false;
             }
             int preFoodId = preMaterial.GetFirstFoodId();

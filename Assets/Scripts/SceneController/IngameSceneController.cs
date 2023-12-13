@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Seunghak.SceneManager
 {
     using Seunghak.UIManager;
-    public class BattleSceneController : SceneController
+    public class IngameSceneController : SceneController
     {
         [SerializeField] private IngameCanvas ingameUICanvas;
         protected override void Awake()
