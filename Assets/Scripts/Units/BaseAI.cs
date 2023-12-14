@@ -113,7 +113,6 @@ public class BaseAI : MonoBehaviour
     }
     private void InterActObject()
     {
-
         if (targetObject ==null)
         {
             if (HandleObjectData != null)

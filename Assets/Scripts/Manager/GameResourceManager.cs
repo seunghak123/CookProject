@@ -521,7 +521,7 @@ namespace Seunghak.Common
             }
 #endif
         }
-        public Object LoadObject(string objectName)
+        public Object LoadObject(string objectName, bool isSound = false)
         {
 #if UNITY_EDITOR
             if (!AssetBundleManager.SimulateAssetBundleInEditor)
@@ -542,7 +542,7 @@ namespace Seunghak.Common
                         return null;
                     }
                 }
-                return prefabObjectpools[objectName].GetPoolObject();
+                return prefabObjectpools[objectName].GetPoolObject(isSound);
             }
 #if UNITY_EDITOR
             else
@@ -601,17 +601,24 @@ namespace Seunghak.Common
             currentAccessTime = System.DateTime.Now;
             poolObject = targetObject;
         }
-        public GameObject GetPoolObject()
+        public GameObject GetPoolObject(bool isSound = false)
         {
             //PoolObject를 가져가고 각 단계의 초기화는 각 매니저에서 진행한다.
             currentAccessTime = System.DateTime.Now;
             for (int i = 0; i < poolObjects.Count; i++)
             {
-                if (!poolObjects[i].activeInHierarchy)
+                if(isSound)
                 {
-                    poolObjects[i].SetActive(true);
-
                     return poolObjects[i];
+                }
+                else
+                {
+                    if (!poolObjects[i].activeInHierarchy)
+                    {
+                        poolObjects[i].SetActive(true);
+
+                        return poolObjects[i];
+                    }
                 }
             }
             GameObject createdObject = GameObject.Instantiate(poolObject) as GameObject;

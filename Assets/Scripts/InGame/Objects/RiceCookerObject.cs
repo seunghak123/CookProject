@@ -9,8 +9,18 @@ public class RiceCookerObject : ProgressedBaseObject
     private BasicMaterialData preMaterial = null;
     public override void InitObject()
     {
+        base.InitObject();
         holdCharacter = false;
         isBlockCharacter = true;
+
+        workingAction = WorkingChange;
+    }
+    private void WorkingChange(ProgressedViewDataClass data)
+    {
+        if (progressedView != null)
+        {
+            progressedView.Updated(data);
+        }
     }
 
     public override void DoWork(BaseAI targetAI, BasicMaterialData param)
@@ -40,7 +50,7 @@ public class RiceCookerObject : ProgressedBaseObject
         switch(currentState)
         {
             case 1:
-                //상태값에따라서 밥상태 결정
+                
                 break;
         }
         //가데이터

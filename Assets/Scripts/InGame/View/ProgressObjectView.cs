@@ -9,17 +9,25 @@ public class ProgressObjectView : BaseObjectView
     [SerializeField] private Transform progressParent;
     public override void Updated(BaseViewDataClass data)
     {
-        if (!IsInit())
-        {
-            return; 
-        }
-        if(!(data is ProgressedViewDataClass))
+        if(!IsChecked(data))
         {
             return;
         }
         ProgressedViewDataClass insertData = data as ProgressedViewDataClass;
         progressFrontBar.fillAmount = insertData.currentPercent;
         progressParent.gameObject.SetActive(insertData.progressActive);
+    }
+    protected virtual bool IsChecked(BaseViewDataClass data)
+    {
+        if (!IsInit())
+        {
+            return false;
+        }
+        if (!(data is ProgressedViewDataClass))
+        {
+            return false;
+        }
+        return true;
     }
 
     protected override bool IsInit()

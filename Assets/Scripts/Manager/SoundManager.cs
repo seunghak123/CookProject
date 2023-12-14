@@ -11,7 +11,7 @@ namespace Seunghak.Common
         private string currentPlayBGM;
         public void PlayBGM(string soundName)
         {
-            AudioClip resourceAudio = GameResourceManager.Instance.LoadObject(soundName) as AudioClip;
+            AudioClip resourceAudio = GameResourceManager.Instance.LoadObject(soundName,true) as AudioClip;
             UserOptionData optionData = UserDataManager.Instance.GetUserOptionData();
             if (optionData.IsMute)
             {
@@ -36,7 +36,7 @@ namespace Seunghak.Common
             while (bgmAudioSource.volume > 0)
             {
                 bgmAudioSource.volume -= Time.deltaTime;
-                yield return new WaitForSeconds(Time.deltaTime);
+                yield return WaitTimeManager.WaitForTimeSeconds(Time.deltaTime);
             }
             bgmAudioSource.volume = soundVolume;
             bgmAudioSource.clip = playingClip;
@@ -51,7 +51,7 @@ namespace Seunghak.Common
             {
                 return;
             }
-            AudioClip resourceAudio = GameResourceManager.Instance.LoadObject(soundName) as AudioClip;
+            AudioClip resourceAudio = GameResourceManager.Instance.LoadObject(soundName,true) as AudioClip;
 
             int volume = optionData.MasterVolume < optionData.FBXVolume ? optionData.MasterVolume : optionData.FBXVolume;
             float percentVolume = volume / 100.0f;
@@ -63,6 +63,25 @@ namespace Seunghak.Common
 
             StartCoroutine(PlayVoice(resourceAudio, percentVolume, isLoop));
 
+        }
+        public void PlayFxSound(string soundName, float soundVolume)
+        {
+            UserOptionData optionData = UserDataManager.Instance.GetUserOptionData();
+            if (optionData.IsMute)
+            {
+                return;
+            }
+            AudioClip resourceAudio = GameResourceManager.Instance.LoadObject(soundName,true) as AudioClip;
+
+            int volume = optionData.MasterVolume < optionData.FBXVolume ? optionData.MasterVolume : optionData.FBXVolume;
+            float percentVolume = volume / 100.0f;
+
+            if (resourceAudio == null)
+            {
+                return;
+            }
+
+            StartCoroutine(PlayFx(resourceAudio, percentVolume));
         }
         private IEnumerator PlayVoice(AudioClip playingClip, float soundVolume, bool isLoop)
         {
@@ -76,6 +95,19 @@ namespace Seunghak.Common
         private IEnumerator PlayFx(AudioClip playingClip, float soundVolume)
         {
             bool isPlaying = false;
+            //여기서 현재 같은 Fx가 플레이중인가?
+
+            for(int i=0;i< fxAudioSources.Count;i++)
+            {
+                if(fxAudioSources[i].clip.name.Equals(playingClip))
+                {
+                    fxAudioSources[i].volume = soundVolume;
+                    fxAudioSources[i].clip = playingClip;
+                    fxAudioSources[i].loop = false;
+                    fxAudioSources[i].Play();
+                    yield break;
+                }
+            }
             for(int i=0;i< fxAudioSources.Count; i++)
             {
                 if (!fxAudioSources[i].isPlaying)

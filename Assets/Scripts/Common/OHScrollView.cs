@@ -7,15 +7,15 @@ using UnityEngine.UI;
 public class OHScrollView : MonoBehaviour 
 {
     [SerializeField]
-    private RectTransform _itemPrototype;
+    private RectTransform itemPrototype;
     [SerializeField]
-    private RectTransform _scrollViewTransform;
+    private RectTransform scrollViewTransform;
     [SerializeField]
-    private RectTransform _scrollContent;
+    private RectTransform scrollContent;
     [SerializeField]
-    private ScrollRect _scrollRect;
+    private ScrollRect scrollRect;
     [SerializeField]
-    private RectTransform _scrollBack;
+    private RectTransform scrollBack;
     [SerializeField, Range(0, 30)]
     private int instantateItemCount = 9;
     [SerializeField]
@@ -71,11 +71,11 @@ public class OHScrollView : MonoBehaviour
         {
             if (direction == E_SCROLLDIRECT.VERTICAL)
             {
-                return (int)(_scrollViewTransform.rect.width / (gapSizex + _itemPrototype.sizeDelta.x));
+                return (int)(scrollViewTransform.rect.width / (gapSizex + itemPrototype.sizeDelta.x));
             }
             else
             {
-                return (int)(_scrollViewTransform.rect.height / (gapSizey + _itemPrototype.sizeDelta.y));
+                return (int)(scrollViewTransform.rect.height / (gapSizey + itemPrototype.sizeDelta.y));
             }
         }
     }
@@ -85,9 +85,9 @@ public class OHScrollView : MonoBehaviour
     {
         get
         {
-            if (_itemPrototype != null && itemScale == -1)
+            if (itemPrototype != null && itemScale == -1)
             {
-                itemScale = direction == E_SCROLLDIRECT.VERTICAL ? _itemPrototype.sizeDelta.y : _itemPrototype.sizeDelta.x;
+                itemScale = direction == E_SCROLLDIRECT.VERTICAL ? itemPrototype.sizeDelta.y : itemPrototype.sizeDelta.x;
             }
             return itemScale;
         }
@@ -104,19 +104,19 @@ public class OHScrollView : MonoBehaviour
         onUpdateItem.AddListener(UpdateItemInfo<T>);
         SetInfoList(infos);
         maxCount = infos.Count;
-        _scrollViewTransform.transform.localPosition = Vector3.zero;
+        scrollViewTransform.transform.localPosition = Vector3.zero;
         instantateItemCount = instantateItemCount > maxCount ? maxCount : instantateItemCount;
         List<IInfiniteScrollSetup<T>> controllers = new List<IInfiniteScrollSetup<T>>();
 
-        var scrollRect = _scrollRect;
+        var scrollRect = this.scrollRect;
         scrollRect.horizontal = direction == E_SCROLLDIRECT.HORIZONTAL;
         scrollRect.vertical = direction == E_SCROLLDIRECT.VERTICAL;
         scrollRect.content = ScrollRectTransform;
-        _itemPrototype.gameObject.SetActive(false);
+        itemPrototype.gameObject.SetActive(false);
         Vector2 pivotvecter = Vector2.zero;
-        _scrollContent.anchoredPosition = new Vector3(0, 0, 0);
-        GridLayoutGroup gridGroup = _scrollContent.GetComponent<GridLayoutGroup>();
-        gridGroup.cellSize = new Vector2(_itemPrototype.sizeDelta.x, _itemPrototype.sizeDelta.y);
+        scrollContent.anchoredPosition = new Vector3(0, 0, 0);
+        GridLayoutGroup gridGroup = scrollContent.GetComponent<GridLayoutGroup>();
+        gridGroup.cellSize = new Vector2(itemPrototype.sizeDelta.x, itemPrototype.sizeDelta.y);
         gridGroup.spacing = new Vector2(gapSizex, gapSizey);
 
         switch (gridGroup.startCorner)
@@ -139,7 +139,7 @@ public class OHScrollView : MonoBehaviour
                 break;
         }
 
-        _itemPrototype.pivot = pivotvecter;
+        itemPrototype.pivot = pivotvecter;
         for (int i = 0; i < instantateItemCount; i++)
         {
             RectTransform item = null;
@@ -150,10 +150,10 @@ public class OHScrollView : MonoBehaviour
             }
             else
             {
-                item = GameObject.Instantiate(_itemPrototype) as RectTransform;
+                item = GameObject.Instantiate(itemPrototype) as RectTransform;
                 controllers.Add(item.GetComponent<IInfiniteScrollSetup<T>>());
             }
-            item.SetParent(_scrollContent, false);
+            item.SetParent(scrollContent, false);
             item.name = i.ToString();
             item.anchoredPosition = direction == E_SCROLLDIRECT.VERTICAL ? new Vector2((ItemScale+ gapSizex) * (i% lineItemCount), (-ItemScale-gapSizey) * (i / lineItemCount)) :
                 new Vector2((ItemScale+gapSizex) * (i/ lineItemCount), (-ItemScale - gapSizey) *( i % lineItemCount));
@@ -182,7 +182,7 @@ public class OHScrollView : MonoBehaviour
             return;
         }
         int gapsize = direction == E_SCROLLDIRECT.VERTICAL ? gapSizey : gapSizex;
-        _scrollBack.transform.position = _scrollViewTransform.transform.position;
+        scrollBack.transform.position = scrollViewTransform.transform.position;
 
         Vector3 limitPos = Vector3.zero;
         if (direction == E_SCROLLDIRECT.VERTICAL)
@@ -209,15 +209,15 @@ public class OHScrollView : MonoBehaviour
         {
             if (currentItemNo + instantateItemCount >= maxCount)
             {
-                _scrollViewTransform.anchoredPosition = limitPos;
+                scrollViewTransform.anchoredPosition = limitPos;
                 break;
             }
             var item = itemList.First.Value;
             itemList.RemoveFirst();
             itemList.AddLast(item);
             var pos = (ItemScale+ gapsize) * (instantateItemCount/ lineItemCount);
-            item.anchoredPosition = (direction == E_SCROLLDIRECT.VERTICAL) ? new Vector2((_itemPrototype.sizeDelta.x + gapSizex) *((currentItemNo + instantateItemCount) % lineItemCount), -pos+ diffPreFramePosition) : 
-                new Vector2(pos+ diffPreFramePosition, (-_itemPrototype.sizeDelta.y - gapSizey) * ((currentItemNo + instantateItemCount) % lineItemCount));
+            item.anchoredPosition = (direction == E_SCROLLDIRECT.VERTICAL) ? new Vector2((itemPrototype.sizeDelta.x + gapSizex) *((currentItemNo + instantateItemCount) % lineItemCount), -pos+ diffPreFramePosition) : 
+                new Vector2(pos+ diffPreFramePosition, (-itemPrototype.sizeDelta.y - gapSizey) * ((currentItemNo + instantateItemCount) % lineItemCount));
 
             onUpdateItem.Invoke(currentItemNo + instantateItemCount, item.gameObject);
 
@@ -241,7 +241,7 @@ public class OHScrollView : MonoBehaviour
         {
             if (currentItemNo - 1 < 0)
             {
-                _scrollContent.anchoredPosition = new Vector3(0, 0, 0);
+                scrollContent.anchoredPosition = new Vector3(0, 0, 0);
                 break;
             }
             currentItemNo--;
@@ -255,7 +255,7 @@ public class OHScrollView : MonoBehaviour
             itemList.AddFirst(item);
 
             var pos = (ItemScale + gapsize) * (currentItemNo/ lineItemCount);
-            item.anchoredPosition = (direction == E_SCROLLDIRECT.VERTICAL) ? new Vector2((_itemPrototype.sizeDelta.x + gapSizex) *Mathf.Abs((currentItemNo % lineItemCount)), -pos) : new Vector2(pos, (-_itemPrototype.sizeDelta.y- gapSizey) * Mathf.Abs((currentItemNo % lineItemCount)));
+            item.anchoredPosition = (direction == E_SCROLLDIRECT.VERTICAL) ? new Vector2((itemPrototype.sizeDelta.x + gapSizex) *Mathf.Abs((currentItemNo % lineItemCount)), -pos) : new Vector2(pos, (-itemPrototype.sizeDelta.y- gapSizey) * Mathf.Abs((currentItemNo % lineItemCount)));
             onUpdateItem.Invoke(currentItemNo, item.gameObject);
             item.gameObject.transform.name = currentItemNo.ToString();
         }

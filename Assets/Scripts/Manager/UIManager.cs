@@ -7,7 +7,7 @@ namespace Seunghak.UIManager
     using Seunghak.Common;
     public class UIManager : UnitySingleton<UIManager>
     {
-        [SerializeField] BaseCanvas baseCanvasObject;
+        [SerializeField] private BaseCanvas baseCanvasObject;
         private Stack<string> windowStack = new Stack<string>();
         private Stack<string> popupStack = new Stack<string>();
         private Dictionary<string,BaseUI> addedWindowLists = new Dictionary<string, BaseUI>();
@@ -41,7 +41,7 @@ namespace Seunghak.UIManager
                 PushUI(UI_TYPE.LobbyWindow);
             }
         }
-        public void popPopup()
+        public void PopPopup()
         {
             while (popupStack.Count > 0)
             {
@@ -76,7 +76,7 @@ namespace Seunghak.UIManager
                 }
                 else if(currentUI is BaseUIPopup)
                 {
-                    popPopup();
+                    PopPopup();
                 }
             }
         }

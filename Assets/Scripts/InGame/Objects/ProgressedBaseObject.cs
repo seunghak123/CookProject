@@ -11,9 +11,10 @@ public class ProgressedViewDataClass : BaseViewDataClass
 }
 public class ProgressedBaseObject : BaseObject
 {
-    private ProgressedViewDataClass progressedViewData;
     [SerializeField]
-    private ProgressObjectView progressedView;
+    protected ProgressObjectView progressedView;
+    
+    protected ProgressedViewDataClass progressedViewData;
 
     protected Action<ProgressedViewDataClass> workingAction;
     protected Action<ProgressedViewDataClass> timerWorkingAction;

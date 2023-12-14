@@ -240,7 +240,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.1484375, y: 2.7265625}
+    oldSize: {x: 7.87, y: 3.49}
     newSize: {x: 7.87, y: 3.49}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2589,7 +2589,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.8359375, y: 0.1953125}
+    oldSize: {x: 4.91, y: 0.25}
     newSize: {x: 4.91, y: 0.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3464,7 +3464,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.6015625, y: 2.6484375}
+    oldSize: {x: 1.332, y: 1.356}
     newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3739,7 +3739,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.8359375, y: 0.1953125}
+    oldSize: {x: 4.91, y: 0.25}
     newSize: {x: 4.91, y: 0.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3869,7 +3869,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.8359375, y: 0.1953125}
+    oldSize: {x: 4.91, y: 0.25}
     newSize: {x: 4.91, y: 0.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4353,7 +4353,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1422719949
 Canvas:
   m_ObjectHideFlags: 0
@@ -4976,13 +4976,14 @@ GameObject:
   - component: {fileID: 1597386698}
   - component: {fileID: 1597386697}
   - component: {fileID: 1597386696}
+  - component: {fileID: 1597386700}
   m_Layer: 0
   m_Name: CookObject (2)
   m_TagString: InterActObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1597386695
 Transform:
   m_ObjectHideFlags: 0
@@ -4992,7 +4993,7 @@ Transform:
   m_GameObject: {fileID: 1597386694}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.77, y: 1.19, z: 0}
+  m_LocalPosition: {x: -4.37, y: -2.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5013,7 +5014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdCharacter: 0
   isBlockCharacter: 0
-  progressedView: {fileID: 0}
+  progressedView: {fileID: 1597386700}
   workingTimeArrays:
   - 2
   - 10
@@ -5131,7 +5132,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 321b02d2328df484381041f538c2b072, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5142,6 +5143,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1597386700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597386694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed28223481935241a16d2bd328b22cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressFrontBar: {fileID: 2100423280}
+  progressParent: {fileID: 1422719946}
+  changedSpriteRenderer: {fileID: 1597386699}
 --- !u!1 &1645451834
 GameObject:
   m_ObjectHideFlags: 0
