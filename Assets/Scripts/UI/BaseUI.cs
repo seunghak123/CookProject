@@ -29,6 +29,7 @@ namespace Seunghak.UIManager
         UserOptionPopup,
         OtherUI = 4000,
         BaseAwnserPopup,
+        LoadingPopup,
     }
     public interface IBaseUIController
     {

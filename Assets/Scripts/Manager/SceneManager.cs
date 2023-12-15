@@ -26,6 +26,8 @@ namespace Seunghak.SceneManager
 {
     public class SceneManager : UnitySingleton<SceneManager>
     {
+        LoadingPopup loadingPopupUI; // 임시
+
         // ------------------------테스트-------------------------------- 
         [SerializeField] private E_SCENE_TYPE testSceneType = E_SCENE_TYPE.INTRO;
         [SerializeField] private bool isWatingSuccessSequence = false;
@@ -104,6 +106,9 @@ namespace Seunghak.SceneManager
         private WaitForEndOfFrame waitframe = new WaitForEndOfFrame();
         private IEnumerator LoadData()
         {
+            // 로딩창 띄우기 ( 문제 )
+            loadingPopupUI = UIManager.UIManager.Instance.PushUI(UIManager.UI_TYPE.LoadingPopup) as LoadingPopup;
+
             ExecuteAddStepAcion();
             AsyncOperation taskLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(_nextSceneType.ToString());
             while (!taskLoad.isDone || isWatingSuccessSequence)
