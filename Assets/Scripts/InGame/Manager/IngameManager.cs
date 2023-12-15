@@ -11,10 +11,11 @@ public class IngameManager : MonoBehaviour
     [SerializeField] private Transform mapSpawnPos = null;
     [SerializeField] private Transform team1Parent = null;
     [SerializeField] private Transform team2Parent = null;
-    //[SerializeField] private IngameUIManager ingameUI;
+
     private IngameMapPrefab mapPrefabs = null;
     private List<UnitController> enemyUnits = new List<UnitController>();
     private List<UnitController> teamUnits = new List<UnitController>();
+    private BaseIngameUI ingameUI = null;
     private void Awake()
     {
         currentManager = this;

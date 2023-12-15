@@ -126,6 +126,7 @@ namespace Seunghak.UIManager
                 }
                 targetUI.SetActive(true);
                 uicomponent = targetUI.GetComponent<BaseUI>();
+                uicomponent.StartWindow();
                 addedWindowLists.Add(targetUIName, uicomponent);
             }
 

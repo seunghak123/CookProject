@@ -581,6 +581,13 @@ namespace Seunghak.Common
             targetObject.SetActive(false);
             targetObject.transform.parent = this.transform;           
         }
+        public void ReleasePools()
+        {
+            foreach (var pool in prefabObjectpools)
+            {
+
+            }
+        }
     }
 
     public class ObjectPool
@@ -594,6 +601,16 @@ namespace Seunghak.Common
             if (System.DateTime.Now > currentAccessTime.AddSeconds(CommonUtil.PoolRemoveSecTime))
             {
                 DestoryPool();
+            }
+        }
+        public void ReleaseUnUsedObject()
+        {
+            for (int i = 0; i < poolObjects.Count; i++)
+            {
+                if (!poolObjects[i].activeInHierarchy)
+                {
+
+                }
             }
         }
         public void PushPool(Object targetObject)
