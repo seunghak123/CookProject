@@ -19,8 +19,6 @@ public class IngameCanvas : MonoBehaviour
 
     [SerializeField] private BaseAI userAI;
 
-    [Header("UserRecipe")]
-    [SerializeField] private Transform recipeParent;
     public void InitIngameCanvas()
     {
 

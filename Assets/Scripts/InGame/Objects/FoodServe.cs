@@ -18,7 +18,6 @@ public class FoodServe : BaseObject
 
     public override bool IsWorkEnd()
     {
-
         return true;
     }
 }

@@ -16,6 +16,7 @@ public class RiceCookerObjectView : ProgressObjectView
         }
         ProgressedViewDataClass insertData = data as ProgressedViewDataClass;
 
+        //데이터 처리 방식 일요일 의논 
         //insertData의 currentIndex에 따라서 Renderer의 Sprite변경 요망
     }
 }

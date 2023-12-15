@@ -11,8 +11,7 @@ public class ProgressedViewDataClass : BaseViewDataClass
 }
 public class ProgressedBaseObject : BaseObject
 {
-    [SerializeField]
-    protected ProgressObjectView progressedView;
+    [SerializeField] protected ProgressObjectView progressedView;
     
     protected ProgressedViewDataClass progressedViewData;
 
