@@ -202,7 +202,7 @@ public class BaseAI : MonoBehaviour
             this.transform.localScale = new Vector3(1, 1, 1);
         }
 
-        this.transform.Translate(new Vector3(moveDirect.x,0,0) * Time.deltaTime * characterSpeed);
+        this.transform.Translate(new Vector3(moveDirect.x,0,0) * Time.fixedDeltaTime * characterSpeed);
 
         float xValue = Mathf.Abs(moveDirect.x);
         float yValue = moveDirect.y;
@@ -217,7 +217,7 @@ public class BaseAI : MonoBehaviour
             if (IsGround)
             {
                 unitAnim.SetTrigger("Jump");
-                characterRigid.AddForce(Vector2.up * characterJumpPower * Time.deltaTime, ForceMode2D.Impulse);
+                characterRigid.AddForce(Vector2.up * characterJumpPower * Time.fixedDeltaTime, ForceMode2D.Impulse);
             }
         }
         //현재 점프중

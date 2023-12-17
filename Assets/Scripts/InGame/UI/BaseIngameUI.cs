@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BaseIngameUI : MonoBehaviour
 {
-    [SerializeField] private Transform reciptParent;
+    [SerializeField] protected Transform reciptParent;
 
     public virtual void CreateRecipe(int recipeId){}
+    public virtual (bool, int) CheckRecipe(BasicMaterialData reciptResult) { return (false, 0); }
 }

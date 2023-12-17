@@ -3,19 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public class RecipeData
+{
+    private List<int> recipeFoodList = new List<int>();
+    public bool IsMakedRecipeFood(BasicMaterialData foodResult)
+    {
+        //이건 다른 곳에 필요
+        List<int> resultFood = foodResult.GetFoodResult();
+
+        resultFood.Sort();
+        recipeFoodList.Sort();
+
+        if (resultFood.Equals(recipeFoodList))
+        {
+            //같다면 //레시피 완성!
+            return true;
+        }
+        return false;
+    }
+}
 public class RecipeObject : MonoBehaviour
 {
     [Header("Recipe UI")]
     [SerializeField] private Image recipeImage;
     [SerializeField] private Image recipeTimerProgressBar;
 
-    private int recipeId = 0;
-    private List<int> recipeFoodList = new List<int>();
+    private RecipeData recipe;
 
     private float currentTimer = 0.0f;
-    public void InitRecipe(int targetRecipeId)
+    public void InitRecipe(RecipeData targetRecipe)
     {
-        recipeId = targetRecipeId;
+        recipe = targetRecipe;
 
         //레시피 Id에 따라서 Sprite 변경
 
@@ -33,22 +51,15 @@ public class RecipeObject : MonoBehaviour
             currentTimer += Time.deltaTime;
             yield return WaitTimeManager.WaitForEndFrame();
         }
-
-        //실패처리
         yield break;
     }
-    public bool IsMakedRecipeFood(BasicMaterialData foodResult)
+    public bool CheckRecipe(BasicMaterialData foodResult)
     {
-        List<int> resultFood = foodResult.GetFoodResult();
-
-        resultFood.Sort();
-        recipeFoodList.Sort();
-
-        if(resultFood.Equals(recipeFoodList))
+        if(recipe==null)
         {
-            //같다면 //레시피 완성!
-            return true;
+            return false;
         }
-        return false;
+
+        return recipe.IsMakedRecipeFood(foodResult);
     }
 }
