@@ -21,26 +21,26 @@ public class UnitController : MonoBehaviour
     //AI Type받고 해당 AI 생성
     public bool SetUnitInfo(int unitId)
     {
-        JUnitData unitData = JsonDataManager.Instance.GetUnitData(unitId);
+        //JUnitData unitData = JsonDataManager.Instance.GetUnitData(unitId);
 
 
         //유닛데이터 지정하고
 
-        AttachAIComponent((E_UNIT_AI_TYPE)unitData.aiType);
+        //AttachAIComponent((E_UNIT_AI_TYPE)unitData.aiType);
         //AI 
         return true;
     }
-    public bool SetUnitInfo(JUnitData getunitData)
-    {
-        JUnitData unitData = getunitData;
+    //public bool SetUnitInfo(JUnitData getunitData)
+    //{
+    //    JUnitData unitData = getunitData;
 
 
-        //유닛데이터 지정하고
+    //    //유닛데이터 지정하고
 
-        AttachAIComponent((E_UNIT_AI_TYPE)unitData.aiType);
-        //AI 
-        return true;
-    }
+    //    AttachAIComponent((E_UNIT_AI_TYPE)unitData.aiType);
+    //    //AI 
+    //    return true;
+    //}
     private void AttachAIComponent(E_UNIT_AI_TYPE aiType)
     {
         BaseAI addedAI = null;

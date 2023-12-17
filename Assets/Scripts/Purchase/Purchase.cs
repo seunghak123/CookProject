@@ -99,7 +99,7 @@ public class Purchase : MonoBehaviour, IStoreListener
 #elif UNITY_ANDROID || UNITY_IOS
 
 #endif
-        List<JShopData> shopData = JsonDataManager.LoadJsonDatas<JShopData>(E_JSON_TYPE.JShopData);
+        //List<JShopData> shopData = JsonDataManager.LoadJsonDatas<JShopData>(E_JSON_TYPE.JShopData);
 
         //Json파일의 상품 데이터를 긁어와서, Consumable 상품 등록(패키지 형태)
         //// Add a product to sell / restore by way of its identifier, associating the general identifier with its store-specific identifiers.

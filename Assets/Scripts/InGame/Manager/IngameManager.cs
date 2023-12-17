@@ -69,41 +69,41 @@ public class IngameManager : MonoBehaviour
         //테스트 코드 작성
         JStageData stageData = JsonDataManager.Instance.GetStageData(0);
 
-        Material targetMat = GameResourceManager.Instance.LoadObject(stageData.skyboxMat) as Material;
+        //Material targetMat = GameResourceManager.Instance.LoadObject(stageData.skyboxMat) as Material;
 
         ingameUI = CreateUI(1);
 
-        GameObject spawnedMap = GameResourceManager.Instance.SpawnObject(stageData.mapPrefab);
-        spawnedMap.transform.parent = mapSpawnPos;
-        spawnedMap.transform.position = Vector3.zero;
-        spawnedMap.transform.localPosition = Vector3.zero;
+        //GameObject spawnedMap = GameResourceManager.Instance.SpawnObject(stageData.mapPrefab);
+        //spawnedMap.transform.parent = mapSpawnPos;
+        //spawnedMap.transform.position = Vector3.zero;
+        //spawnedMap.transform.localPosition = Vector3.zero;
 
-        mapPrefabs = spawnedMap.GetComponent<IngameMapPrefab>();
+        //mapPrefabs = spawnedMap.GetComponent<IngameMapPrefab>();
 
-        if(mapPrefabs!=null)
+        //if(mapPrefabs!=null)
         {
             //적 유닛 생성
             int[] unitdata = { 1, 3, 2 };
-            List<JUnitData> enemyUnitData =new List<JUnitData>(JsonDataManager.Instance.GetUnitDatasArray(unitdata));
+            //List<JUnitData> enemyUnitData =new List<JUnitData>(JsonDataManager.Instance.GetUnitDatasArray(unitdata));
 
-            for(int i=0;i< unitdata.Length; i++)
-            {
-                //차후 JUnitData가 아닌 JEnemyUnitData를 읽어오면, 다른 Structure을 생성가능
-                JUnitData unitData = enemyUnitData.Find(index => index.index == unitdata[i]);
-                GameObject spawnedEnemy = GameResourceManager.Instance.SpawnObject(unitData.unitPrefab);
-                Transform spawnpos = mapPrefabs.GetEnemyPos(i);
-                spawnedEnemy.transform.parent = spawnpos;
-                spawnedEnemy.transform.localPosition = Vector3.zero;
-                spawnedEnemy.transform.localRotation = Quaternion.Euler(Vector3.zero);
-                UnitController enemyController = spawnedEnemy.GetComponent<UnitController>();
+            //for(int i=0;i< unitdata.Length; i++)
+            //{
+            //    //차후 JUnitData가 아닌 JEnemyUnitData를 읽어오면, 다른 Structure을 생성가능
+            //    JUnitData unitData = enemyUnitData.Find(index => index.index == unitdata[i]);
+            //    GameObject spawnedEnemy = GameResourceManager.Instance.SpawnObject(unitData.unitPrefab);
+            //    Transform spawnpos = mapPrefabs.GetEnemyPos(i);
+            //    spawnedEnemy.transform.parent = spawnpos;
+            //    spawnedEnemy.transform.localPosition = Vector3.zero;
+            //    spawnedEnemy.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            //    UnitController enemyController = spawnedEnemy.GetComponent<UnitController>();
 
-                enemyController.SetUnitInfo(unitData);
-                enemyUnits.Add(enemyController);
-            }
+            //    //enemyController.SetUnitInfo(unitData);
+            //    enemyUnits.Add(enemyController);
+            //}
         }
 
         //enemyDataJson 읽어서 적 데이터 가져올 것
-        RenderSettings.skybox = targetMat;
+        //RenderSettings.skybox = targetMat;
 
         //ingameUI.InitGame(데이터)
         //스테이지 데이터를 받아서 게임 모듈 생성

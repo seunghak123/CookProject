@@ -5,7 +5,7 @@ public class JRecipeData : JBaseData
 {
 	public int ID;
 	public string Name;
-	public 0 RecipeType;
+	public int RecipeType;
 	public string Foodtype;
 	public int FoodName;
 	public int UseObject;
