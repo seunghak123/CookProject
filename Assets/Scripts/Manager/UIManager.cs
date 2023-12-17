@@ -143,8 +143,11 @@ namespace Seunghak.UIManager
                     if (currentUI is BaseUIPopup)
                     {
                         currentUI.ExitWindow();
-                        GetUI(windowStack.Peek()).gameObject.SetActive(false);
-
+                        if (windowStack.Count > 0)
+                        {
+                            GetUI(windowStack.Peek()).gameObject.SetActive(false);
+                        }
+                        currentUI.gameObject.SetActive(false);
                     }
                     else if (currentUI is BaseUIWindow)
                     {
