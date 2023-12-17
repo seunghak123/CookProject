@@ -1,8 +1,101 @@
 [
   {
-    "index": 0,
-    "mapPrefab": "GreenField",
-    "enemyDataJson": "stage01",
-    "skyboxMat": "Sky_Anime_15_Day_a"
+    "ID": 1,
+    "Name": "Stage_Name_korea01",
+    "NationID": 1,
+    "NextStageID": 2,
+    "ProbabilityGroupID": 1,
+    "score1": 100,
+    "score2": 200,
+    "score3": 300,
+    "StageFile": 0.0
+  },
+  {
+    "ID": 2,
+    "Name": "Stage_Name_korea02",
+    "NationID": 1,
+    "NextStageID": 3,
+    "ProbabilityGroupID": 2,
+    "score1": 100,
+    "score2": 200,
+    "score3": 300,
+    "StageFile": 0.0
+  },
+  {
+    "ID": 3,
+    "Name": "Stage_Name_korea03",
+    "NationID": 1,
+    "NextStageID": 4,
+    "ProbabilityGroupID": 3,
+    "score1": 100,
+    "score2": 200,
+    "score3": 300,
+    "StageFile": 0.0
+  },
+  {
+    "ID": 4,
+    "Name": "Stage_Name_korea04",
+    "NationID": 1,
+    "NextStageID": 5,
+    "ProbabilityGroupID": 4,
+    "score1": 100,
+    "score2": 200,
+    "score3": 300,
+    "StageFile": 0.0
+  },
+  {
+    "ID": 5,
+    "Name": "Stage_Name_korea05",
+    "NationID": 1,
+    "NextStageID": 6,
+    "ProbabilityGroupID": 5,
+    "score1": 100,
+    "score2": 200,
+    "score3": 300,
+    "StageFile": 0.0
+  },
+  {
+    "ID": 6,
+    "Name": "Stage_Name_Use01",
+    "NationID": 2,
+    "NextStageID": 7,
+    "ProbabilityGroupID": 0,
+    "score1": 100,
+    "score2": 200,
+    "score3": 300,
+    "StageFile": 0.0
+  },
+  {
+    "ID": 7,
+    "Name": "Stage_Name_Use02",
+    "NationID": 2,
+    "NextStageID": 8,
+    "ProbabilityGroupID": 0,
+    "score1": 100,
+    "score2": 200,
+    "score3": 300,
+    "StageFile": 0.0
+  },
+  {
+    "ID": 8,
+    "Name": "Stage_Name_Use03",
+    "NationID": 2,
+    "NextStageID": 9,
+    "ProbabilityGroupID": 0,
+    "score1": 100,
+    "score2": 200,
+    "score3": 300,
+    "StageFile": 0.0
+  },
+  {
+    "ID": 9,
+    "Name": "Stage_Name_Use04",
+    "NationID": 2,
+    "NextStageID": 0,
+    "ProbabilityGroupID": 0,
+    "score1": 100,
+    "score2": 200,
+    "score3": 300,
+    "StageFile": 0.0
   }
 ]

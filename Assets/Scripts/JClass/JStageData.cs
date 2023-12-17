@@ -1,8 +1,15 @@
+using System;
+
 [System.Serializable]
-public class JStageData : JBaseData 
+public class JStageData : JBaseData
 {
-	public int index;
-	public string mapPrefab;
-	public string enemyDataJson;
-	public string skyboxMat;
+	public int ID;
+	public string Name;
+	public int NationID;
+	public int NextStageID;
+	public int ProbabilityGroupID;
+	public int score1;
+	public int score2;
+	public int score3;
+	public string StageFile;
 }
