@@ -28,13 +28,51 @@ public class IngameManager : MonoBehaviour
 
         return enemyAIs;
     }
+    private BaseIngameUI CreateUI(int stageType)
+    {
+        BaseIngameUI baseUI = null;
+        //LoadObject도 type에 따라 달리생성
+        switch(stageType)
+        {
+            case 1:
+                //stageType에따라서 ui명칭 따로 받아올것
+                break;
+            case 2:
+                break;
+        }
+
+        GameObject createdUI = GameResourceManager.Instance.LoadObject("StoryUI") as GameObject;
+
+        //타입에 따라 불러오는걸 달리 해준다
+        //차후 enum값으로 사용하게 변경
+        switch (stageType)
+        {
+            case 1:
+                baseUI = createdUI?.GetComponent<StoryIngameUI>();
+                break;
+            case 2:
+                break;
+        }
+
+        return baseUI;
+    }
+    private void CheckRecipeComplete(BasicMaterialData completeFood)
+    {
+        if(ingameUI!=null)
+        {
+            (bool isResult, int recipePos) = ingameUI.CheckRecipe(completeFood);
+
+        }
+    }
     public void CreateGame(int stageId)
     {
-
         //테스트 코드 작성
         JStageData stageData = JsonDataManager.Instance.GetStageData(0);
 
         Material targetMat = GameResourceManager.Instance.LoadObject(stageData.skyboxMat) as Material;
+
+        ingameUI = CreateUI(1);
+
         GameObject spawnedMap = GameResourceManager.Instance.SpawnObject(stageData.mapPrefab);
         spawnedMap.transform.parent = mapSpawnPos;
         spawnedMap.transform.position = Vector3.zero;
@@ -62,9 +100,6 @@ public class IngameManager : MonoBehaviour
                 enemyController.SetUnitInfo(unitData);
                 enemyUnits.Add(enemyController);
             }
-          
-
-            //
         }
 
         //enemyDataJson 읽어서 적 데이터 가져올 것
