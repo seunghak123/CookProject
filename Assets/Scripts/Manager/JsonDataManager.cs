@@ -48,43 +48,43 @@ namespace Seunghak.Common
             return loadedObject;
         }
 
-        public List<JUnitData> GetUnitDatas()
-        {
-            List<JUnitData> unitDatas = LoadJsonDatas<JUnitData>(E_JSON_TYPE.JUnitData);
+        //public List<JUnitData> GetUnitDatas()
+        //{
+        //    List<JUnitData> unitDatas = LoadJsonDatas<JUnitData>(E_JSON_TYPE.JUnitData);
 
-            return unitDatas;
-        }
-        public JUnitData[] GetUnitDatasArray(params int[] unitIdArray)
-        {
-            List<JUnitData> unitDatas = LoadJsonDatas<JUnitData>(E_JSON_TYPE.JUnitData);
+        //    return unitDatas;
+        //}
+        //public JUnitData[] GetUnitDatasArray(params int[] unitIdArray)
+        //{
+        //    List<JUnitData> unitDatas = LoadJsonDatas<JUnitData>(E_JSON_TYPE.JUnitData);
 
-            JUnitData[] unitArray = unitDatas.FindAll(find => { 
-                for(int i = 0; i < unitIdArray.Length; i++)
-                {
-                    if (find.index == unitIdArray[i])
-                    {
-                        return true;
-                    }
-                }
-                return false; 
-            }).ToArray();
+        //    JUnitData[] unitArray = unitDatas.FindAll(find => { 
+        //        for(int i = 0; i < unitIdArray.Length; i++)
+        //        {
+        //            if (find.index == unitIdArray[i])
+        //            {
+        //                return true;
+        //            }
+        //        }
+        //        return false; 
+        //    }).ToArray();
 
-            return unitArray;
-        }
-        public JUnitData GetUnitData(int unitId)
-        {
-            List<JUnitData> unitDatas = LoadJsonDatas<JUnitData>(E_JSON_TYPE.JUnitData);
+        //    return unitArray;
+        //}
+        //public JUnitData GetUnitData(int unitId)
+        //{
+        //    List<JUnitData> unitDatas = LoadJsonDatas<JUnitData>(E_JSON_TYPE.JUnitData);
 
-            JUnitData unitData = unitDatas.Find(find => find.index == unitId);
+        //    JUnitData unitData = unitDatas.Find(find => find.index == unitId);
 
-            return unitData;
-        }
+        //    return unitData;
+        //}
 
         public JStageData GetStageData(int stageId)
         {
             List<JStageData> stageDatas = LoadJsonDatas<JStageData>(E_JSON_TYPE.JStageData);
 
-            JStageData stageData = stageDatas.Find(find => find.index == stageId);
+            JStageData stageData = stageDatas.Find(find => find.ID == stageId);
 
             return stageData;
         }

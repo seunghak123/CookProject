@@ -1,4 +1,6 @@
+using System;
+
 [System.Serializable]
-public class JBaseData  
+public class JBaseData 
 {
-}
+};
