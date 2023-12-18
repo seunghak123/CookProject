@@ -16,7 +16,7 @@ namespace Seunghak.SceneManager
             UIManager.Instance.CloseUI();
 
             //테스트 코드 SceneController에 데이터 넘기고 그걸 인게임 매니저에 전달 필요
-            //IngameManager.currentManager.CreateGame(0);
+            IngameManager.currentManager.CreateGame(0);
 
             //선택한 덱 가져오기 , 유저 데이터 세팅
             //스킬 파티클 선행 생성

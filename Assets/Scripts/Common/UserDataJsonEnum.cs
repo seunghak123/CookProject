@@ -1,7 +1,9 @@
 public enum E_JSON_TYPE
 {
 	JBaseData,
-	JShopData,
+	JFoodObjectData,
+	JNationData,
+	JRecipeData,
+	JRecipeProbabilityData,
 	JStageData,
-	JUnitData,
 }

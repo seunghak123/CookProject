@@ -60,4 +60,6 @@ public class RiceCookerObject : ProgressedBaseObject
         //앤 언제나 끝나있음
         return true;
     }
+    //에셋번들-> Addressable
+    //DOTS -> ECS 컴포넌트 기반 X 데이반 기반 시스템 - 메모리 적중률
 }
