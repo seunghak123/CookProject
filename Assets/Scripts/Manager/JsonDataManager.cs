@@ -98,7 +98,10 @@ namespace Seunghak.Common
             return foodObjectData;
 
         }
-
+        public List<JFoodObjectData> GetFoodObjectLists()
+        {
+            return LoadJsonDatas<JFoodObjectData>(E_JSON_TYPE.JFoodObjectData); 
+        }
         public JRecipeData GetRecipeData(int recipeId)
         {
             List<JRecipeData> recipeDatas = LoadJsonDatas<JRecipeData>(E_JSON_TYPE.JRecipeData);

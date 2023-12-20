@@ -53,7 +53,7 @@ public class MapDataCreater : MonoBehaviour
 
 #if UNITY_EDITOR
     [SerializeField] private string createFileName;
-    [SerializeField] private string createFilePath = $"{FileUtils.GetStreamingAssetsPath()}{FileUtils.GetPlatformString()}";
+    [SerializeField] private string createFilePath = $"{FileUtils.GetStreamingAssetsPath()}BaseSources/MapData/MapObjectData";
     public void CreateMapDataFile()
     {
         if (createTransform.childCount == 0)
@@ -82,20 +82,44 @@ public class MapDataCreater : MonoBehaviour
             FileUtils.SaveFile<IngameMapObjectInfos>(createFilePath, createFileName, mapInfos);
         }
     }
+
+    private List<JFoodObjectData> objectLists = null;
+    public void CreateMapObject(int createId)
+    {
+        if(createTransform==null)
+        {
+            return;
+        }
+        if(objectLists ==null)
+        {
+            objectLists = JsonDataManager.Instance.GetFoodObjectLists();
+        }
+
+
+    }
 #endif
 }
 [CustomEditor(typeof(MapDataCreater))]
 public class MapToolCreateButton : Editor
 {
+
+    private int createObjecId ;
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-
+        
         MapDataCreater mapTool = (MapDataCreater)target;
 
+        EditorGUILayout.Space();
         if(GUILayout.Button("Create MapFile"))
         {
             mapTool.CreateMapDataFile();
+        }
+        EditorGUILayout.Space();
+        createObjecId = EditorGUILayout.IntField("ObjectId", createObjecId);
+        if (GUILayout.Button("Create Object"))
+        {
+            mapTool.CreateMapObject(createObjecId);
         }
     }
 }
