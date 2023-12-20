@@ -7,7 +7,6 @@ using UnityEngine.AI;
 public class IngameManager : MonoBehaviour
 {
     public static IngameManager currentManager = null;
-    private IngameDataManager ingameData = new IngameDataManager();
 
     [Header("SceneObject")]
     [SerializeField] private Transform mapSpawnPos = null;
