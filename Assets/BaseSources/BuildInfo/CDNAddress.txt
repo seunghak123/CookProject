@@ -1,1 +1,1 @@
-{"updateCDNPath":"https://d2fvmix8egxgsw.cloudfront.net/ARDefenceBundle//Android//1.0.1/"}
+{"updateCDNPath":"https://d2fvmix8egxgsw.cloudfront.net/ARDefenceBundle//StandaloneWindows//0.1/"}

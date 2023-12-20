@@ -88,5 +88,15 @@ namespace Seunghak.Common
 
             return stageData;
         }
+
+        public JFoodObjectData GetJFoodObjectData(int foodObjectId)
+        {
+            List<JFoodObjectData> foodObjectDatas = LoadJsonDatas<JFoodObjectData>(E_JSON_TYPE.JFoodObjectData);
+
+            JFoodObjectData foodObjectData = foodObjectDatas.Find(find => find.ID == foodObjectId);
+
+            return foodObjectData;
+
+        }
     }
 }

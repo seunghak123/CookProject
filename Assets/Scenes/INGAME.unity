@@ -5967,7 +5967,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2065330658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cb24d9eb69598d4aad1255d50a55c75, type: 3}
+  m_Script: {fileID: 11500000, guid: 9544ee58342fdda4a9be788d814f8eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ingameUICanvas: {fileID: 565286957}

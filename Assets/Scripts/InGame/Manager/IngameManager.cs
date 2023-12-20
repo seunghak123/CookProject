@@ -7,6 +7,8 @@ using UnityEngine.AI;
 public class IngameManager : MonoBehaviour
 {
     public static IngameManager currentManager = null;
+    private IngameDataManager ingameData = new IngameDataManager();
+
     [Header("SceneObject")]
     [SerializeField] private Transform mapSpawnPos = null;
     [SerializeField] private Transform team1Parent = null;
@@ -82,11 +84,21 @@ public class IngameManager : MonoBehaviour
         //유저 덱에 따라 유닛 생성
     }
 }
+
 public class IngameCreater
 {
-    public static void CreateIngameObject(int objectId)
+    public static void CreateFoodObject(int foodObjectId)
     {
-        //여기에 Json파일 읽고 , SpawnObject-> AddComponent, -> Component에 따라 세팅하고,
+        // Json파일 읽기
+        JFoodObjectData foodObjectData = JsonDataManager.Instance.GetJFoodObjectData(foodObjectId);
+
+        // SpawnObejct
+        GameObject foodObject = GameResourceManager.Instance.SpawnObject($"{foodObjectData.Name}");
+
+        // AddComponent???....
+
+        // Setting....?
+
         //생성 되는거 확인
     }
 }

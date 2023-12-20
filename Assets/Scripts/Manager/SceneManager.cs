@@ -106,7 +106,6 @@ namespace Seunghak.SceneManager
         private WaitForEndOfFrame waitframe = new WaitForEndOfFrame();
         private IEnumerator LoadData()
         {
-            // 로딩창 띄우기 ( 문제 )
             loadingPopupUI = UIManager.UIManager.Instance.PushUI(UIManager.UI_TYPE.LoadingPopup) as LoadingPopup;
 
             ExecuteAddStepAcion();
@@ -149,6 +148,7 @@ namespace Seunghak.SceneManager
                 _currentStepType = E_SCENESTEP_TYPE.NONE;
                 _currentSceneType = _nextSceneType;
                 //로딩 화면 종료
+                loadingPopupUI.CloseUI();
                 _currentSceneController.InitSceneController();
                 //각 씬 컨트롤러 여기서 초기화 함수 호출 씬 컨트롤러는 BaseSceneController 상속 받는다.
                 // 각 씬에서 반드시 해줘야 할 행동 리스트들을 나열해놓은 인터페이스를 상속받는다
