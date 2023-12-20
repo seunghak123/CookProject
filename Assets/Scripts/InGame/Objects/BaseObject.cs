@@ -24,7 +24,18 @@ public class BaseObject : MonoBehaviour
             }
         }
     }
-    //추가적으로 Teamplte 데이터 값 저장 - 맵 Tool에서 기록 가능
+    protected virtual bool IsCanInterAct(int interActObject)
+    {
+        //Type1번 완료
+        List<JRecipeData> recipeData = JsonDataManager.Instance.GetOutputRecipeDatas(OBJECT_ID);
+
+        if (recipeData!=null && recipeData.ConvertAll<int>(find => find.UseObjectOutput).Contains(interActObject))
+        {
+            return true;
+        }
+
+        return false;
+    }
     protected virtual void Awake()
     {
         // 오브젝트 초기화

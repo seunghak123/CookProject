@@ -98,5 +98,22 @@ namespace Seunghak.Common
             return foodObjectData;
 
         }
+
+        public JRecipeData GetRecipeData(int recipeId)
+        {
+            List<JRecipeData> recipeDatas = LoadJsonDatas<JRecipeData>(E_JSON_TYPE.JRecipeData);
+
+            JRecipeData recipeData = recipeDatas.Find(find => find.ID == recipeId);
+
+            return recipeData;
+        }
+        public List<JRecipeData> GetOutputRecipeDatas(int objectId)
+        {
+            List<JRecipeData> recipeDatas = LoadJsonDatas<JRecipeData>(E_JSON_TYPE.JRecipeData);
+
+            List<JRecipeData> outputDatas = recipeDatas.FindAll(find => find.UseObject == objectId);
+
+            return outputDatas;
+        }
     }
 }

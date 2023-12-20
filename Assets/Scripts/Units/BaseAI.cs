@@ -23,7 +23,6 @@ public class BaseAI : MonoBehaviour
     [SerializeField, Range(0.5f, 5)] private float characterSpeed = 1;
     private Rigidbody2D characterRigid;
     private Dictionary<E_INGAME_AI_TYPE, Action> userActionDic = new Dictionary<E_INGAME_AI_TYPE, Action>();
-    
     private Action currentUnitEvent = null;
     private BaseObject targetObject = null;
     private BasicMaterialData handleObjectData = null;
@@ -259,16 +258,20 @@ public class BaseAI : MonoBehaviour
     RaycastHit2D hitresult;
     public virtual void FixedUpdate()
     {
-        hitresult = Physics2D.Raycast(this.transform.position, Vector3.down, 0.15f, 1 << 9);
-        if (hitresult.collider == null)
+        hitresult = Physics2D.Raycast(this.transform.position, Vector3.down, 0.05f, 1 << 9);
+        if (hitresult.collider == null && characterRigid.velocity.y<=0)
         {
             IsGround = false;
         }
         else
         {
+            ///속도 수정할 방법 필요
+            //if(isGround==false)
+            //{
+            //    characterRigid.velocity = Vector2.zero;
+            //}
             IsGround = true;
         }
-
         Action();
     }
     private void OnTriggerStay2D(Collider2D collision)

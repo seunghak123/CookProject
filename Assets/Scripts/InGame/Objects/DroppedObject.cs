@@ -12,7 +12,10 @@ public class DroppedObject : BaseObject
         holdCharacter = false;
         isBlockCharacter = false;
     }
-
+    protected override bool IsCanInterAct(int interActObject)
+    {
+        return true;
+    }
     public void SetObjectInfo(int setInfoId)
     {
         if (setInfoId == 1)
