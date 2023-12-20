@@ -75,6 +75,7 @@ public class MapDataCreater : MonoBehaviour
             IngameMapObject objectInfo;
             objectInfo.objectId = baseSubObject.OBJECT_ID;
             objectInfo.objectTransform = subObject.transform;
+            mapInfos.objectLists.Add(objectInfo);
         }
         if(mapInfos.objectLists.Count>0)
         {
@@ -94,7 +95,7 @@ public class MapToolCreateButton : Editor
 
         if(GUILayout.Button("Create MapFile"))
         {
-            //mapTool.GenerateCubes();
+            mapTool.CreateMapDataFile();
         }
     }
 }

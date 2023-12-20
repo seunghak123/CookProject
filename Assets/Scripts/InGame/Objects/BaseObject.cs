@@ -10,8 +10,10 @@ public class BaseObject : MonoBehaviour
     protected bool workEnd = false;
     protected bool currentWork = false;
     protected BaseAI currentWorker = null;
-
+#if UNITY_EDITOR
+    [SerializeField]
     private int objectDataID;
+#endif
     public int OBJECT_ID
     {
         get { return objectDataID; }
