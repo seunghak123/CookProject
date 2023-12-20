@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Seunghak.Common;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,20 @@ public class BaseObject : MonoBehaviour
     protected bool workEnd = false;
     protected bool currentWork = false;
     protected BaseAI currentWorker = null;
+
+    private int objectDataID;
+    public int OBJECT_ID
+    {
+        get { return objectDataID; }
+        set {
+            objectDataID = value;
+
+            if (value < 0)
+            {
+                objectDataID = 0;
+            }
+        }
+    }
     //추가적으로 Teamplte 데이터 값 저장 - 맵 Tool에서 기록 가능
     protected virtual void Awake()
     {
@@ -20,6 +35,30 @@ public class BaseObject : MonoBehaviour
     }
     public virtual void InitObject() 
     {
+        //이전에 sprite 세팅
+
+        SpriteRenderer spriteRender = GetComponent<SpriteRenderer>();
+
+        if (spriteRender!=null)
+        {
+            Sprite resourceSprite = GameResourceManager.Instance.LoadObject("이미지 명") as Sprite;
+
+            if(resourceSprite==null)
+            {
+                return;
+            }
+
+            spriteRender.sprite = resourceSprite;
+
+            Vector2 spriteSize = resourceSprite.bounds.size;
+
+            BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
+            if(boxCollider!=null)
+            {
+                boxCollider.size = spriteSize;
+                boxCollider.offset = new Vector2((spriteSize.x / 2), 0);
+            }
+        }
         //기존에는 파일 읽고, Id 세팅한다
     }
     public bool GetIsHold()
