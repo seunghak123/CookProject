@@ -1,7 +1,7 @@
 using System;
 
 [System.Serializable]
-public class JRecipeProbabilityData : JBaseData
+public record JRecipeProbabilityData : JBaseData
 {
 	public int ID;
 	public int RecipeID;

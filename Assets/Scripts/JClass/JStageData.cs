@@ -1,7 +1,7 @@
 using System;
 
 [System.Serializable]
-public class JStageData : JBaseData
+public record JStageData : JBaseData
 {
 	public int ID;
 	public string Name;

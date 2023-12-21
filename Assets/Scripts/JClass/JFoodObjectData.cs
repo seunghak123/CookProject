@@ -1,7 +1,7 @@
 using System;
 
 [System.Serializable]
-public class JFoodObjectData : JBaseData
+public record JFoodObjectData : JBaseData
 {
 	public int ID;
 	public string Name;

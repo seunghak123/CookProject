@@ -10,7 +10,7 @@ namespace Seunghak.Common
     {
         private static Dictionary<string,string> dicJsonData = new Dictionary<string, string>();
 
-        public static List<T> LoadJsonDatas<T>(E_JSON_TYPE loadType) where T : JBaseData
+        public static Dictionary<string,T> LoadJsonDatas<T>(E_JSON_TYPE loadType) where T : JBaseData
         {
             String loadPath = "";
             String loadTypeString = loadType.ToString();
@@ -21,16 +21,16 @@ namespace Seunghak.Common
             }
             if (dicJsonData.ContainsKey(loadType.ToString()))
             {
-                return JsonConvert.DeserializeObject<List<T>> (dicJsonData[loadType.ToString()]) ;
+                return JsonConvert.DeserializeObject<Dictionary<string,T>> (dicJsonData[loadType.ToString()]) ;
             }
 
-            List<T> loadedObject = new List<T>();
+            Dictionary<string, T> loadedObject = new Dictionary<string, T>();
 #if UNITY_EDITOR
             loadTypeString = loadTypeString + ".json";
             loadPath = FileUtils.JSONFILE_LOAD_PATH + loadTypeString.ToLower();
             object loadData = FileUtils.LoadFile<object>(loadPath);
 
-            loadedObject = JsonConvert.DeserializeObject<List<T>>(loadData.ToString());
+            loadedObject = JsonConvert.DeserializeObject<Dictionary<string, T>>(loadData.ToString());
 
             if (!dicJsonData.ContainsKey(loadType.ToString()))
             {
@@ -38,7 +38,7 @@ namespace Seunghak.Common
             }
 #else
             UnityEngine.Object loadObject = GameResourceManager.Instance.LoadObject(loadTypeString.ToLower());
-            loadedObject = JsonConvert.DeserializeObject<List<T>>(loadObject.ToString());
+            loadedObject = JsonConvert.DeserializeObject<Dictionary<string,T>>(loadObject.ToString());
 
             if (!dicJsonData.ContainsKey(loadType.ToString()))
             {
@@ -82,39 +82,39 @@ namespace Seunghak.Common
 
         public JStageData GetStageData(int stageId)
         {
-            List<JStageData> stageDatas = LoadJsonDatas<JStageData>(E_JSON_TYPE.JStageData);
+            Dictionary<string, JStageData> stageDatas = LoadJsonDatas<JStageData>(E_JSON_TYPE.JStageData);
 
-            JStageData stageData = stageDatas.Find(find => find.ID == stageId);
+            JStageData stageData = stageDatas[stageId.ToString()];
 
             return stageData;
         }
 
         public JFoodObjectData GetJFoodObjectData(int foodObjectId)
         {
-            List<JFoodObjectData> foodObjectDatas = LoadJsonDatas<JFoodObjectData>(E_JSON_TYPE.JFoodObjectData);
+            Dictionary<string, JFoodObjectData> foodObjectDatas = LoadJsonDatas<JFoodObjectData>(E_JSON_TYPE.JFoodObjectData);
 
-            JFoodObjectData foodObjectData = foodObjectDatas.Find(find => find.ID == foodObjectId);
+            JFoodObjectData foodObjectData = foodObjectDatas[foodObjectId.ToString()];
 
             return foodObjectData;
 
         }
         public List<JFoodObjectData> GetFoodObjectLists()
         {
-            return LoadJsonDatas<JFoodObjectData>(E_JSON_TYPE.JFoodObjectData); 
+            return new List<JFoodObjectData>( LoadJsonDatas<JFoodObjectData>(E_JSON_TYPE.JFoodObjectData).Values); 
         }
         public JRecipeData GetRecipeData(int recipeId)
         {
-            List<JRecipeData> recipeDatas = LoadJsonDatas<JRecipeData>(E_JSON_TYPE.JRecipeData);
+            Dictionary<string, JRecipeData> recipeDatas = LoadJsonDatas<JRecipeData>(E_JSON_TYPE.JRecipeData);
 
-            JRecipeData recipeData = recipeDatas.Find(find => find.ID == recipeId);
+            JRecipeData recipeData = recipeDatas[recipeId.ToString()];
 
             return recipeData;
         }
         public List<JRecipeData> GetOutputRecipeDatas(int objectId)
         {
-            List<JRecipeData> recipeDatas = LoadJsonDatas<JRecipeData>(E_JSON_TYPE.JRecipeData);
+            Dictionary<string, JRecipeData> recipeDatas = LoadJsonDatas<JRecipeData>(E_JSON_TYPE.JRecipeData);
 
-            List<JRecipeData> outputDatas = recipeDatas.FindAll(find => find.UseObject == objectId);
+            List<JRecipeData> outputDatas = new List<JRecipeData>(recipeDatas.Values).FindAll(find => find.UseObject == objectId);
 
             return outputDatas;
         }

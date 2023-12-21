@@ -1,5 +1,5 @@
-[
-  {
+{
+  "1": {
     "ID": 1,
     "Name": "Stage_Name_korea01",
     "NationID": 1,
@@ -10,7 +10,7 @@
     "score3": 300,
     "StageFile": 0.0
   },
-  {
+  "2": {
     "ID": 2,
     "Name": "Stage_Name_korea02",
     "NationID": 1,
@@ -21,7 +21,7 @@
     "score3": 300,
     "StageFile": 0.0
   },
-  {
+  "3": {
     "ID": 3,
     "Name": "Stage_Name_korea03",
     "NationID": 1,
@@ -32,7 +32,7 @@
     "score3": 300,
     "StageFile": 0.0
   },
-  {
+  "4": {
     "ID": 4,
     "Name": "Stage_Name_korea04",
     "NationID": 1,
@@ -43,7 +43,7 @@
     "score3": 300,
     "StageFile": 0.0
   },
-  {
+  "5": {
     "ID": 5,
     "Name": "Stage_Name_korea05",
     "NationID": 1,
@@ -54,7 +54,7 @@
     "score3": 300,
     "StageFile": 0.0
   },
-  {
+  "6": {
     "ID": 6,
     "Name": "Stage_Name_Use01",
     "NationID": 2,
@@ -65,7 +65,7 @@
     "score3": 300,
     "StageFile": 0.0
   },
-  {
+  "7": {
     "ID": 7,
     "Name": "Stage_Name_Use02",
     "NationID": 2,
@@ -76,7 +76,7 @@
     "score3": 300,
     "StageFile": 0.0
   },
-  {
+  "8": {
     "ID": 8,
     "Name": "Stage_Name_Use03",
     "NationID": 2,
@@ -87,7 +87,7 @@
     "score3": 300,
     "StageFile": 0.0
   },
-  {
+  "9": {
     "ID": 9,
     "Name": "Stage_Name_Use04",
     "NationID": 2,
@@ -98,4 +98,4 @@
     "score3": 300,
     "StageFile": 0.0
   }
-]
+}
