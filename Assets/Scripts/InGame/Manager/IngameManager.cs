@@ -77,6 +77,9 @@ public class IngameManager : MonoBehaviour
         //enemyDataJson 읽어서 적 데이터 가져올 것
         //RenderSettings.skybox = targetMat;
 
+
+        // 테스트 코드 (준혁)
+        IngameCreater.CreateFoodObject(1);
     }
     public void CreateUnits(int deckId)
     {
@@ -86,18 +89,29 @@ public class IngameManager : MonoBehaviour
 
 public class IngameCreater
 {
-    public static void CreateFoodObject(int foodObjectId)
+    public static GameObject CreateFoodObject(int foodObjectId)
     {
         // Json파일 읽기
-        JFoodObjectData foodObjectData = JsonDataManager.Instance.GetJFoodObjectData(foodObjectId);
+        JFoodObjectData foodObjectData = JsonDataManager.Instance.GetSingleData<JFoodObjectData>(foodObjectId, E_JSON_TYPE.JFoodObjectData);
 
         // SpawnObejct
         GameObject foodObject = GameResourceManager.Instance.SpawnObject($"{foodObjectData.Name}");
 
-        // AddComponent???....
-
-        // Setting....?
+        // 타입에 따른 데이터 세팅
+        SetFoodObject(foodObject, foodObjectData.Type);
 
         //생성 되는거 확인
+        return foodObject;
+    }
+
+    /// <summary>
+    /// type에 따른 세팅 : 
+    /// 0 - 사용하는 도구 / 
+    /// 1 - 재료 상자 / 
+    /// 2 - 꾸미기
+    /// </summary>
+    private static void SetFoodObject(GameObject foodObject, int type)
+    {
+        
     }
 }

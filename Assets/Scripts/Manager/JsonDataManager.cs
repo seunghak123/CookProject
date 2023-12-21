@@ -75,15 +75,6 @@ namespace Seunghak.Common
             return stageData;
         }
 
-        public JFoodObjectData GetJFoodObjectData(int foodObjectId)
-        {
-            Dictionary<string, JFoodObjectData> foodObjectDatas = LoadJsonDatas<JFoodObjectData>(E_JSON_TYPE.JFoodObjectData);
-
-            JFoodObjectData foodObjectData = foodObjectDatas[foodObjectId.ToString()];
-
-            return foodObjectData;
-
-        }
         public List<JFoodObjectData> GetFoodObjectLists()
         {
             return new List<JFoodObjectData>( LoadJsonDatas<JFoodObjectData>(E_JSON_TYPE.JFoodObjectData).Values); 
