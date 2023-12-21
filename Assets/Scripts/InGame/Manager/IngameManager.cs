@@ -69,7 +69,7 @@ public class IngameManager : MonoBehaviour
     public void CreateGame(int stageId)
     {
         //테스트 코드 작성
-        JStageData stageData = JsonDataManager.Instance.GetStageData(0);
+        JStageData stageData = JsonDataManager.Instance.GetStageData(1);
 
         ingameUI = CreateUI(1);
 

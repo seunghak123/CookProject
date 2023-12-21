@@ -47,38 +47,24 @@ namespace Seunghak.Common
 #endif
             return loadedObject;
         }
+     
+        public T GetSingleData<T>(int singleId, E_JSON_TYPE type) where T : JBaseData
+        {
+            string findKey = singleId.ToString();
 
-        //public List<JUnitData> GetUnitDatas()
-        //{
-        //    List<JUnitData> unitDatas = LoadJsonDatas<JUnitData>(E_JSON_TYPE.JUnitData);
+            return GetSingleData<T>(singleId, type);
+        }
+        public T GetSingleData<T>(string singleKey, E_JSON_TYPE type) where T : JBaseData
+        {
+            Dictionary<string, T> dicDatas = LoadJsonDatas<T>(type);
 
-        //    return unitDatas;
-        //}
-        //public JUnitData[] GetUnitDatasArray(params int[] unitIdArray)
-        //{
-        //    List<JUnitData> unitDatas = LoadJsonDatas<JUnitData>(E_JSON_TYPE.JUnitData);
+            if(dicDatas.ContainsKey(singleKey))
+            {
+                return dicDatas[singleKey];
+            }
 
-        //    JUnitData[] unitArray = unitDatas.FindAll(find => { 
-        //        for(int i = 0; i < unitIdArray.Length; i++)
-        //        {
-        //            if (find.index == unitIdArray[i])
-        //            {
-        //                return true;
-        //            }
-        //        }
-        //        return false; 
-        //    }).ToArray();
-
-        //    return unitArray;
-        //}
-        //public JUnitData GetUnitData(int unitId)
-        //{
-        //    List<JUnitData> unitDatas = LoadJsonDatas<JUnitData>(E_JSON_TYPE.JUnitData);
-
-        //    JUnitData unitData = unitDatas.Find(find => find.index == unitId);
-
-        //    return unitData;
-        //}
+            return null;
+        }
 
         public JStageData GetStageData(int stageId)
         {
