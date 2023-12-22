@@ -31,7 +31,6 @@ public class TableObject : BaseObject
     private void CreateNewFood()
     {
         currentTableFood.PushMaterial(mixedFood.GetFirstFoodId());
-
     }
     public override IEnumerator Working()
     {

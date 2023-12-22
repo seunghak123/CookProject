@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MultipleCookObjectView : ProgressObjectView
+public class MultipleToolObjectView : ProgressObjectView
 {
     [SerializeField] private Image[] foodInsertLists;
 

@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class BaseObject : MonoBehaviour
 {
     [SerializeField] protected bool holdCharacter = false;
@@ -31,7 +30,7 @@ public class BaseObject : MonoBehaviour
         //Type1번 완료
         List<JRecipeData> recipeData = JsonDataManager.Instance.GetOutputRecipeDatas(OBJECT_ID);
 
-        if (recipeData!=null && recipeData.ConvertAll<int>(find => find.UseObjectOutput).Contains(interActObject))
+        if (recipeData!=null && recipeData.ConvertAll<int>(find => find.FoodName).Contains(interActObject))
         {
             return true;
         }

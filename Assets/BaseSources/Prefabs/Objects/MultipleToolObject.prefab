@@ -742,7 +742,7 @@ GameObject:
   - component: {fileID: 4720568313447010421}
   - component: {fileID: 7888482142023334045}
   m_Layer: 0
-  m_Name: MultipleFoodObject
+  m_Name: MultipleToolObject
   m_TagString: InterActObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

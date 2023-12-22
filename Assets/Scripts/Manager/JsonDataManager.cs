@@ -91,7 +91,14 @@ namespace Seunghak.Common
 
             return null;
         }
+        public JToolObjectData GetToolId(int toolId)
+        {
+            Dictionary<string, JToolObjectData> toolDatas = LoadJsonDatas<JToolObjectData>(E_JSON_TYPE.JToolObjectData);
 
+            JToolObjectData toolData = toolDatas[toolId.ToString()];
+
+            return toolData;
+        }
         public JStageData GetStageData(int stageId)
         {
             Dictionary<string, JStageData> stageDatas = LoadJsonDatas<JStageData>(E_JSON_TYPE.JStageData);
@@ -110,10 +117,10 @@ namespace Seunghak.Common
             string foodName = foodId.ToString();
 
 
-            Dictionary<string, JFoodObjectData> foodDict = LoadJsonDatas<JFoodObjectData>(E_JSON_TYPE.JFoodObjectData);
-            if(foodDict.ContainsKey(foodName))
+            Dictionary<string, JFoodObjectData> stageDict = LoadJsonDatas<JFoodObjectData>(E_JSON_TYPE.JFoodObjectData);
+            if(stageDict.ContainsKey(foodName))
             {
-                return foodDict[foodName];
+                return stageDict[foodName];
             }
             else
             {

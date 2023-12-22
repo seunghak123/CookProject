@@ -1,120 +1,78 @@
 {
   "1": {
     "ID": 1,
-    "Name": "Grill",
-    "Type": 0,
-    "ObjectFile": "ProgressObject",
-    "IconFile": "Grill"
-  },
-  "2": {
-    "ID": 2,
-    "Name": "Board",
-    "Type": 0,
-    "ObjectFile": "ProgressObject",
-    "IconFile": "Board"
-  },
-  "3": {
-    "ID": 3,
-    "Name": "Mixer",
-    "Type": 0,
-    "ObjectFile": "ProgressObject",
-    "IconFile": "Mixer"
-  },
-  "4": {
-    "ID": 4,
-    "Name": "Oven",
-    "Type": 0,
-    "ObjectFile": "ProgressObject",
-    "IconFile": "Oven"
-  },
-  "5": {
-    "ID": 5,
-    "Name": "Pot",
-    "Type": 0,
-    "ObjectFile": "ProgressObject",
-    "IconFile": "Pot"
-  },
-  "6": {
-    "ID": 6,
-    "Name": "Fryer",
-    "Type": 0,
-    "ObjectFile": "ProgressObject",
-    "IconFile": "Fryer"
-  },
-  "7": {
-    "ID": 7,
-    "Name": "Pen",
-    "Type": 0,
-    "ObjectFile": "ProgressObject",
-    "IconFile": "Pen"
+    "Name": "Plate",
+    "Type": 2,
+    "ObjectFile": "Plate",
+    "IconFile": "Plate"
   },
   "8": {
     "ID": 8,
     "Name": "Potato",
-    "Type": 1,
+    "Type": 2,
     "ObjectFile": "Potato",
     "IconFile": "Potato"
   },
   "9": {
     "ID": 9,
     "Name": "Meat",
-    "Type": 1,
+    "Type": 2,
     "ObjectFile": "Meat",
     "IconFile": "Meat"
   },
   "10": {
     "ID": 10,
     "Name": "Bread",
-    "Type": 1,
+    "Type": 2,
     "ObjectFile": "Bread",
     "IconFile": "Bread"
   },
   "11": {
     "ID": 11,
     "Name": "Shrimp",
-    "Type": 1,
+    "Type": 2,
     "ObjectFile": "Shrimp",
     "IconFile": "Shrimp"
   },
   "12": {
     "ID": 12,
     "Name": "Fish",
-    "Type": 1,
+    "Type": 2,
     "ObjectFile": "Fish",
     "IconFile": "Fish"
   },
   "13": {
     "ID": 13,
     "Name": "Sauce",
-    "Type": 1,
+    "Type": 2,
     "ObjectFile": "Sauce",
     "IconFile": "Sauce"
   },
   "14": {
     "ID": 14,
     "Name": "Lettuce",
-    "Type": 1,
+    "Type": 2,
     "ObjectFile": "Lettuce",
     "IconFile": "Lettuce"
   },
   "15": {
     "ID": 15,
     "Name": "Cheese",
-    "Type": 1,
+    "Type": 2,
     "ObjectFile": "Cheese",
     "IconFile": "Cheese"
   },
   "16": {
     "ID": 16,
     "Name": "Tomato",
-    "Type": 1,
+    "Type": 2,
     "ObjectFile": "Tomato",
     "IconFile": "Tomato"
   },
   "17": {
     "ID": 17,
     "Name": "Pineapple",
-    "Type": 1,
+    "Type": 2,
     "ObjectFile": "Pineapple",
     "IconFile": "Pineapple"
   },

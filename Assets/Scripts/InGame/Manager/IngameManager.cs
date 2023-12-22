@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class IngameManager : MonoBehaviour
 {
     public static IngameManager currentManager = null;
+    public static int curentScore = 0;
 
     [Header("SceneObject")]
     [SerializeField] private Transform mapSpawnPos = null;
@@ -52,8 +53,16 @@ public class IngameManager : MonoBehaviour
         recipeDataLists = JsonDataManager.Instance.GetRecipeLists();
         for(int i = 0; i < recipeDataLists.Count; i++)
         {
-            List<int> recipeList = new List<int>(recipeDataLists[i].AddFoodName);
-            recipeOutputDic[recipeList] = recipeDataLists[i].AddOuput;
+            if(recipeDataLists[i].Foodtype == "1")
+            {
+                List<int> recipeList = new List<int>(recipeDataLists[i].FoodName);
+                recipeOutputDic[recipeList] = recipeDataLists[i].UseObjectOutput;
+            }
+            else if(recipeDataLists[i].Foodtype == "2")
+            {
+                List<int> recipeList = new List<int>(recipeDataLists[i].AddFood2);
+                recipeOutputDic[recipeList] = recipeDataLists[i].AddOuput;
+            }
         }
 
         //타입에 따라 불러오는걸 달리 해준다
@@ -70,13 +79,26 @@ public class IngameManager : MonoBehaviour
 
         return baseUI;
     }
-    private void CheckRecipeComplete(BasicMaterialData completeFood)
+    public bool CheckRecipeComplete(BasicMaterialData completeFood)
     {
         if(ingameUI!=null)
         {
             (bool isResult, int recipePos) = ingameUI.CheckRecipe(completeFood);
 
+            if(isResult)
+            {
+                //레시피 체크가 성공했을때
+                curentScore += recipeDataLists[recipePos].Score;
+
+                return true;
+            }
+            else
+            {
+                //실패 했을 경우 벌칙 처리 필요
+                return false;
+            }
         }
+        return false;
     }
     public int GetRecipeFoodResult(List<int> foodResult)
     {
@@ -102,10 +124,6 @@ public class IngameManager : MonoBehaviour
 
         // 테스트 코드 (준혁)
         IngameCreater.CreateFoodObject(1);
-    }
-    public void CreateUnits(int deckId)
-    {
-        //유저 덱에 따라 유닛 생성
     }
 }
 
@@ -143,8 +161,16 @@ public class IngameCreater
     {
         switch (type)
         {
+            case 1:
+                return CommonUtil.GetTypeFromAssemblies("FoodStorageObject");
             case 2:
-                return CommonUtil.GetTypeFromAssemblies("MultipleCookObject");
+                return CommonUtil.GetTypeFromAssemblies("SingleToolObject");
+            case 3: 
+                return CommonUtil.GetTypeFromAssemblies("TableObject");
+            case 4:
+                return CommonUtil.GetTypeFromAssemblies("MultipleToolObject");
+            case 5:
+                return CommonUtil.GetTypeFromAssemblies("FoodDeliveryObject");
 
         }
         return null;

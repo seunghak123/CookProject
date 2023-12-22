@@ -10,7 +10,8 @@ public record JRecipeData : JBaseData
 	public int FoodName;
 	public int UseObject;
 	public int UseObjectOutput;
-	public int[] AddFoodName;
+	public int[] AddFood1;
+	public int[] AddFood2;
 	public int AddOuput;
 	public int Score;
 }

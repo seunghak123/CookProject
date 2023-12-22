@@ -9,7 +9,7 @@ using UnityEditor;
 
 public struct IngameMapObject
 {
-    public int objectId;
+    public int toolObjectId;
     public Transform objectTransform;
 }
 public struct IngameMapObjectInfos
@@ -73,7 +73,7 @@ public class MapDataCreater : MonoBehaviour
                 continue;
             }
             IngameMapObject objectInfo;
-            objectInfo.objectId = baseSubObject.OBJECT_ID;
+            objectInfo.toolObjectId = baseSubObject.OBJECT_ID;
             objectInfo.objectTransform = subObject.transform;
             mapInfos.objectLists.Add(objectInfo);
         }

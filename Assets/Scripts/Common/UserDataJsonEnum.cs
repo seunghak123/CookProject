@@ -6,4 +6,5 @@ public enum E_JSON_TYPE
 	JRecipeData,
 	JRecipeProbabilityData,
 	JStageData,
+	JToolObjectData,
 }

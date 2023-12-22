@@ -1,0 +1,107 @@
+{
+  "1001": {
+    "ID": 1001,
+    "Name": "Grill",
+    "Type": 0,
+    "ObjectFile": "ProgressObject",
+    "IconFile": "Grill"
+  },
+  "1002": {
+    "ID": 1002,
+    "Name": "Board",
+    "Type": 0,
+    "ObjectFile": "ProgressObject",
+    "IconFile": "Board"
+  },
+  "1003": {
+    "ID": 1003,
+    "Name": "Mixer",
+    "Type": 0,
+    "ObjectFile": "ProgressObject",
+    "IconFile": "Mixer"
+  },
+  "1004": {
+    "ID": 1004,
+    "Name": "Oven",
+    "Type": 4,
+    "ObjectFile": "MultipleObject",
+    "IconFile": "Oven"
+  },
+  "1005": {
+    "ID": 1005,
+    "Name": "Pot",
+    "Type": 4,
+    "ObjectFile": "MultipleObject",
+    "IconFile": "Pot"
+  },
+  "1006": {
+    "ID": 1006,
+    "Name": "Fryer",
+    "Type": 0,
+    "ObjectFile": "ProgressObject",
+    "IconFile": "Fryer"
+  },
+  "1007": {
+    "ID": 1007,
+    "Name": "Pen",
+    "Type": 0,
+    "ObjectFile": "ProgressObject",
+    "IconFile": "Pen"
+  },
+  "1008": {
+    "ID": 1008,
+    "Name": "Box_Bread",
+    "Type": 1,
+    "ObjectFile": "FoodStorageObject",
+    "IconFile": "Box_Bread"
+  },
+  "1009": {
+    "ID": 1009,
+    "Name": "Box_FIsh",
+    "Type": 1,
+    "ObjectFile": "FoodStorageObject",
+    "IconFile": "Box_FIsh"
+  },
+  "1010": {
+    "ID": 1010,
+    "Name": "Box_Luttuce",
+    "Type": 1,
+    "ObjectFile": "FoodStorageObject",
+    "IconFile": "Box_Luttuce"
+  },
+  "1011": {
+    "ID": 1011,
+    "Name": "Box_Meat",
+    "Type": 1,
+    "ObjectFile": "FoodStorageObject",
+    "IconFile": "Box_Meat"
+  },
+  "1012": {
+    "ID": 1012,
+    "Name": "Box_Tomato",
+    "Type": 1,
+    "ObjectFile": "FoodStorageObject",
+    "IconFile": "Box_Tomato"
+  },
+  "1013": {
+    "ID": 1013,
+    "Name": "Food_Delivery",
+    "Type": 0,
+    "ObjectFile": "Food_Delivery",
+    "IconFile": "Food_Delivery"
+  },
+  "1014": {
+    "ID": 1014,
+    "Name": "Table",
+    "Type": 0,
+    "ObjectFile": "Table",
+    "IconFile": "Table"
+  },
+  "1015": {
+    "ID": 1015,
+    "Name": "PlateTable",
+    "Type": 0,
+    "ObjectFile": "PlateTable",
+    "IconFile": "PlateTable"
+  }
+}
