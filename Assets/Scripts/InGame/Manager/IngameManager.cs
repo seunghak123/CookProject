@@ -72,8 +72,7 @@ public class IngameManager : MonoBehaviour
         JStageData stageData = JsonDataManager.Instance.GetStageData(1);
 
         ingameUI = CreateUI(1);
-
-
+       JStageData dictionarydata = JsonDataManager.Instance.LoadStageTestData(1);
         //enemyDataJson 읽어서 적 데이터 가져올 것
         //RenderSettings.skybox = targetMat;
 

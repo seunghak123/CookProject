@@ -9,7 +9,46 @@ namespace Seunghak.Common
     public class JsonDataManager : UnitySingleton<JsonDataManager>
     {
         private static Dictionary<string,string> dicJsonData = new Dictionary<string, string>();
+        private static Dictionary<string, Dictionary<string,JBaseData>> dicJsonDic = new Dictionary<string, Dictionary<string, JBaseData>>();
+        public static Dictionary<string, T> LoadJsonData2<T>(E_JSON_TYPE loadType) where T : JBaseData
+        {
+            String loadTypeString = loadType.ToString();
 
+            if (loadTypeString.Contains("Data"))
+            {
+                loadTypeString = loadTypeString.Replace("Data", "");
+            }
+
+            return GetDicData<T>(loadTypeString);
+        }
+        public JStageData LoadStageTestData(int num)
+        {
+            return LoadJsonData2<JStageData>(E_JSON_TYPE.JStageData)[num.ToString()];
+        }
+        private static void SetDicData<T>(string saveKey,Dictionary<string,T> dicData) where T : JBaseData
+        {
+            Dictionary<string, JBaseData> convertedData = new Dictionary<string, JBaseData>();
+            foreach (var kvp in dicData)
+            {
+                if (kvp.Value is JBaseData)
+                {
+                    convertedData[kvp.Key] = (T)kvp.Value;
+                }
+            }
+            dicJsonDic[saveKey] = convertedData;
+        }
+        private static Dictionary<string, T> GetDicData<T>(string saveKey) where T : JBaseData
+        {
+            Dictionary<string, T> convertedData = new Dictionary<string, T>();
+            foreach (var kvp in dicJsonDic[saveKey])
+            {
+                if (kvp.Value is JStageData)
+                {
+                    convertedData[kvp.Key] = (T)kvp.Value;
+                }
+            }
+            return convertedData;
+        }
         public static Dictionary<string,T> LoadJsonDatas<T>(E_JSON_TYPE loadType) where T : JBaseData
         {
             String loadPath = "";
@@ -26,9 +65,11 @@ namespace Seunghak.Common
 
             Dictionary<string, T> loadedObject = new Dictionary<string, T>();
 #if UNITY_EDITOR
-            loadTypeString = loadTypeString + ".json";
-            loadPath = FileUtils.JSONFILE_LOAD_PATH + loadTypeString.ToLower();
+            string loadTypeStringPath = loadTypeString + ".json";
+            loadPath = FileUtils.JSONFILE_LOAD_PATH + loadTypeStringPath.ToLower();
             object loadData = FileUtils.LoadFile<object>(loadPath);
+
+            SetDicData<T>(loadTypeString, JsonConvert.DeserializeObject<Dictionary<string, T>>(loadData.ToString()));
 
             loadedObject = JsonConvert.DeserializeObject<Dictionary<string, T>>(loadData.ToString());
 
@@ -92,7 +133,6 @@ namespace Seunghak.Common
             Dictionary<string, JRecipeData> recipeDatas = LoadJsonDatas<JRecipeData>(E_JSON_TYPE.JRecipeData);
 
             List<JRecipeData> outputDatas = new List<JRecipeData>(recipeDatas.Values).FindAll(find => find.UseObject == objectId);
-
             return outputDatas;
         }
     }
