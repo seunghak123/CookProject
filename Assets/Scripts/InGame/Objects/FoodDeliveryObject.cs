@@ -42,6 +42,16 @@ public class FoodDeliveryObject : BaseObject
 
         yield break;
     }
+    public override void SetToolData(JToolObjectData newToolData)
+    {
+        base.SetToolData(newToolData);
+
+        if (deliveryView != null)
+        {
+            deliveryView.SetBaseSprite(newToolData);
+        }
+        UpdateUI();
+    }
     protected override void UpdateUI()
     {
         if (foodDeliveryViewData == null)

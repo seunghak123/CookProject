@@ -9,6 +9,8 @@ public class ProgressObjectView : BaseObjectView
     [SerializeField] private Transform progressParent;
     public override void Updated(BaseViewDataClass data)
     {
+        base.Updated(data);
+
         if(!IsChecked(data))
         {
             return;

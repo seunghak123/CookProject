@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Seunghak.Common;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,8 +31,17 @@ public abstract class BaseObjectView : MonoBehaviour
             if (boxCollider != null)
             {
                 boxCollider.size = spriteSize;
-                boxCollider.offset = new Vector2((spriteSize.x / 2), 0);
+                boxCollider.offset = new Vector2(0, 0);
             }
+        }
+    }
+    public void SetBaseSprite(JToolObjectData toolData)
+    {
+        SpriteRenderer spriteRender = GetComponent<SpriteRenderer>();
+
+        if (spriteRender != null)
+        {
+            spriteRender.sprite = SpriteManager.Instance.LoadSprite(toolData.IconFile);
         }
     }
 }

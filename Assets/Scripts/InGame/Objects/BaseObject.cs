@@ -111,7 +111,7 @@ public class BaseObject : MonoBehaviour
 
         return false;
     }
-    public void SetToolData(JToolObjectData newToolData)
+    public virtual void SetToolData(JToolObjectData newToolData)
     {
         toolData = newToolData;
     }

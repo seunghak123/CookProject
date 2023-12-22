@@ -26,17 +26,27 @@ public class ProgressedBaseObject : BaseObject
         base.InitObject();
         timerWorkingAction = ChangeProgressBarFront;
         workingEndAction = WorkingEnd;
-        if(toolData.ToolTimer.Length<=0)
-        {
-            workingTimeArrays = new float[] { 0 };
-        }
-        else
-        {
-            workingTimeArrays = toolData.ToolTimer;
-        }
         //View초기화
         progressedView = GetComponent<ProgressObjectView>();
-
+    }
+    public override void SetToolData(JToolObjectData newToolData)
+    {
+        base.SetToolData(newToolData);
+        if(toolData!=null)
+        {
+            if (toolData.ToolTimer.Length <= 0)
+            {
+                workingTimeArrays = new float[] { 0 };
+            }
+            else
+            {
+                workingTimeArrays = toolData.ToolTimer;
+            }
+        }
+        if (progressedView != null)
+        {
+            progressedView.SetBaseSprite(newToolData);
+        }
         UpdateUI();
     }
     protected override void UpdateUI()
