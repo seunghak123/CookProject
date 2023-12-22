@@ -130,6 +130,18 @@ public class IngameManager : MonoBehaviour
         // 테스트 코드 (준혁)
         IngameCreater.CreateFoodObject(1001);
     }
+    public void CreateMapData(int stageId)
+    {
+        if (mapSpawnPos.childCount != 0)
+        {
+            for (int i = mapSpawnPos.childCount - 1; i >= 0; i--)
+            {
+                DestroyImmediate(mapSpawnPos.GetChild(i).gameObject);
+            }
+        }
+        JStageData stageData = JsonDataManager.Instance.GetSingleData<JStageData>(stageId,E_JSON_TYPE.JStageData);
+        //IngameMapObjectInfos mapInfos = GameResourceManager.Instance.LoadObject()
+    }
 }
 
 public class IngameCreater

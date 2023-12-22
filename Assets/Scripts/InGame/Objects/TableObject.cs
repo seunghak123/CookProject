@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class TableObject : BaseObject
 {
+    [SerializeField] protected TableObjectView tableObjectView;
+    protected TableObjectViewDataClass tableObjectViewData;
+
     private BasicMaterialData mixedFood;
     private BasicMaterialData currentTableFood = new BasicMaterialData();
+    public override void InitObject()
+    {
+        holdCharacter = false;
+        isBlockCharacter = true;
+
+        tableObjectView = GetComponent<TableObjectView>();
+    }
+
     public override void DoWork(BaseAI targetAI, BasicMaterialData param)
     {
         base.DoWork(targetAI, param);
@@ -26,6 +37,28 @@ public class TableObject : BaseObject
             {
                 StartCoroutine(Working());
             }
+        }
+    }
+    public override void SetToolData(JToolObjectData newToolData)
+    {
+        base.SetToolData(newToolData);
+
+        if (tableObjectView != null)
+        {
+            tableObjectView.SetBaseSprite(newToolData);
+        }
+        UpdateUI();
+    }
+    protected override void UpdateUI()
+    {
+        if (tableObjectViewData == null)
+        {
+            tableObjectViewData = new TableObjectViewDataClass();
+        }
+
+        if (tableObjectView != null)
+        {
+            tableObjectView.Updated(tableObjectViewData);
         }
     }
     private void CreateNewFood()
