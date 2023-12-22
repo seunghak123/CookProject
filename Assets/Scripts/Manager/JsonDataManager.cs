@@ -52,7 +52,7 @@ namespace Seunghak.Common
         {
             string findKey = singleId.ToString();
 
-            return GetSingleData<T>(singleId, type);
+            return GetSingleData<T>(findKey, type);
         }
         public T GetSingleData<T>(string singleKey, E_JSON_TYPE type) where T : JBaseData
         {
