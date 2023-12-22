@@ -8,23 +8,7 @@ namespace Seunghak.Common
 {
     public class JsonDataManager : UnitySingleton<JsonDataManager>
     {
-        private static Dictionary<string,string> dicJsonData = new Dictionary<string, string>();
         private static Dictionary<string, Dictionary<string,JBaseData>> dicJsonDic = new Dictionary<string, Dictionary<string, JBaseData>>();
-        public static Dictionary<string, T> LoadJsonData2<T>(E_JSON_TYPE loadType) where T : JBaseData
-        {
-            String loadTypeString = loadType.ToString();
-
-            if (loadTypeString.Contains("Data"))
-            {
-                loadTypeString = loadTypeString.Replace("Data", "");
-            }
-
-            return GetDicData<T>(loadTypeString);
-        }
-        public JStageData LoadStageTestData(int num)
-        {
-            return LoadJsonData2<JStageData>(E_JSON_TYPE.JStageData)[num.ToString()];
-        }
         private static void SetDicData<T>(string saveKey,Dictionary<string,T> dicData) where T : JBaseData
         {
             Dictionary<string, JBaseData> convertedData = new Dictionary<string, JBaseData>();
@@ -49,7 +33,7 @@ namespace Seunghak.Common
             }
             return convertedData;
         }
-        public static Dictionary<string,T> LoadJsonDatas<T>(E_JSON_TYPE loadType) where T : JBaseData
+        public static Dictionary<string, T> LoadJsonDatas<T>(E_JSON_TYPE loadType) where T : JBaseData
         {
             String loadPath = "";
             String loadTypeString = loadType.ToString();
@@ -58,9 +42,10 @@ namespace Seunghak.Common
             {
                 loadTypeString = loadTypeString.Replace("Data", "");
             }
-            if (dicJsonData.ContainsKey(loadType.ToString()))
+
+            if (dicJsonDic.ContainsKey(loadType.ToString()))
             {
-                return JsonConvert.DeserializeObject<Dictionary<string,T>> (dicJsonData[loadType.ToString()]) ;
+                return GetDicData<T>(loadType.ToString());
             }
 
             Dictionary<string, T> loadedObject = new Dictionary<string, T>();
@@ -73,22 +58,22 @@ namespace Seunghak.Common
 
             loadedObject = JsonConvert.DeserializeObject<Dictionary<string, T>>(loadData.ToString());
 
-            if (!dicJsonData.ContainsKey(loadType.ToString()))
+            if (!dicJsonDic.ContainsKey(loadType.ToString()))
             {
-                dicJsonData[loadType.ToString()] = loadData.ToString();
+                SetDicData<T>(loadType.ToString(), loadedObject);
             }
 #else
             UnityEngine.Object loadObject = GameResourceManager.Instance.LoadObject(loadTypeString.ToLower());
             loadedObject = JsonConvert.DeserializeObject<Dictionary<string,T>>(loadObject.ToString());
 
-            if (!dicJsonData.ContainsKey(loadType.ToString()))
+            if (!dicJsonDic.ContainsKey(loadType.ToString()))
             {
-                dicJsonData[loadType.ToString()] = loadObject.ToString();
+                SetDicData<T>(loadType.ToString(), loadedObject);
             }
 #endif
             return loadedObject;
         }
-     
+
         public T GetSingleData<T>(int singleId, E_JSON_TYPE type) where T : JBaseData
         {
             string findKey = singleId.ToString();
