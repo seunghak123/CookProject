@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class MapToolManager : MonoBehaviour
 {
+    private void Start()
+    {
+        StartCoroutine(ToolInit());
+    }
     IEnumerator ToolInit()
     {
         yield return new WaitForSeconds(1f);

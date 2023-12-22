@@ -416,11 +416,23 @@ namespace Seunghak.Common
         private IEnumerator InAppUpdate()
         {
             MoveNextState(E_APPLICATION_STATE.TITLE);
-            Destroy(usertitleWindow.gameObject);
+            if(usertitleWindow!=null)
+            {
+                Destroy(usertitleWindow.gameObject);
+            }
             yield break;
         }
         private IEnumerator GoToTitle()
         {
+#if UNITY_EDITOR
+            if (Application.isPlaying)
+            {
+                if (UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene().name == "MapCreate")
+                {
+                    yield break;
+                }
+            }
+#endif
             //로비로 가야하는가 ? 아니면 인트로로 가야하는가에 따라 결정 우선 인트로는 빠지고 
             //바로 로비로 인토르는, 스킵가능하도록 만들자
             SceneManager.SceneManager.Instance.ChangeScene(E_SCENE_TYPE.LOBBY);
