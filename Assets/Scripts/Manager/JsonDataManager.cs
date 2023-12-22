@@ -113,6 +113,10 @@ namespace Seunghak.Common
 
             return recipeData;
         }
+        public List<JRecipeData> GetRecipeLists()
+        {
+            return new List<JRecipeData>(LoadJsonDatas<JRecipeData>(E_JSON_TYPE.JRecipeData).Values);
+        }
         public List<JRecipeData> GetOutputRecipeDatas(int objectId)
         {
             Dictionary<string, JRecipeData> recipeDatas = LoadJsonDatas<JRecipeData>(E_JSON_TYPE.JRecipeData);

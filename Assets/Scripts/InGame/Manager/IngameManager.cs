@@ -17,6 +17,9 @@ public class IngameManager : MonoBehaviour
     private List<UnitController> enemyUnits = new List<UnitController>();
     private List<UnitController> teamUnits = new List<UnitController>();
     private BaseIngameUI ingameUI = null;
+
+    private List<JRecipeData> recipeDataLists = new List<JRecipeData>();
+    private Dictionary<List<int>, int> recipeOutputDic = new Dictionary<List<int>, int>();
     private void Awake()
     {
         currentManager = this;
@@ -44,6 +47,15 @@ public class IngameManager : MonoBehaviour
 
         GameObject createdUI = GameResourceManager.Instance.LoadObject("StoryUI") as GameObject;
 
+
+
+        recipeDataLists = JsonDataManager.Instance.GetRecipeLists();
+        for(int i = 0; i < recipeDataLists.Count; i++)
+        {
+            List<int> recipeList = new List<int>(recipeDataLists[i].AddFoodName);
+            recipeOutputDic[recipeList] = recipeDataLists[i].AddOuput;
+        }
+
         //타입에 따라 불러오는걸 달리 해준다
         //차후 enum값으로 사용하게 변경
         //AddComponent해주고, -> Addcomponent 초기화-> 위치 세팅 ->
@@ -66,12 +78,21 @@ public class IngameManager : MonoBehaviour
 
         }
     }
+    public int GetRecipeFoodResult(List<int> foodResult)
+    {
+        if(recipeOutputDic.ContainsKey(foodResult))
+        {
+            return recipeOutputDic[foodResult];
+        }
+        else
+        {
+            return 0;
+        }
+    }
     public void CreateGame(int stageId)
     {
         //테스트 코드 작성
-
         JStageData stageData = JsonDataManager.Instance.GetStageData(1);
-
 
         ingameUI = CreateUI(1);
 
