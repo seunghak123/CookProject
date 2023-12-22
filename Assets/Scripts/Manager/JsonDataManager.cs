@@ -45,7 +45,7 @@ namespace Seunghak.Common
 
             if (dicJsonDic.ContainsKey(loadType.ToString()))
             {
-                return GetDicData<T>(loadType.ToString());
+                return GetDicData<T>(loadTypeString);
             }
 
             Dictionary<string, T> loadedObject = new Dictionary<string, T>();
@@ -58,9 +58,9 @@ namespace Seunghak.Common
 
             loadedObject = JsonConvert.DeserializeObject<Dictionary<string, T>>(loadData.ToString());
 
-            if (!dicJsonDic.ContainsKey(loadType.ToString()))
+            if (!dicJsonDic.ContainsKey(loadTypeString))
             {
-                SetDicData<T>(loadType.ToString(), loadedObject);
+                SetDicData<T>(loadTypeString, loadedObject);
             }
 #else
             UnityEngine.Object loadObject = GameResourceManager.Instance.LoadObject(loadTypeString.ToLower());

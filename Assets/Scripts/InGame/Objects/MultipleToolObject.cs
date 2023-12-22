@@ -13,6 +13,8 @@ public class MultipleToolObject : ProgressedBaseObject
         holdCharacter = false;
         isBlockCharacter = true;
 
+        progressedView = GetComponent<MultipleToolObjectView>();
+
         workingAction = WorkingChange;
     }
     private void WorkingChange(ProgressedViewDataClass data)

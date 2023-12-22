@@ -90,12 +90,10 @@ public class MapDataCreater : MonoBehaviour
         {
             return;
         }
-        if(objectLists ==null)
-        {
-            objectLists = JsonDataManager.Instance.GetFoodObjectLists();
-        }
 
+        GameObject createObject = IngameCreater.CreateFoodObject(createId);
 
+        createObject.transform.parent = createTransform;
     }
 #endif
 }
@@ -106,6 +104,10 @@ public class MapToolCreateButton : Editor
     private int createObjecId ;
     public override void OnInspectorGUI()
     {
+        if(!Application.isPlaying)
+        {
+            return;
+        }
         base.OnInspectorGUI();
         
         MapDataCreater mapTool = (MapDataCreater)target;

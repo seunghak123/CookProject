@@ -19,17 +19,23 @@ public class ProgressedBaseObject : BaseObject
     protected Action<ProgressedViewDataClass> workingAction;
     protected Action<ProgressedViewDataClass> timerWorkingAction;
     protected Action workingEndAction;
-
-    //테스트 코드
     protected int currentState = 0;
-    [SerializeField]
-    private float[] workingTimeArrays = new float[] { 2, 10, 30 };
-    //테스트 코드
+    protected float[] workingTimeArrays = new float[] { 2, 10, 30 };
     public override void InitObject()
     {
         base.InitObject();
         timerWorkingAction = ChangeProgressBarFront;
         workingEndAction = WorkingEnd;
+        if(toolData.ToolTimer.Length<=0)
+        {
+            workingTimeArrays = new float[] { 0 };
+        }
+        else
+        {
+            workingTimeArrays = toolData.ToolTimer;
+        }
+        //View초기화
+        progressedView = GetComponent<ProgressObjectView>();
 
         UpdateUI();
     }

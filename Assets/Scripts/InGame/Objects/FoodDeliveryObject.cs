@@ -10,7 +10,10 @@ public class FoodDeliveryObject : BaseObject
     {
         holdCharacter = false;
         isBlockCharacter = true;
+
+        deliveryView = GetComponent<FoodDeliveryObjectView>();
     }
+
     public override void DoWork(BaseAI targetAI, BasicMaterialData param)
     {
         base.DoWork(targetAI, param);

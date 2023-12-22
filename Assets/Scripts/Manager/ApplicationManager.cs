@@ -33,18 +33,22 @@ namespace Seunghak.Common
             }
             if (usertitleWindow == null)
             {
-                usertitleWindow = GameObject.Find("TitleWindow").GetComponent<TitleWindow>();
-            }
-            if (userDownloadBundlePopup == null)
-            {
-                userDownloadBundlePopup = usertitleWindow.downloadPopup;
-            }
-            if (userAwnserPopup == null)
-            {
-                userAwnserPopup = usertitleWindow.baseAwnserPopup;
+                GameObject titleWindow = GameObject.Find("TitleWindow");
+                if (titleWindow != null)
+                {
+                    usertitleWindow = titleWindow.GetComponent<TitleWindow>();
+                }
             }
             if (usertitleWindow != null)
             {
+                if (userDownloadBundlePopup == null)
+                {
+                    userDownloadBundlePopup = usertitleWindow.downloadPopup;
+                }
+                if (userAwnserPopup == null)
+                {
+                    userAwnserPopup = usertitleWindow.baseAwnserPopup;
+                }
                 usertitleWindow.InitTitleWindow();
             }
             if (userDownloadBundlePopup != null)

@@ -2,106 +2,172 @@
   "1001": {
     "ID": 1001,
     "Name": "Grill",
-    "Type": 0,
-    "ObjectFile": "ProgressObject",
-    "IconFile": "Grill"
+    "Type": 2,
+    "ObjectFile": "SingleToolObject",
+    "IconFile": "Grill",
+    "ToolTimer": [
+      9.0,
+      18.0
+    ],
+    "OuputFood": 0
   },
   "1002": {
     "ID": 1002,
     "Name": "Board",
-    "Type": 0,
-    "ObjectFile": "ProgressObject",
-    "IconFile": "Board"
+    "Type": 2,
+    "ObjectFile": "SingleToolObject",
+    "IconFile": "Board",
+    "ToolTimer": [
+      5.0
+    ],
+    "OuputFood": 0
   },
   "1003": {
     "ID": 1003,
     "Name": "Mixer",
-    "Type": 0,
-    "ObjectFile": "ProgressObject",
-    "IconFile": "Mixer"
+    "Type": 2,
+    "ObjectFile": "SingleToolObject",
+    "IconFile": "Mixer",
+    "ToolTimer": [
+      8.0,
+      16.0
+    ],
+    "OuputFood": 0
   },
   "1004": {
     "ID": 1004,
     "Name": "Oven",
     "Type": 4,
-    "ObjectFile": "MultipleObject",
-    "IconFile": "Oven"
+    "ObjectFile": "MultipleToolObject",
+    "IconFile": "Oven",
+    "ToolTimer": [
+      10.0,
+      20.0
+    ],
+    "OuputFood": 0
   },
   "1005": {
     "ID": 1005,
     "Name": "Pot",
     "Type": 4,
-    "ObjectFile": "MultipleObject",
-    "IconFile": "Pot"
+    "ObjectFile": "MultipleToolObject",
+    "IconFile": "Pot",
+    "ToolTimer": [
+      10.0,
+      20.0
+    ],
+    "OuputFood": 0
   },
   "1006": {
     "ID": 1006,
     "Name": "Fryer",
-    "Type": 0,
-    "ObjectFile": "ProgressObject",
-    "IconFile": "Fryer"
+    "Type": 2,
+    "ObjectFile": "SingleToolObject",
+    "IconFile": "Fryer",
+    "ToolTimer": [
+      9.0,
+      18.0
+    ],
+    "OuputFood": 0
   },
   "1007": {
     "ID": 1007,
     "Name": "Pen",
-    "Type": 0,
-    "ObjectFile": "ProgressObject",
-    "IconFile": "Pen"
+    "Type": 2,
+    "ObjectFile": "SingleToolObject",
+    "IconFile": "Pen",
+    "ToolTimer": [
+      8.0,
+      16.0
+    ],
+    "OuputFood": 0
   },
   "1008": {
     "ID": 1008,
     "Name": "Box_Bread",
     "Type": 1,
     "ObjectFile": "FoodStorageObject",
-    "IconFile": "Box_Bread"
+    "IconFile": "Box_Bread",
+    "ToolTimer": [
+      0.0
+    ],
+    "OuputFood": 10
   },
   "1009": {
     "ID": 1009,
     "Name": "Box_FIsh",
     "Type": 1,
     "ObjectFile": "FoodStorageObject",
-    "IconFile": "Box_FIsh"
+    "IconFile": "Box_FIsh",
+    "ToolTimer": [
+      0.0
+    ],
+    "OuputFood": 12
   },
   "1010": {
     "ID": 1010,
     "Name": "Box_Luttuce",
     "Type": 1,
     "ObjectFile": "FoodStorageObject",
-    "IconFile": "Box_Luttuce"
+    "IconFile": "Box_Luttuce",
+    "ToolTimer": [
+      0.0
+    ],
+    "OuputFood": 14
   },
   "1011": {
     "ID": 1011,
     "Name": "Box_Meat",
     "Type": 1,
     "ObjectFile": "FoodStorageObject",
-    "IconFile": "Box_Meat"
+    "IconFile": "Box_Meat",
+    "ToolTimer": [
+      0.0
+    ],
+    "OuputFood": 9
   },
   "1012": {
     "ID": 1012,
     "Name": "Box_Tomato",
     "Type": 1,
     "ObjectFile": "FoodStorageObject",
-    "IconFile": "Box_Tomato"
+    "IconFile": "Box_Tomato",
+    "ToolTimer": [
+      0.0
+    ],
+    "OuputFood": 16
   },
   "1013": {
     "ID": 1013,
     "Name": "Food_Delivery",
-    "Type": 0,
-    "ObjectFile": "Food_Delivery",
-    "IconFile": "Food_Delivery"
+    "Type": 5,
+    "ObjectFile": "FoodDeliveryToolObject",
+    "IconFile": "Food_Delivery",
+    "ToolTimer": [
+      0.0
+    ],
+    "OuputFood": 0
   },
   "1014": {
     "ID": 1014,
     "Name": "Table",
     "Type": 0,
     "ObjectFile": "Table",
-    "IconFile": "Table"
+    "IconFile": "Table",
+    "ToolTimer": [
+      0.0
+    ],
+    "OuputFood": 0
   },
   "1015": {
     "ID": 1015,
     "Name": "PlateTable",
-    "Type": 0,
-    "ObjectFile": "PlateTable",
-    "IconFile": "PlateTable"
+    "Type": 1,
+    "ObjectFile": "FoodStorageObject",
+    "IconFile": "PlateTable",
+    "ToolTimer": [
+      0.0
+    ],
+    "OuputFood": 1
   }
 }

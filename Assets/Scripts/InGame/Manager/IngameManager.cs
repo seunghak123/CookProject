@@ -53,15 +53,20 @@ public class IngameManager : MonoBehaviour
         recipeDataLists = JsonDataManager.Instance.GetRecipeLists();
         for(int i = 0; i < recipeDataLists.Count; i++)
         {
-            if(recipeDataLists[i].Foodtype == "1")
+            if(recipeDataLists[i].Foodtype == 1)
             {
                 List<int> recipeList = new List<int>(recipeDataLists[i].FoodName);
                 recipeOutputDic[recipeList] = recipeDataLists[i].UseObjectOutput;
             }
-            else if(recipeDataLists[i].Foodtype == "2")
+            else if(recipeDataLists[i].Foodtype == 2)
             {
-                List<int> recipeList = new List<int>(recipeDataLists[i].AddFood2);
+                List<int> recipeList = new List<int>(recipeDataLists[i].AddFood);
                 recipeOutputDic[recipeList] = recipeDataLists[i].AddOuput;
+                if(recipeDataLists[i].ComplexFood!=null && recipeDataLists[i].ComplexFood.Length >= 1)
+                {
+                    List<int> recipeComplexList = new List<int>(recipeDataLists[i].ComplexFood);
+                    recipeOutputDic[recipeComplexList] = recipeDataLists[i].AddOuput;
+                }
             }
         }
 
@@ -123,7 +128,7 @@ public class IngameManager : MonoBehaviour
 
 
         // 테스트 코드 (준혁)
-        IngameCreater.CreateFoodObject(1);
+        IngameCreater.CreateFoodObject(1001);
     }
 }
 
@@ -132,7 +137,7 @@ public class IngameCreater
     public static GameObject CreateFoodObject(int foodObjectId)
     {
         // Json파일 읽기
-        JFoodObjectData foodObjectData = JsonDataManager.Instance.GetSingleData<JFoodObjectData>(foodObjectId, E_JSON_TYPE.JFoodObjectData);
+        JToolObjectData foodObjectData = JsonDataManager.Instance.GetSingleData<JToolObjectData>(foodObjectId, E_JSON_TYPE.JToolObjectData);
 
         // SpawnObejct
         GameObject foodObject = GameResourceManager.Instance.SpawnObject($"{foodObjectData.ObjectFile}");
@@ -140,16 +145,18 @@ public class IngameCreater
         // 타입에 따른 데이터 세팅
         SetFoodObject(foodObject, foodObjectData.Type);
 
+        BaseObject foodObjectClass = foodObject.GetComponent<BaseObject>();
+
+        if(foodObjectClass!=null)
+        {
+            foodObjectClass.OBJECT_ID = foodObjectId;
+            foodObjectClass.SetToolData(foodObjectData);
+        }
+
         //생성 되는거 확인
         return foodObject;
     }
 
-    /// <summary>
-    /// type에 따른 세팅 : 
-    /// 0 - 사용하는 도구 / 
-    /// 1 - 재료 상자 / 
-    /// 2 - 꾸미기
-    /// </summary>
     private static void SetFoodObject(GameObject foodObject, int type)
     {
         if(foodObject!=null)

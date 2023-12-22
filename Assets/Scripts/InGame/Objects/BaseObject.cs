@@ -9,6 +9,7 @@ public class BaseObject : MonoBehaviour
     protected bool workEnd = false;
     protected bool currentWork = false;
     protected BaseAI currentWorker = null;
+    protected JToolObjectData toolData = null;
 #if UNITY_EDITOR
     [SerializeField]
     private int objectDataID;
@@ -109,5 +110,9 @@ public class BaseObject : MonoBehaviour
         }
 
         return false;
+    }
+    public void SetToolData(JToolObjectData newToolData)
+    {
+        toolData = newToolData;
     }
 }

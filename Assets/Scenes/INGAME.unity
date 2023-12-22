@@ -910,10 +910,6 @@ MonoBehaviour:
   isBlockCharacter: 0
   objectDataID: 0
   progressedView: {fileID: 0}
-  workingTimeArrays:
-  - 2
-  - 10
-  - 30
 --- !u!50 &399436709
 Rigidbody2D:
   serializedVersion: 4
