@@ -12,6 +12,7 @@ public class FoodStorageObject : ProgressedBaseObject
         holdCharacter = false;
         isBlockCharacter = true;
         workingEndAction = WorkingEnd;
+        progressedView = GetComponent<ProgressObjectView>();
     }
     private void WorkingEnd()
     {

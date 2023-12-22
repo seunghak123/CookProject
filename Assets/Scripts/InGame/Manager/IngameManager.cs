@@ -1,4 +1,5 @@
-﻿using Seunghak.Common;
+﻿using Newtonsoft.Json;
+using Seunghak.Common;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -122,7 +123,7 @@ public class IngameManager : MonoBehaviour
         JStageData stageData = JsonDataManager.Instance.GetStageData(1);
 
         ingameUI = CreateUI(1);
-
+        CreateMapData(1);
         //enemyDataJson 읽어서 적 데이터 가져올 것
         //RenderSettings.skybox = targetMat;
 
@@ -140,7 +141,27 @@ public class IngameManager : MonoBehaviour
             }
         }
         JStageData stageData = JsonDataManager.Instance.GetSingleData<JStageData>(stageId,E_JSON_TYPE.JStageData);
-        //IngameMapObjectInfos mapInfos = GameResourceManager.Instance.LoadObject()
+
+        Object loadObject = GameResourceManager.Instance.LoadObject(stageData.StageFile);
+        IngameMapObjectInfos loadData = JsonConvert.DeserializeObject<IngameMapObjectInfos>(loadObject.ToString());
+
+        for(int i=0;i< loadData.objectLists.Count; i++)
+        {
+            IngameMapObject objectInfo = loadData.objectLists[i];
+            if(objectInfo==null || objectInfo.objectPosition.Count!=3 || objectInfo.objectScale.Count !=3)
+            {
+                continue;
+            }
+            Vector3 objectPos = new Vector3(objectInfo.objectPosition[0], objectInfo.objectPosition[1], objectInfo.objectPosition[2]);
+            Vector3 objectScale = new Vector3(objectInfo.objectScale[0], objectInfo.objectScale[1], objectInfo.objectScale[2]);
+            GameObject createdObject =  IngameCreater.CreateFoodObject(objectInfo.toolObjectId);
+            if (createdObject != null)
+            {
+                createdObject.transform.parent = mapSpawnPos;
+                createdObject.transform.position = objectPos;
+                createdObject.transform.localScale = objectScale;
+            }
+        }
     }
 }
 

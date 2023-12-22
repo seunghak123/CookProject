@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Seunghak.Common;
 using Newtonsoft.Json;
+using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-public struct IngameMapObject
+[Serializable]
+public class IngameMapObject
 {
     public int toolObjectId;
-    public Transform objectTransform;
+    public List<float> objectPosition;
+    public List<float> objectScale;
 }
+[Serializable]
 public struct IngameMapObjectInfos
 {
     public List<IngameMapObject> objectLists;
@@ -72,14 +76,23 @@ public class MapDataCreater : MonoBehaviour
             {
                 continue;
             }
-            IngameMapObject objectInfo;
+            IngameMapObject objectInfo = new IngameMapObject();
             objectInfo.toolObjectId = baseSubObject.OBJECT_ID;
-            objectInfo.objectTransform = subObject.transform;
+            objectInfo.objectPosition = new List<float>();
+            objectInfo.objectPosition.Add(subObject.transform.position.x);
+            objectInfo.objectPosition.Add(subObject.transform.position.y);
+            objectInfo.objectPosition.Add(subObject.transform.position.z);
+
+            objectInfo.objectScale = new List<float>();
+            objectInfo.objectScale.Add(subObject.transform.position.x);
+            objectInfo.objectScale.Add(subObject.transform.position.y);
+            objectInfo.objectScale.Add(subObject.transform.position.z);
             mapInfos.objectLists.Add(objectInfo);
         }
+
         if(mapInfos.objectLists.Count>0)
         {
-            FileUtils.SaveFile<IngameMapObjectInfos>(createFilePath, createFileName, mapInfos);
+            FileUtils.SaveFile<IngameMapObjectInfos>(createFilePath, $"{createFileName}.json", mapInfos);
         }
     }
 
@@ -104,10 +117,10 @@ public class MapToolCreateButton : Editor
     private int createObjecId ;
     public override void OnInspectorGUI()
     {
-        if(!Application.isPlaying)
-        {
-            return;
-        }
+        //if(!Application.isPlaying)
+        //{
+        //    return;
+        //}
         base.OnInspectorGUI();
         
         MapDataCreater mapTool = (MapDataCreater)target;
