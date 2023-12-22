@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
@@ -31,6 +32,27 @@ namespace Seunghak.Common
                 emptymd5 = byteHashedPassword.ToString();
             }
             return emptymd5;
+        }
+        public static Type GetTypeFromAssemblies(string TypeName)
+        {
+            var type = Type.GetType(TypeName);
+            if (type != null)
+                return type;
+
+            var currentAssembly = System.Reflection.Assembly.GetExecutingAssembly();
+            var referencedAssemblies = currentAssembly.GetReferencedAssemblies();
+            foreach (var assemblyName in referencedAssemblies)
+            {
+                var assembly = System.Reflection.Assembly.Load(assemblyName);
+                if (assembly != null)
+                {
+                    type = assembly.GetType(TypeName);
+                    if (type != null)
+                        return type;
+                }
+            }
+
+            return null;
         }
     }
     public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver

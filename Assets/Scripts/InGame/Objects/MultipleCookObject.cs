@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RiceCookerObject : ProgressedBaseObject
+public class MultipleCookObject : ProgressedBaseObject
 {
     protected BasicMaterialData makedMaterial = null;
     private BasicMaterialData preMaterial = null;

@@ -16,6 +16,12 @@ public class ProgressObjectView : BaseObjectView
         ProgressedViewDataClass insertData = data as ProgressedViewDataClass;
         progressFrontBar.fillAmount = insertData.currentPercent;
         progressParent.gameObject.SetActive(insertData.progressActive);
+        
+        UpdateCurrentObjectState(insertData.currentIndex);
+    }
+    protected virtual void UpdateCurrentObjectState(int currentIndex)
+    {
+
     }
     protected virtual bool IsChecked(BaseViewDataClass data)
     {

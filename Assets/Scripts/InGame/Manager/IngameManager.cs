@@ -117,7 +117,7 @@ public class IngameCreater
         JFoodObjectData foodObjectData = JsonDataManager.Instance.GetSingleData<JFoodObjectData>(foodObjectId, E_JSON_TYPE.JFoodObjectData);
 
         // SpawnObejct
-        GameObject foodObject = GameResourceManager.Instance.SpawnObject($"{foodObjectData.Name}");
+        GameObject foodObject = GameResourceManager.Instance.SpawnObject($"{foodObjectData.ObjectFile}");
 
         // 타입에 따른 데이터 세팅
         SetFoodObject(foodObject, foodObjectData.Type);
@@ -134,6 +134,19 @@ public class IngameCreater
     /// </summary>
     private static void SetFoodObject(GameObject foodObject, int type)
     {
-        
+        if(foodObject!=null)
+        {
+            foodObject.AddComponent(AddedComponentType(type)) ;
+        }
+    }
+    private static System.Type AddedComponentType(int type)
+    {
+        switch (type)
+        {
+            case 2:
+                return CommonUtil.GetTypeFromAssemblies("MultipleCookObject");
+
+        }
+        return null;
     }
 }
