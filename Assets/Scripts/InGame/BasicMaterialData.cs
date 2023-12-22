@@ -6,6 +6,7 @@ public class BasicMaterialData
 {
     private List<int> materialLists = new List<int>();
     private int currentFoodId = 0;
+    private bool IsPlate = false;
     public bool IsEmpty()
     {
         if(materialLists.Count<=0)
@@ -28,6 +29,11 @@ public class BasicMaterialData
     }
     public void PushMaterial(int materialId)
     {
+        if(materialId==0)
+        {
+            IsPlate = true;
+            return;
+        }
         //동일한 것이 있을때도 추가
         materialLists.Add(materialId);
 

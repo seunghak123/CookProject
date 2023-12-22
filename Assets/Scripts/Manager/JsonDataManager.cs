@@ -105,6 +105,22 @@ namespace Seunghak.Common
         {
             return new List<JFoodObjectData>( LoadJsonDatas<JFoodObjectData>(E_JSON_TYPE.JFoodObjectData).Values); 
         }
+        public JFoodObjectData GetFoodObject(int foodId)
+        {
+            string foodName = foodId.ToString();
+
+
+            Dictionary<string, JFoodObjectData> foodDict = LoadJsonDatas<JFoodObjectData>(E_JSON_TYPE.JFoodObjectData);
+            if(foodDict.ContainsKey(foodName))
+            {
+                return foodDict[foodName];
+            }
+            else
+            {
+                Debug.Log($"FoodObject num is Empty : {foodName}");
+            }
+            return null;
+        }
         public JRecipeData GetRecipeData(int recipeId)
         {
             Dictionary<string, JRecipeData> recipeDatas = LoadJsonDatas<JRecipeData>(E_JSON_TYPE.JRecipeData);

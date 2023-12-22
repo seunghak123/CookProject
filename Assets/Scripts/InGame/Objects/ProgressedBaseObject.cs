@@ -7,7 +7,8 @@ public class ProgressedViewDataClass : BaseViewDataClass
 {
     public bool progressActive = false;
     public float currentPercent;
-    public float currentIndex;
+    public int currentIndex;
+    public List<int> foodInsertLists = new List<int>();
 }
 public class ProgressedBaseObject : BaseObject
 {
