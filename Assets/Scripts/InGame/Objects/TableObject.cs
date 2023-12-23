@@ -26,6 +26,7 @@ public class TableObject : BaseObject
             targetAI.HandleObjectData.IsEmpty())
         {
             targetAI.HandleObjectData = currentTableFood;
+            currentTableFood = null;
         }
         else if(targetAI.HandleObjectData.GetFoodResult().Count > 1)
         {
@@ -69,7 +70,8 @@ public class TableObject : BaseObject
         List<int> foodResult = new List<int>(currentTableFood.GetFoodResult());
         foodResult.AddRange(mixedFood.GetFoodResult());
 
-        if (IngameManager.currentManager.GetRecipeFoodResult(foodResult) == 0)
+        if (IngameManager.currentManager.GetRecipeFoodResult(foodResult) == 0&&
+            !currentTableFood.HasPlate())
         {
             mixedFood = null;
             return;
@@ -78,7 +80,10 @@ public class TableObject : BaseObject
         currentWorker.HandleObjectData = null;
 
         currentTableFood.PushMaterial(mixedFood.GetFirstFoodId());
-
+        if (currentTableFood.HasPlate())
+        {
+            currentTableFood.PushMaterial(1);
+        }
         mixedFood = null;
     }
     public override IEnumerator Working()

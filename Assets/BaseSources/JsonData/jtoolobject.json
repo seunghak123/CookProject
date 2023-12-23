@@ -9,7 +9,7 @@
       9.0,
       18.0
     ],
-    "OuputFood": 0
+    "OutputFood": 0
   },
   "1002": {
     "ID": 1002,
@@ -20,7 +20,7 @@
     "ToolTimer": [
       5.0
     ],
-    "OuputFood": 0
+    "OutputFood": 0
   },
   "1003": {
     "ID": 1003,
@@ -32,7 +32,7 @@
       8.0,
       16.0
     ],
-    "OuputFood": 0
+    "OutputFood": 0
   },
   "1004": {
     "ID": 1004,
@@ -44,7 +44,7 @@
       10.0,
       20.0
     ],
-    "OuputFood": 0
+    "OutputFood": 0
   },
   "1005": {
     "ID": 1005,
@@ -56,7 +56,7 @@
       10.0,
       20.0
     ],
-    "OuputFood": 0
+    "OutputFood": 0
   },
   "1006": {
     "ID": 1006,
@@ -68,7 +68,7 @@
       9.0,
       18.0
     ],
-    "OuputFood": 0
+    "OutputFood": 0
   },
   "1007": {
     "ID": 1007,
@@ -80,7 +80,7 @@
       8.0,
       16.0
     ],
-    "OuputFood": 0
+    "OutputFood": 0
   },
   "1008": {
     "ID": 1008,
@@ -91,7 +91,7 @@
     "ToolTimer": [
       0.0
     ],
-    "OuputFood": 10
+    "OutputFood": 10
   },
   "1009": {
     "ID": 1009,
@@ -102,18 +102,18 @@
     "ToolTimer": [
       0.0
     ],
-    "OuputFood": 12
+    "OutputFood": 12
   },
   "1010": {
     "ID": 1010,
-    "Name": "Box_Lettuce",
+    "Name": "Box_Luttuce",
     "Type": 1,
     "ObjectFile": "FoodStorageObject",
     "IconFile": "Box_Lettuce",
     "ToolTimer": [
       0.0
     ],
-    "OuputFood": 14
+    "OutputFood": 14
   },
   "1011": {
     "ID": 1011,
@@ -124,7 +124,7 @@
     "ToolTimer": [
       0.0
     ],
-    "OuputFood": 9
+    "OutputFood": 9
   },
   "1012": {
     "ID": 1012,
@@ -135,7 +135,7 @@
     "ToolTimer": [
       0.0
     ],
-    "OuputFood": 16
+    "OutputFood": 16
   },
   "1013": {
     "ID": 1013,
@@ -146,7 +146,7 @@
     "ToolTimer": [
       0.0
     ],
-    "OuputFood": 0
+    "OutputFood": 0
   },
   "1014": {
     "ID": 1014,
@@ -157,7 +157,7 @@
     "ToolTimer": [
       0.0
     ],
-    "OuputFood": 0
+    "OutputFood": 0
   },
   "1015": {
     "ID": 1015,
@@ -168,6 +168,6 @@
     "ToolTimer": [
       0.0
     ],
-    "OuputFood": 1
+    "OutputFood": 1
   }
 }

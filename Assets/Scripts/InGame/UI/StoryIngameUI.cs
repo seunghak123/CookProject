@@ -6,7 +6,7 @@ using UnityEngine;
 public class StoryIngameUI : BaseIngameUI
 {
     protected List<RecipeObject> reciptObjectLists = new List<RecipeObject>();
-    public override void CreateRecipe(int recipeId)
+    public override void CreateRecipe(JRecipeData recipeData)
     {
         GameObject spawnedObject = GameResourceManager.Instance.SpawnObject("StoryRecipe");
         
@@ -21,9 +21,12 @@ public class StoryIngameUI : BaseIngameUI
         RecipeObject recipeObject = spawnedObject.GetComponent<RecipeObject>();
 
         RecipeData createdRecipe = new RecipeData();
+        List<int> recipeLists = new List<int>(recipeData.AddFood);
+
+        createdRecipe.SetRecipeFoodResult(recipeLists);
         //recipeId를 통해서 recipeData 추출
 
-        recipeObject.InitRecipe(createdRecipe);
+        recipeObject.InitRecipe(createdRecipe,recipeData);
 
         reciptObjectLists.Add(recipeObject);
     }

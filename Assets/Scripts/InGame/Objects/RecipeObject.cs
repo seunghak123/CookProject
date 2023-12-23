@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Seunghak.Common;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,15 +7,23 @@ using UnityEngine.UI;
 public class RecipeData
 {
     private List<int> recipeFoodList = new List<int>();
+    public void SetRecipeFoodResult(List<int> newRecipe)
+    {
+        recipeFoodList = newRecipe;
+    }
     public bool IsMakedRecipeFood(BasicMaterialData foodResult)
     {
         //이건 다른 곳에 필요
         List<int> resultFood = foodResult.GetFoodResult();
 
         resultFood.Sort();
-        recipeFoodList.Sort();
 
-        if (resultFood.Equals(recipeFoodList))
+        string resultCompareKey = IngameManager.currentManager.MakeRecipeStringKey(resultFood);
+
+        recipeFoodList.Sort();
+        string recipeCompareKey = IngameManager.currentManager.MakeRecipeStringKey(recipeFoodList);
+
+        if (resultCompareKey.Equals(recipeFoodList))
         {
             //같다면 //레시피 완성!
             return true;
@@ -29,13 +38,17 @@ public class RecipeObject : MonoBehaviour
     [SerializeField] private Image recipeTimerProgressBar;
 
     private RecipeData recipe;
-
+    private JRecipeData recipeData = null;
     private float currentTimer = 0.0f;
-    public void InitRecipe(RecipeData targetRecipe)
+    public void InitRecipe(RecipeData targetRecipe,JRecipeData targetRecipeData)
     {
         recipe = targetRecipe;
+        recipeData = targetRecipeData;
 
-        //레시피 Id에 따라서 Sprite 변경
+        int outputFood = recipeData.FoodOutput;
+        JFoodObjectData foodData = JsonDataManager.Instance.GetFoodObject(outputFood);
+
+        recipeImage.sprite = SpriteManager.Instance.LoadSprite(foodData.IconFile);
 
         StartCoroutine(RecipeTimer());
     }

@@ -13,6 +13,7 @@ public class IngameManager : MonoBehaviour
 
     [Header("SceneObject")]
     [SerializeField] private Transform mapSpawnPos = null;
+    [SerializeField] private Transform uiSpawnPos = null;
     [SerializeField] private Transform team1Parent = null;
     [SerializeField] private Transform team2Parent = null;
 
@@ -23,6 +24,8 @@ public class IngameManager : MonoBehaviour
 
     private List<JRecipeData> recipeDataLists = new List<JRecipeData>();
     private Dictionary<string, int> recipeOutputDic = new Dictionary<string, int>();
+
+    private List<JRecipeData> currentClearRecipe = new List<JRecipeData>();
     private void Awake()
     {
         currentManager = this;
@@ -34,6 +37,19 @@ public class IngameManager : MonoBehaviour
         enemyAIs = enemyUnits.ConvertAll<BaseAI>(find => find.UNIT_AI);
 
         return enemyAIs;
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            CreateRecipe(1);
+        }
+    }
+    private void CreateRecipe(int recipeId)
+    {
+        JRecipeData newRecipe = JsonDataManager.Instance.GetRecipeData(recipeId);
+        currentClearRecipe.Add(newRecipe);
+        ingameUI.CreateRecipe(newRecipe);
     }
     private BaseIngameUI CreateUI(int stageType)
     {
@@ -48,9 +64,16 @@ public class IngameManager : MonoBehaviour
                 break;
         }
 
-        GameObject createdUI = GameResourceManager.Instance.LoadObject("StoryUI") as GameObject;
+        GameObject createdUI = GameResourceManager.Instance.SpawnObject("StoryUI");
 
+        createdUI.transform.parent = uiSpawnPos;
 
+        //UI 크기 확인
+        RectTransform rectTransform = createdUI.GetComponent<RectTransform>();
+        //Left, Bottom 변경
+        rectTransform.offsetMin = new Vector2(0, 0);
+        //Right, Top 변경 -> 원하는 크기 - 기준해상도값
+        rectTransform.offsetMax = new Vector2(1, 1);
 
         recipeDataLists = JsonDataManager.Instance.GetRecipeLists();
         for(int i = 0; i < recipeDataLists.Count; i++)
@@ -61,18 +84,18 @@ public class IngameManager : MonoBehaviour
                 List<int> recipeList = new List<int>();
                 recipeList.Add(recipeDataLists[i].FoodName);
                 recipekey = MakeRecipeStringKey(recipeList);
-                recipeOutputDic[recipekey] = recipeDataLists[i].UseObjectOutput;
+                recipeOutputDic[recipekey] = recipeDataLists[i].FoodOutput;
             }
             else if(recipeDataLists[i].Foodtype == 2)
             {
                 List<int> recipeList = new List<int>(recipeDataLists[i].AddFood);
                 recipekey = MakeRecipeStringKey(recipeList);
-                recipeOutputDic[recipekey] = recipeDataLists[i].AddOuput;
+                recipeOutputDic[recipekey] = recipeDataLists[i].FoodOutput;
                 if(recipeDataLists[i].ComplexFood!=null && recipeDataLists[i].ComplexFood.Length >= 1)
                 {
                     List<int> recipeComplexList = new List<int>(recipeDataLists[i].ComplexFood);
                     string complexRecipekey = MakeRecipeStringKey(recipeComplexList);
-                    recipeOutputDic[complexRecipekey] = recipeDataLists[i].AddOuput;
+                    recipeOutputDic[complexRecipekey] = recipeDataLists[i].FoodOutput;
                 }
             }
         }
@@ -92,7 +115,7 @@ public class IngameManager : MonoBehaviour
         return baseUI;
     }
     private StringBuilder recipeBuilder = new StringBuilder();
-    private string MakeRecipeStringKey(List<int> foodLists)
+    public string MakeRecipeStringKey(List<int> foodLists)
     {
         string makedLists = string.Empty;
         recipeBuilder.Clear();

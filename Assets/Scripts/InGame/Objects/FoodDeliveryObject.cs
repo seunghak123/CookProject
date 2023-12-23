@@ -35,6 +35,7 @@ public class FoodDeliveryObject : BaseObject
     }
     private IEnumerator WorkingFail()
     {
+        //손에 든거 제거
         yield break;
     }
     public override IEnumerator Working()

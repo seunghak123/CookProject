@@ -28,7 +28,7 @@ public class FoodStorageObject : ProgressedBaseObject
         workingAI = targetAI;
 
         //이건 오히려 param값이 있으면 실패
-        if(param ==null || param.GetFoodResult().Count<=0)
+        if(param ==null || param.GetFoodResult().Count<=0 || toolData.ID.Equals(1015))
         {
             currentWork = true;
             currentWorkRoutine = StartCoroutine(Working());
@@ -44,12 +44,23 @@ public class FoodStorageObject : ProgressedBaseObject
         if (workEnd)
         {
             currentWork = false;
+            //접시일 떄
+            if (toolData.OutputFood == 1)
+            {
+                if(workingAI.HandleObjectData==null)
+                {
+                    workingAI.HandleObjectData = new BasicMaterialData();
+                }
+                workingAI.HandleObjectData.PushMaterial(toolData.OutputFood);
+            }
+            else
+            {
+                makedMaterial = new BasicMaterialData();
+                //푸드 아이디에 따라 makedMaterial 값 세팅
+                //가데이터
+                makedMaterial.PushMaterial(toolData.OutputFood);
+            }
             
-            //푸드 아이디에 따라 makedMaterial 값 세팅
-            makedMaterial = new BasicMaterialData();
-            //가데이터
-            makedMaterial.PushMaterial(toolData.OuputFood);
-
             return true;
         }
 

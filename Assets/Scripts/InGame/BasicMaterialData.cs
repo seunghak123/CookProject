@@ -29,7 +29,11 @@ public class BasicMaterialData
     }
     public void PushMaterial(int materialId)
     {
-        if(materialId==0)
+        if(materialId == 0)
+        {
+            return;
+        }
+        else if(materialId==1)
         {
             IsPlate = true;
             return;
@@ -46,5 +50,9 @@ public class BasicMaterialData
             return materialLists[0];
         }
         return 0;
+    }
+    public bool HasPlate()
+    {
+        return IsPlate;
     }
 }
