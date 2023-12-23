@@ -16,44 +16,102 @@ public class SingleToolObject : ProgressedBaseObject
     public override void DoWork(BaseAI targetAI, BasicMaterialData param)
     {
         base.DoWork(targetAI,param);
-
-        preMaterial = param;
-
-        if(IsFail())
+        if(param!=null)
         {
-            return;
+            if(param.GetFoodResult().Count>0)
+            {
+                preMaterial = param;
+            }
+        }
+        if (IsFail(param))
+        {
+            if(IsWork())
+            {
+                if(currentWorkRoutine!=null)
+                {
+                    StopCoroutine(currentWorkRoutine);
+                }
+
+                workEnd = true;
+                if(IsWorkEnd())
+                {
+                    if (workingEndAction != null)
+                    {
+                        workingEndAction();
+                    }
+                    preMaterial = null;
+                }
+                //음식을 뺴온다
+            }
+            else
+            {
+                preMaterial = null;
+                return;
+            }
+        }
+        else
+        {
+            currentWorker.HandleObjectData = null;
+            currentWork = true;
+            currentWorkRoutine = StartCoroutine(Working());
         }
 
-        StartCoroutine(Working());
     }
 
-    private bool IsFail()
+    private bool IsFail(BasicMaterialData param)
     {
         //매터리얼이 없고, 비어있고, 음식이 없으며, 상호작용이 불가능한 음식일 경우에 true
-        if (preMaterial == null || preMaterial.IsEmpty() || 
-            preMaterial.GetFirstFoodId() == 0 || IsCanInterAct(preMaterial.GetFirstFoodId()))
+        if (param == null || param.IsEmpty() ||
+            param.GetFirstFoodId() == 0 || !IsCanInterAct(param.GetFirstFoodId()))
         {
             return true;
         }
         return false;
     }
+    private void InitToolData()
+    {
+        currentWork = false;
+        currentWorker = null;
+        makedMaterial = null;
+        preMaterial = null;
+        currentState = 0;
 
+        if(currentWorkRoutine!=null)
+        {
+            StopCoroutine(currentWorkRoutine);
+        }
+        currentWorkRoutine = null;
+
+    }
     public override bool IsWorkEnd()
     {
         if (workEnd)
         {
             currentWork = false;
 
-            int aftetFoodId = IngameManager.currentManager.GetRecipeFoodResult(preMaterial.GetFoodResult());
+            switch(currentState)
+            {
+                case 0:
+                    //아무것도 안했는데 뺼려는거
+                    return false;
+                case 1:
+                    //요리성공
+                    int aftetFoodId = IngameManager.currentManager.GetRecipeFoodResult(preMaterial.GetFoodResult());
 
-            //푸드 아이디에 따라 makedMaterial 값 세팅
-            makedMaterial = new BasicMaterialData();
-            //가데이터
-            makedMaterial.PushMaterial(aftetFoodId);
-            makedMaterial.SetFoodId(aftetFoodId);
+                    //푸드 아이디에 따라 makedMaterial 값 세팅
+                    makedMaterial = new BasicMaterialData();
+                    //가데이터
+                    makedMaterial.PushMaterial(aftetFoodId);
+                    makedMaterial.SetFoodId(aftetFoodId);
 
-            currentWorker.HandleObjectData = makedMaterial;
-            return true;
+                    currentWorker.HandleObjectData = makedMaterial;
+                    InitToolData();
+                    return true;
+                case 2:
+                    //요리가 탓을떄
+                    InitToolData();
+                    return true;
+            }
         }
 
         return false;

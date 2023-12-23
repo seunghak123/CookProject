@@ -10,6 +10,7 @@ public class BaseObject : MonoBehaviour
     protected bool currentWork = false;
     protected BaseAI currentWorker = null;
     protected JToolObjectData toolData = null;
+    protected Coroutine currentWorkRoutine = null;
 #if UNITY_EDITOR
     [SerializeField]
     private int objectDataID;
@@ -35,7 +36,6 @@ public class BaseObject : MonoBehaviour
         {
             return true;
         }
-
         return false;
     }
     protected virtual void Awake()
@@ -80,7 +80,6 @@ public class BaseObject : MonoBehaviour
     }
     public virtual void DoWork(BaseAI targetAI, BasicMaterialData param)
     {
-        currentWork = true;
         currentWorker = targetAI; 
 
         //AI 타입에 따라서 묶어 놓고 Trigger 변경

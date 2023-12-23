@@ -151,8 +151,8 @@
   "1014": {
     "ID": 1014,
     "Name": "Table",
-    "Type": 0,
-    "ObjectFile": "Table",
+    "Type": 3,
+    "ObjectFile": "TableObject",
     "IconFile": "Table",
     "ToolTimer": [
       0.0

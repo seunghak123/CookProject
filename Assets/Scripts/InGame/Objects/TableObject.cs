@@ -20,6 +20,7 @@ public class TableObject : BaseObject
     public override void DoWork(BaseAI targetAI, BasicMaterialData param)
     {
         base.DoWork(targetAI, param);
+        currentWork = false;
         //이건 오히려 param값이 있으면 실패
         if(targetAI.HandleObjectData==null || 
             targetAI.HandleObjectData.IsEmpty())
@@ -33,9 +34,10 @@ public class TableObject : BaseObject
         else
         {
             mixedFood = param;
-            if (param == null)
+            if (param != null)
             {
-                StartCoroutine(Working());
+                currentWork = true;
+                currentWorkRoutine = StartCoroutine(Working());
             }
         }
     }
@@ -63,7 +65,21 @@ public class TableObject : BaseObject
     }
     private void CreateNewFood()
     {
+        //여기서 검증 필요
+        List<int> foodResult = new List<int>(currentTableFood.GetFoodResult());
+        foodResult.AddRange(mixedFood.GetFoodResult());
+
+        if (IngameManager.currentManager.GetRecipeFoodResult(foodResult) == 0)
+        {
+            mixedFood = null;
+            return;
+        }
+
+        currentWorker.HandleObjectData = null;
+
         currentTableFood.PushMaterial(mixedFood.GetFirstFoodId());
+
+        mixedFood = null;
     }
     public override IEnumerator Working()
     {

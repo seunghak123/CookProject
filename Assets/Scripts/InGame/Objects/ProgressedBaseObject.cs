@@ -76,6 +76,7 @@ public class ProgressedBaseObject : BaseObject
     public override IEnumerator Working()
     {
         float timer = 0.0f;
+        currentWork = true;
         ProgressedViewDataClass viewData = new ProgressedViewDataClass();
         viewData.progressActive = true;
         for (int i = 0; i < workingTimeArrays.Length;)

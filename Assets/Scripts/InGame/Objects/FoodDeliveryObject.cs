@@ -25,12 +25,12 @@ public class FoodDeliveryObject : BaseObject
         if(isSuccess)
         {
             //팡파레 울리는 등 성공시 이벤트 넣어줄곳
-            StartCoroutine(Working());
+            currentWorkRoutine = StartCoroutine(Working());
         }
         else
         {
             //실패했을 때 이벤트 처리 장소 ( 오직 해당 오브젝트 이벤트 )
-            StartCoroutine(WorkingFail());
+            currentWorkRoutine = StartCoroutine(WorkingFail());
         }
     }
     private IEnumerator WorkingFail()

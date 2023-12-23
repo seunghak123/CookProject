@@ -84,9 +84,9 @@ public class MapDataCreater : MonoBehaviour
             objectInfo.objectPosition.Add(subObject.transform.position.z);
 
             objectInfo.objectScale = new List<float>();
-            objectInfo.objectScale.Add(subObject.transform.position.x);
-            objectInfo.objectScale.Add(subObject.transform.position.y);
-            objectInfo.objectScale.Add(subObject.transform.position.z);
+            objectInfo.objectScale.Add(subObject.transform.localScale.x);
+            objectInfo.objectScale.Add(subObject.transform.localScale.y);
+            objectInfo.objectScale.Add(subObject.transform.localScale.z);
             mapInfos.objectLists.Add(objectInfo);
         }
 

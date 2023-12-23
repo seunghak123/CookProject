@@ -2,6 +2,7 @@
 using Seunghak.Common;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,7 +22,7 @@ public class IngameManager : MonoBehaviour
     private BaseIngameUI ingameUI = null;
 
     private List<JRecipeData> recipeDataLists = new List<JRecipeData>();
-    private Dictionary<List<int>, int> recipeOutputDic = new Dictionary<List<int>, int>();
+    private Dictionary<string, int> recipeOutputDic = new Dictionary<string, int>();
     private void Awake()
     {
         currentManager = this;
@@ -54,19 +55,24 @@ public class IngameManager : MonoBehaviour
         recipeDataLists = JsonDataManager.Instance.GetRecipeLists();
         for(int i = 0; i < recipeDataLists.Count; i++)
         {
+            string recipekey = string.Empty;
             if(recipeDataLists[i].Foodtype == 1)
             {
-                List<int> recipeList = new List<int>(recipeDataLists[i].FoodName);
-                recipeOutputDic[recipeList] = recipeDataLists[i].UseObjectOutput;
+                List<int> recipeList = new List<int>();
+                recipeList.Add(recipeDataLists[i].FoodName);
+                recipekey = MakeRecipeStringKey(recipeList);
+                recipeOutputDic[recipekey] = recipeDataLists[i].UseObjectOutput;
             }
             else if(recipeDataLists[i].Foodtype == 2)
             {
                 List<int> recipeList = new List<int>(recipeDataLists[i].AddFood);
-                recipeOutputDic[recipeList] = recipeDataLists[i].AddOuput;
+                recipekey = MakeRecipeStringKey(recipeList);
+                recipeOutputDic[recipekey] = recipeDataLists[i].AddOuput;
                 if(recipeDataLists[i].ComplexFood!=null && recipeDataLists[i].ComplexFood.Length >= 1)
                 {
                     List<int> recipeComplexList = new List<int>(recipeDataLists[i].ComplexFood);
-                    recipeOutputDic[recipeComplexList] = recipeDataLists[i].AddOuput;
+                    string complexRecipekey = MakeRecipeStringKey(recipeComplexList);
+                    recipeOutputDic[complexRecipekey] = recipeDataLists[i].AddOuput;
                 }
             }
         }
@@ -84,6 +90,22 @@ public class IngameManager : MonoBehaviour
         }
 
         return baseUI;
+    }
+    private StringBuilder recipeBuilder = new StringBuilder();
+    private string MakeRecipeStringKey(List<int> foodLists)
+    {
+        string makedLists = string.Empty;
+        recipeBuilder.Clear();
+        
+        for(int i=0;i<foodLists.Count;i++)
+        {
+            if (i != 0)
+            {
+                recipeBuilder.Append('_');
+            }
+            recipeBuilder.Append(foodLists[i]);
+        }
+        return recipeBuilder.ToString();
     }
     public bool CheckRecipeComplete(BasicMaterialData completeFood)
     {
@@ -108,13 +130,21 @@ public class IngameManager : MonoBehaviour
     }
     public int GetRecipeFoodResult(List<int> foodResult)
     {
-        if(recipeOutputDic.ContainsKey(foodResult))
+        string findKey = MakeRecipeStringKey(foodResult);
+        if (recipeOutputDic.ContainsKey(findKey))
         {
-            return recipeOutputDic[foodResult];
+            return recipeOutputDic[findKey];
         }
         else
         {
-            return 0;
+            if(foodResult.Count == 1)
+            {
+                return foodResult[0];
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
     public void CreateGame(int stageId)

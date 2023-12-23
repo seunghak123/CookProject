@@ -38,7 +38,8 @@ public class MultipleToolObject : ProgressedBaseObject
             if (param != null)
             {
                 preMaterial = param;
-                StartCoroutine(Working());
+                currentWork = true;
+                currentWorkRoutine = StartCoroutine(Working());
             }
         }
     }

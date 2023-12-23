@@ -17,26 +17,25 @@ public class FoodStorageObject : ProgressedBaseObject
     private void WorkingEnd()
     {
         workEnd = true;
-        if (IsWorkEnd())
+        if (workingAI != null)
         {
-            if (workingAI != null)
-            {
-                workingAI.HandleObjectData = makedMaterial;
-            }
+            workingAI.HandleObjectData = makedMaterial;
         }
     }
     public override void DoWork(BaseAI targetAI, BasicMaterialData param)
     {
         base.DoWork(targetAI, param);
-
         workingAI = targetAI;
 
-
         //이건 오히려 param값이 있으면 실패
-
-        if(param ==null)
+        if(param ==null || param.GetFoodResult().Count<=0)
         {
-            StartCoroutine(Working());
+            currentWork = true;
+            currentWorkRoutine = StartCoroutine(Working());
+        }
+        else
+        {
+            currentWork = false;
         }
     }
 

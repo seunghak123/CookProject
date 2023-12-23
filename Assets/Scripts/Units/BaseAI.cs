@@ -123,14 +123,7 @@ public class BaseAI : MonoBehaviour
             return;
         }
 
-        if (targetObject.IsWork())
-        {
-            //현재 일하고 있는중이라 접근 불가
-        }
-        else
-        {
-            targetObject.DoWork(this, HandleObjectData);
-        }
+        targetObject.DoWork(this, HandleObjectData);
     }
     private void ThrowHandlingObject()
     {
