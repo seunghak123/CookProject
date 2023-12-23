@@ -106,10 +106,10 @@
   },
   "1010": {
     "ID": 1010,
-    "Name": "Box_Luttuce",
+    "Name": "Box_Lettuce",
     "Type": 1,
     "ObjectFile": "FoodStorageObject",
-    "IconFile": "Box_Luttuce",
+    "IconFile": "Box_Lettuce",
     "ToolTimer": [
       0.0
     ],

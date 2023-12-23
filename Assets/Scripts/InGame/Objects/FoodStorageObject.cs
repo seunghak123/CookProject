@@ -45,11 +45,11 @@ public class FoodStorageObject : ProgressedBaseObject
         if (workEnd)
         {
             currentWork = false;
-
+            
             //푸드 아이디에 따라 makedMaterial 값 세팅
             makedMaterial = new BasicMaterialData();
             //가데이터
-            makedMaterial.PushMaterial(1);
+            makedMaterial.PushMaterial(toolData.OuputFood);
 
             return true;
         }

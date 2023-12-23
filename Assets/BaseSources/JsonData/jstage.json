@@ -8,7 +8,8 @@
     "score1": 100,
     "score2": 200,
     "score3": 300,
-    "StageFile": "1_1stagedata"
+    "StageFile": "1_1stagedata",
+    "StagePrefab": "Stage1-1"
   },
   "2": {
     "ID": 2,
@@ -19,7 +20,8 @@
     "score1": 100,
     "score2": 200,
     "score3": 300,
-    "StageFile": 0.0
+    "StageFile": 0.0,
+    "StagePrefab": "stage1-2"
   },
   "3": {
     "ID": 3,
@@ -30,7 +32,8 @@
     "score1": 100,
     "score2": 200,
     "score3": 300,
-    "StageFile": 0.0
+    "StageFile": 0.0,
+    "StagePrefab": "stage1-3"
   },
   "4": {
     "ID": 4,
@@ -41,7 +44,8 @@
     "score1": 100,
     "score2": 200,
     "score3": 300,
-    "StageFile": 0.0
+    "StageFile": 0.0,
+    "StagePrefab": "stage1-4"
   },
   "5": {
     "ID": 5,
@@ -52,7 +56,8 @@
     "score1": 100,
     "score2": 200,
     "score3": 300,
-    "StageFile": 0.0
+    "StageFile": 0.0,
+    "StagePrefab": "stage1-5"
   },
   "6": {
     "ID": 6,
@@ -63,7 +68,8 @@
     "score1": 100,
     "score2": 200,
     "score3": 300,
-    "StageFile": 0.0
+    "StageFile": 0.0,
+    "StagePrefab": "stage2-1"
   },
   "7": {
     "ID": 7,
@@ -74,7 +80,8 @@
     "score1": 100,
     "score2": 200,
     "score3": 300,
-    "StageFile": 0.0
+    "StageFile": 0.0,
+    "StagePrefab": "stage2-2"
   },
   "8": {
     "ID": 8,
@@ -85,7 +92,8 @@
     "score1": 100,
     "score2": 200,
     "score3": 300,
-    "StageFile": 0.0
+    "StageFile": 0.0,
+    "StagePrefab": "stage2-3"
   },
   "9": {
     "ID": 9,
@@ -96,6 +104,7 @@
     "score1": 100,
     "score2": 200,
     "score3": 300,
-    "StageFile": 0.0
+    "StageFile": 0.0,
+    "StagePrefab": "stage2-4"
   }
 }

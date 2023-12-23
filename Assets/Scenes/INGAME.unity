@@ -1939,90 +1939,6 @@ MonoBehaviour:
   zPosition: 1
   overrideAlpha: 1
   hierarchy: {fileID: 1439776180}
---- !u!1 &870409667
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 870409668}
-  - component: {fileID: 870409669}
-  m_Layer: 0
-  m_Name: table1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &870409668
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 870409667}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.6737628, y: -2.4764361, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1929964422}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &870409669
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 870409667}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 185cf333a9491064298eac9c47d271a1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.48, y: 0.91}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &871577174
 GameObject:
   m_ObjectHideFlags: 0
@@ -3044,7 +2960,7 @@ MonoBehaviour:
   joyStick: {fileID: 1593378791}
   unitAnim: {fileID: 1439776171}
   unitSpineAnim: {fileID: 1439776173}
-  characterJumpPower: 160
+  characterJumpPower: 340
   characterSpeed: 2
 --- !u!114 &1439776173
 MonoBehaviour:
@@ -4007,7 +3923,6 @@ Transform:
   - {fileID: 3565187240316524840}
   - {fileID: 1597386695}
   - {fileID: 135772863}
-  - {fileID: 870409668}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1929964423
@@ -4562,6 +4477,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6343625698492223836, guid: 2f28283d0a55f3a41b5ee813557790a3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6397063852043821012, guid: 2f28283d0a55f3a41b5ee813557790a3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4602,6 +4521,10 @@ PrefabInstance:
     - target: {fileID: 5402182703664949352, guid: 50f74af6e45ab9948b7cd66af835e65b, type: 3}
       propertyPath: m_Name
       value: FoodStorageObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 5784113023220646489, guid: 50f74af6e45ab9948b7cd66af835e65b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7448926115351058586, guid: 50f74af6e45ab9948b7cd66af835e65b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4659,6 +4582,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1929964422}
     m_Modifications:
+    - target: {fileID: 5004557900952790381, guid: 449d35e1ac1b02649a2055efc2abb8de, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5030645191827548554, guid: 449d35e1ac1b02649a2055efc2abb8de, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.37
@@ -4778,6 +4705,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1929964422}
     m_Modifications:
+    - target: {fileID: 730049961655659887, guid: 9ee4232fcefae6b46bdaad1423826fcb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2011332198382840431, guid: 9ee4232fcefae6b46bdaad1423826fcb, type: 3}
       propertyPath: m_Name
       value: TableObject
@@ -4835,6 +4766,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1929964422}
     m_Modifications:
+    - target: {fileID: 4836433279484964033, guid: ddce81d8f63b74f48b5a8f722b81736b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6798878893854679965, guid: ddce81d8f63b74f48b5a8f722b81736b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.13

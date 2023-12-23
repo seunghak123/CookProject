@@ -10,7 +10,7 @@ public class SingleToolObject : ProgressedBaseObject
     public override void InitObject()
     {
         base.InitObject();
-        holdCharacter = true;
+        holdCharacter = false;
         isBlockCharacter = false;
     }
     public override void DoWork(BaseAI targetAI, BasicMaterialData param)

@@ -10,7 +10,7 @@ public abstract class BaseObjectView : MonoBehaviour
     protected abstract bool IsInit();
     public virtual void Updated(BaseViewDataClass updateData)
     {
-        UpdateSpriteSize();
+
     }
     protected virtual void UpdateSpriteSize()
     {
@@ -42,7 +42,10 @@ public abstract class BaseObjectView : MonoBehaviour
         if (spriteRender != null)
         {
             spriteRender.sprite = SpriteManager.Instance.LoadSprite(toolData.IconFile);
+            spriteRender.sortingOrder = 10;
         }
+
+        UpdateSpriteSize();
     }
 }
 public class BaseViewDataClass

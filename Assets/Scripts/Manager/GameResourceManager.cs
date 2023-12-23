@@ -630,11 +630,19 @@ namespace Seunghak.Common
                 }
                 else
                 {
-                    if (!poolObjects[i].activeInHierarchy)
+                    if(poolObjects[i]==null)
                     {
-                        poolObjects[i].SetActive(true);
+                        poolObjects.RemoveAt(i);
+                        i--;
+                    }
+                    else
+                    {
+                        if (!poolObjects[i].activeInHierarchy)
+                        {
+                            poolObjects[i].SetActive(true);
 
-                        return poolObjects[i];
+                            return poolObjects[i];
+                        }
                     }
                 }
             }
