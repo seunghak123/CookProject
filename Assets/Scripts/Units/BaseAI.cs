@@ -19,7 +19,7 @@ public class BaseAI : MonoBehaviour
 
     [Space(2)]
     [Header("UnitFuction")]
-    [SerializeField, Range(1, 200)] private float characterJumpPower = 80;
+    [SerializeField, Range(1, 500)] private float characterJumpPower = 80;
     [SerializeField, Range(0.5f, 5)] private float characterSpeed = 1;
     private Rigidbody2D characterRigid;
     private Dictionary<E_INGAME_AI_TYPE, Action> userActionDic = new Dictionary<E_INGAME_AI_TYPE, Action>();
@@ -259,7 +259,7 @@ public class BaseAI : MonoBehaviour
     public virtual void FixedUpdate()
     {
         hitresult = Physics2D.Raycast(this.transform.position, Vector3.down, 0.05f, 1 << 9);
-        if (hitresult.collider == null && characterRigid.velocity.y<=0)
+        if (hitresult.collider == null)
         {
             IsGround = false;
         }

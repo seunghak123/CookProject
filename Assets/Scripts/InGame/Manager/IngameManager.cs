@@ -162,6 +162,14 @@ public class IngameManager : MonoBehaviour
                 createdObject.transform.localScale = objectScale;
             }
         }
+        GameObject stagePrefab = GameResourceManager.Instance.SpawnObject(stageData.StagePrefab);
+
+        if(stagePrefab!=null)
+        {
+            stagePrefab.transform.parent = mapSpawnPos;
+            stagePrefab.transform.position = Vector3.zero;
+            stagePrefab.transform.localScale = Vector3.one;
+        }
     }
 }
 
