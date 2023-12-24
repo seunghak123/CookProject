@@ -18,6 +18,8 @@ public class ProgressObjectView : BaseObjectView
         ProgressedViewDataClass insertData = data as ProgressedViewDataClass;
         progressFrontBar.fillAmount = insertData.currentPercent;
         progressParent.gameObject.SetActive(insertData.progressActive);
+
+        //음식 데이터 받으면 어떻게 처리할 것인가?
         
         UpdateCurrentObjectState(insertData.currentIndex);
     }

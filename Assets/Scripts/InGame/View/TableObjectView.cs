@@ -1,3 +1,4 @@
+using Seunghak.Common;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,13 +9,25 @@ public class TableObjectViewDataClass : BaseViewDataClass
 }
 public class TableObjectView : BaseObjectView
 {
+    [SerializeField] private SpriteRenderer foodSpriteRenderer = null;
     public override void Updated(BaseViewDataClass data)
     {
         if (!IsChecked(data))
         {
             return;
         }
-        FoodDeliveryViewDataClass insertData = data as FoodDeliveryViewDataClass;
+        TableObjectViewDataClass insertData = data as TableObjectViewDataClass;
+
+        if(insertData.resultFoodId!=0)
+        {
+            JFoodObjectData foodData = JsonDataManager.Instance.GetFoodObject(insertData.resultFoodId);
+
+            foodSpriteRenderer.sprite = SpriteManager.Instance.LoadSprite(foodData.IconFile);
+        }
+        else
+        {
+            foodSpriteRenderer.sprite = null;
+        }
 
         //완성이 되었으면 팡 ~ 터지는 이펙트등 추가할 곳
     }

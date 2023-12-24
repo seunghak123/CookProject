@@ -16,14 +16,11 @@ public class RecipeData
         //이건 다른 곳에 필요
         List<int> resultFood = foodResult.GetFoodResult();
 
-        resultFood.Sort();
-
         string resultCompareKey = IngameManager.currentManager.MakeRecipeStringKey(resultFood);
 
-        recipeFoodList.Sort();
         string recipeCompareKey = IngameManager.currentManager.MakeRecipeStringKey(recipeFoodList);
 
-        if (resultCompareKey.Equals(recipeFoodList))
+        if (resultCompareKey.Equals(recipeCompareKey))
         {
             //같다면 //레시피 완성!
             return true;
@@ -68,7 +65,7 @@ public class RecipeObject : MonoBehaviour
     }
     public bool CheckRecipe(BasicMaterialData foodResult)
     {
-        if(recipe==null)
+        if(recipe==null || foodResult==null)
         {
             return false;
         }

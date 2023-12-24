@@ -27,6 +27,22 @@ public class BasicMaterialData
     {
         return materialLists;
     }
+    public void PutMaterial(int materialId)
+    {
+        if (materialId == 0)
+        {
+            return;
+        }
+        else if (materialId == 1)
+        {
+            IsPlate = true;
+            return;
+        }
+        //동일한 것이 있을때도 추가
+        materialLists.Add(materialId);
+
+        currentFoodId = materialId;
+    }
     public void PushMaterial(int materialId)
     {
         if(materialId == 0)
@@ -43,6 +59,17 @@ public class BasicMaterialData
 
         currentFoodId = IngameManager.currentManager.GetRecipeFoodResult(materialLists);
     }  
+    public void PushMaterialList(List<int> pushedMaterialLists)
+    {
+        if (pushedMaterialLists == null || pushedMaterialLists.Count<=0)
+        {
+            return;
+        }
+
+        materialLists.AddRange(pushedMaterialLists);
+
+        currentFoodId = IngameManager.currentManager.GetRecipeFoodResult(materialLists);
+    }
     public int GetFirstFoodId()
     {
         if(materialLists.Count>0)

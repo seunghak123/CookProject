@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ProgressedViewDataClass : BaseViewDataClass
 {
     public bool progressActive = false;
+    public int purposeFoodId = 0;
     public float currentPercent;
     public int currentIndex;
     public List<int> foodInsertLists = new List<int>();
@@ -79,6 +80,8 @@ public class ProgressedBaseObject : BaseObject
         currentWork = true;
         ProgressedViewDataClass viewData = new ProgressedViewDataClass();
         viewData.progressActive = true;
+
+        currentWorker.SetAnimationWithName("Chop");
         for (int i = 0; i < workingTimeArrays.Length;)
         {
             if (timerWorkingAction != null)
@@ -101,7 +104,6 @@ public class ProgressedBaseObject : BaseObject
         }
 
         workEnd = true;
-
         if (IsWorkEnd())
         {
             if(workingEndAction!=null)

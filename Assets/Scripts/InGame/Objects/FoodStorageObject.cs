@@ -17,9 +17,16 @@ public class FoodStorageObject : ProgressedBaseObject
     private void WorkingEnd()
     {
         workEnd = true;
-        if (workingAI != null)
+        if (workingAI != null && (workingAI.HandleObjectData== null|| workingAI.HandleObjectData.GetFoodResult().Count <= 0) )
         {
             workingAI.HandleObjectData = makedMaterial;
+        }
+        else
+        {
+            if(toolData.ID.Equals(1015))
+            {
+                workingAI.HandleObjectData.PushMaterial(1);
+            }
         }
     }
     public override void DoWork(BaseAI targetAI, BasicMaterialData param)
@@ -43,24 +50,12 @@ public class FoodStorageObject : ProgressedBaseObject
     {
         if (workEnd)
         {
+            base.IsWorkEnd();
             currentWork = false;
-            //접시일 떄
-            if (toolData.OutputFood == 1)
-            {
-                if(workingAI.HandleObjectData==null)
-                {
-                    workingAI.HandleObjectData = new BasicMaterialData();
-                }
-                workingAI.HandleObjectData.PushMaterial(toolData.OutputFood);
-            }
-            else
-            {
-                makedMaterial = new BasicMaterialData();
-                //푸드 아이디에 따라 makedMaterial 값 세팅
-                //가데이터
-                makedMaterial.PushMaterial(toolData.OutputFood);
-            }
-            
+
+            makedMaterial = new BasicMaterialData();
+            makedMaterial.PutMaterial(toolData.OutputFood);
+
             return true;
         }
 

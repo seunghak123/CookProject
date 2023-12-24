@@ -11,10 +11,7 @@ public class BaseObject : MonoBehaviour
     protected BaseAI currentWorker = null;
     protected JToolObjectData toolData = null;
     protected Coroutine currentWorkRoutine = null;
-#if UNITY_EDITOR
-    [SerializeField]
     private int objectDataID;
-#endif
     public int OBJECT_ID
     {
         get { return objectDataID; }
@@ -48,31 +45,6 @@ public class BaseObject : MonoBehaviour
     }
     public virtual void InitObject() 
     {
-        //이전에 sprite 세팅
-
-        SpriteRenderer spriteRender = GetComponent<SpriteRenderer>();
-
-        if (spriteRender!=null)
-        {
-            Sprite resourceSprite = GameResourceManager.Instance.LoadObject("이미지 명") as Sprite;
-
-            if(resourceSprite==null)
-            {
-                return;
-            }
-
-            spriteRender.sprite = resourceSprite;
-
-            Vector2 spriteSize = resourceSprite.bounds.size;
-
-            BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
-            if(boxCollider!=null)
-            {
-                boxCollider.size = spriteSize;
-                boxCollider.offset = new Vector2((spriteSize.x / 2), 0);
-            }
-        }
-        //기존에는 파일 읽고, Id 세팅한다
     }
     public bool GetIsHold()
     {
@@ -81,11 +53,6 @@ public class BaseObject : MonoBehaviour
     public virtual void DoWork(BaseAI targetAI, BasicMaterialData param)
     {
         currentWorker = targetAI; 
-
-        //AI 타입에 따라서 묶어 놓고 Trigger 변경
-        //targetAI.SetAnimTrigger("")
-        //Invoke or Coroutine
-        //상태에 따라서 달리진행
     }
     public virtual void ExitWork()
     {
@@ -104,6 +71,7 @@ public class BaseObject : MonoBehaviour
         if (workEnd)
         {
             currentWork = false;
+            currentWorker.SetAnimationWithName("Idle");
 
             return true;
         }

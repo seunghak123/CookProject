@@ -58,11 +58,21 @@ public class BaseAI : MonoBehaviour
         userActionDic[E_INGAME_AI_TYPE.UNIT_EVENT] = UnitEvent;
         userActionDic[E_INGAME_AI_TYPE.UNIT_INTERACTION] = UnitInterAct;
     }
-    public void SetAnimTrigger(string triggerName)
+    public void SetAnimationWithName(string triggerName)
     {
         if (unitAnim != null)
         {
             unitAnim.SetTrigger(triggerName);
+        }
+
+        if(unitSpineAnim!=null)
+        {
+            TrackEntry track = unitSpineAnim.AnimationState.GetCurrent(0);
+
+            if (track != null && track.Animation.Name != triggerName)
+            {
+                unitSpineAnim.AnimationState.SetAnimation(0, triggerName, true);
+            }
         }
     }
     public void DoAction(E_INGAME_AI_TYPE actionType)
@@ -170,18 +180,18 @@ public class BaseAI : MonoBehaviour
         TrackEntry track = unitSpineAnim.AnimationState.GetCurrent(0);
         if(moveDirect == Vector3.zero)
         {
-            if (track!=null && track.Animation.Name != "idle")
+            if (track!=null && track.Animation.Name != "Idle")
             {
-                unitSpineAnim.AnimationState.SetAnimation(0, "idle", true);
+                unitSpineAnim.AnimationState.SetAnimation(0, "Idle", true);
             }
             unitAnim.SetFloat("Speed", 0);
             IsGround = true;
             ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
             return;
         }
-        if(track!=null &&  track.Animation.Name != "walk")
+        if(track!=null &&  track.Animation.Name != "Walk")
         {
-            unitSpineAnim.AnimationState.SetAnimation(0, "walk", true);
+            unitSpineAnim.AnimationState.SetAnimation(0, "Walk", true);
         }
         unitAnim.SetFloat("Speed", moveDirect.magnitude);
 

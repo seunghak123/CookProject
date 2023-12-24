@@ -46,7 +46,7 @@ public class MultipleToolObject : ProgressedBaseObject
 
     public override bool IsWorkEnd()
     {
-        currentWork = false;
+        base.IsWorkEnd();
 
         //푸드 아이디에 따라 makedMaterial 값 세팅
         makedMaterial = new BasicMaterialData();

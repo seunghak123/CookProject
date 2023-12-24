@@ -119,8 +119,8 @@ public class IngameManager : MonoBehaviour
     {
         string makedLists = string.Empty;
         recipeBuilder.Clear();
-        
-        for(int i=0;i<foodLists.Count;i++)
+        foodLists.Sort();
+        for (int i=0;i<foodLists.Count;i++)
         {
             if (i != 0)
             {
@@ -138,7 +138,10 @@ public class IngameManager : MonoBehaviour
 
             if(isResult)
             {
-                //레시피 체크가 성공했을때
+
+                currentClearRecipe.RemoveAt(recipePos);
+                ingameUI.RemoveRecipe(recipePos);
+
                 curentScore += recipeDataLists[recipePos].Score;
 
                 return true;
@@ -233,6 +236,10 @@ public class IngameCreater
         // Json파일 읽기
         JToolObjectData foodObjectData = JsonDataManager.Instance.GetSingleData<JToolObjectData>(foodObjectId, E_JSON_TYPE.JToolObjectData);
 
+        if(foodObjectData==null)
+        {
+            Debug.Log("food data null");
+        }
         // SpawnObejct
         GameObject foodObject = GameResourceManager.Instance.SpawnObject($"{foodObjectData.ObjectFile}");
 

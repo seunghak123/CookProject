@@ -25,14 +25,19 @@ public class TableObject : BaseObject
         if(targetAI.HandleObjectData==null || 
             targetAI.HandleObjectData.IsEmpty())
         {
+            if(targetAI.HandleObjectData!=null&&targetAI.HandleObjectData.HasPlate())
+            {
+                currentTableFood.PushMaterial(1);   
+            }
             targetAI.HandleObjectData = currentTableFood;
-            currentTableFood = null;
+            currentTableFood = new BasicMaterialData();
+            if(tableObjectViewData!=null)
+            {
+                tableObjectViewData.resultFoodId = currentTableFood.GetFoodId();
+                UpdateUI();
+            }
         }
-        else if(targetAI.HandleObjectData.GetFoodResult().Count > 1)
-        {
-
-        }
-        else
+        else if(targetAI.HandleObjectData.GetFoodResult().Count >= 1)
         {
             mixedFood = param;
             if (param != null)
@@ -59,6 +64,8 @@ public class TableObject : BaseObject
             tableObjectViewData = new TableObjectViewDataClass();
         }
 
+        tableObjectViewData.resultFoodId = currentTableFood.GetFoodId();
+
         if (tableObjectView != null)
         {
             tableObjectView.Updated(tableObjectViewData);
@@ -66,7 +73,6 @@ public class TableObject : BaseObject
     }
     private void CreateNewFood()
     {
-        //여기서 검증 필요
         List<int> foodResult = new List<int>(currentTableFood.GetFoodResult());
         foodResult.AddRange(mixedFood.GetFoodResult());
 
@@ -78,12 +84,16 @@ public class TableObject : BaseObject
         }
 
         currentWorker.HandleObjectData = null;
+        if(IngameManager.currentManager.GetRecipeFoodResult(foodResult) != 0)
+        {
+            currentTableFood.PushMaterialList(mixedFood.GetFoodResult());
+        }
 
-        currentTableFood.PushMaterial(mixedFood.GetFirstFoodId());
         if (currentTableFood.HasPlate())
         {
             currentTableFood.PushMaterial(1);
         }
+        UpdateUI();
         mixedFood = null;
     }
     public override IEnumerator Working()

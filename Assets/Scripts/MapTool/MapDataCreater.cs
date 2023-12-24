@@ -110,6 +110,7 @@ public class MapDataCreater : MonoBehaviour
     }
 #endif
 }
+#if UNITY_EDITOR
 [CustomEditor(typeof(MapDataCreater))]
 public class MapToolCreateButton : Editor
 {
@@ -138,3 +139,4 @@ public class MapToolCreateButton : Editor
         }
     }
 }
+#endif

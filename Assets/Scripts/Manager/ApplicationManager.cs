@@ -325,6 +325,9 @@ namespace Seunghak.Common
                 if (isLocal || isStreamingAssetBundles)
                 {
                     downloadPath = $"{FileUtils.GetStreamingAssetsPath()}";
+#if UNITY_EDITOR
+                    downloadPath = $"{FileUtils.GetStreamingAssetsPath()}/Android";
+#endif
                 }
                 string bundleLoadPath = $"{downloadPath}/{ FileUtils.BUNDLE_LIST_FILE_NAME}";
                 Debug.Log(bundleLoadPath + " downloadpath");

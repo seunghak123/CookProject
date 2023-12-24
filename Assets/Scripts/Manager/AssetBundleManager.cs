@@ -656,7 +656,7 @@ namespace Seunghak
                 Debug.Log("add loadedAssets");
                 if (loadedAssets!=null && loadedAssets.assetBundle!=null)
                 {
-                    Debug.LogError("Add Asset" + assetbundleName);
+                    Debug.Log("Add Asset" + assetbundleName);
                     loadedAssetBundles.Add(assetbundleName, loadedAssets);
                 }
             }

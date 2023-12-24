@@ -40,6 +40,10 @@ public class FoodDeliveryObject : BaseObject
     }
     public override IEnumerator Working()
     {
+        //음식이 라벨에서 움직이고 ~~
+        currentWorker.HandleObjectData = null;
+        //음식이 제거 되면서 
+        //점수 추가
 
         yield break;
     }

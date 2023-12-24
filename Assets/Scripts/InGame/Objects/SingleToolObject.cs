@@ -16,11 +16,13 @@ public class SingleToolObject : ProgressedBaseObject
     public override void DoWork(BaseAI targetAI, BasicMaterialData param)
     {
         base.DoWork(targetAI,param);
+        int purposeFoodId = 0;
         if(param!=null)
         {
             if(param.GetFoodResult().Count>0)
             {
                 preMaterial = param;
+                purposeFoodId = IngameManager.currentManager.GetRecipeFoodResult(preMaterial.GetFoodResult());
             }
         }
         if (IsFail(param))
@@ -51,6 +53,11 @@ public class SingleToolObject : ProgressedBaseObject
         }
         else
         {
+            ProgressedViewDataClass viewData = new ProgressedViewDataClass();
+            viewData.purposeFoodId = purposeFoodId;
+            progressedViewData = viewData;
+            UpdateUI();
+
             currentWorker.HandleObjectData = null;
             currentWork = true;
             currentWorkRoutine = StartCoroutine(Working());
@@ -62,7 +69,7 @@ public class SingleToolObject : ProgressedBaseObject
     {
         //매터리얼이 없고, 비어있고, 음식이 없으며, 상호작용이 불가능한 음식일 경우에 true
         if (param == null || param.IsEmpty() ||
-            param.GetFirstFoodId() == 0 || !IsCanInterAct(param.GetFirstFoodId()))
+            param.GetFirstFoodId() == 0 || !IsCanInterAct(param.GetFoodId()))
         {
             return true;
         }
@@ -87,7 +94,7 @@ public class SingleToolObject : ProgressedBaseObject
     {
         if (workEnd)
         {
-            currentWork = false;
+            base.IsWorkEnd();
 
             switch(currentState)
             {

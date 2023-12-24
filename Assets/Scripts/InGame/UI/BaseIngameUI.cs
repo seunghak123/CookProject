@@ -8,4 +8,8 @@ public class BaseIngameUI : MonoBehaviour
 
     public virtual void CreateRecipe(JRecipeData recipeData){}
     public virtual (bool, int) CheckRecipe(BasicMaterialData reciptResult) { return (false, 0); }
+    public virtual void RemoveRecipe(int index = 0)
+    {
+
+    }
 }

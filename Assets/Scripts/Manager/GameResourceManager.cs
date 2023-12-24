@@ -533,16 +533,26 @@ namespace Seunghak.Common
                     {
                         if(prefabLists[objectName] is GameObject)
                         {
+                            Debug.Log("push pool"  + objectName);
                             PushObjectPool(objectName, prefabLists[objectName]);
+                            return prefabObjectpools[objectName].GetPoolObject(isSound);
+                        }
+                        else
+                        {
+                            Debug.Log("objectName!! is " + objectName);
+                            return prefabLists[objectName];
                         }
                     }
                     else
                     {
-                        Debug.LogError($"ObjectLists have not {objectName}");
+                        Debug.Log("we don't have" + objectName);
                         return null;
                     }
                 }
-                return prefabObjectpools[objectName].GetPoolObject(isSound);
+                else
+                {
+                    return prefabObjectpools[objectName].GetPoolObject(isSound);
+                }
             }
 #if UNITY_EDITOR
             else

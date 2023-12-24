@@ -611,8 +611,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b2058529f9e93478700b133851827b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseBundle: 0
-  isStreamingAssetBundles: 0
+  isUseBundle: 1
+  isStreamingAssetBundles: 1
   managersObject: {fileID: 1198500744}
   usertitleWindow: {fileID: 965870341}
   userDownloadBundlePopup: {fileID: 752078415}

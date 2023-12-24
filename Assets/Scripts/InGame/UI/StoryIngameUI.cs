@@ -6,6 +6,11 @@ using UnityEngine;
 public class StoryIngameUI : BaseIngameUI
 {
     protected List<RecipeObject> reciptObjectLists = new List<RecipeObject>();
+    public override void RemoveRecipe(int index = 0)
+    {
+        GameResourceManager.Instance.DestroyObject(reciptObjectLists[index].gameObject);
+        reciptObjectLists.RemoveAt(index);
+    }
     public override void CreateRecipe(JRecipeData recipeData)
     {
         GameObject spawnedObject = GameResourceManager.Instance.SpawnObject("StoryRecipe");

@@ -26,7 +26,7 @@ namespace Seunghak.Common
             Dictionary<string, T> convertedData = new Dictionary<string, T>();
             foreach (var kvp in dicJsonDic[saveKey])
             {
-                if (kvp.Value is JStageData)
+                if (kvp.Value is T)
                 {
                     convertedData[kvp.Key] = (T)kvp.Value;
                 }
@@ -42,8 +42,8 @@ namespace Seunghak.Common
             {
                 loadTypeString = loadTypeString.Replace("Data", "");
             }
-
-            if (dicJsonDic.ContainsKey(loadType.ToString()))
+            loadTypeString = loadTypeString.ToLower();
+            if (dicJsonDic.ContainsKey(loadTypeString))
             {
                 return GetDicData<T>(loadTypeString);
             }
@@ -64,11 +64,12 @@ namespace Seunghak.Common
             }
 #else
             UnityEngine.Object loadObject = GameResourceManager.Instance.LoadObject(loadTypeString.ToLower());
+            Debug.Log(loadObject);
             loadedObject = JsonConvert.DeserializeObject<Dictionary<string,T>>(loadObject.ToString());
 
-            if (!dicJsonDic.ContainsKey(loadType.ToString()))
+            if (!dicJsonDic.ContainsKey(loadTypeString))
             {
-                SetDicData<T>(loadType.ToString(), loadedObject);
+                SetDicData<T>(loadTypeString, loadedObject);
             }
 #endif
             return loadedObject;
