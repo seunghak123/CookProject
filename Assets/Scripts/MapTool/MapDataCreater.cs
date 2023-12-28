@@ -118,10 +118,6 @@ public class MapToolCreateButton : Editor
     private int createObjecId ;
     public override void OnInspectorGUI()
     {
-        //if(!Application.isPlaying)
-        //{
-        //    return;
-        //}
         base.OnInspectorGUI();
         
         MapDataCreater mapTool = (MapDataCreater)target;

@@ -117,15 +117,15 @@ namespace Seunghak.Common
 
             //iOS의 경우 퍼미션
 #elif UNITY_ANDROID && !UNITY_EDITOR
-            //if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageWrite))
-            //{
-            //    Permission.RequestUserPermission(Permission.ExternalStorageWrite);
-            //}
+            if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageWrite))
+            {
+                Permission.RequestUserPermission(Permission.ExternalStorageWrite);
+            }
 #elif UNITY_iOS && !UNITY_EDITOR
-            // if (!Application.HasUserAuthorization(UserAuthorization.WebCam))
-            //{
-            //    Application.RequestUserAuthorization(UserAuthorization.WebCam);
-            //}  
+             if (!Application.HasUserAuthorization(UserAuthorization.WebCam))
+            {
+                Application.RequestUserAuthorization(UserAuthorization.WebCam);
+            }  
 #endif 
             MoveNextState(E_APPLICATION_STATE.APPLICATION_UPDATE);
             yield return null;
@@ -137,41 +137,44 @@ namespace Seunghak.Common
             yield break;
             //IOS는 
 #elif UNITY_ANDROID
-            //AppUpdateManager appUpdater = new AppUpdateManager();
-            //PlayAsyncOperation<AppUpdateInfo, AppUpdateErrorCode> appUpdateInfoOperaion =
-            //    appUpdater.GetAppUpdateInfo();
+            AppUpdateManager appUpdater = new AppUpdateManager();
+            PlayAsyncOperation<AppUpdateInfo, AppUpdateErrorCode> appUpdateInfoOperaion =
+                appUpdater.GetAppUpdateInfo();
 
-            //yield return appUpdateInfoOperaion;
+            yield return appUpdateInfoOperaion;
 
-            //if (appUpdateInfoOperaion.IsSuccessful)
-            //{
-            //    AppUpdateInfo result = appUpdateInfoOperaion.GetResult();
+            if (appUpdateInfoOperaion.IsSuccessful)
+            {
+                AppUpdateInfo result = appUpdateInfoOperaion.GetResult();
 
-            //    if(result.UpdateAvailability == UpdateAvailability.UpdateAvailable)
-            //    {
-            //        //업데이트 팝업 띄우고
-            //        userAwnserPopup.gameObject.SetActive(true);
-            //        userAwnserPopup.OpenPopup("확인",
-            //            () =>
-            //            {
-            //                appUpdater.StartUpdate(result, AppUpdateOptions.ImmediateAppUpdateOptions());
-            //                AppUpdateOptions.ImmediateAppUpdateOptions();
-            //                userAwnserPopup.gameObject.SetActive(false);
-            //                MoveNextState(E_APPLICATION_STATE.USER_LOGIN);
-            //            },
-            //            "취소",
-            //            () =>
-            //            {
-            //                Application.Quit();
-            //            }
-            //            );
+                if(result.UpdateAvailability == UpdateAvailability.UpdateAvailable)
+                {
+                    //업데이트 팝업 띄우고
+                    userAwnserPopup.gameObject.SetActive(true);
+                    userAwnserPopup.OpenPopup("확인",
+                        () =>
+                        {
+                            appUpdater.StartUpdate(result, AppUpdateOptions.ImmediateAppUpdateOptions());
+                            AppUpdateOptions.ImmediateAppUpdateOptions();
+                            userAwnserPopup.gameObject.SetActive(false);
+                            MoveNextState(E_APPLICATION_STATE.USER_LOGIN);
+                        },
+                        "취소",
+                        () =>
+                        {
+                            Application.Quit();
+                        }
+                        );
 
-            //    }
-            //    else
-            //    {
-            //        MoveNextState(E_APPLICATION_STATE.USER_LOGIN);
-            //    }
-            //}
+                }
+                else
+                {
+                    MoveNextState(E_APPLICATION_STATE.USER_LOGIN);
+                }
+            }else
+            {
+                MoveNextState(E_APPLICATION_STATE.USER_LOGIN);
+            }
 #elif UNITY_IOS
 
 #else
