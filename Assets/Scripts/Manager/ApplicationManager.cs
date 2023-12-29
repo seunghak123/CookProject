@@ -27,6 +27,18 @@ namespace Seunghak.Common
         private E_APPLICATION_STATE applicationState = E_APPLICATION_STATE.APPLICATION_START;
         private void InitApplication()
         {
+            Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
+                var dependencyStatus = task.Result;
+                if (dependencyStatus == Firebase.DependencyStatus.Available)
+                {
+                     var app = Firebase.FirebaseApp.DefaultInstance;
+                }
+                else
+                {
+                    UnityEngine.Debug.LogError(System.String.Format(
+                      "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
+                }
+            });
             if (managersObject != null)
             {
                 DontDestroyOnLoad(managersObject);
