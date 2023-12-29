@@ -26,6 +26,10 @@ namespace Seunghak.UIManager
         {
             UIManager.Instance.PushUI(UI_TYPE.BattleWindow);
         }
+        public void EnterGameModeWindow()
+        {
+            UIManager.Instance.PushUI(UI_TYPE.GameModeWindow);
+        }
         public void OpenEventPopup()
         {
             UIManager.Instance.PushUI(UI_TYPE.UserEventPopup);
