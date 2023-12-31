@@ -1,6 +1,7 @@
 using Seunghak.UIManager;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Seunghak.UIManager
@@ -15,11 +16,15 @@ namespace Seunghak.UIManager
         }
 
         // OnClick Event
-        public void EnterStageWindow()
+        public void EnterGameScenarioWindow()
         {
-            ExitWindow();
-            UIManager.Instance.PushUI(UI_TYPE.StageWindow);
+            UIManager.Instance.PushUI(UI_TYPE.GameScenarioWindow);
         }
+        public void EnterLobbyWindow()
+        {
+            UIManager.Instance.PushUI(UI_TYPE.LobbyWindow);
+        }
+
 
         public override void ExitWindow()
         {

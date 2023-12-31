@@ -10,13 +10,35 @@ namespace Seunghak.UIManager
         public override void EnterWindow()
         {
             base.EnterWindow();
-
+            
 
         }
 
         public override void ExitWindow()
         {
             base.ExitWindow();
+        }
+
+        #region OnClick Event
+        public void EnterLobbyWindow()
+        {
+
+        }
+        #endregion
+
+        public void SetStageInfo()
+        {
+
+        }
+
+        public void OnClickNextStateInfo()
+        {
+
+        }
+
+        public void OnCilckPrevStateInfo()
+        {
+
         }
 
         public override void RestoreWindow()
