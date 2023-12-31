@@ -6,38 +6,51 @@ using UnityEngine;
 namespace Seunghak.UIManager
 {
     /// <summary>
-    /// ½Ã³ª¸®¿À ÇÏ³ªÇÏ³ª¿¡ ´ëÇÑ µ¥ÀÌÅÍ
+    /// ì‹œë‚˜ë¦¬ì˜¤ í•˜ë‚˜í•˜ë‚˜ì— ëŒ€í•œ ë°ì´í„° ( ì„ì‹œ )
     /// </summary>
-    public class ScenarioData
+    public class ScenrioData : CommonScrollItemData
     {
-        public int scenarioDataID;
+        public int ID;
 
+        public ScenrioData(int ID)
+        {
+            this.ID = ID;
+        }
     }
 
     public class GameScenarioWindow : BaseUIWindow
     {
-       [SerializeField] ScenarioScrollView scenarioScrollView;
+        [SerializeField] ScenarioScrollView scenarioScrollView;
+        [SerializeField] int maxCount; // ìƒì„±ê°œìˆ˜
+
+        List<ScenrioData> scenrioDataList =new List<ScenrioData>();
 
         public override void EnterWindow()
         {
             base.EnterWindow();
 
-            // µ¥ÀÌÅÍ¸¦ °¡Á®¿À°í ½ºÅ©·Ñºä¿¡ ³Ö¾îÁÖ¾î ¼¼ÆÃÀ» ÇÕ½Ã´Ù.
+            for(int i = 0; i < maxCount; i++)
+            {
+                scenrioDataList.Add(new ScenrioData(i));
+            }
+            // ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¤ê³  ìŠ¤í¬ë¡¤ë·°ì— ë„£ì–´ì£¼ì–´ ì„¸íŒ…ì„ í•©ì‹œë‹¤.
 
-            scenarioScrollView.Init(); // °¢ ½Ã³ª¸®¿À¿¡ ´ëÇØ ¼¼ÆÃÀ» ÇØ¾ß ÇÒµí?
-            // °¢ ½Ã³ª¸®¿À¿¡ ´ëÇÑ ¼¼ÆÃÀÌ ÇÊ¿äÇÏ¸ç, ÃÖ´ë ¸î°³°¡ º¸ÀÌ´ÂÁö È®ÀÎÇÏ½Ã°í,
-            // °¢ µ¥ÀÌÅÍ¿¡ ´ëÇÑ ¼¼ÆÃÀ» ³¡³»¾ß ÇÔ ¿ø¼Ò¸¦ µÎ°í ÇÏ¸é µÉ °Å °°Àºµ¥...?
-        }
-
-        public void EnterGameModeWindow()
-        {
+            scenarioScrollView.InitScrollView(scenrioDataList);
 
         }
 
         #region OnClick Event
+        public void EnterGameModeWindow()
+        {
+            UIManager.Instance.PushUI(UI_TYPE.GameModeWindow);
+        }
         public void EnterStageWindow()
         {
             UIManager.Instance.PushUI(UI_TYPE.StageWindow);
+        }
+        public void EnterLobbyWindow()
+        {
+            UIManager.Instance.PushUI(UI_TYPE.LobbyWindow);
         }
         #endregion
 

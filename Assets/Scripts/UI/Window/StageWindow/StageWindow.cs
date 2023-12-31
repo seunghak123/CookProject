@@ -22,7 +22,12 @@ namespace Seunghak.UIManager
         #region OnClick Event
         public void EnterLobbyWindow()
         {
+            UIManager.Instance.PushUI(UI_TYPE.LobbyWindow);
+        }
 
+        public void EnterScenarioWindow()
+        {
+            UIManager.Instance.PushUI(UI_TYPE.GameScenarioWindow);
         }
         #endregion
 
