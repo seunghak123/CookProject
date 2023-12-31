@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Seunghak.Common
-{    
+{
     public enum PlayerPrefKey
     {
         SaveTest,
@@ -47,7 +47,15 @@ namespace Seunghak.Common
             }
             userDataInfo.userInfoData.userLoginType = loginType;
             userLogin.InitLogin();
-        }      
+        }
+        public void SetDataBaseInfo()
+        {
+#if UNITY_EDITOR
+            userDataBase = new LocalDataBase();
+#else
+            userDataBase = new FireBaseDataBase();
+#endif
+        }
         public void LoginPlatform(Action successResultAction)
         {
             userLogin.PlatformLogin(successResultAction);
@@ -79,7 +87,7 @@ namespace Seunghak.Common
         {
             return userDataInfo.userOption;
         }
-        #region DB_SAVE
+#region DB_SAVE
         /// <summary>
         /// 해당 내용들은 로컬 DB를 사용할 경우에만 해당한다
         /// 하나는 PlayerPref를 이용 차후엔 확장해서 직접적으로 호출하는게 아닌 
@@ -93,7 +101,7 @@ namespace Seunghak.Common
         {
             userDataInfo = userDataBase.LoadDB();
         }
-        #endregion DB_SAVE      
+#endregion DB_SAVE 
     }
     public class UserItemDatas
     {
@@ -143,31 +151,34 @@ namespace Seunghak.Common
             int id = (int)itemType;
             return GetItemCount(id);
         }
-        private void MakeItemDic(int id)
+        public long GetItemCount(int id)
         {
             if (!itemDic.ContainsKey(id))
             {
                 itemDic[id] = 0;
             }
-        }
-        public long GetItemCount(int id)
-        {  
+
             if ((int)E_ITEM_TYPE.CRYSTALS == id || (int)E_ITEM_TYPE.VALID_CRYSTALS == id)
             {
-                MakeItemDic((int)E_ITEM_TYPE.CRYSTALS);
-                MakeItemDic((int)E_ITEM_TYPE.VALID_CRYSTALS);
+                if (!itemDic.ContainsKey((int)E_ITEM_TYPE.CRYSTALS))
+                {
+                    itemDic[(int)E_ITEM_TYPE.CRYSTALS] = 0;
+                }
+
+                if (!itemDic.ContainsKey((int)E_ITEM_TYPE.VALID_CRYSTALS))
+                {
+                    itemDic[(int)E_ITEM_TYPE.VALID_CRYSTALS] = 0;
+                }
+
                 return itemDic[(int)E_ITEM_TYPE.CRYSTALS] + itemDic[(int)E_ITEM_TYPE.VALID_CRYSTALS];
-            }
-            else
-            {
-                MakeItemDic(id);
             }
 
             return itemDic[id];
-
         }
-        //유저 아이템 내역
     }
+    /// <summary>
+    /// 유저 플랫폼, 로그인, 
+    /// </summary>
     public class UserInfoData
     {
         public string userKey = string.Empty;
@@ -178,8 +189,12 @@ namespace Seunghak.Common
         public string userNickName = string.Empty;
         public string userUserEmail = string.Empty;
     }
+    /// <summary>
+    /// 유저 옵션 데이터
+    /// </summary>
     public class UserOptionData
     {
+        //로컬 저장예정
         [Range(0, 100)] private int masterVolume = 50;
         [Range(0, 100)] private int soundVolume = 50;
         [Range(0, 100)] private int fbxVolume = 50;
@@ -190,10 +205,19 @@ namespace Seunghak.Common
         public bool IsMute { get; set; } = false;
         public E_LANGUAGE_TYPE UserLanguageType { get { return userLangType; }set { userLangType = value; } }
     }
+    /// <summary>
+    /// 유저 스토리 데이터
+    /// </summary>
     public class UserStoryDatas
     {
+        //어디 까지 꺳는지, 별 몇개인지 , 최대점수 몇점인지 - 
+
         //스토리
     }
+    /// <summary>
+    /// 유저 데이터 베이스 저장용 구조
+    /// 필요한 경우에는 UserData 클래스 종류를 늘려줄 것
+    /// </summary>
     public class UserDataInfo
     {
         public UserInfoData userInfoData = new UserInfoData();

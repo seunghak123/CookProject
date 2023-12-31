@@ -33,6 +33,13 @@ public enum E_APPLICATION_PERMISSION_TYPE
     CAMERA_PERMISSION,
     END,
 }
+public enum E_DATABASE_TYPE
+{
+    USER_INFO,
+    USER_STAGE,
+    USER_ITEM,
+    USER_OPTION,
+}
 #endregion EnviromentType
 #region UserInfoType
 public enum E_LOGIN_TYPE

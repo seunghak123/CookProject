@@ -8,6 +8,8 @@ using Firebase.Database;
 public class FireBaseDataBase : BaseDataBase
 {
     DatabaseReference firebaseRootDB = null;
+
+    //private 
     public void SaveDB(UserDataInfo saveData)
     {
         //saveData.userOption.FBXVolume

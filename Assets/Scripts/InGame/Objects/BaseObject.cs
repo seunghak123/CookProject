@@ -6,6 +6,7 @@ public class BaseObject : MonoBehaviour
 {
     [SerializeField] protected bool holdCharacter = false;
     [SerializeField] protected bool isBlockCharacter = false;
+
     protected bool workEnd = false;
     protected bool currentWork = false;
     protected BaseAI currentWorker = null;
@@ -24,6 +25,7 @@ public class BaseObject : MonoBehaviour
             }
         }
     }
+
     protected virtual bool IsCanInterAct(int interActObject)
     {
         //Type1번 완료
