@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using System.Text;
 using System;
+using Seunghak.Common;
 #endif
 #if ENABLE_IOS_ON_DEMAND_RESOURCES
 using UnityEngine.iOS;
@@ -260,7 +261,7 @@ namespace Seunghak
             }
             else
             {
-                Common.UserDataManager.SaveAssetBundleHash(assetBundleName, bundle.GetHashCode());
+                CommonUtil.SaveAssetBundleHash(assetBundleName, bundle.GetHashCode());
                 FileUtils.SaveFile<byte[]>(Application.persistentDataPath, assetBundleName, webRequest.downloadHandler.data);
             }
             assetBundle = new LoadedAssetBundle(bundle);

@@ -54,12 +54,55 @@ namespace Seunghak.Common
 
             return null;
         }
+        #region PlayerPref
+        public static void SavePlayerPref<T>(PlayerPrefKey saveKey, T saveData)
+        {
+            PlayerPrefs.SetString(saveKey.ToString(), saveData.ToString());
+
+            PlayerPrefs.Save();
+        }
+        public static T GetPlayerPref<T>(PlayerPrefKey saveKey)
+        {
+            string getValue = PlayerPrefs.GetString(saveKey.ToString());
+            T convertValue;
+            try
+            {
+                convertValue = (T)Convert.ChangeType(getValue, typeof(T));
+            }
+            catch (Exception e)
+            {
+                Debug.Log($"ConvertValue Error {e.Message}");
+                convertValue = default(T);
+            }
+            return convertValue;
+        }
+        private static string attendString = "SaveBundleHash";
+        public static void SaveAssetBundleHash(string assetName, long saveValue)
+        {
+            string saveKey = $"{attendString}_{assetName}";
+            PlayerPrefs.SetString(saveKey, saveValue.ToString());
+        }
+        public static long GetAssetBundleLocalHash(string assetName)
+        {
+            long returnValue = 0;
+            string loadKey = $"{attendString}_{assetName}";
+            string getValue = PlayerPrefs.GetString(loadKey);
+            try
+            {
+                returnValue = (long)Convert.ChangeType(getValue, typeof(long));
+            }
+            catch (Exception e)
+            {
+                Debug.Log($"Convert HashValue Error {e.Message}");
+            }
+            return returnValue;
+        }
+        #endregion PlayerPref
     }
     public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
     {
         [SerializeField]
         private List<TKey> keys = new List<TKey>();
-
         [SerializeField]
         private List<TValue> values = new List<TValue>();
 

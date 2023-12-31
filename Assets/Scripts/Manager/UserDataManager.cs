@@ -11,12 +11,16 @@ namespace Seunghak.Common
         SaveTest,
         UserData,
         UserToken,
+        UserOptionData,
+        UserInfoData,
+        UserItemDatas,
+        UserStoryDatas,
     }
     public class UserDataManager : UnitySingleton<UserDataManager>
     {
         private UserDataInfo userDataInfo = new UserDataInfo();
-        private E_LOGIN_TYPE userLoginType = E_LOGIN_TYPE.GUEST_LOGIN;
         private LoginInterface userLogin;
+        private BaseDataBase userDataBase;
         private string userIDToken = "";
         public string UserIDToken
         {
@@ -41,8 +45,7 @@ namespace Seunghak.Common
                     break;
 #endif
             }
-            userLoginType = loginType;
-
+            userDataInfo.userInfoData.userLoginType = loginType;
             userLogin.InitLogin();
         }      
         public void LoginPlatform(Action successResultAction)
@@ -59,7 +62,7 @@ namespace Seunghak.Common
         }
         public bool AutoLogin()
         {
-            userIDToken = GetPlayerPref<string>(PlayerPrefKey.UserToken);
+            userIDToken = CommonUtil.GetPlayerPref<string>(PlayerPrefKey.UserToken);
             if(string.IsNullOrEmpty(userIDToken))
             {
                 return false;
@@ -76,7 +79,6 @@ namespace Seunghak.Common
         {
             return userDataInfo.userOption;
         }
-
         #region DB_SAVE
         /// <summary>
         /// 해당 내용들은 로컬 DB를 사용할 경우에만 해당한다
@@ -85,62 +87,17 @@ namespace Seunghak.Common
         /// </summary>
         public void SaveUserData()
         {
-            SavePlayerPref<UserDataInfo>(PlayerPrefKey.UserData, userDataInfo);
+            userDataBase.SaveDB(userDataInfo);
         }
         public void LoadUserData()
         {
-            userDataInfo = GetPlayerPref<UserDataInfo>(PlayerPrefKey.UserData);
+            userDataInfo = userDataBase.LoadDB();
         }
-        #endregion DB_SAVE
-        #region PlayerPref
-        public static void SavePlayerPref<T>(PlayerPrefKey saveKey, T saveData)
-        {
-            PlayerPrefs.SetString(saveKey.ToString(), saveData.ToString());
-
-            PlayerPrefs.Save();
-        }
-        public static T GetPlayerPref<T>(PlayerPrefKey saveKey)
-        {
-            string getValue = PlayerPrefs.GetString(saveKey.ToString());
-            T convertValue;
-            try
-            {
-                convertValue = (T)Convert.ChangeType(getValue, typeof(T));
-            }
-            catch(Exception e)
-            {
-                Debug.Log($"ConvertValue Error {e.Message}");
-                convertValue = default(T);
-            }
-            return convertValue;
-        }
-        private static string attendString = "SaveBundleHash";
-        public static void SaveAssetBundleHash(string assetName,long saveValue)
-        {
-            string saveKey = $"{attendString}_{assetName}";
-            PlayerPrefs.SetString(saveKey, saveValue.ToString());
-        }
-        public static long GetAssetBundleLocalHash(string assetName)
-        {
-            long returnValue = 0;
-            string loadKey = $"{attendString}_{assetName}";
-            string getValue = PlayerPrefs.GetString(loadKey);
-            try
-            {
-                returnValue = (long)Convert.ChangeType(getValue, typeof(long));
-            }
-            catch (Exception e)
-            {
-                Debug.Log($"Convert HashValue Error {e.Message}");
-            }
-            return returnValue;
-        }
-        #endregion PlayerPref
+        #endregion DB_SAVE      
     }
     public class UserItemDatas
     {
         private Dictionary<int, long> itemDic = new Dictionary<int, long>();
-
         public bool AddItem(int id, long itemCount)
         {
             if ((int)E_ITEM_TYPE.CRYSTALS == id || (int)E_ITEM_TYPE.VALID_CRYSTALS == id)
@@ -211,6 +168,16 @@ namespace Seunghak.Common
         }
         //유저 아이템 내역
     }
+    public class UserInfoData
+    {
+        public string userKey = string.Empty;
+        public string userCurrentLoginTime = string.Empty;
+        public bool isLogined = false;
+        public E_LOGIN_TYPE userLoginType = E_LOGIN_TYPE.GUEST_LOGIN;
+        public int platformType = 0;
+        public string userNickName = string.Empty;
+        public string userUserEmail = string.Empty;
+    }
     public class UserOptionData
     {
         [Range(0, 100)] private int masterVolume = 50;
@@ -223,9 +190,15 @@ namespace Seunghak.Common
         public bool IsMute { get; set; } = false;
         public E_LANGUAGE_TYPE UserLanguageType { get { return userLangType; }set { userLangType = value; } }
     }
+    public class UserStoryDatas
+    {
+        //스토리
+    }
     public class UserDataInfo
     {
+        public UserInfoData userInfoData = new UserInfoData();
         public UserOptionData userOption = new UserOptionData();
         public UserItemDatas userItemDatas = new UserItemDatas();
+        public UserStoryDatas userStoryDatas = new UserStoryDatas();
     }
 }

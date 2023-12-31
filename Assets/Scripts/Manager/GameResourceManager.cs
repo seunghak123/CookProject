@@ -281,11 +281,11 @@ namespace Seunghak.Common
         {
             if (Input.GetKeyDown(KeyCode.B))
             {
-                UserDataManager.SavePlayerPref<int>(PlayerPrefKey.SaveTest, 5);
+                CommonUtil.SavePlayerPref<int>(PlayerPrefKey.SaveTest, 5);
             }
             if (Input.GetKeyDown(KeyCode.V))
             {
-                int a =  UserDataManager.GetPlayerPref<int>(PlayerPrefKey.SaveTest);
+                int a = CommonUtil.GetPlayerPref<int>(PlayerPrefKey.SaveTest);
             }
         }
         public IEnumerator SetDownloadDatas(BundleListsDic bundleListsDictionary,bool isLocal = false)

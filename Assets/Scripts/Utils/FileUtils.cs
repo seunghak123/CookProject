@@ -161,7 +161,7 @@ public static class FileUtils
                 }
                 else
                 {
-                    long compareHash = UserDataManager.GetAssetBundleLocalHash(downloadAssets.bundleName);
+                    long compareHash = CommonUtil.GetAssetBundleLocalHash(downloadAssets.bundleName);
                     if (compareHash.Equals(downloadAssets.bundleTotalHashCode))
                     {
                         continue;
