@@ -6,16 +6,25 @@ using UnityEngine;
 namespace Seunghak.UIManager
 {
     /// <summary>
-    /// 시나리오 하나하나에 대한 데이터 ( 임시 )
+    /// 시나리오 하나에 대한 데이터 ( 임시 )
     /// </summary>
-    public class ScenrioData : CommonScrollItemData
+    public class ScenarioData : CommonScrollItemData
     {
         public int ID;
+        public int totalStageCount;
 
-        public ScenrioData(int ID)
+        public ScenarioData(int ID)
         {
             this.ID = ID;
         }
+    }
+
+    /// <summary>
+    /// 시나리오 챕터 하나에 대한 데이터 ( 임시 )
+    /// </summary>
+    public class ScenarioChapterData
+    {
+
     }
 
     public class GameScenarioWindow : BaseUIWindow
@@ -23,7 +32,7 @@ namespace Seunghak.UIManager
         [SerializeField] ScenarioScrollView scenarioScrollView;
         [SerializeField] int maxCount; // 생성개수
 
-        List<ScenrioData> scenrioDataList =new List<ScenrioData>();
+        List<ScenarioData> scenrioDataList =new List<ScenarioData>();
 
         public override void EnterWindow()
         {
@@ -31,10 +40,10 @@ namespace Seunghak.UIManager
 
             for(int i = 0; i < maxCount; i++)
             {
-                scenrioDataList.Add(new ScenrioData(i));
+                scenrioDataList.Add(new ScenarioData(i));
             }
-            // 데이터를 가져오고 스크롤뷰에 넣어주어 세팅을 합시다.
-
+            
+            // 데이터를 가져오고 스크롤뷰에 넣어주어 세팅
             scenarioScrollView.InitScrollView(scenrioDataList);
 
         }
@@ -42,6 +51,7 @@ namespace Seunghak.UIManager
         #region OnClick Event
         public void EnterGameModeWindow()
         {
+            ExitWindow();
             UIManager.Instance.PushUI(UI_TYPE.GameModeWindow);
         }
         public void EnterStageWindow()

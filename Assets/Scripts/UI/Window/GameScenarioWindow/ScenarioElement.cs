@@ -7,7 +7,7 @@ using TMPro;
 
 namespace Seunghak.UIManager
 {
-    public class ScenarioElement : MonoBehaviour, OHScrollView.IInfiniteScrollSetup<ScenrioData>
+    public class ScenarioElement : MonoBehaviour, OHScrollView.IInfiniteScrollSetup<ScenarioData>
     {
         [SerializeField] private TextMeshProUGUI testText;
 
@@ -21,7 +21,7 @@ namespace Seunghak.UIManager
             
         }
 
-        public void OnUpdateItem(GameObject obj, ScenrioData infos)
+        public void OnUpdateItem(GameObject obj, ScenarioData infos)
         {
             // 데이터 세팅 테스트
             testText.text = infos.ID.ToString();
