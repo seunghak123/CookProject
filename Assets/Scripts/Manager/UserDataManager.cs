@@ -1,4 +1,4 @@
-﻿using Seunghak.LoginSystem;
+using Seunghak.LoginSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,8 +11,13 @@ namespace Seunghak.Common
         SaveTest,
         UserData,
         UserToken,
+
+
+        /// <summary>
+        /// Unity Editor일때 저장하는타입 용
+        /// </summary>
+        UserInfoData = 3000,
         UserOptionData,
-        UserInfoData,
         UserItemDatas,
         UserStoryDatas,
     }

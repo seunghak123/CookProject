@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +28,7 @@ namespace Seunghak.UIManager
                         break;
                     }
                     windowStack.Pop();
-                    currentUI.CloseUI();
+                    popUI.CloseUI();
                     currentUI = GetUI(windowStack.Peek());
                     currentUIString = currentUI.CUR_UI_TYPE.ToString();
                     break;
