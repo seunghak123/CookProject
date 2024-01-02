@@ -397,7 +397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -159}
+  m_AnchoredPosition: {x: 0, y: -0.00084365084}
   m_SizeDelta: {x: 500, y: 360}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6005956128165682433
@@ -585,10 +585,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6005956129106790968}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -250, y: 180}
+  m_SizeDelta: {x: 500, y: 360}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &6005956128522718806
 CanvasRenderer:
@@ -734,8 +734,8 @@ MonoBehaviour:
   itemPrototype: {fileID: 6005956128227138451}
   scrollViewTransform: {fileID: 6005956129106790968}
   scrollContent: {fileID: 6005956128165682432}
-  scrollRect: {fileID: 6005956129106790971}
   scrollBack: {fileID: 6005956128522718803}
+  scrollRect: {fileID: 6005956129106790971}
   instantateItemCount: 12
   lintItemCount: 4
   gapSizex: 10
