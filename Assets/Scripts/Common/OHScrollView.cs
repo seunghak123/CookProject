@@ -115,7 +115,6 @@ public class OHScrollView : MonoBehaviour
         IsInit = true;
         scrollViewTransform.transform.localPosition = Vector3.zero;
         scrollContent.anchoredPosition = new Vector3(0, 0, 0);
-        instantateItemCount = instantateItemCount > maxCount ? maxCount : instantateItemCount;
         List<IInfiniteScrollSetup<T>> controllers = new List<IInfiniteScrollSetup<T>>();
         scrollBackLocalPosition = scrollBack.localPosition;
         itemPrototype.gameObject.SetActive(false);
@@ -124,6 +123,7 @@ public class OHScrollView : MonoBehaviour
         onUpdateItem.AddListener(UpdateItemInfo<T>);
         SetInfoList(infos);
         maxCount = infos.Count;
+        instantateItemCount = instantateItemCount > maxCount ? maxCount : instantateItemCount;
 
         // scrollRect 세팅
         var scrollRect = this.scrollRect;
