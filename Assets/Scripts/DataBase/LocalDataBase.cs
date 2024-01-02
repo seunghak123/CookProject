@@ -13,7 +13,7 @@ public class LocalDataBase : BaseDataBase
     {
         UserDataInfo userInfo = new UserDataInfo();
 
-        //¿Ø¿˙ µ•¿Ã≈Õ Info
+        //Ïú†Ï†Ä Îç∞Ïù¥ÌÑ∞ Info
         userInfo.userInfoData = CommonUtil.GetPlayerPref<UserInfoData>(PlayerPrefKey.UserInfoData);
 
         userInfo.userOption = CommonUtil.GetPlayerPref<UserOptionData>(PlayerPrefKey.UserOptionData);
@@ -36,6 +36,12 @@ public class LocalDataBase : BaseDataBase
     }
     public void UpdateDB(UserDataInfo updateData)
     {
-        //æ˜µ•¿Ã∆Æ ∑Œ¡˜- ∏π¿∫ µ•¿Ã≈Õ∞° πŸ≤Ó¥¬µ•, ¥ŸπŸ≤‹∑¡∏È Ω√∞£¿Ãø¿∑°∞…∏≤ - ¬…∞≥º≠ πŸ≤‹∞«µ•
+        CommonUtil.SavePlayerPref<UserInfoData>(PlayerPrefKey.UserInfoData, updateData.userInfoData);
+
+        CommonUtil.SavePlayerPref<UserOptionData>(PlayerPrefKey.UserOptionData, updateData.userOption);
+
+        CommonUtil.SavePlayerPref<UserItemDatas>(PlayerPrefKey.UserItemDatas, updateData.userItemDatas);
+
+        CommonUtil.SavePlayerPref<UserStoryDatas>(PlayerPrefKey.UserStoryDatas, updateData.userStoryDatas);
     }
 }

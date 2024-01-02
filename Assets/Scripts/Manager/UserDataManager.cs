@@ -52,6 +52,8 @@ namespace Seunghak.Common
             }
             userDataInfo.userInfoData.userLoginType = loginType;
             userLogin.InitLogin();
+
+            SetDataBaseInfo();
         }
         public void SetDataBaseInfo()
         {
