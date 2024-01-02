@@ -1,4 +1,4 @@
-﻿using Seunghak.Common;
+using Seunghak.Common;
 using Spine;
 using Spine.Unity;
 using System;
@@ -109,9 +109,6 @@ public class BaseAI : MonoBehaviour
         }
         else
         {
-
-
-
             Vector3 moveDirect = GetMoveDirect();
 
             if(moveDirect!=Vector3.zero)
@@ -284,7 +281,6 @@ public class BaseAI : MonoBehaviour
             if (collision != null && collision.tag == "InterActObject")
             {
                 targetObject = collision.GetComponent<BaseObject>();
-
                 //currentFood = targetObject
             }
         }

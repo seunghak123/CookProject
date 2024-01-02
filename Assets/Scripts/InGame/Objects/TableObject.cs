@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TableObject : BaseObject
+public class TableObject : BaseToolObject
 {
     [SerializeField] protected TableObjectView tableObjectView;
     protected TableObjectViewDataClass tableObjectViewData;

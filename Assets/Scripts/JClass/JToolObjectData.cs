@@ -9,5 +9,6 @@ public record JToolObjectData : JBaseData
 	public string ObjectFile;
 	public string IconFile;
 	public float[] ToolTimer;
+	public string Animation;
 	public int OutputFood;
 }

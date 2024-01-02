@@ -1,0 +1,32 @@
+{
+  "1": {
+    "ID": 1,
+    "Name": "Obstacle",
+    "Type": 1
+  },
+  "2": {
+    "ID": 2,
+    "Name": "Moving_Platform",
+    "Type": 2
+  },
+  "3": {
+    "ID": 3,
+    "Name": "Lever_Ob",
+    "Type": 3
+  },
+  "4": {
+    "ID": 4,
+    "Name": "Lever",
+    "Type": 4
+  },
+  "5": {
+    "ID": 5,
+    "Name": "Disappearing_Platform",
+    "Type": 5
+  },
+  "6": {
+    "ID": 6,
+    "Name": "Lever_Darkness",
+    "Type": 6
+  }
+}

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DroppedObject : BaseObject
+public class DroppedObject : BaseToolObject
 {
     [SerializeField] private SpriteRenderer droppedSprite = null;
     private bool isPlate = false;

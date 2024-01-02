@@ -246,7 +246,7 @@ public class IngameCreater
         // 타입에 따른 데이터 세팅
         SetFoodObject(foodObject, foodObjectData.Type);
 
-        BaseObject foodObjectClass = foodObject.GetComponent<BaseObject>();
+        BaseToolObject foodObjectClass = foodObject.GetComponent<BaseToolObject>();
 
         if(foodObjectClass!=null)
         {

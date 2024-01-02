@@ -71,7 +71,7 @@ public class MapDataCreater : MonoBehaviour
             //읽고 저장
             GameObject subObject = createTransform.GetChild(i).gameObject;
 
-            BaseObject baseSubObject = subObject.GetComponent<BaseObject>();
+            BaseToolObject baseSubObject = subObject.GetComponent<BaseToolObject>();
             if(baseSubObject==null)
             {
                 continue;

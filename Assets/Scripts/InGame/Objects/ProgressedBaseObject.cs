@@ -11,7 +11,7 @@ public class ProgressedViewDataClass : BaseViewDataClass
     public int currentIndex;
     public List<int> foodInsertLists = new List<int>();
 }
-public class ProgressedBaseObject : BaseObject
+public class ProgressedBaseObject : BaseToolObject
 {
     [SerializeField] protected ProgressObjectView progressedView;
     

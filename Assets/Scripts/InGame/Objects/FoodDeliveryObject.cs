@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodDeliveryObject : BaseObject
+public class FoodDeliveryObject : BaseToolObject
 {
     [SerializeField] protected FoodDeliveryObjectView deliveryView;
     protected FoodDeliveryViewDataClass foodDeliveryViewData;
