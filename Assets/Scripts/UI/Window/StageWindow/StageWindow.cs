@@ -19,7 +19,7 @@ namespace Seunghak.UIManager
             // 진행 중인 스테이지에 관련된 데이터 받아오기
 
             // 최초에 한번만 세팅될 스테이지 데이터 세팅
-            selectedStageInfo.Init(); // 매개변수 전달 예정
+            selectedStageInfo?.Init(); // 매개변수 전달 예정
             
 
         }

@@ -29,9 +29,8 @@ namespace Seunghak.UIManager
 
     public class GameScenarioWindow : BaseUIWindow
     {
-        [SerializeField] ScenarioScrollView scenarioScrollView;
         [SerializeField] int maxCount; // 생성개수
-
+        [SerializeField] OHScrollView scenarioScrollView;
         List<ScenarioData> scenrioDataList =new List<ScenarioData>();
 
         public override void EnterWindow()
@@ -42,7 +41,7 @@ namespace Seunghak.UIManager
             {
                 scenrioDataList.Add(new ScenarioData(i));
             }
-            
+
             // 데이터를 가져오고 스크롤뷰에 넣어주어 세팅
             scenarioScrollView.InitScrollView(scenrioDataList);
 
@@ -51,12 +50,7 @@ namespace Seunghak.UIManager
         #region OnClick Event
         public void EnterGameModeWindow()
         {
-            ExitWindow();
             UIManager.Instance.PushUI(UI_TYPE.GameModeWindow);
-        }
-        public void EnterStageWindow()
-        {
-            UIManager.Instance.PushUI(UI_TYPE.StageWindow);
         }
         public void EnterLobbyWindow()
         {
