@@ -1,3 +1,4 @@
+using Seunghak.Common;
 using Seunghak.UIManager;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,8 +9,9 @@ namespace Seunghak.UIManager
     public class StageWindow : BaseUIWindow
     {
         [SerializeField] SelectedStageInfo selectedStageInfo;
-        
 
+        [SerializeField] List<JStageData> stageDataList = new List<JStageData>();
+        
         public override void EnterWindow()
         {
             base.EnterWindow();
@@ -24,9 +26,13 @@ namespace Seunghak.UIManager
 
         }
 
-        public void SetStageInfo()
+        public void SetStageInfo(JNationData scnarioChapterData)
         {
-
+            // 챕터 1개당 스테이지는 무조건 5개씩 있음 (조금 불안하긴 하다)
+            for(int i = 0; i < 5; i++)
+            {
+                // stageDataList.Add(JsonDataManager.LoadJsonDatas<JStageData>(E_JSON_TYPE.JStageData)[i.ToString()]);
+            }
         }
 
         public override void ExitWindow()
@@ -42,7 +48,6 @@ namespace Seunghak.UIManager
 
         public void EnterScenarioWindow()
         {
-            ExitWindow();
             UIManager.Instance.PushUI(UI_TYPE.GameScenarioWindow);
         }
 
