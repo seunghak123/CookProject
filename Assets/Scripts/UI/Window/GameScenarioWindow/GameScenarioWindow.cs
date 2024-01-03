@@ -1,53 +1,40 @@
+using Seunghak.Common;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
 namespace Seunghak.UIManager
 {
-    /// <summary>
-    /// 시나리오 하나에 대한 데이터 ( 임시 )
-    /// </summary>
-    public class ScenarioData : CommonScrollItemData
+    public class ScnarioChapterData : CommonScrollItemData
     {
-        public int ID;
-        public int totalStageCount;
+        public JNationData data;
 
-        public ScenarioData(int ID)
+        public ScnarioChapterData(JNationData data)
         {
-            this.ID = ID;
+            this.data = data;
         }
     }
-
-    /// <summary>
-    /// 시나리오 챕터 하나에 대한 데이터 ( 임시 )
-    /// </summary>
-    public class ScenarioChapterData
-    {
-
-    }
-
+    
     public class GameScenarioWindow : BaseUIWindow
     {
-        [SerializeField] int maxCount; // 생성개수
         [SerializeField] OHScrollView scenarioScrollView;
-        List<ScenarioData> scenrioDataList =new List<ScenarioData>();
+        List<ScnarioChapterData> scnarioChapterDataList = new List<ScnarioChapterData>();
 
-        public override void EnterWindow()
+        public override void StartWindow()
         {
-            base.EnterWindow();
+            base.StartWindow();
 
-            for(int i = 0; i < maxCount; i++)
-            {
-                scenrioDataList.Add(new ScenarioData(i));
-            }
+            List<JNationData> nationDataList = JsonDataManager.LoadJsonDatas<JNationData>(E_JSON_TYPE.JNationData).Values.ToList();
+            for (int i = 0; i < nationDataList.Count; i++)
+                scnarioChapterDataList.Add(new ScnarioChapterData(nationDataList[i]));
 
-            // 데이터를 가져오고 스크롤뷰에 넣어주어 세팅
-            scenarioScrollView.InitScrollView(scenrioDataList);
-
+            // 데이터를 가져오고 스크롤뷰에 넣어주어 세팅 (클릭 이벤트는 ScenarioElement 클래스에서 처리)
+            scenarioScrollView.InitScrollView(scnarioChapterDataList);
         }
 
-        #region OnClick Event
+#region OnClick Event
         public void EnterGameModeWindow()
         {
             UIManager.Instance.PushUI(UI_TYPE.GameModeWindow);
@@ -56,7 +43,12 @@ namespace Seunghak.UIManager
         {
             UIManager.Instance.PushUI(UI_TYPE.LobbyWindow);
         }
-        #endregion
+#endregion
+
+        public override void EnterWindow()
+        {
+            base.EnterWindow();
+        }
 
         public override void ExitWindow()
         {
@@ -68,10 +60,8 @@ namespace Seunghak.UIManager
             base.RestoreWindow();
         }
 
-        public override void StartWindow()
-        {
-            base.StartWindow();
-        }
+        
+
         public override void RegistEvent()
         {
             base.RegistEvent();

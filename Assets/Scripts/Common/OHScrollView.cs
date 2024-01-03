@@ -111,6 +111,10 @@ public class OHScrollView : MonoBehaviour
     }
     public void InitScrollView<T>(List<T> infos) where T : CommonScrollItemData
     {
+        // 중복 초기화 예외처리
+        if (IsInit)
+            return;
+
         // 초기화
         IsInit = true;
         scrollViewTransform.transform.localPosition = Vector3.zero;
@@ -130,7 +134,9 @@ public class OHScrollView : MonoBehaviour
         scrollRect.horizontal = direction == E_SCROLLDIRECT.HORIZONTAL;
         scrollRect.vertical = direction == E_SCROLLDIRECT.VERTICAL;
         scrollRect.content = ScrollRectTransform;
-        
+        scrollRect.movementType = (maxCount <= lintItemCount) ? 
+            ScrollRect.MovementType.Clamped : ScrollRect.MovementType.Elastic;
+
         // GridLayoutGroup 세팅
         GridLayoutGroup gridGroup = scrollContent.GetComponent<GridLayoutGroup>();
         gridGroup.cellSize = new Vector2(itemPrototype.sizeDelta.x, itemPrototype.sizeDelta.y);
@@ -191,6 +197,7 @@ public class OHScrollView : MonoBehaviour
     {
         itemInfoLists = infos;
     }
+
     void Update()
     {
         if(!IsInit || itemList.First == null)
