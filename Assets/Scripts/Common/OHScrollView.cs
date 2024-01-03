@@ -111,6 +111,10 @@ public class OHScrollView : MonoBehaviour
     }
     public void InitScrollView<T>(List<T> infos) where T : CommonScrollItemData
     {
+        // 중복 초기화 예외처리
+        if (IsInit)
+            return;
+
         // 초기화
         IsInit = true;
         scrollViewTransform.transform.localPosition = Vector3.zero;
@@ -193,6 +197,7 @@ public class OHScrollView : MonoBehaviour
     {
         itemInfoLists = infos;
     }
+
     void Update()
     {
         if(!IsInit || itemList.First == null)

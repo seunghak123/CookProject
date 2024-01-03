@@ -19,7 +19,7 @@ namespace Seunghak.UIManager
 
         public void OnPostSetupItems()
         {
-            
+
         }
 
         public void OnUpdateItem(GameObject obj, ScnarioChapterData infos)
