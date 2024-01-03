@@ -19,27 +19,22 @@ namespace Seunghak.UIManager
     
     public class GameScenarioWindow : BaseUIWindow
     {
-        [SerializeField] int maxCount; // 생성개수
         [SerializeField] OHScrollView scenarioScrollView;
         List<ScnarioChapterData> scnarioChapterDataList = new List<ScnarioChapterData>();
 
-        public override void EnterWindow()
+        public override void StartWindow()
         {
-            base.EnterWindow();
-
-            // Nation 데이터를 가져와서 세팅
+            base.StartWindow();
 
             List<JNationData> nationDataList = JsonDataManager.LoadJsonDatas<JNationData>(E_JSON_TYPE.JNationData).Values.ToList();
-
             for (int i = 0; i < nationDataList.Count; i++)
                 scnarioChapterDataList.Add(new ScnarioChapterData(nationDataList[i]));
 
-            // 데이터를 가져오고 스크롤뷰에 넣어주어 세팅
+            // 데이터를 가져오고 스크롤뷰에 넣어주어 세팅 (클릭 이벤트는 ScenarioElement 클래스에서 처리)
             scenarioScrollView.InitScrollView(scnarioChapterDataList);
-
         }
 
-        #region OnClick Event
+#region OnClick Event
         public void EnterGameModeWindow()
         {
             UIManager.Instance.PushUI(UI_TYPE.GameModeWindow);
@@ -48,7 +43,12 @@ namespace Seunghak.UIManager
         {
             UIManager.Instance.PushUI(UI_TYPE.LobbyWindow);
         }
-        #endregion
+#endregion
+
+        public override void EnterWindow()
+        {
+            base.EnterWindow();
+        }
 
         public override void ExitWindow()
         {
@@ -60,10 +60,8 @@ namespace Seunghak.UIManager
             base.RestoreWindow();
         }
 
-        public override void StartWindow()
-        {
-            base.StartWindow();
-        }
+        
+
         public override void RegistEvent()
         {
             base.RegistEvent();
