@@ -13,8 +13,9 @@ namespace Seunghak.UIManager
         [SerializeField] Image stageLockStateImage;
         [SerializeField] TextMeshProUGUI stageNameText;
 
+        public bool IsLock { get; private set; } = false; // 세팅 필요
+
         Action<int> OnStageClickEvent;
-        bool isLock = true;
         int stageID = -1;
 
         public void SetStageInfo(Action<int> OnStageClickEvent, int stageID)
@@ -22,9 +23,16 @@ namespace Seunghak.UIManager
             this.OnStageClickEvent = OnStageClickEvent;
             this.stageID = stageID;
 
-            // 이거 왜 안 가져와지는지 확인 ㄱ
-            // stageNameText.text = JsonDataManager.LoadJsonDatas<JStageData>(E_JSON_TYPE.JStageData)[stageID.ToString()].Name;
-            
+            string stageName = JsonDataManager.LoadJsonDatas<JStageData>(E_JSON_TYPE.JStageData)[stageID.ToString()].Name;
+
+            if (stageName == null)
+            {
+                Debug.Log($"{stageID}번 스테이지 데이터가 비어있음");
+                return;
+            }
+
+            stageNameText.text = stageName;
+
             // 이전 스테이지가 존재할 경우, 이전 스테이지를 확인해 잠금여부 이미지 세팅
         }
 
@@ -35,8 +43,7 @@ namespace Seunghak.UIManager
                 Debug.LogError("콜백함수가 null이거나 스테이지아이디가 세팅되지 않음");
             }
 
-            if (isLock)
-                return;
+            // if (isLock) return;
 
             OnStageClickEvent.Invoke(stageID);
         }

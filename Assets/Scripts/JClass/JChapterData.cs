@@ -1,7 +1,7 @@
 using System;
 
 [System.Serializable]
-public record JNationData : JBaseData
+public record JChapterData : JBaseData
 {
 	public int ID;
 	public string Name;

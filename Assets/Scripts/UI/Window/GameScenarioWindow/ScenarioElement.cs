@@ -13,7 +13,7 @@ namespace Seunghak.UIManager
         [SerializeField] TextMeshProUGUI chapterNameText;
         [SerializeField] Image chapterImage;
         [SerializeField] TextMeshProUGUI ClearStateInfoText;
-        JNationData scnarioChapterData;
+        int currChapterID = -1;
 
         private bool isDrag = false;
 
@@ -24,9 +24,8 @@ namespace Seunghak.UIManager
 
         public void OnUpdateItem(GameObject obj, ScnarioChapterData infos)
         {
-            scnarioChapterData = infos.data;
-
-            chapterNameText.text = scnarioChapterData.Name.ToString();
+            chapterNameText.text = infos.data.Name.ToString();
+            currChapterID = infos.data.ID;
             
             // 해당 시나리오 챕터의 스테이지를 확인해서 세팅해야 함 (임시)
             ClearStateInfoText.text = "0/15"; 
@@ -41,7 +40,8 @@ namespace Seunghak.UIManager
             
             // 이동
             StageWindow stageWindow = (StageWindow)UIManager.Instance.PushUI(UI_TYPE.StageWindow);
-            stageWindow.SetStageInfo(scnarioChapterData);
+            stageWindow.Init();
+            stageWindow.SetStageInfo(currChapterID);
         }
 
         public void OnBeginDrag(PointerEventData e)

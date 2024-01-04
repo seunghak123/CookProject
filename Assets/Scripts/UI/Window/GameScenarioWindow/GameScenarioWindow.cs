@@ -9,9 +9,9 @@ namespace Seunghak.UIManager
 {
     public class ScnarioChapterData : CommonScrollItemData
     {
-        public JNationData data;
+        public JChapterData data;
 
-        public ScnarioChapterData(JNationData data)
+        public ScnarioChapterData(JChapterData data)
         {
             this.data = data;
         }
@@ -26,7 +26,7 @@ namespace Seunghak.UIManager
         {
             base.StartWindow();
 
-            List<JNationData> nationDataList = JsonDataManager.LoadJsonDatas<JNationData>(E_JSON_TYPE.JNationData).Values.ToList();
+            List<JChapterData> nationDataList = JsonDataManager.LoadJsonDatas<JChapterData>(E_JSON_TYPE.JChapterData).Values.ToList();
             for (int i = 0; i < nationDataList.Count; i++)
                 scnarioChapterDataList.Add(new ScnarioChapterData(nationDataList[i]));
 

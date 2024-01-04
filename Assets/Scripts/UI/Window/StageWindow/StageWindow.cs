@@ -2,6 +2,8 @@ using Seunghak.Common;
 using Seunghak.UIManager;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,19 +14,38 @@ namespace Seunghak.UIManager
         [SerializeField] CurrentStageInfo currentStageInfo;
         [SerializeField] StageListInfo stageListInfo;
 
-        JStageData firstStageData; // 현재 챕터의 첫번째 데이터
-        
-        public void SetStageInfo(JNationData scnarioChapterData)
-        {
-            string key = (scnarioChapterData.ID * 5 - 4).ToString(); // 불안하긴 함 (임시)
-            firstStageData = JsonDataManager.LoadJsonDatas<JStageData>(E_JSON_TYPE.JStageData)[key];
+        Dictionary<int, JStageData> stageDataDict = new Dictionary<int, JStageData>();
+        bool isInit = false;
+        int currChapterID;
 
-            stageListInfo.SetStageListInfo(CallBack, firstStageData);
+        public void Init()
+        {
+            if (isInit)
+                return;
+
+            isInit = true;
+
+            List<JStageData> list = JsonDataManager.LoadJsonDatas<JStageData>(E_JSON_TYPE.JStageData).Values.ToList();
+            foreach(JStageData data in list)
+                stageDataDict.Add(data.ID, data);
         }
 
-        public void CallBack(int id)
+        public void SetStageInfo(int chapterID)
         {
-            // 임시임시~
+            currChapterID = chapterID;
+            List<JStageData> tempStageList = new List<JStageData>();
+            for(int i = 0; i < 5; i++)
+            {
+                int key = chapterID * 5 - 4 + i;
+                if (stageDataDict.ContainsKey(key))
+                    tempStageList.Add(stageDataDict[key]);
+            }
+
+            stageListInfo.SetStageListInfo(StageClickEventCallBack, tempStageList);
+        }
+
+        public void StageClickEventCallBack(int id)
+        {
             currentStageInfo.SetCurrntStageInfo(id);
         }
 
@@ -56,17 +77,33 @@ namespace Seunghak.UIManager
 
         public void OnClickPlayStage()
         {
-            // 플레이 할 수 있는 스테이지인지 확인하고 가능하다면, 실행
+            // 플레이가 가능한 스테이지인지 확인하고 ㄱㄱ
         }
 
         public void OnClickNextStateInfo()
         {
-
+            // 현재 스테이지리스트 중에 마지막 스테이지가 클리어되어 있다면
+            // 다음 스테이지가 있는 지 확인하고, 있을 경우 스테이지 정보를 갱신
+            if(stageDataDict.ContainsKey(currChapterID * 5 + 1))
+            {
+                SetStageInfo(currChapterID + 1);
+            }
+            else
+            {
+                Debug.Log("다음 스테이지가 없습니다");
+            }
         }
 
         public void OnCilckPrevStateInfo()
         {
-
+            if(stageDataDict.ContainsKey(currChapterID * 5 - 5))
+            {
+                SetStageInfo(currChapterID - 1);
+            }
+            else
+            {
+                Debug.Log("이전 스테이지가 없습니다");
+            }
         }
         #endregion
 

@@ -633,7 +633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ecfebdac71eca4b89a465dad0929e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCount: 5
   scenarioScrollView: {fileID: 3935495640457618072}
 --- !u!1 &3320965446577291452
 GameObject:
@@ -1557,7 +1556,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3be74385a35b90f479eeb08206f55b08, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 139195b62bea6412ea39217ed507c8e2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
