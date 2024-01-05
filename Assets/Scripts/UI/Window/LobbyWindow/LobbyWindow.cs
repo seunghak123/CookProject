@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +22,12 @@ namespace Seunghak.UIManager
         {
             UIManager.Instance.PushUI(UI_TYPE.ShopWindow);
         }
+
+        public void EnterSelectedCharacterWindow()
+        {
+            UIManager.Instance.PushUI(UI_TYPE.SelectCharacterWindow);
+        }
+
         public void EnterBattleWindow() 
         {
             UIManager.Instance.PushUI(UI_TYPE.BattleWindow);

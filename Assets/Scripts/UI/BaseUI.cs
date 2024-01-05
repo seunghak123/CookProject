@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace Seunghak.UIManager
@@ -21,6 +21,7 @@ namespace Seunghak.UIManager
         GameModeWindow,
         GameScenarioWindow,
         StageWindow,
+        SelectCharacterWindow,
 
         EventBegin = 100,
 
