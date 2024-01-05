@@ -57,7 +57,7 @@ namespace Seunghak.Common
         }
         public void SetDataBaseInfo()
         {
-#if UNITY_EDITOR
+#if !UNITY_EDITOR
             userDataBase = new LocalDataBase();
 #else
             userDataBase = new FireBaseDataBase();
@@ -74,6 +74,8 @@ namespace Seunghak.Common
         public void SetUserToken(string userToken)
         {
             userIDToken = userToken;
+
+            userDataBase.InitDB();
         }
         public bool AutoLogin()
         {
@@ -85,6 +87,10 @@ namespace Seunghak.Common
             //userIDToken 으로 서버쪽에 로그인 메소드 보내고
 
             return true;
+        }
+        public void AddUserItem()
+        {
+            userDataInfo.userItemDatas.AddItem(1, 10000);
         }
         public UserItemDatas GetUserItemData()
         {
@@ -110,9 +116,10 @@ namespace Seunghak.Common
         }
 #endregion DB_SAVE 
     }
+    [Serializable]
     public class UserItemDatas
     {
-        private Dictionary<int, long> itemDic = new Dictionary<int, long>();
+        public Dictionary<int, long> itemDic = new Dictionary<int, long>();
         public bool AddItem(int id, long itemCount)
         {
             if ((int)E_ITEM_TYPE.CRYSTALS == id || (int)E_ITEM_TYPE.VALID_CRYSTALS == id)
@@ -186,6 +193,7 @@ namespace Seunghak.Common
     /// <summary>
     /// 유저 플랫폼, 로그인, 
     /// </summary>
+    [Serializable]
     public class UserInfoData
     {
         public string userKey = string.Empty;
@@ -199,13 +207,14 @@ namespace Seunghak.Common
     /// <summary>
     /// 유저 옵션 데이터
     /// </summary>
+    [Serializable]
     public class UserOptionData
     {
         //로컬 저장예정
-        [Range(0, 100)] private int masterVolume = 50;
-        [Range(0, 100)] private int soundVolume = 50;
-        [Range(0, 100)] private int fbxVolume = 50;
-        private E_LANGUAGE_TYPE userLangType = E_LANGUAGE_TYPE.KOREAN;
+        [Range(0, 100)] public int masterVolume = 50;
+        [Range(0, 100)] public int soundVolume = 50;
+        [Range(0, 100)] public int fbxVolume = 50;
+        public E_LANGUAGE_TYPE userLangType = E_LANGUAGE_TYPE.KOREAN;
         public int MasterVolume { get { return masterVolume; } set { masterVolume = value; } }
         public int SoundVolume { get { return soundVolume; } set { soundVolume = value; } }
         public int FBXVolume { get { return fbxVolume; } set { fbxVolume = value; } }
@@ -215,6 +224,7 @@ namespace Seunghak.Common
     /// <summary>
     /// 유저 스토리 데이터
     /// </summary>
+    [Serializable]
     public class UserStoryDatas
     {
         //어디 까지 꺳는지, 별 몇개인지 , 최대점수 몇점인지 - 

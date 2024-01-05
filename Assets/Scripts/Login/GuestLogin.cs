@@ -1,7 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Seunghak.Common;
+
 namespace Seunghak.LoginSystem
 {
     /// <summary>
@@ -15,8 +17,9 @@ namespace Seunghak.LoginSystem
         }
         public void PlatformLogin(Action successAction)
         {
-            string userToken = Guid.NewGuid().ToString();
+            string userToken = SystemInfo.deviceUniqueIdentifier;
 
+            UserDataManager.Instance.SetUserToken(userToken);
 
             if (successAction != null)
             {

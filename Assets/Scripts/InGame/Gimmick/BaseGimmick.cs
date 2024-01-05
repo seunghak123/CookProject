@@ -31,9 +31,4 @@ public class BaseGimmick : BaseObject
     {
         return true;
     }
-    public virtual async UniTask InterAct()
-    {
-        //disable시 WebRequest 취소 예시
-        //await UnityWebRequest.Get("http://google.co.jp").SendWebRequest().WithCancellation(disableCancellation.Token);
-    }
 }

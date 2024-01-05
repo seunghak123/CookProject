@@ -21,7 +21,7 @@ public class TableObject : BaseToolObject
     {
         base.DoWork(targetAI, param);
         currentWork = false;
-        //ÀÌ°Ç ¿ÀÈ÷·Á param°ªÀÌ ÀÖÀ¸¸é ½ÇÆĞ
+        //ì´ê±´ ì˜¤íˆë ¤ paramê°’ì´ ìˆìœ¼ë©´ ì‹¤íŒ¨
         if(targetAI.HandleObjectData==null || 
             targetAI.HandleObjectData.IsEmpty())
         {
@@ -104,6 +104,7 @@ public class TableObject : BaseToolObject
         if (IsWorkEnd())
         {
             CreateNewFood();
+            currentWorker = null;
         }
         yield break; 
     }

@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class BaseObject : MonoBehaviour
 {
+    protected virtual void Awake()
+    {
+        // 오브젝트 초기화
+        InitObject();
+    }
+    public virtual void InitObject()
+    {
+
+    }
     public virtual void DoWork(BaseAI targetAI, BasicMaterialData param)
     {
     }

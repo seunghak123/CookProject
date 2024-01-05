@@ -17,6 +17,8 @@ public class BaseAI : MonoBehaviour
     [SerializeField] private SkeletonAnimation unitSpineAnim;
     [SerializeField] private UnitStructure unitInfo;
 
+    [SerializeField] private SpriteRenderer foodHoldSpriteRender;
+
     [Space(2)]
     [Header("UnitFuction")]
     [SerializeField, Range(1, 500)] private float characterJumpPower = 80;
@@ -28,10 +30,24 @@ public class BaseAI : MonoBehaviour
     private BasicMaterialData handleObjectData = null;
     public BasicMaterialData HandleObjectData
     {
-        set { handleObjectData = value; }
+        set 
+        { 
+            handleObjectData = value;
+            if(handleObjectData!=null&&!handleObjectData.IsEmpty())
+            {
+                int foodId = handleObjectData.GetFoodId();
+                JFoodObjectData foodObject = JsonDataManager.Instance.GetSingleData<JFoodObjectData>(foodId, E_JSON_TYPE.JFoodObjectData);
+                foodHoldSpriteRender.sprite = SpriteManager.Instance.LoadSprite(foodObject.IconFile);
+                foodHoldSpriteRender.gameObject.SetActive(true);
+            }
+            else
+            {
+                foodHoldSpriteRender.gameObject.SetActive(false);
+            }
+            SetUnitDefaultSpineAnimation();
+        }
         get { return handleObjectData; }
     }
-    private int currentFood = 0;
     private bool isGround = true;
     public bool IsGround
     {
@@ -48,6 +64,7 @@ public class BaseAI : MonoBehaviour
     public void Awake()
     {
         characterRigid = GetComponent<Rigidbody2D>();
+        characterRigid.useFullKinematicContacts = true;
         unitAnim = GetComponentInChildren<Animator>();
         RegistAction();
     }
@@ -113,6 +130,11 @@ public class BaseAI : MonoBehaviour
 
             if(moveDirect!=Vector3.zero)
             {
+                if (targetObject != null)
+                {
+                    targetObject.ExitWork();
+                    targetObject = null;
+                }
                 ChangeAI(E_INGAME_AI_TYPE.UNIT_MOVE);
             }
         }
@@ -170,33 +192,53 @@ public class BaseAI : MonoBehaviour
             currentUnitEvent();
         }
     }
-    protected virtual void UnitMove()
+    public void SetUnitDefaultSpineAnimation()
     {
         Vector3 moveDirect = GetMoveDirect();
-
         TrackEntry track = unitSpineAnim.AnimationState.GetCurrent(0);
-        if(moveDirect == Vector3.zero)
+        if (moveDirect == Vector3.zero)
         {
-            if (track!=null && track.Animation.Name != "Idle")
+            if (track != null && !(track.Animation.Name == "Idle" || track.Animation.Name == "Hold"))
             {
-                unitSpineAnim.AnimationState.SetAnimation(0, "Idle", true);
+                if (HandleObjectData == null || HandleObjectData.IsEmpty())
+                {
+                    unitSpineAnim.AnimationState.SetAnimation(0, "Idle", true);
+                }
+                else
+                {
+                    unitSpineAnim.AnimationState.SetAnimation(0, "Hold", true);
+                }
             }
             unitAnim.SetFloat("Speed", 0);
             IsGround = true;
             ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
             return;
         }
-        if(track!=null &&  track.Animation.Name != "Walk")
+        if (track != null && !(track.Animation.Name == "Walk" || track.Animation.Name == "lift"))
         {
-            unitSpineAnim.AnimationState.SetAnimation(0, "Walk", true);
+            if (HandleObjectData == null || HandleObjectData.IsEmpty())
+            {
+                unitSpineAnim.AnimationState.SetAnimation(0, "Walk", true);
+            }
+            else
+            {
+                unitSpineAnim.AnimationState.SetAnimation(0, "lift", true);
+            }
         }
+    }
+    protected virtual void UnitMove()
+    {
+        Vector3 moveDirect = GetMoveDirect();
+
+        SetUnitDefaultSpineAnimation();
+
         unitAnim.SetFloat("Speed", moveDirect.magnitude);
 
         if (moveDirect.x < 0)
         {
             this.transform.localScale = new Vector3(-1, 1, 1);
         }
-        else
+        else if(moveDirect.x > 0)
         {
             this.transform.localScale = new Vector3(1, 1, 1);
         }
@@ -224,7 +266,7 @@ public class BaseAI : MonoBehaviour
 
         unitAnim.SetFloat("YSpeed", gravityVector.y);
     }
-    private Vector3 GetMoveDirect()
+    public Vector3 GetMoveDirect()
     {
 
         //Input받기

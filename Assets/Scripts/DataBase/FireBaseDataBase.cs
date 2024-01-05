@@ -72,8 +72,6 @@ public class FireBaseDataBase : BaseDataBase
     {
         firebaseRootDB = FirebaseDatabase.DefaultInstance.RootReference;
 
-        firebaseDBs[E_DATABASE_TYPE.USER_INFO] = FirebaseDatabase.DefaultInstance.RootReference.Child(E_DATABASE_TYPE.USER_INFO.ToString()).Child(UserDataManager.Instance.UserIDToken);
-
         for(int i=0;i< (int)E_DATABASE_TYPE.USER_OPTION;i++)
         {
             firebaseDBs[(E_DATABASE_TYPE)i] = FirebaseDatabase.DefaultInstance.RootReference.Child(((E_DATABASE_TYPE)i).ToString()).

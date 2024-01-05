@@ -1,3 +1,4 @@
+using Seunghak.Common;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,17 @@ namespace Seunghak.UIManager
         
         [SerializeField] private Texture backgroundTexture;
         //이벤트 슬라이더
-
+        public void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.K))
+            {
+                UserDataManager.Instance.SaveUserData();
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                UserDataManager.Instance.AddUserItem();
+            }
+        }
         public override void EnterWindow()
         {
             base.EnterWindow();

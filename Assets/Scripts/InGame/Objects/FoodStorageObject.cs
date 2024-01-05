@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class FoodStorageObject : ProgressedBaseObject
@@ -26,8 +26,10 @@ public class FoodStorageObject : ProgressedBaseObject
             if(toolData.ID.Equals(1015))
             {
                 workingAI.HandleObjectData.PushMaterial(1);
+                workingAI.SetUnitDefaultSpineAnimation();
             }
         }
+        currentWorker = null;
     }
     public override void DoWork(BaseAI targetAI, BasicMaterialData param)
     {
@@ -55,7 +57,6 @@ public class FoodStorageObject : ProgressedBaseObject
 
             makedMaterial = new BasicMaterialData();
             makedMaterial.PutMaterial(toolData.OutputFood);
-
             return true;
         }
 

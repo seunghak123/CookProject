@@ -37,15 +37,7 @@ public class BaseToolObject : BaseObject
         }
         return false;
     }
-    protected virtual void Awake()
-    {
-        // 오브젝트 초기화
-        InitObject();
-    }
     protected virtual void UpdateUI()
-    {
-    }
-    public virtual void InitObject() 
     {
     }
     public override bool GetIsHold()
@@ -73,8 +65,6 @@ public class BaseToolObject : BaseObject
         if (workEnd)
         {
             currentWork = false;
-            currentWorker.SetAnimationWithName("Idle");
-
             return true;
         }
 
