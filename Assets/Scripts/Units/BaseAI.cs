@@ -174,7 +174,7 @@ public class BaseAI : MonoBehaviour
         }
 
         dropObject.SetObjectInfo(0);
-        handleObjectData = null;
+        HandleObjectData = null;
 
         Vector3 throwDirect = new Vector3(this.transform.localScale.x, 1, 0);
         Rigidbody2D dropRigid = dropObject.GetComponent<Rigidbody2D>();
@@ -198,13 +198,16 @@ public class BaseAI : MonoBehaviour
         TrackEntry track = unitSpineAnim.AnimationState.GetCurrent(0);
         if (moveDirect == Vector3.zero)
         {
-            if (track != null && !(track.Animation.Name == "Idle" || track.Animation.Name == "Hold"))
+            if (HandleObjectData == null || HandleObjectData.IsEmpty())
             {
-                if (HandleObjectData == null || HandleObjectData.IsEmpty())
+                if (track != null && !(track.Animation.Name == "Idle"))
                 {
                     unitSpineAnim.AnimationState.SetAnimation(0, "Idle", true);
                 }
-                else
+            }
+            else
+            {
+                if (track != null && !(track.Animation.Name == "Hold"))
                 {
                     unitSpineAnim.AnimationState.SetAnimation(0, "Hold", true);
                 }
@@ -214,13 +217,17 @@ public class BaseAI : MonoBehaviour
             ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
             return;
         }
-        if (track != null && !(track.Animation.Name == "Walk" || track.Animation.Name == "lift"))
+
+        if (HandleObjectData == null || HandleObjectData.IsEmpty())
         {
-            if (HandleObjectData == null || HandleObjectData.IsEmpty())
+            if (track != null && !(track.Animation.Name == "Walk"))
             {
                 unitSpineAnim.AnimationState.SetAnimation(0, "Walk", true);
             }
-            else
+        }
+        else
+        {
+            if (track != null && !(track.Animation.Name == "lift"))
             {
                 unitSpineAnim.AnimationState.SetAnimation(0, "lift", true);
             }
@@ -258,6 +265,8 @@ public class BaseAI : MonoBehaviour
             if (IsGround)
             {
                 unitAnim.SetTrigger("Jump");
+                characterRigid.velocity = Vector3.zero;
+                characterRigid.angularVelocity = 0.0f;
                 characterRigid.AddForce(Vector2.up * characterJumpPower * Time.fixedDeltaTime, ForceMode2D.Impulse);
             }
         }

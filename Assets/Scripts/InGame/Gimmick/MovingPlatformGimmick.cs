@@ -112,7 +112,7 @@ public class MovingPlatformGimmick : BaseGimmick
                 while (!isStop)
                 {
                     Vector3 moveDirect = movedAI.GetMoveDirect();
-                    await UniTask.NextFrame();
+                    await UniTask.NextFrame(destroyCancellation.Token);
                     currentPos = Vector3.Lerp(targetPosLists[currentPosIndex], targetPosLists[nextPosIndex], delayTime / moveTime);
                     Vector3 direct = targetPosLists[nextPosIndex] - targetPosLists[currentPosIndex];
                     if(direct.x >0)
@@ -157,7 +157,7 @@ public class MovingPlatformGimmick : BaseGimmick
                 while (!isStop)
                 {
                     delayTime += Time.deltaTime;
-                    await UniTask.NextFrame();
+                    await UniTask.NextFrame(destroyCancellation.Token);
                     currentPos = Vector3.Lerp(targetPosLists[currentPosIndex], targetPosLists[nextPosIndex], delayTime / moveTime);
                     MoveRelatedTransform(currentPos - this.transform.position);
                     this.transform.position = currentPos;
@@ -178,7 +178,7 @@ public class MovingPlatformGimmick : BaseGimmick
                 while(true)
                 {
                     delayTime += Time.deltaTime;
-                    await UniTask.NextFrame();
+                    await UniTask.NextFrame(destroyCancellation.Token);
                     currentPos = Vector3.Lerp(targetPosLists[currentPosIndex], targetPosLists[nextPosIndex], delayTime / moveTime);
                     Vector3 moveDistance = currentPos - this.transform.position;
                     this.transform.position = currentPos;

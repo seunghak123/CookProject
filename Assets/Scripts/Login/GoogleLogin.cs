@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Seunghak.LoginSystem
 {
     using System;
 #if UNITY_ANDROID || UNITY_IOS
     using GooglePlayGames;
+    using Seunghak.Common;
+
     public class GoogleLogin :  LoginInterface
     {
         private Action loginSuccessAction = null;
@@ -33,8 +35,7 @@ namespace Seunghak.LoginSystem
         private void GoogleLoginSuccess()
         {
             loginSuccessAction();
-            //서버에 해당 UserID를 보낼것
-            //PlayGamesPlatform.Instance.GetUserId();
+            UserDataManager.Instance.SetUserToken(PlayGamesPlatform.Instance.GetUserId());
         }
         private void GoogleLoginFail()
         {

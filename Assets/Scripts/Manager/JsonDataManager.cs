@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -91,6 +91,10 @@ namespace Seunghak.Common
             }
 
             return null;
+        }
+        public List<T> GetMultiDatas<T>(E_JSON_TYPE type) where T : JBaseData
+        {
+            return new List<T>(LoadJsonDatas<T>(type).Values);
         }
         public JToolObjectData GetToolId(int toolId)
         {

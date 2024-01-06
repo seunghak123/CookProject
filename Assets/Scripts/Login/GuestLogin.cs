@@ -25,7 +25,6 @@ namespace Seunghak.LoginSystem
             {
                 successAction();
             }
-            //Token 값에 따라 
         }
     }
 }

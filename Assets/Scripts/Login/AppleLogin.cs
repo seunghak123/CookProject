@@ -1,4 +1,5 @@
-﻿using System;
+using Seunghak.Common;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SignInWithApple;
@@ -48,6 +49,7 @@ namespace Seunghak.LoginSystem
                 {
                     loginSuccessAction();
                 }
+                UserDataManager.Instance.SetUserToken(appleUserId);
                 //로그인 성공 및 서버 (현재는 sqlite) 에 계정 시리얼 번호 요청및 검증
             }
         }
