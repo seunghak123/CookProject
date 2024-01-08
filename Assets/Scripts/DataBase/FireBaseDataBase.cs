@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 public class FireBaseDataBase : BaseDataBase
 {
     DatabaseReference firebaseRootDB = null;
+    DatabaseReference firebaseLogRootDB = null;
 
     private Dictionary<E_DATABASE_TYPE, DatabaseReference> firebaseDBs = new Dictionary<E_DATABASE_TYPE, DatabaseReference>();
     public void SaveDB(UserDataInfo saveData)
@@ -78,6 +79,15 @@ public class FireBaseDataBase : BaseDataBase
                 Child(UserDataManager.Instance.UserIDToken);
         }
 
+        //로그용 DB 세팅
+        AppOptions options = new AppOptions();
+        options.AppId = ("1:321088556920:android:e2f547534363e5c653c28d"); 
+        options.ApiKey = ("AIzaSyAqPRcyDq7cAO2IUf3D3KbEbzKPFyLjOOE");
+        options.DatabaseUrl = new System.Uri("https://kirin-db-test-default-rtdb.firebaseio.com/");
+
+        FirebaseApp debugApp = FirebaseApp.Create(options);
+        FirebaseDatabase secondaryDatabase = FirebaseDatabase.GetInstance(debugApp);
+        firebaseLogRootDB = secondaryDatabase.RootReference;
         return true;
     }
     public void UpdateDB(UserDataInfo updateData)

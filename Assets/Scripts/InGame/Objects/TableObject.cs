@@ -84,9 +84,13 @@ public class TableObject : BaseToolObject
         }
 
         currentWorker.HandleObjectData = null;
-        if(IngameManager.currentManager.GetRecipeFoodResult(foodResult) != 0)
+        if(foodResult.Count>=2&& IngameManager.currentManager.GetRecipeFoodResult(foodResult) != 0)
         {
             currentTableFood.PushMaterialList(mixedFood.GetFoodResult());
+        }
+        else if(foodResult.Count == 1 && IngameManager.currentManager.GetRecipeFoodResult(foodResult) != 0)
+        {
+            currentTableFood.PushMaterial(foodResult[0]);
         }
 
         if (currentTableFood.HasPlate())

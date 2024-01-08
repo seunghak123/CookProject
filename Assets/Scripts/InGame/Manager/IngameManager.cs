@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Seunghak.Common;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +10,8 @@ public class IngameManager : MonoBehaviour
 {
     public static IngameManager currentManager = null;
     public static int curentScore = 0;
-
+    public bool isStart = false;
+    public bool isPause = false;
     [Header("SceneObject")]
     [SerializeField] private Transform mapSpawnPos = null;
     [SerializeField] private Transform uiSpawnPos = null;
@@ -180,12 +181,10 @@ public class IngameManager : MonoBehaviour
 
         ingameUI = CreateUI(1);
         CreateMapData(1);
-        //enemyDataJson 읽어서 적 데이터 가져올 것
+
         //RenderSettings.skybox = targetMat;
 
-
-        // 테스트 코드 (준혁)
-        IngameCreater.CreateFoodObject(1001);
+        //대기하다 isStart 를 true로
     }
     public void CreateMapData(int stageId)
     {

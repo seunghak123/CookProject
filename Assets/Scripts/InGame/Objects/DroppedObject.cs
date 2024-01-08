@@ -1,11 +1,11 @@
-﻿using Seunghak.Common;
+using Seunghak.Common;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DroppedObject : BaseToolObject
 {
-    [SerializeField] private SpriteRenderer droppedSprite = null;
+    [SerializeField] private SpriteRenderer droppedSprite;
     private bool isPlate = false;
     public override void InitObject()
     {
@@ -22,7 +22,8 @@ public class DroppedObject : BaseToolObject
         {
             isPlate = true;
         }
-        //droppedSprite.sprite = //
+        JFoodObjectData foodObject = JsonDataManager.Instance.GetSingleData<JFoodObjectData>(setInfoId, E_JSON_TYPE.JFoodObjectData);
+        droppedSprite.sprite = SpriteManager.Instance.LoadSprite(foodObject.IconFile);
         //Id에 따라 이미지 세팅 setInfoId통해서 아이디 받는다
 
         //이미지 세팅

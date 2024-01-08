@@ -173,7 +173,7 @@ public class BaseAI : MonoBehaviour
             return;
         }
 
-        dropObject.SetObjectInfo(0);
+        dropObject.SetObjectInfo(HandleObjectData.GetFoodId());
         HandleObjectData = null;
 
         Vector3 throwDirect = new Vector3(this.transform.localScale.x, 1, 0);
