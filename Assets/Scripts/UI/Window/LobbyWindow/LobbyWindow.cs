@@ -29,23 +29,25 @@ namespace Seunghak.UIManager
 
             //userInfoDataUI.SetData();
         }
+
+        public void EnterCharacterSelectWindow()
+        {
+            UIManager.Instance.PushUI(UI_TYPE.CharacterSelectWindow);
+        }
+
+        public void EnterGameModeSelectWindow()
+        {
+            UIManager.Instance.PushUI(UI_TYPE.GameModeSelectWindow);
+        }
+
         public void EnterShopWindow()
         {
             UIManager.Instance.PushUI(UI_TYPE.ShopWindow);
         }
 
-        public void EnterSelectedCharacterWindow()
-        {
-            UIManager.Instance.PushUI(UI_TYPE.SelectCharacterWindow);
-        }
-
         public void EnterBattleWindow() 
         {
             UIManager.Instance.PushUI(UI_TYPE.BattleWindow);
-        }
-        public void EnterGameModeWindow()
-        {
-            UIManager.Instance.PushUI(UI_TYPE.GameModeWindow);
         }
         public void OpenEventPopup()
         {

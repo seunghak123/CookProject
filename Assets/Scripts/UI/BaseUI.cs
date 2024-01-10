@@ -18,10 +18,9 @@ namespace Seunghak.UIManager
         ShopWindow,
         BattleWindow,
         InventoryWindow,
-        GameModeWindow,
-        GameScenarioWindow,
-        StageWindow,
-        SelectCharacterWindow,
+        GameModeSelectWindow,
+        ScenarioStageSelectWindow,
+        CharacterSelectWindow,
 
         EventBegin = 100,
 
