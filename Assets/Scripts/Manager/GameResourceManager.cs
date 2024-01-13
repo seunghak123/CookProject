@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Seunghak.UIManager;
@@ -438,7 +438,7 @@ namespace Seunghak.Common
             if (prefabObjectpools.ContainsKey(objectName))
             {
                 poolObject = prefabObjectpools[objectName].GetPoolObject();
-                poolObject.transform.parent = null;
+                poolObject.transform.SetParent(null);
             }
 
             UpdateAssetBundleObjectMatrial(poolObject);
