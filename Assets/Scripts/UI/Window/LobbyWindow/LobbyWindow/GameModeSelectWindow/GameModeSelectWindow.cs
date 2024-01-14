@@ -7,10 +7,14 @@ using UnityEngine.UI;
 
 namespace Seunghak.UIManager
 {
+    /// <summary>
+    /// 게임 모드 프리팹과 동일한 이름을 가지고 있어야 함
+    /// </summary>
     public enum E_GAMEMODE
     {
         Unknown = 0,
         ScenarioMode = 1,
+        TestMode = 2,
     }
 
     public class GameModeSelectWindow : BaseUIWindow
@@ -30,12 +34,10 @@ namespace Seunghak.UIManager
                 Debug.LogError("gameModeNum에 0이 들어옴 E_GAMEMODE 열거형 확인요망");
 
             if ((int)currGameMode == gameModeNum)
-            {
-                Debug.Log("엥?");
                 return;
-            }
 
             E_GAMEMODE gameMode = (E_GAMEMODE)gameModeNum;
+            currGameMode = gameMode;
             BaseGameMode baseGameMode;
 
             if (gameModeDic.ContainsKey(gameMode) && gameModeDic[gameMode] != null)
@@ -48,8 +50,8 @@ namespace Seunghak.UIManager
                 if(gameModeDic.ContainsKey(gameMode))
                     gameModeDic.Remove(gameMode);
 
-                baseGameMode = GameResourceManager.Instance.SpawnObject(E_GAMEMODE.ScenarioMode.ToString()).GetComponent<BaseGameMode>();
-                gameModeDic.Add(E_GAMEMODE.ScenarioMode, baseGameMode);
+                baseGameMode = GameResourceManager.Instance.SpawnObject(gameMode.ToString()).GetComponent<BaseGameMode>();
+                gameModeDic.Add(gameMode, baseGameMode);
 
                 baseGameMode.Open(ContentsAreaTr);
             }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Seunghak.UIManager
 {
-    public class ScenarioMode : BaseGameMode
+    public class TestMode : BaseGameMode
     {
         public override bool Init()
         {
