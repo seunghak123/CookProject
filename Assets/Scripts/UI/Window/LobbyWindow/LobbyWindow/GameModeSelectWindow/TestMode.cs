@@ -13,7 +13,7 @@ namespace Seunghak.UIManager
             if (base.Init() == false)
                 return false;
 
-            GameMode = E_GAMEMODE.ScenarioMode;
+            GameMode = E_GAMEMODE.TestMode;
 
             // TODO
 

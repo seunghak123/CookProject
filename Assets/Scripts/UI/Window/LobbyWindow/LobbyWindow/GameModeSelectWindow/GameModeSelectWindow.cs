@@ -26,7 +26,7 @@ namespace Seunghak.UIManager
         E_GAMEMODE currGameMode = E_GAMEMODE.Unknown;
         
         /// <summary>
-        /// E_GAMEMODE의 넘버를 받아서 동작하는 OnClick 함수 ( 불안하긴 해서 일단 임시 )
+        /// E_GAMEMODE의 넘버를 받아서 해당하는 GameMode를 켜주는 메서드
         /// </summary>
         public void OnClickGameModeSelect(int gameModeNum)
         {
@@ -55,6 +55,10 @@ namespace Seunghak.UIManager
 
                 baseGameMode.Open(ContentsAreaTr);
             }
+
+            foreach(BaseGameMode gm in gameModeDic.Values)
+                if(gm.GameMode != gameMode)
+                    gm.Close();
         }
 
         public override void EnterWindow()
