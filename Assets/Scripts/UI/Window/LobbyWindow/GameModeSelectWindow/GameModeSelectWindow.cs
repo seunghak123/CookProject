@@ -1,6 +1,7 @@
 using Seunghak.Common;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,8 +21,14 @@ namespace Seunghak.UIManager
     public class GameModeSelectWindow : BaseUIWindow
     {
         [SerializeField] Transform ContentsAreaTr;
+        [SerializeField] TextMeshProUGUI gameModeNameText;
 
         Dictionary<E_GAMEMODE, BaseGameMode> gameModeDic = new Dictionary<E_GAMEMODE, BaseGameMode>();
+        Dictionary<E_GAMEMODE, string> gameModeNameDic = new Dictionary<E_GAMEMODE, string>()
+        {
+            { E_GAMEMODE.ScenarioMode, "시나리오 모드" }, 
+            { E_GAMEMODE.TestMode, "테스트 모드" },
+        };
 
         E_GAMEMODE currGameMode = E_GAMEMODE.Unknown;
         
@@ -39,6 +46,11 @@ namespace Seunghak.UIManager
             E_GAMEMODE gameMode = (E_GAMEMODE)gameModeNum;
             currGameMode = gameMode;
             BaseGameMode baseGameMode;
+
+            if (gameModeNameDic.ContainsKey(gameMode))
+                gameModeNameText.text = gameModeNameDic[gameMode];
+            else
+                Debug.Log($"{gameMode}는 사전에 없습니다");
 
             if (gameModeDic.ContainsKey(gameMode) && gameModeDic[gameMode] != null)
             {

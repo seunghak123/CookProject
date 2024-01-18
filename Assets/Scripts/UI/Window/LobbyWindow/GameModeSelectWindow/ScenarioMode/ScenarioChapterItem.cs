@@ -58,6 +58,6 @@ public class ScenarioChapterItem : MonoBehaviour, OHScrollView.IInfiniteScrollSe
     public void EnterScenarioStageSelectWindow()
     {
         ScenarioStageSelectWindow stageSelectWindow = (ScenarioStageSelectWindow)UIManager.Instance.PushUI(UI_TYPE.ScenarioStageSelectWindow);
-        stageSelectWindow.Init(chapterData);
+        stageSelectWindow.Init(chapterData.ID);
     }
 }

@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Seunghak.Common
@@ -104,9 +105,23 @@ namespace Seunghak.Common
 
             return toolData;
         }
+        public JChapterData GetChapterData(int chapterId)
+        {
+            Dictionary<string, JChapterData> chapterDatas = LoadJsonDatas<JChapterData>(E_JSON_TYPE.JChapterData);
+
+            if (chapterDatas.ContainsKey(chapterId.ToString()) == false)
+                return null;
+
+            JChapterData chapterData = chapterDatas[chapterId.ToString()];
+
+            return chapterData;
+        }
         public JStageData GetStageData(int stageId)
         {
             Dictionary<string, JStageData> stageDatas = LoadJsonDatas<JStageData>(E_JSON_TYPE.JStageData);
+
+            if(stageDatas.ContainsKey(stageId.ToString()) == false)
+                return null;
 
             JStageData stageData = stageDatas[stageId.ToString()];
 
