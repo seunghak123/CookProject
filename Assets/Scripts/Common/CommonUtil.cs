@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -96,6 +96,28 @@ namespace Seunghak.Common
                 Debug.Log($"Convert HashValue Error {e.Message}");
             }
             return returnValue;
+        }
+        public static string GetTimerString(float timer)
+        {
+            string timerString = string.Empty;
+            int hour = (int)timer / 3600;
+            int mins = ((int)timer % 3600) / 60;
+            int seconds = (int)timer % 60 ;
+            timer = timer <= 0 ? 0 : timer;
+            if (timer < 60.0f)
+            {
+                timerString = $"{timer.ToString("F2")}초" ;
+            }
+            else if(timer <3600.0f)
+            {
+                timerString = $"{mins}분{seconds}초";
+            }
+            else
+            {
+                timerString = $"{hour}시{mins}분";
+            }
+
+            return timerString;
         }
         #endregion PlayerPref
     }

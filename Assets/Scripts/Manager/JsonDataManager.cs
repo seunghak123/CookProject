@@ -141,6 +141,24 @@ namespace Seunghak.Common
 
             return recipeData;
         }
+        public List<JRecipeData> GetRecipeGroupData(int groupId)
+        {
+            List<JRecipeProbabilityData> recipeData = GetMultiDatas<JRecipeProbabilityData>(E_JSON_TYPE.JRecipeProbabilityData);
+
+            List<int> recipeIdLists = recipeData.FindAll(find => find.GroupID == groupId).ConvertAll<int>(find => find.RecipeID);
+
+            Dictionary<string, JRecipeData> groupRecipeDic = LoadJsonDatas<JRecipeData>(E_JSON_TYPE.JRecipeData);
+
+            List<JRecipeData> returnData = new List<JRecipeData>();
+            for(int i=0;i<recipeIdLists.Count;i++)
+            {
+                if(groupRecipeDic.ContainsKey(recipeIdLists[i].ToString()))
+                {
+                    returnData.Add(groupRecipeDic[recipeIdLists[i].ToString()]);
+                }
+            }
+            return returnData;
+        }
         public List<JRecipeData> GetRecipeLists()
         {
             return new List<JRecipeData>(LoadJsonDatas<JRecipeData>(E_JSON_TYPE.JRecipeData).Values);

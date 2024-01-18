@@ -13,4 +13,5 @@ public record JRecipeData : JBaseData
 	public int[] ComplexFood;
 	public int FoodOutput;
 	public int Score;
+	public int LimitTime;
 }

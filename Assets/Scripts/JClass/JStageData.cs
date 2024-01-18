@@ -5,7 +5,7 @@ public record JStageData : JBaseData
 {
 	public int ID;
 	public string Name;
-	public int NationID;
+	public int ChapterID;
 	public int NextStageID;
 	public int ProbabilityGroupID;
 	public int score1;
@@ -13,4 +13,6 @@ public record JStageData : JBaseData
 	public int score3;
 	public string StageFile;
 	public string StagePrefab;
+	public int StageTimer;
+	public int StartRecipeValue;
 }

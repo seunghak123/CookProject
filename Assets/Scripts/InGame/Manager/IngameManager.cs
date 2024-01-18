@@ -1,5 +1,7 @@
+using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using Seunghak.Common;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -9,9 +11,11 @@ using UnityEngine.AI;
 public class IngameManager : MonoBehaviour
 {
     public static IngameManager currentManager = null;
-    public static int curentScore = 0;
+    public static int currentScore = 0;
+    public float currentTimer = 90.0f;
     public bool isStart = false;
     public bool isPause = false;
+    public bool isGameEnd = false;
     [Header("SceneObject")]
     [SerializeField] private Transform mapSpawnPos = null;
     [SerializeField] private Transform uiSpawnPos = null;
@@ -27,6 +31,8 @@ public class IngameManager : MonoBehaviour
     private Dictionary<string, int> recipeOutputDic = new Dictionary<string, int>();
 
     private List<JRecipeData> currentClearRecipe = new List<JRecipeData>();
+    private JStageData currentStageData;
+    private List<JRecipeData> currentCopyRecipeLists = new List<JRecipeData>();
     private void Awake()
     {
         currentManager = this;
@@ -45,6 +51,27 @@ public class IngameManager : MonoBehaviour
         {
             CreateRecipe(1);
         }
+
+        if(currentTimer<=0)
+        {
+            isGameEnd = true;
+        }
+    }
+    public bool IsPlaying()
+    {
+        return isStart && !isPause && !isGameEnd;
+    }
+    public void InitGame()
+    {
+        //필요한거 삭제 처리
+    }
+    private void ClearUI()
+    {
+        GameResourceManager.Instance.DestroyObject(ingameUI.gameObject);
+        recipeDataLists.Clear();
+        currentClearRecipe.Clear();
+        currentCopyRecipeLists.Clear();
+        currentStageData = null;
     }
     private void CreateRecipe(int recipeId)
     {
@@ -52,20 +79,29 @@ public class IngameManager : MonoBehaviour
         currentClearRecipe.Add(newRecipe);
         ingameUI.CreateRecipe(newRecipe);
     }
+    private void CreateRandomRecipe(List<JRecipeData> recipeList)
+    {
+        UnityEngine.Random.InitState(((int)DateTime.Now.Ticks));
+        int randomPos = UnityEngine.Random.Range(0, recipeList.Count);
+
+        CreateRecipe(recipeList[randomPos].ID);
+    }
     private BaseIngameUI CreateUI(int stageType)
     {
         BaseIngameUI baseUI = null;
+        string createUIName = string.Empty;
         //LoadObject도 type에 따라 달리생성
         switch(stageType)
         {
             case 1:
+                createUIName = "StoryUI";
                 //stageType에따라서 ui명칭 따로 받아올것
                 break;
             case 2:
                 break;
         }
 
-        GameObject createdUI = GameResourceManager.Instance.SpawnObject("StoryUI");
+        GameObject createdUI = GameResourceManager.Instance.SpawnObject(createUIName);
 
         createdUI.transform.parent = uiSpawnPos;
 
@@ -107,7 +143,13 @@ public class IngameManager : MonoBehaviour
         switch (stageType)
         {
             case 1:
-                baseUI = createdUI?.GetComponent<StoryIngameUI>();
+                StoryIngameUI storyIngameUI = createdUI?.GetComponent<StoryIngameUI>();
+                StoryTimeInfo storyInfoData = new StoryTimeInfo();
+
+                storyInfoData.timer = currentStageData.StageTimer;
+                storyInfoData.storyString = currentStageData.Name;
+                storyIngameUI.SetStoryTimeInfo(storyInfoData);
+                baseUI = storyIngameUI;
                 break;
             case 2:
                 break;
@@ -143,8 +185,20 @@ public class IngameManager : MonoBehaviour
                 currentClearRecipe.RemoveAt(recipePos);
                 ingameUI.RemoveRecipe(recipePos);
 
-                curentScore += recipeDataLists[recipePos].Score;
+                currentScore += recipeDataLists[recipePos].Score;
+                int stageType = 1;
+                switch (stageType)
+                {
+                    case 1:
+                        StoryIngameUI storyIngameUI = ingameUI.GetComponent<StoryIngameUI>();
+                        StoryScoreInfo storyInfoData = new StoryScoreInfo();
 
+                        storyInfoData.ingameScore = currentScore;
+                        storyIngameUI.SetStoryScoreInfo(storyInfoData);
+                        break;
+                    case 2:
+                        break;
+                }
                 return true;
             }
             else
@@ -177,14 +231,37 @@ public class IngameManager : MonoBehaviour
     public void CreateGame(int stageId)
     {
         //테스트 코드 작성
-        JStageData stageData = JsonDataManager.Instance.GetStageData(1);
-
+        currentStageData = JsonDataManager.Instance.GetStageData(1);
+        currentCopyRecipeLists = JsonDataManager.Instance.GetRecipeGroupData(currentStageData.ProbabilityGroupID);
+        currentTimer = currentStageData.StageTimer;
         ingameUI = CreateUI(1);
-        CreateMapData(1);
 
-        //RenderSettings.skybox = targetMat;
+        CreateMapData(1);   
+        CreateRandomRecipe(currentCopyRecipeLists);
 
-        //대기하다 isStart 를 true로
+        StartGame();
+    }
+    private async UniTask StartGame()
+    {
+        await UniTask.NextFrame();
+
+        await ingameUI.StartDirection();
+        //CinemachineTrack cinemachineTrack ;
+
+        //if (cinemachineTrack != null)
+        //{
+        //    // 트랙의 길이를 가져와 대기
+        //    float trackDuration = (float)cinemachineTrack.duration;
+        //    await WaitTimeManager.WaitForTimeSeconds(trackDuration);
+
+        //    // 시네머신 트랙 종료 후 실행할 코드 작성
+        //    Debug.Log("Cinemachine Track Ended!");
+        //}
+        //여기서 특정 시네머신 대기
+
+        //3~2~1 등
+
+        isStart = true;
     }
     public void CreateMapData(int stageId)
     {
@@ -197,7 +274,7 @@ public class IngameManager : MonoBehaviour
         }
         JStageData stageData = JsonDataManager.Instance.GetSingleData<JStageData>(stageId,E_JSON_TYPE.JStageData);
 
-        Object loadObject = GameResourceManager.Instance.LoadObject(stageData.StageFile);
+        UnityEngine.Object loadObject = GameResourceManager.Instance.LoadObject(stageData.StageFile);
         IngameMapObjectInfos loadData = JsonConvert.DeserializeObject<IngameMapObjectInfos>(loadObject.ToString());
 
         for(int i=0;i< loadData.objectLists.Count; i++)

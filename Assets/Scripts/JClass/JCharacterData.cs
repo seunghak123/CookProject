@@ -10,4 +10,5 @@ public record JCharacterData : JBaseData
 	public int SkillID;
 	public string CharacterFile;
 	public string IconFile;
+	public string History;
 }

@@ -11,22 +11,12 @@
   },
   "3": {
     "ID": 3,
-    "Name": "Lever_Ob",
-    "Type": 3
-  },
-  "4": {
-    "ID": 4,
     "Name": "Lever",
     "Type": 4
   },
-  "5": {
-    "ID": 5,
-    "Name": "Disappearing_Platform",
+  "4": {
+    "ID": 4,
+    "Name": "DisappearPlatform",
     "Type": 5
-  },
-  "6": {
-    "ID": 6,
-    "Name": "Lever_Darkness",
-    "Type": 6
   }
 }

@@ -1,4 +1,4 @@
-﻿using Seunghak.SceneManager;
+using Seunghak.SceneManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +16,7 @@ public class IngameCanvas : MonoBehaviour
 
     [Header("UserUnitAction")]
     [SerializeField] private Button interActButton;
-
+    [SerializeField] private Button jumpButton;
     [SerializeField] private BaseAI userAI;
 
     public void InitIngameCanvas()
@@ -30,12 +30,20 @@ public class IngameCanvas : MonoBehaviour
         interActButton.onClick.AddListener(() => {
             DoAction(E_INGAME_AI_TYPE.UNIT_INTERACTION);
         });
+        jumpButton.onClick.AddListener(() =>
+        {
+            if (userAI != null)
+            {
+                userAI.UnitJump();
+            }
+        });
     }
     private void OnDisable()
     {
         optionButton.onClick.RemoveListener(OnOffOptionPanel);
         exitButton.onClick.RemoveListener(ExitInGame);
         interActButton.onClick.RemoveAllListeners();
+        jumpButton.onClick.RemoveAllListeners();
     }
     private void DoAction(E_INGAME_AI_TYPE aiType)
     {
@@ -47,6 +55,8 @@ public class IngameCanvas : MonoBehaviour
     private void OnOffOptionPanel()
     {
         optionPanel.SetActive(!optionPanel.activeSelf);
+
+        IngameManager.currentManager.isPause = optionPanel.activeSelf;
     }
     private void ExitInGame()
     {

@@ -14,7 +14,8 @@
       0
     ],
     "FoodOutput": 38,
-    "Score": 40
+    "Score": 40,
+    "LimitTime": 40
   },
   "2": {
     "ID": 2,
@@ -33,7 +34,8 @@
       57
     ],
     "FoodOutput": 65,
-    "Score": 40
+    "Score": 40,
+    "LimitTime": 60
   },
   "3": {
     "ID": 3,
@@ -54,7 +56,8 @@
       63
     ],
     "FoodOutput": 26,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 80
   },
   "4": {
     "ID": 4,
@@ -75,7 +78,8 @@
       40
     ],
     "FoodOutput": 25,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 80
   },
   "5": {
     "ID": 5,
@@ -96,7 +100,8 @@
       44
     ],
     "FoodOutput": 39,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 80
   },
   "6": {
     "ID": 6,
@@ -117,7 +122,8 @@
       62
     ],
     "FoodOutput": 66,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 80
   },
   "7": {
     "ID": 7,
@@ -134,7 +140,8 @@
       0
     ],
     "FoodOutput": 84,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 40
   },
   "8": {
     "ID": 8,
@@ -150,7 +157,8 @@
       0
     ],
     "FoodOutput": 42,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "9": {
     "ID": 9,
@@ -166,7 +174,8 @@
       0
     ],
     "FoodOutput": 45,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "10": {
     "ID": 10,
@@ -182,7 +191,8 @@
       0
     ],
     "FoodOutput": 57,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "11": {
     "ID": 11,
@@ -198,7 +208,8 @@
       0
     ],
     "FoodOutput": 63,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "12": {
     "ID": 12,
@@ -214,7 +225,8 @@
       0
     ],
     "FoodOutput": 40,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "13": {
     "ID": 13,
@@ -230,7 +242,8 @@
       0
     ],
     "FoodOutput": 44,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "14": {
     "ID": 14,
@@ -246,7 +259,8 @@
       0
     ],
     "FoodOutput": 62,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "15": {
     "ID": 15,
@@ -262,7 +276,8 @@
       0
     ],
     "FoodOutput": 28,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "16": {
     "ID": 16,
@@ -279,7 +294,8 @@
       0
     ],
     "FoodOutput": 51,
-    "Score": 40
+    "Score": 40,
+    "LimitTime": 60
   },
   "17": {
     "ID": 17,
@@ -298,7 +314,8 @@
       40
     ],
     "FoodOutput": 82,
-    "Score": 40
+    "Score": 40,
+    "LimitTime": 60
   },
   "18": {
     "ID": 18,
@@ -317,7 +334,8 @@
       57
     ],
     "FoodOutput": 200,
-    "Score": 40
+    "Score": 40,
+    "LimitTime": 60
   },
   "19": {
     "ID": 19,
@@ -336,7 +354,8 @@
       41
     ],
     "FoodOutput": 85,
-    "Score": 40
+    "Score": 40,
+    "LimitTime": 60
   },
   "20": {
     "ID": 20,
@@ -355,7 +374,8 @@
       44
     ],
     "FoodOutput": 140,
-    "Score": 40
+    "Score": 40,
+    "LimitTime": 60
   },
   "21": {
     "ID": 21,
@@ -374,7 +394,8 @@
       63
     ],
     "FoodOutput": 87,
-    "Score": 40
+    "Score": 40,
+    "LimitTime": 60
   },
   "22": {
     "ID": 22,
@@ -391,7 +412,8 @@
       0
     ],
     "FoodOutput": 32,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "23": {
     "ID": 23,
@@ -408,7 +430,8 @@
       0
     ],
     "FoodOutput": 33,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "24": {
     "ID": 24,
@@ -425,7 +448,8 @@
       0
     ],
     "FoodOutput": 34,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "25": {
     "ID": 25,
@@ -442,7 +466,8 @@
       0
     ],
     "FoodOutput": 46,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "26": {
     "ID": 26,
@@ -459,7 +484,8 @@
       0
     ],
     "FoodOutput": 47,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "27": {
     "ID": 27,
@@ -476,7 +502,8 @@
       0
     ],
     "FoodOutput": 48,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "28": {
     "ID": 28,
@@ -493,7 +520,8 @@
       0
     ],
     "FoodOutput": 49,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "29": {
     "ID": 29,
@@ -510,7 +538,8 @@
       0
     ],
     "FoodOutput": 50,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "30": {
     "ID": 30,
@@ -527,7 +556,8 @@
       0
     ],
     "FoodOutput": 52,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "31": {
     "ID": 31,
@@ -544,7 +574,8 @@
       0
     ],
     "FoodOutput": 53,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "32": {
     "ID": 32,
@@ -561,7 +592,8 @@
       0
     ],
     "FoodOutput": 54,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "33": {
     "ID": 33,
@@ -578,7 +610,8 @@
       0
     ],
     "FoodOutput": 55,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "34": {
     "ID": 34,
@@ -595,7 +628,8 @@
       0
     ],
     "FoodOutput": 56,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "35": {
     "ID": 35,
@@ -612,7 +646,8 @@
       0
     ],
     "FoodOutput": 58,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "36": {
     "ID": 36,
@@ -629,7 +664,8 @@
       0
     ],
     "FoodOutput": 59,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "37": {
     "ID": 37,
@@ -646,7 +682,8 @@
       0
     ],
     "FoodOutput": 60,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "38": {
     "ID": 38,
@@ -663,7 +700,8 @@
       0
     ],
     "FoodOutput": 61,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "39": {
     "ID": 39,
@@ -680,7 +718,8 @@
       0
     ],
     "FoodOutput": 72,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "40": {
     "ID": 40,
@@ -697,7 +736,8 @@
       0
     ],
     "FoodOutput": 73,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "41": {
     "ID": 41,
@@ -714,7 +754,8 @@
       0
     ],
     "FoodOutput": 74,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "42": {
     "ID": 42,
@@ -731,7 +772,8 @@
       0
     ],
     "FoodOutput": 75,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "43": {
     "ID": 43,
@@ -748,7 +790,8 @@
       0
     ],
     "FoodOutput": 76,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "44": {
     "ID": 44,
@@ -765,7 +808,8 @@
       0
     ],
     "FoodOutput": 77,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "45": {
     "ID": 45,
@@ -782,7 +826,8 @@
       0
     ],
     "FoodOutput": 78,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "46": {
     "ID": 46,
@@ -799,7 +844,8 @@
       0
     ],
     "FoodOutput": 79,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "47": {
     "ID": 47,
@@ -816,7 +862,8 @@
       0
     ],
     "FoodOutput": 80,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "48": {
     "ID": 48,
@@ -833,7 +880,8 @@
       0
     ],
     "FoodOutput": 88,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "49": {
     "ID": 49,
@@ -850,7 +898,8 @@
       0
     ],
     "FoodOutput": 89,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "50": {
     "ID": 50,
@@ -867,7 +916,8 @@
       0
     ],
     "FoodOutput": 90,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "51": {
     "ID": 51,
@@ -884,7 +934,8 @@
       0
     ],
     "FoodOutput": 91,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "52": {
     "ID": 52,
@@ -901,7 +952,8 @@
       0
     ],
     "FoodOutput": 92,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "53": {
     "ID": 53,
@@ -918,7 +970,8 @@
       0
     ],
     "FoodOutput": 93,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "54": {
     "ID": 54,
@@ -935,7 +988,8 @@
       0
     ],
     "FoodOutput": 94,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "55": {
     "ID": 55,
@@ -952,7 +1006,8 @@
       0
     ],
     "FoodOutput": 95,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "56": {
     "ID": 56,
@@ -969,7 +1024,8 @@
       0
     ],
     "FoodOutput": 96,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "57": {
     "ID": 57,
@@ -986,7 +1042,8 @@
       0
     ],
     "FoodOutput": 97,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "58": {
     "ID": 58,
@@ -1003,7 +1060,8 @@
       0
     ],
     "FoodOutput": 98,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "59": {
     "ID": 59,
@@ -1020,7 +1078,8 @@
       0
     ],
     "FoodOutput": 99,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "60": {
     "ID": 60,
@@ -1037,7 +1096,8 @@
       0
     ],
     "FoodOutput": 100,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "61": {
     "ID": 61,
@@ -1054,7 +1114,8 @@
       0
     ],
     "FoodOutput": 101,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "62": {
     "ID": 62,
@@ -1071,7 +1132,8 @@
       0
     ],
     "FoodOutput": 102,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "63": {
     "ID": 63,
@@ -1088,7 +1150,8 @@
       0
     ],
     "FoodOutput": 103,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "64": {
     "ID": 64,
@@ -1105,7 +1168,8 @@
       0
     ],
     "FoodOutput": 104,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "65": {
     "ID": 65,
@@ -1122,7 +1186,8 @@
       0
     ],
     "FoodOutput": 105,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "66": {
     "ID": 66,
@@ -1139,7 +1204,8 @@
       0
     ],
     "FoodOutput": 106,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "67": {
     "ID": 67,
@@ -1156,7 +1222,8 @@
       0
     ],
     "FoodOutput": 114,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "68": {
     "ID": 68,
@@ -1173,7 +1240,8 @@
       0
     ],
     "FoodOutput": 115,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "69": {
     "ID": 69,
@@ -1190,7 +1258,8 @@
       0
     ],
     "FoodOutput": 116,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "70": {
     "ID": 70,
@@ -1207,7 +1276,8 @@
       0
     ],
     "FoodOutput": 117,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "71": {
     "ID": 71,
@@ -1224,7 +1294,8 @@
       0
     ],
     "FoodOutput": 118,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "72": {
     "ID": 72,
@@ -1241,7 +1312,8 @@
       0
     ],
     "FoodOutput": 119,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "73": {
     "ID": 73,
@@ -1260,7 +1332,8 @@
       27
     ],
     "FoodOutput": 120,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "74": {
     "ID": 74,
@@ -1279,7 +1352,8 @@
       25
     ],
     "FoodOutput": 121,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "75": {
     "ID": 75,
@@ -1298,7 +1372,8 @@
       29
     ],
     "FoodOutput": 122,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "76": {
     "ID": 76,
@@ -1317,7 +1392,8 @@
       37
     ],
     "FoodOutput": 123,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "77": {
     "ID": 77,
@@ -1334,7 +1410,8 @@
       0
     ],
     "FoodOutput": 124,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "78": {
     "ID": 78,
@@ -1353,7 +1430,8 @@
       27
     ],
     "FoodOutput": 125,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "79": {
     "ID": 79,
@@ -1373,7 +1451,8 @@
       28
     ],
     "FoodOutput": 126,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "80": {
     "ID": 80,
@@ -1393,7 +1472,8 @@
       29
     ],
     "FoodOutput": 127,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "81": {
     "ID": 81,
@@ -1413,7 +1493,8 @@
       37
     ],
     "FoodOutput": 128,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "82": {
     "ID": 82,
@@ -1430,7 +1511,8 @@
       0
     ],
     "FoodOutput": 129,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "83": {
     "ID": 83,
@@ -1447,7 +1529,8 @@
       0
     ],
     "FoodOutput": 130,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "84": {
     "ID": 84,
@@ -1464,7 +1547,8 @@
       0
     ],
     "FoodOutput": 131,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "85": {
     "ID": 85,
@@ -1481,7 +1565,8 @@
       0
     ],
     "FoodOutput": 132,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "86": {
     "ID": 86,
@@ -1500,7 +1585,8 @@
       28
     ],
     "FoodOutput": 133,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "87": {
     "ID": 87,
@@ -1519,7 +1605,8 @@
       29
     ],
     "FoodOutput": 134,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "88": {
     "ID": 88,
@@ -1538,7 +1625,8 @@
       30
     ],
     "FoodOutput": 135,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "89": {
     "ID": 89,
@@ -1557,7 +1645,8 @@
       57
     ],
     "FoodOutput": 136,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "90": {
     "ID": 90,
@@ -1648,7 +1737,8 @@
       44
     ],
     "FoodOutput": 152,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "97": {
     "ID": 97,
@@ -1667,7 +1757,8 @@
       62
     ],
     "FoodOutput": 153,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "98": {
     "ID": 98,
@@ -1686,7 +1777,8 @@
       63
     ],
     "FoodOutput": 154,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "99": {
     "ID": 99,
@@ -1703,7 +1795,8 @@
       0
     ],
     "FoodOutput": 155,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "100": {
     "ID": 100,
@@ -1720,7 +1813,8 @@
       0
     ],
     "FoodOutput": 156,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "101": {
     "ID": 101,
@@ -1737,7 +1831,8 @@
       0
     ],
     "FoodOutput": 157,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "102": {
     "ID": 102,
@@ -1754,7 +1849,8 @@
       0
     ],
     "FoodOutput": 158,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "103": {
     "ID": 103,
@@ -1771,7 +1867,8 @@
       0
     ],
     "FoodOutput": 159,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "104": {
     "ID": 104,
@@ -1788,7 +1885,8 @@
       0
     ],
     "FoodOutput": 160,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "105": {
     "ID": 105,
@@ -1806,7 +1904,8 @@
       0
     ],
     "FoodOutput": 161,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "106": {
     "ID": 106,
@@ -1823,7 +1922,8 @@
       0
     ],
     "FoodOutput": 162,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "107": {
     "ID": 107,
@@ -1842,7 +1942,8 @@
       62
     ],
     "FoodOutput": 163,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "108": {
     "ID": 108,
@@ -1859,7 +1960,8 @@
       0
     ],
     "FoodOutput": 164,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "109": {
     "ID": 109,
@@ -1876,7 +1978,8 @@
       0
     ],
     "FoodOutput": 165,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "110": {
     "ID": 110,
@@ -1893,7 +1996,8 @@
       0
     ],
     "FoodOutput": 166,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "111": {
     "ID": 111,
@@ -1910,7 +2014,8 @@
       0
     ],
     "FoodOutput": 167,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "112": {
     "ID": 112,
@@ -1928,7 +2033,8 @@
       0
     ],
     "FoodOutput": 168,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "113": {
     "ID": 113,
@@ -1946,7 +2052,8 @@
       0
     ],
     "FoodOutput": 169,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "114": {
     "ID": 114,
@@ -1964,7 +2071,8 @@
       0
     ],
     "FoodOutput": 170,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "115": {
     "ID": 115,
@@ -1982,7 +2090,8 @@
       0
     ],
     "FoodOutput": 171,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "116": {
     "ID": 116,
@@ -1999,7 +2108,8 @@
       0
     ],
     "FoodOutput": 172,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "117": {
     "ID": 117,
@@ -2017,7 +2127,8 @@
       0
     ],
     "FoodOutput": 173,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "118": {
     "ID": 118,
@@ -2035,7 +2146,8 @@
       0
     ],
     "FoodOutput": 174,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "119": {
     "ID": 119,
@@ -2053,7 +2165,8 @@
       0
     ],
     "FoodOutput": 175,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "120": {
     "ID": 120,
@@ -2071,7 +2184,8 @@
       0
     ],
     "FoodOutput": 176,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "121": {
     "ID": 121,
@@ -2089,7 +2203,8 @@
       0
     ],
     "FoodOutput": 177,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "122": {
     "ID": 122,
@@ -2107,7 +2222,8 @@
       0
     ],
     "FoodOutput": 178,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "123": {
     "ID": 123,
@@ -2125,7 +2241,8 @@
       0
     ],
     "FoodOutput": 179,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "124": {
     "ID": 124,
@@ -2143,7 +2260,8 @@
       0
     ],
     "FoodOutput": 180,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "125": {
     "ID": 125,
@@ -2161,7 +2279,8 @@
       0
     ],
     "FoodOutput": 181,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "126": {
     "ID": 126,
@@ -2179,7 +2298,8 @@
       0
     ],
     "FoodOutput": 182,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "127": {
     "ID": 127,
@@ -2196,7 +2316,8 @@
       0
     ],
     "FoodOutput": 183,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "128": {
     "ID": 128,
@@ -2213,7 +2334,8 @@
       0
     ],
     "FoodOutput": 184,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "129": {
     "ID": 129,
@@ -2230,7 +2352,8 @@
       0
     ],
     "FoodOutput": 185,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "130": {
     "ID": 130,
@@ -2247,7 +2370,8 @@
       0
     ],
     "FoodOutput": 186,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "131": {
     "ID": 131,
@@ -2264,7 +2388,8 @@
       0
     ],
     "FoodOutput": 187,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "132": {
     "ID": 132,
@@ -2281,7 +2406,8 @@
       0
     ],
     "FoodOutput": 188,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "133": {
     "ID": 133,
@@ -2298,7 +2424,8 @@
       0
     ],
     "FoodOutput": 189,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "134": {
     "ID": 134,
@@ -2315,7 +2442,8 @@
       0
     ],
     "FoodOutput": 190,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "135": {
     "ID": 135,
@@ -2332,7 +2460,8 @@
       0
     ],
     "FoodOutput": 191,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "136": {
     "ID": 136,
@@ -2349,7 +2478,8 @@
       0
     ],
     "FoodOutput": 192,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "137": {
     "ID": 137,
@@ -2366,7 +2496,8 @@
       0
     ],
     "FoodOutput": 204,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "138": {
     "ID": 138,
@@ -2383,7 +2514,8 @@
       0
     ],
     "FoodOutput": 205,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "139": {
     "ID": 139,
@@ -2400,7 +2532,8 @@
       0
     ],
     "FoodOutput": 206,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "140": {
     "ID": 140,
@@ -2417,7 +2550,8 @@
       0
     ],
     "FoodOutput": 207,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "141": {
     "ID": 141,
@@ -2434,7 +2568,8 @@
       0
     ],
     "FoodOutput": 208,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "142": {
     "ID": 142,
@@ -2452,7 +2587,8 @@
       0
     ],
     "FoodOutput": 209,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "143": {
     "ID": 143,
@@ -2469,7 +2605,8 @@
       0
     ],
     "FoodOutput": 210,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "144": {
     "ID": 144,
@@ -2486,7 +2623,8 @@
       0
     ],
     "FoodOutput": 211,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "145": {
     "ID": 145,
@@ -2503,7 +2641,8 @@
       0
     ],
     "FoodOutput": 212,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "146": {
     "ID": 146,
@@ -2521,7 +2660,8 @@
       0
     ],
     "FoodOutput": 213,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "147": {
     "ID": 147,
@@ -2540,7 +2680,8 @@
       13
     ],
     "FoodOutput": 214,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "148": {
     "ID": 148,
@@ -2557,7 +2698,8 @@
       0
     ],
     "FoodOutput": 215,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "149": {
     "ID": 149,
@@ -2574,7 +2716,8 @@
       0
     ],
     "FoodOutput": 216,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "150": {
     "ID": 150,
@@ -2592,7 +2735,8 @@
       0
     ],
     "FoodOutput": 217,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "151": {
     "ID": 151,
@@ -2609,7 +2753,8 @@
       0
     ],
     "FoodOutput": 218,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "152": {
     "ID": 152,
@@ -2626,7 +2771,8 @@
       0
     ],
     "FoodOutput": 219,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "153": {
     "ID": 153,
@@ -2644,7 +2790,8 @@
       0
     ],
     "FoodOutput": 220,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "154": {
     "ID": 154,
@@ -2661,7 +2808,8 @@
       0
     ],
     "FoodOutput": 221,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "155": {
     "ID": 155,
@@ -2679,7 +2827,8 @@
       0
     ],
     "FoodOutput": 222,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "156": {
     "ID": 156,
@@ -2697,7 +2846,8 @@
       0
     ],
     "FoodOutput": 223,
-    "Score": 0
+    "Score": 0,
+    "LimitTime": 0
   },
   "157": {
     "ID": 157,
@@ -2715,7 +2865,8 @@
       0
     ],
     "FoodOutput": 227,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "158": {
     "ID": 158,
@@ -2735,7 +2886,8 @@
       57
     ],
     "FoodOutput": 199,
-    "Score": 70
+    "Score": 70,
+    "LimitTime": 80
   },
   "159": {
     "ID": 159,
@@ -2755,7 +2907,8 @@
       28
     ],
     "FoodOutput": 112,
-    "Score": 70
+    "Score": 70,
+    "LimitTime": 80
   },
   "160": {
     "ID": 160,
@@ -2775,7 +2928,8 @@
       30
     ],
     "FoodOutput": 143,
-    "Score": 70
+    "Score": 70,
+    "LimitTime": 80
   },
   "161": {
     "ID": 161,
@@ -2795,7 +2949,8 @@
       29
     ],
     "FoodOutput": 146,
-    "Score": 70
+    "Score": 70,
+    "LimitTime": 80
   },
   "162": {
     "ID": 162,
@@ -2812,7 +2967,8 @@
       0
     ],
     "FoodOutput": 18,
-    "Score": 40
+    "Score": 40,
+    "LimitTime": 40
   },
   "163": {
     "ID": 163,
@@ -2822,16 +2978,17 @@
     "FoodName": 0,
     "UseObject": 0,
     "AddFood": [
+      18,
+      57
+    ],
+    "ComplexFood": [
       31,
       36,
       57
     ],
-    "ComplexFood": [
-      18,
-      57
-    ],
     "FoodOutput": 201,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "164": {
     "ID": 164,
@@ -2841,16 +2998,17 @@
     "FoodName": 0,
     "UseObject": 0,
     "AddFood": [
+      18,
+      28
+    ],
+    "ComplexFood": [
       31,
       36,
       28
     ],
-    "ComplexFood": [
-      18,
-      28
-    ],
     "FoodOutput": 86,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "165": {
     "ID": 165,
@@ -2860,16 +3018,17 @@
     "FoodName": 0,
     "UseObject": 0,
     "AddFood": [
+      18,
+      30
+    ],
+    "ComplexFood": [
       31,
       36,
       30
     ],
-    "ComplexFood": [
-      18,
-      30
-    ],
     "FoodOutput": 141,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "166": {
     "ID": 166,
@@ -2886,7 +3045,8 @@
       0
     ],
     "FoodOutput": 107,
-    "Score": 40
+    "Score": 40,
+    "LimitTime": 40
   },
   "167": {
     "ID": 167,
@@ -2896,16 +3056,17 @@
     "FoodName": 0,
     "UseObject": 0,
     "AddFood": [
+      107,
+      27
+    ],
+    "ComplexFood": [
       35,
       36,
       27
     ],
-    "ComplexFood": [
-      107,
-      27
-    ],
     "FoodOutput": 81,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "168": {
     "ID": 168,
@@ -2915,15 +3076,16 @@
     "FoodName": 0,
     "UseObject": 0,
     "AddFood": [
+      35107
+    ],
+    "ComplexFood": [
       35,
       35,
       36
     ],
-    "ComplexFood": [
-      35107
-    ],
     "FoodOutput": 108,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "169": {
     "ID": 169,
@@ -2933,16 +3095,17 @@
     "FoodName": 0,
     "UseObject": 0,
     "AddFood": [
+      107,
+      44
+    ],
+    "ComplexFood": [
       35,
       36,
       44
     ],
-    "ComplexFood": [
-      107,
-      44
-    ],
     "FoodOutput": 139,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "170": {
     "ID": 170,
@@ -2952,16 +3115,17 @@
     "FoodName": 0,
     "UseObject": 0,
     "AddFood": [
+      107,
+      45
+    ],
+    "ComplexFood": [
       35,
       36,
       45
     ],
-    "ComplexFood": [
-      107,
-      45
-    ],
     "FoodOutput": 194,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "171": {
     "ID": 171,
@@ -2971,16 +3135,17 @@
     "FoodName": 0,
     "UseObject": 0,
     "AddFood": [
+      107,
+      28
+    ],
+    "ComplexFood": [
       35,
       36,
       28
     ],
-    "ComplexFood": [
-      107,
-      28
-    ],
     "FoodOutput": 83,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "172": {
     "ID": 172,
@@ -2998,7 +3163,8 @@
       0
     ],
     "FoodOutput": 228,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "173": {
     "ID": 173,
@@ -3018,7 +3184,8 @@
       31
     ],
     "FoodOutput": 197,
-    "Score": 70
+    "Score": 70,
+    "LimitTime": 80
   },
   "174": {
     "ID": 174,
@@ -3038,7 +3205,8 @@
       37
     ],
     "FoodOutput": 226,
-    "Score": 70
+    "Score": 70,
+    "LimitTime": 80
   },
   "175": {
     "ID": 175,
@@ -3058,7 +3226,8 @@
       27
     ],
     "FoodOutput": 225,
-    "Score": 70
+    "Score": 70,
+    "LimitTime": 80
   },
   "176": {
     "ID": 176,
@@ -3078,7 +3247,8 @@
       28
     ],
     "FoodOutput": 111,
-    "Score": 70
+    "Score": 70,
+    "LimitTime": 80
   },
   "177": {
     "ID": 177,
@@ -3098,7 +3268,8 @@
       29
     ],
     "FoodOutput": 145,
-    "Score": 70
+    "Score": 70,
+    "LimitTime": 80
   },
   "178": {
     "ID": 178,
@@ -3115,7 +3286,8 @@
       0
     ],
     "FoodOutput": 109,
-    "Score": 40
+    "Score": 40,
+    "LimitTime": 40
   },
   "179": {
     "ID": 179,
@@ -3134,7 +3306,8 @@
       57
     ],
     "FoodOutput": 198,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "180": {
     "ID": 180,
@@ -3151,7 +3324,8 @@
       0
     ],
     "FoodOutput": 144,
-    "Score": 40
+    "Score": 40,
+    "LimitTime": 40
   },
   "181": {
     "ID": 181,
@@ -3170,7 +3344,8 @@
       0
     ],
     "FoodOutput": 110,
-    "Score": 70
+    "Score": 70,
+    "LimitTime": 80
   },
   "182": {
     "ID": 182,
@@ -3187,7 +3362,8 @@
       0
     ],
     "FoodOutput": 64,
-    "Score": 40
+    "Score": 40,
+    "LimitTime": 40
   },
   "183": {
     "ID": 183,
@@ -3204,7 +3380,8 @@
       0
     ],
     "FoodOutput": 210,
-    "Score": 40
+    "Score": 40,
+    "LimitTime": 40
   },
   "184": {
     "ID": 184,
@@ -3222,7 +3399,8 @@
       0
     ],
     "FoodOutput": 202,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "185": {
     "ID": 185,
@@ -3232,15 +3410,17 @@
     "FoodName": 0,
     "UseObject": 0,
     "AddFood": [
-      69,
-      37,
-      13
+      210,
+      37
     ],
     "ComplexFood": [
-      0
+      69,
+      13,
+      37
     ],
     "FoodOutput": 138,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "186": {
     "ID": 186,
@@ -3258,7 +3438,8 @@
       0
     ],
     "FoodOutput": 142,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "187": {
     "ID": 187,
@@ -3276,7 +3457,8 @@
       0
     ],
     "FoodOutput": 196,
-    "Score": 70
+    "Score": 70,
+    "LimitTime": 60
   },
   "188": {
     "ID": 188,
@@ -3294,7 +3476,8 @@
       0
     ],
     "FoodOutput": 195,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "189": {
     "ID": 189,
@@ -3312,7 +3495,8 @@
       0
     ],
     "FoodOutput": 113,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   },
   "190": {
     "ID": 190,
@@ -3330,6 +3514,7 @@
       0
     ],
     "FoodOutput": 193,
-    "Score": 60
+    "Score": 60,
+    "LimitTime": 60
   }
 }

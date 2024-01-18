@@ -2,33 +2,43 @@
   "1": {
     "ID": 1,
     "Name": "Misuno_Tensi",
-    "MoveSpeed": [
-      "2"
-    ],
-    "Jump": [
-      "160"
-    ],
+    "MoveSpeed": 2.0,
+    "Jump": 160.0,
     "SkillID": 0
   },
   "2": {
-    "ID": 2
+    "ID": 2,
+    "Name": "John_holloway",
+    "MoveSpeed": 2.0,
+    "Jump": 160.0,
+    "SkillID": 0
   },
   "3": {
-    "ID": 3
+    "ID": 3,
+    "Name": "Mrs.J",
+    "MoveSpeed": 2.0,
+    "Jump": 160.0,
+    "SkillID": 0
   },
   "4": {
-    "ID": 4
+    "ID": 4,
+    "Name": "Park Chun-ja",
+    "MoveSpeed": 2.0,
+    "Jump": 160.0,
+    "SkillID": 0
   },
   "5": {
-    "ID": 5
+    "ID": 5,
+    "Name": "Oliver",
+    "MoveSpeed": 2.0,
+    "Jump": 160.0,
+    "SkillID": 0
   },
   "6": {
-    "ID": 6
-  },
-  "7": {
-    "ID": 7
-  },
-  "8": {
-    "ID": 8
+    "ID": 6,
+    "Name": "Agatha",
+    "MoveSpeed": 2.0,
+    "Jump": 160.0,
+    "SkillID": 0
   }
 }

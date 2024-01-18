@@ -233,6 +233,25 @@ public class BaseAI : MonoBehaviour
             }
         }
     }
+    public void UnitJump()
+    {
+        if(!(E_INGAME_AI_TYPE.UNIT_MOVE == unitAIType || E_INGAME_AI_TYPE.UNIT_IDLE == unitAIType))
+        {
+            return;
+        }
+        if (characterRigid == null)
+        {
+            return;
+        }
+
+        if (IsGround)
+        {
+            unitAnim.SetTrigger("Jump");
+            characterRigid.velocity = Vector3.zero;
+            characterRigid.angularVelocity = 0.0f;
+            characterRigid.AddForce(Vector2.up * characterJumpPower * Time.fixedDeltaTime, ForceMode2D.Impulse);
+        }
+    }
     protected virtual void UnitMove()
     {
         Vector3 moveDirect = GetMoveDirect();
@@ -252,24 +271,6 @@ public class BaseAI : MonoBehaviour
 
         this.transform.Translate(new Vector3(moveDirect.x,0,0) * Time.fixedDeltaTime * characterSpeed);
 
-        float xValue = Mathf.Abs(moveDirect.x);
-        float yValue = moveDirect.y;
-
-        if (xValue < yValue)
-        {
-            if (characterRigid == null)
-            {
-                return;
-            }
-
-            if (IsGround)
-            {
-                unitAnim.SetTrigger("Jump");
-                characterRigid.velocity = Vector3.zero;
-                characterRigid.angularVelocity = 0.0f;
-                characterRigid.AddForce(Vector2.up * characterJumpPower * Time.fixedDeltaTime, ForceMode2D.Impulse);
-            }
-        }
         //현재 점프중
         Vector3 gravityVector = characterRigid.velocity;
 
@@ -324,6 +325,12 @@ public class BaseAI : MonoBehaviour
             IsGround = true;
         }
         Action();
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            UnitJump();
+        }
+#endif
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
