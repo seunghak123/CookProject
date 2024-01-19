@@ -11,22 +11,30 @@ namespace Seunghak.UIManager
     {
         [SerializeField] CharacterSelectScrollView scrollView;
         [SerializeField] SelectedCharacterInfoArea characterInfoArea;
+        [SerializeField] RectTransform selectedEffectObjRectTr;
 
         public void Init()
         {
-
+            scrollView.InitScrollView(JsonDataManager.LoadJsonDatas<JCharacterData>(E_JSON_TYPE.JCharacterData).Values.ToList());
+            selectedEffectObjRectTr.gameObject.SetActive(false);
         }
 
-        public void CharacterSelectEventCallBack(int characterDataID)
+        public void CharacterSelectEventCallBack(int characterDataID, Transform scelectedObjTr)
         {
+            if(characterInfoArea.currSelectedCharacterID == characterDataID)
+                return;
+
             // 캐릭터
+            selectedEffectObjRectTr.anchoredPosition = scelectedObjTr.GetComponent<RectTransform>().anchoredPosition;
+            if(selectedEffectObjRectTr.gameObject.activeSelf == false)
+                selectedEffectObjRectTr.gameObject.SetActive(true);
         }
 
         public override void EnterWindow()
         {
             base.EnterWindow();
 
-            scrollView.InitScrollView(JsonDataManager.LoadJsonDatas<JCharacterData>(E_JSON_TYPE.JCharacterData).Values.ToList());
+            Init();
         }
 
         public override void ExitWindow()

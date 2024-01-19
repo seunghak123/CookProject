@@ -35,8 +35,9 @@ public class CharacterInfoItem : MonoBehaviour, OHScrollView.IInfiniteScrollSetu
     {
         currCharacterDataID = characterData.ID;
 
+        // 임시로 갈겨놈
         isUseState = currCharacterDataID == 1;
-        isLockState = currCharacterDataID != 1;
+        isLockState = !(currCharacterDataID == 1 || currCharacterDataID == 2);
 
         useStateObj.SetActive(isUseState);
         lockStateObj.SetActive(isLockState);
@@ -57,6 +58,6 @@ public class CharacterInfoItem : MonoBehaviour, OHScrollView.IInfiniteScrollSetu
             return;
         }
 
-        characterSelectWindow.CharacterSelectEventCallBack(currCharacterDataID);
+        characterSelectWindow.CharacterSelectEventCallBack(currCharacterDataID, this.transform);
     }
 }
