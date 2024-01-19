@@ -121,15 +121,24 @@ public class OHScrollView : MonoBehaviour
         onUpdateItem.AddListener(UpdateItemInfo<T>);
         SetInfoList(infos);
         maxCount = infos.Count;
-        instantateItemCount = instantateItemCount > maxCount ? maxCount : instantateItemCount;
 
         // scrollRect 세팅
         var scrollRect = this.scrollRect;
         scrollRect.horizontal = direction == E_SCROLLDIRECT.HORIZONTAL;
         scrollRect.vertical = direction == E_SCROLLDIRECT.VERTICAL;
         scrollRect.content = ScrollRectTransform;
-        scrollRect.movementType = (maxCount <= lintItemCount) ? 
-            ScrollRect.MovementType.Clamped : ScrollRect.MovementType.Elastic;
+
+        if (instantateItemCount > maxCount)
+        {
+            instantateItemCount = maxCount;
+            scrollRect.movementType = ScrollRect.MovementType.Elastic;
+            scrollRect.horizontal = false;
+            scrollRect.vertical = false;
+        }
+        else
+        {
+            scrollRect.movementType = ScrollRect.MovementType.Clamped;
+        }
 
         // GridLayoutGroup 세팅
         GridLayoutGroup gridGroup = scrollContent.GetComponent<GridLayoutGroup>();

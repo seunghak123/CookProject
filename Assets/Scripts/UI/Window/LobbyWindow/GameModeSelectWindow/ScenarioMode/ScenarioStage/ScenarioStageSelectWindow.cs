@@ -42,7 +42,7 @@ namespace Seunghak.UIManager
                 stageDatas[i] = JsonDataManager.Instance.GetStageData(firstStageDataID + i);
             }
 
-            // 현재 챕터의 스테이지 중에 플레이할 수 있는 최고 난이도로 스테이지를 세팅해야 함
+            // 현재 챕터의 스테이지 중에 플레이할 수 있는 최고 난이도로 스테이지를 세팅? (임시)
             SetStageInfo(stageDatas[stageDatas.Length - 1].ID);
 
             // 스테이지 세팅

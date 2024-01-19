@@ -9,7 +9,7 @@ namespace Seunghak.UIManager
 {
     public class ScenarioMode : BaseGameMode
     {
-        [SerializeField] ScenarioChapterScrollView chapterScrollView;
+        [SerializeField] ScenarioChapterScrollView scrollView;
 
         public override bool Init()
         {
@@ -18,10 +18,9 @@ namespace Seunghak.UIManager
 
             GameMode = E_GAMEMODE.ScenarioMode;
 
-            chapterScrollView.InitScrollView(JsonDataManager.LoadJsonDatas<JChapterData>(E_JSON_TYPE.JChapterData).Values.ToList());
+            scrollView.InitScrollView(JsonDataManager.LoadJsonDatas<JChapterData>(E_JSON_TYPE.JChapterData).Values.ToList());
 
             return true;
         }
     }
 }
-    
