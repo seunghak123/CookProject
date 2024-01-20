@@ -13,7 +13,7 @@ public class ScenarioChapterItem : MonoBehaviour, OHScrollView.IInfiniteScrollSe
     [SerializeField] private Image chapterImage;
     [SerializeField] private TextMeshProUGUI chapterStarStateText;
 
-    JChapterData chapterData;
+    int currChapterDataID = -1;
 
     public void OnPostSetupItems()
     {
@@ -35,7 +35,7 @@ public class ScenarioChapterItem : MonoBehaviour, OHScrollView.IInfiniteScrollSe
             return;
         }
 
-        this.chapterData = chapterData;
+        currChapterDataID = chapterData.ID;
         chapterNameText.text = chapterData.Name;
 
         // 챕터에 따른 이미지 세팅이 필요
@@ -46,9 +46,9 @@ public class ScenarioChapterItem : MonoBehaviour, OHScrollView.IInfiniteScrollSe
 
     public void OnClickEvent()
     {
-        if(chapterData == null)
+        if(currChapterDataID == -1)
         {
-            Debug.LogError("chapterData is Null");
+            Debug.LogError("currCharacterDataID가 초기화되지 않음");
             return;
         }
 
@@ -58,6 +58,6 @@ public class ScenarioChapterItem : MonoBehaviour, OHScrollView.IInfiniteScrollSe
     public void EnterScenarioStageSelectWindow()
     {
         ScenarioStageSelectWindow stageSelectWindow = (ScenarioStageSelectWindow)UIManager.Instance.PushUI(UI_TYPE.ScenarioStageSelectWindow);
-        stageSelectWindow.Init(chapterData.ID);
+        stageSelectWindow.Init(currChapterDataID);
     }
 }

@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c462bc99145c449a38625c94f7fcc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chapterScrollView: {fileID: 1693153089398525202}
+  scrollView: {fileID: 1693153089398525202}
 --- !u!222 &3947324276678419456
 CanvasRenderer:
   m_ObjectHideFlags: 0

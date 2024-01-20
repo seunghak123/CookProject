@@ -33,5 +33,4 @@ namespace Seunghak.UIManager
             base.InitScrollView<ScenarioChapterData>(chapterDataList);
         }
     }
-
 }
