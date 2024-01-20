@@ -13,6 +13,8 @@ public class IngameCanvas : MonoBehaviour
     [Space(2)]
     [Header("OptionPanel")]
     [SerializeField] private Button exitButton;
+    [SerializeField] private Button retryButton;
+    [SerializeField] private Button continueButton;
 
     [Header("UserUnitAction")]
     [SerializeField] private Button interActButton;
@@ -27,6 +29,8 @@ public class IngameCanvas : MonoBehaviour
     {
         optionButton.onClick.AddListener(OnOffOptionPanel);
         exitButton.onClick.AddListener(ExitInGame);
+        retryButton.onClick.AddListener(RetryGame);
+        continueButton.onClick.AddListener(ContinueGame);
         interActButton.onClick.AddListener(() => {
             DoAction(E_INGAME_AI_TYPE.UNIT_INTERACTION);
         });
@@ -42,6 +46,8 @@ public class IngameCanvas : MonoBehaviour
     {
         optionButton.onClick.RemoveListener(OnOffOptionPanel);
         exitButton.onClick.RemoveListener(ExitInGame);
+        retryButton.onClick.RemoveListener(RetryGame);
+        continueButton.onClick.RemoveListener(ContinueGame);
         interActButton.onClick.RemoveAllListeners();
         jumpButton.onClick.RemoveAllListeners();
     }
@@ -61,5 +67,15 @@ public class IngameCanvas : MonoBehaviour
     private void ExitInGame()
     {
         SceneManager.Instance.ChangeScene(E_SCENE_TYPE.LOBBY);
+    }
+    private void ContinueGame()
+    {
+        optionPanel.SetActive(false);
+        IngameManager.currentManager.isPause = false;
+    }
+    private void RetryGame()
+    {
+        IngameManager.currentManager.ReplayStage();
+        optionPanel.SetActive(false);
     }
 }

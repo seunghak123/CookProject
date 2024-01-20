@@ -1,4 +1,4 @@
-﻿using Seunghak.Common;
+using Seunghak.Common;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,9 +53,9 @@ public class RecipeObject : MonoBehaviour
     {
         while (true)
         {
-            //5.0f의 경우는 레시피에 해당하는 타이머로 변경할 것
-            if (currentTimer > 5.0f)
+            if (currentTimer > recipeData.LimitTime)
             {
+                //실패처리
                 break;
             }
             currentTimer += Time.deltaTime;

@@ -13,7 +13,7 @@ public class OHScrollView : MonoBehaviour
     [SerializeField] private ScrollRect scrollRect;
     
     [SerializeField, Range(0, 30)] private int instantateItemCount = 9;
-    [SerializeField] private int lintItemCount = 0;
+    [SerializeField] private int frontItemCount = 0;
     [SerializeField] private int gapSizex = 0;
     [SerializeField] private int gapSizey = 0;
     [SerializeField] private int maxCount = 20;
@@ -29,7 +29,7 @@ public class OHScrollView : MonoBehaviour
     [System.NonSerialized]
     public LinkedList<RectTransform> itemList = new LinkedList<RectTransform>();
     
-    private int SceneSizeCount = 1;
+    private int sceneSizeCount = 1;
     Vector3 scrollBackLocalPosition;
     public enum E_SCROLLDIRECT
     {
@@ -122,13 +122,17 @@ public class OHScrollView : MonoBehaviour
         SetInfoList(infos);
         maxCount = infos.Count;
         instantateItemCount = instantateItemCount > maxCount ? maxCount : instantateItemCount;
+        int gapsize = direction == E_SCROLLDIRECT.VERTICAL ? gapSizey : gapSizex;
+        frontItemCount = direction == E_SCROLLDIRECT.HORIZONTAL ?
+           Mathf.RoundToInt(ScrollRectTransform.sizeDelta.x / (ItemScale + gapsize)) *lineItemCount :
+           Mathf.RoundToInt(ScrollRectTransform.sizeDelta.y / (ItemScale + gapsize)) *lineItemCount;
 
         // scrollRect 세팅
         var scrollRect = this.scrollRect;
         scrollRect.horizontal = direction == E_SCROLLDIRECT.HORIZONTAL;
         scrollRect.vertical = direction == E_SCROLLDIRECT.VERTICAL;
         scrollRect.content = ScrollRectTransform;
-        scrollRect.movementType = (maxCount <= lintItemCount) ? 
+        scrollRect.movementType = (maxCount <= frontItemCount) ? 
             ScrollRect.MovementType.Clamped : ScrollRect.MovementType.Elastic;
 
         // GridLayoutGroup 세팅
@@ -223,8 +227,8 @@ public class OHScrollView : MonoBehaviour
                 ScrollRectTransform.anchoredPosition = new Vector2(ScrollRectTransform.anchoredPosition.x, 0);
                 return;
             }
-            SceneSizeCount = Mathf.RoundToInt(ScrollRectTransform.sizeDelta.y / (ItemScale + gapsize));
-            limitPos = new Vector3(0, (maxCount / lineItemCount) * (ItemScale + gapsize) - (SceneSizeCount-1)*(ItemScale+gapsize), 0);
+            sceneSizeCount = Mathf.RoundToInt(ScrollRectTransform.sizeDelta.y / (ItemScale + gapsize));
+            limitPos = new Vector3(0, (maxCount / lineItemCount) * (ItemScale + gapsize) - (sceneSizeCount-1)*(ItemScale+gapsize), 0);
             scrollBack.transform.localPosition = new Vector3(
                 scrollBack.transform.localPosition.x
                 , scrollBackLocalPosition.y + (scrollViewTransform.transform.localPosition.y * -1)
@@ -238,8 +242,8 @@ public class OHScrollView : MonoBehaviour
                 ScrollRectTransform.anchoredPosition = new Vector2(0, ScrollRectTransform.anchoredPosition.y);
                 return;
             }
-            SceneSizeCount = Mathf.RoundToInt(ScrollRectTransform.sizeDelta.x /(ItemScale + gapsize));
-            limitPos = new Vector3(-(maxCount / lineItemCount) * (ItemScale + gapsize) + (SceneSizeCount - 1) * (ItemScale + gapsize), 0, 0);
+            sceneSizeCount = Mathf.RoundToInt(ScrollRectTransform.sizeDelta.x /(ItemScale + gapsize));
+            limitPos = new Vector3(-(maxCount / lineItemCount) * (ItemScale + gapsize) + (sceneSizeCount - 1) * (ItemScale + gapsize), 0, 0);
             scrollBack.transform.localPosition = new Vector3(
                 scrollBackLocalPosition.x + (scrollViewTransform.transform.localPosition.x * -1f)
                 , scrollBackLocalPosition.y, scrollBack.transform.localPosition.z);

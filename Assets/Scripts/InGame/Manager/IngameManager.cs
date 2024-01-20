@@ -57,6 +57,10 @@ public class IngameManager : MonoBehaviour
             isGameEnd = true;
         }
     }
+    private void GameClear()
+    {
+        ClearUI();
+    }
     public bool IsPlaying()
     {
         return isStart && !isPause && !isGameEnd;
@@ -82,9 +86,12 @@ public class IngameManager : MonoBehaviour
     private void CreateRandomRecipe(List<JRecipeData> recipeList)
     {
         UnityEngine.Random.InitState(((int)DateTime.Now.Ticks));
-        int randomPos = UnityEngine.Random.Range(0, recipeList.Count);
+        for(int i=0;i< currentStageData.StartRecipeValue;i++)
+        {
+            int randomPos = UnityEngine.Random.Range(0, recipeList.Count);
 
-        CreateRecipe(recipeList[randomPos].ID);
+            CreateRecipe(recipeList[randomPos].ID);
+        }
     }
     private BaseIngameUI CreateUI(int stageType)
     {
@@ -303,6 +310,12 @@ public class IngameManager : MonoBehaviour
             stagePrefab.transform.localScale = Vector3.one;
         }
     }
+    public void ReplayStage()
+    {
+        GameClear();
+
+        CreateGame(currentStageData.ID);
+    }
 }
 
 public class IngameCreater
@@ -355,7 +368,6 @@ public class IngameCreater
                 return CommonUtil.GetTypeFromAssemblies("MultipleToolObject");
             case 5:
                 return CommonUtil.GetTypeFromAssemblies("FoodDeliveryObject");
-
         }
         return null;
     }
