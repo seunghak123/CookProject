@@ -18,10 +18,10 @@ namespace Seunghak.UIManager
     public class CharacterSelectScrollView : OHScrollView
     {
         List<CharacterInfoData> characterDataList = new List<CharacterInfoData>();
+        List<CharacterInfoItem> characterInfoItemList = new List<CharacterInfoItem>();
 
         public void InitScrollView(List<JCharacterData> list)
         {
-
             if (characterDataList.Count == 0)
             {
                 foreach (JCharacterData characterData in list)
@@ -31,6 +31,21 @@ namespace Seunghak.UIManager
             }
 
             base.InitScrollView<CharacterInfoData>(characterDataList);
+
+            // characterInfoItemList 초기화
+            characterInfoItemList.Clear();
+            foreach (RectTransform rect in itemList)
+            {
+                characterInfoItemList.Add(rect.gameObject.GetComponent<CharacterInfoItem>());
+            }
+        }
+
+        public void UpdateScrollViewInfo()
+        {
+            foreach(CharacterInfoItem item in characterInfoItemList)
+            {
+                item.SetCharaterData();
+            }
         }
     }
 }

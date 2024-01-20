@@ -13,6 +13,7 @@ public class CharacterInfoItem : MonoBehaviour, OHScrollView.IInfiniteScrollSetu
     [SerializeField] Image chapterImage;
     [SerializeField] GameObject useStateObj;
     [SerializeField] GameObject lockStateObj;
+    [SerializeField] GameObject selectedEffectObj;
 
     int currCharacterDataID = -1;
 
@@ -28,23 +29,22 @@ public class CharacterInfoItem : MonoBehaviour, OHScrollView.IInfiniteScrollSetu
 
     public void OnUpdateItem(GameObject obj, CharacterInfoData infos)
     {
-        SetCharaterData(infos.data);
+        currCharacterDataID = infos.data.ID;
+        SetCharaterData();
     }
 
-    public void SetCharaterData(JCharacterData characterData)
+    public void SetCharaterData()
     {
-        currCharacterDataID = characterData.ID;
-
-        // 임시로 갈겨놈
-        isUseState = currCharacterDataID == 1;
+        // 임시 값들
+        isUseState = currCharacterDataID == characterSelectWindow.currUseCharacterID;
         isLockState = !(currCharacterDataID == 1 || currCharacterDataID == 2);
 
         useStateObj.SetActive(isUseState);
         lockStateObj.SetActive(isLockState);
+        selectedEffectObj.SetActive(currCharacterDataID == characterSelectWindow.currSelectCharacterID);
 
         // 캐릭터 이미지 세팅해야 함
 
-        
     }
 
     public void OnClickEvent()
@@ -58,6 +58,6 @@ public class CharacterInfoItem : MonoBehaviour, OHScrollView.IInfiniteScrollSetu
             return;
         }
 
-        characterSelectWindow.CharacterSelectEventCallBack(currCharacterDataID, this.transform);
+        characterSelectWindow.CharacterSelectEventCallBack(currCharacterDataID);
     }
 }

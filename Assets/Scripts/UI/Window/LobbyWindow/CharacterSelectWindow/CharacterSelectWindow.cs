@@ -10,24 +10,25 @@ namespace Seunghak.UIManager
     public class CharacterSelectWindow : BaseUIWindow
     {
         [SerializeField] CharacterSelectScrollView scrollView;
-        [SerializeField] SelectedCharacterInfoArea characterInfoArea;
-        [SerializeField] RectTransform selectedEffectObjRectTr;
+        [SerializeField] SelectedCharacterInfo selectedCharacterInfo;
+
+        public int currUseCharacterID { get; private set; } = -1;
+        public int currSelectCharacterID { get; private set; } = -1;
 
         public void Init()
         {
+            currUseCharacterID = 1; // 현재 사용 중인 캐릭터 ID를 가져와야 함
+            currSelectCharacterID = currUseCharacterID;
+
+            selectedCharacterInfo.SetCharacterInfo(currSelectCharacterID);
             scrollView.InitScrollView(JsonDataManager.LoadJsonDatas<JCharacterData>(E_JSON_TYPE.JCharacterData).Values.ToList());
-            selectedEffectObjRectTr.gameObject.SetActive(false);
         }
-
-        public void CharacterSelectEventCallBack(int characterDataID, Transform scelectedObjTr)
+        public void CharacterSelectEventCallBack(int characterDataID)
         {
-            if(characterInfoArea.currSelectedCharacterID == characterDataID)
-                return;
+            this.currSelectCharacterID = characterDataID;
 
-            // 캐릭터
-            selectedEffectObjRectTr.anchoredPosition = scelectedObjTr.GetComponent<RectTransform>().anchoredPosition;
-            if(selectedEffectObjRectTr.gameObject.activeSelf == false)
-                selectedEffectObjRectTr.gameObject.SetActive(true);
+            selectedCharacterInfo.SetCharacterInfo(currSelectCharacterID);
+            scrollView.UpdateScrollViewInfo();
         }
 
         public override void EnterWindow()
