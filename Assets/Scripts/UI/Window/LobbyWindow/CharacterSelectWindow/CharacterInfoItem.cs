@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
 public class CharacterInfoItem : MonoBehaviour, OHScrollView.IInfiniteScrollSetup<CharacterInfoData>
 {
@@ -15,8 +16,12 @@ public class CharacterInfoItem : MonoBehaviour, OHScrollView.IInfiniteScrollSetu
     [SerializeField] GameObject lockStateObj;
     [SerializeField] GameObject selectedEffectObj;
 
-    int currCharacterDataID = -1;
+    Action useCharacterIDCallBack = null;
+    Action selectCharacterIDCallBack = null;
 
+    int characterDataID = -1;
+
+    bool isSelectState = false;
     bool isUseState = false;
     bool isLockState = true;
 
@@ -29,19 +34,26 @@ public class CharacterInfoItem : MonoBehaviour, OHScrollView.IInfiniteScrollSetu
 
     public void OnUpdateItem(GameObject obj, CharacterInfoData infos)
     {
-        currCharacterDataID = infos.data.ID;
+        characterDataID = infos.data.ID;
         SetCharaterData();
+    }
+
+    public void SetCallBackFunction(Action useCharacterIDCallBack, Action selectCharacterIDCallBack)
+    {
+        this.useCharacterIDCallBack = useCharacterIDCallBack;
+        this.selectCharacterIDCallBack = selectCharacterIDCallBack;
     }
 
     public void SetCharaterData()
     {
-        // 임시 값들
-        isUseState = currCharacterDataID == characterSelectWindow.currUseCharacterID;
-        isLockState = !(currCharacterDataID == 1 || currCharacterDataID == 2);
+        // 임시 값, 임시 처리
+        isLockState = !(characterDataID == 1 || characterDataID == 2);
+        isUseState = characterDataID == characterSelectWindow.CurrUseCharacterID;
+        isSelectState = characterDataID == characterSelectWindow.CurrSelectCharacterID;
 
-        useStateObj.SetActive(isUseState);
         lockStateObj.SetActive(isLockState);
-        selectedEffectObj.SetActive(currCharacterDataID == characterSelectWindow.currSelectCharacterID);
+        useStateObj.SetActive(isUseState);
+        selectedEffectObj.SetActive(isSelectState);
 
         // 캐릭터 이미지 세팅해야 함
 
@@ -49,15 +61,15 @@ public class CharacterInfoItem : MonoBehaviour, OHScrollView.IInfiniteScrollSetu
 
     public void OnClickEvent()
     {
-        if (isLockState)
+        if (isLockState || isSelectState)
             return;
 
-        if (currCharacterDataID == -1)
+        if (characterDataID == -1)
         {
             Debug.LogError("currCharacterDataID가 초기화되지 않음");
             return;
         }
 
-        characterSelectWindow.CharacterSelectEventCallBack(currCharacterDataID);
+        characterSelectWindow.CharacterSelectEventCallBack(characterDataID);
     }
 }

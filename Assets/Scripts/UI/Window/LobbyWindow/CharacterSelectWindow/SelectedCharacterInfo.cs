@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
 namespace Seunghak.UIManager
 {
@@ -12,31 +13,34 @@ namespace Seunghak.UIManager
         [SerializeField] CharacterInfoMenu characterInfoMenu;
         [SerializeField] CharacterSkinMenu characterSkinMenu;
 
-        public int currSelectedCharacterID { get; private set; } = -1;
+        public int SelectedCharacterID { get; private set; } = -1;
 
-        public void SetCharacterInfo(int selectedCharacterID)
+        Action<int> OnCharacterUseEventCallBack = null;
+
+        public void SetCharacterInfo(int selectedCharacterID, Action<int> onCharacterUseEventCallBack)
         {
-            currSelectedCharacterID = selectedCharacterID;
+            SelectedCharacterID = selectedCharacterID;
+            OnCharacterUseEventCallBack = onCharacterUseEventCallBack;
 
-            characterInfoMenu.Open(currSelectedCharacterID);
+            characterInfoMenu.Open(SelectedCharacterID, OnCharacterUseEventCallBack);
             characterSkinMenu.Close();
         }
 
         public void OnClickCharacterInfo()
         {
-            if(currSelectedCharacterID == -1)
+            if(SelectedCharacterID == -1)
                 return;
 
-            characterInfoMenu.Open(currSelectedCharacterID);
+            characterInfoMenu.Open(SelectedCharacterID, OnCharacterUseEventCallBack);
             characterSkinMenu.Close();
         }
 
         public void OnClickCharacterSkin()
         {
-            if (currSelectedCharacterID == -1)
+            if (SelectedCharacterID == -1)
                 return;
 
-            characterSkinMenu.Open(currSelectedCharacterID);
+            characterSkinMenu.Open(SelectedCharacterID);
             characterInfoMenu.Close();
         }
     }

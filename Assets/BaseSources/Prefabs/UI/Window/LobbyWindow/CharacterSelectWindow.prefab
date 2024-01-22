@@ -2392,13 +2392,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5533881381971329297}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 4147244433304037208}
+        m_TargetAssemblyTypeName: Seunghak.UIManager.CharacterInfoMenu, Assembly-CSharp
+        m_MethodName: OnClickUseCharacter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3747,6 +3747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5bcf9ebdd74c844948356e5f883bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelectWindow: {fileID: 7908163474277721821}
   characterNameText: {fileID: 3423969949866214144}
   characterImage: {fileID: 7928282641967281481}
   skillDescriptionText: {fileID: 6703022694514225987}

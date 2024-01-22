@@ -36,7 +36,8 @@ namespace Seunghak.UIManager
             characterInfoItemList.Clear();
             foreach (RectTransform rect in itemList)
             {
-                characterInfoItemList.Add(rect.gameObject.GetComponent<CharacterInfoItem>());
+                CharacterInfoItem characterInfoItem = rect.gameObject.GetComponent<CharacterInfoItem>();
+                characterInfoItemList.Add(characterInfoItem);
             }
         }
 

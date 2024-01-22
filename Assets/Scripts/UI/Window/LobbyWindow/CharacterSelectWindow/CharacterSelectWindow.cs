@@ -2,6 +2,7 @@ using Seunghak.Common;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Build.Pipeline;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,22 +13,27 @@ namespace Seunghak.UIManager
         [SerializeField] CharacterSelectScrollView scrollView;
         [SerializeField] SelectedCharacterInfo selectedCharacterInfo;
 
-        public int currUseCharacterID { get; private set; } = -1;
-        public int currSelectCharacterID { get; private set; } = -1;
+        public int CurrUseCharacterID { get; private set; } = -1;
+        public int CurrSelectCharacterID { get; private set; } = -1;
 
         public void Init()
         {
-            currUseCharacterID = 1; // 현재 사용 중인 캐릭터 ID를 가져와야 함
-            currSelectCharacterID = currUseCharacterID;
+            CurrUseCharacterID = 1; // 현재 사용 중인 캐릭터 ID를 가져와야 함
+            CurrSelectCharacterID = CurrUseCharacterID;
 
-            selectedCharacterInfo.SetCharacterInfo(currSelectCharacterID);
+            selectedCharacterInfo.SetCharacterInfo(CurrSelectCharacterID, CharacterUseEventCallBack);
             scrollView.InitScrollView(JsonDataManager.LoadJsonDatas<JCharacterData>(E_JSON_TYPE.JCharacterData).Values.ToList());
         }
         public void CharacterSelectEventCallBack(int characterDataID)
         {
-            this.currSelectCharacterID = characterDataID;
+            this.CurrSelectCharacterID = characterDataID;
 
-            selectedCharacterInfo.SetCharacterInfo(currSelectCharacterID);
+            selectedCharacterInfo.SetCharacterInfo(CurrSelectCharacterID, CharacterUseEventCallBack);
+            scrollView.UpdateScrollViewInfo();
+        }
+        public void CharacterUseEventCallBack(int characteerDataID)
+        {
+            this.CurrUseCharacterID = characteerDataID;
             scrollView.UpdateScrollViewInfo();
         }
 
