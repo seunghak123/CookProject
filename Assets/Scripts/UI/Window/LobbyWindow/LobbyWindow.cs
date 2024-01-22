@@ -45,10 +45,6 @@ namespace Seunghak.UIManager
             UIManager.Instance.PushUI(UI_TYPE.ShopWindow);
         }
 
-        public void EnterBattleWindow() 
-        {
-            UIManager.Instance.PushUI(UI_TYPE.BattleWindow);
-        }
         public void OpenEventPopup()
         {
             UIManager.Instance.PushUI(UI_TYPE.UserEventPopup);

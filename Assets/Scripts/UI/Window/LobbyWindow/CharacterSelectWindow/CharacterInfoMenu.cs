@@ -44,6 +44,7 @@ namespace Seunghak.UIManager
 
             // 캐릭터 설명 세팅
 
+            // 유저데이터 나오면 변경해야 함
             unselectObj.SetActive(characterSelectWindow.CurrUseCharacterID == currSelectedCharacterID);
 
             this.gameObject.SetActive(true);
@@ -59,6 +60,7 @@ namespace Seunghak.UIManager
             if (characterSelectWindow.CurrUseCharacterID == currSelectedCharacterID)
                 return;
 
+            // 유저데이터 나오면 변경해야 함
             OnCharacterUseEventCallBack?.Invoke(currSelectedCharacterID);
 
             unselectObj.SetActive(characterSelectWindow.CurrUseCharacterID == currSelectedCharacterID);
