@@ -21,12 +21,14 @@ public class PlayingTimeInfo
 }
 public class StoryIngameUI : BaseIngameUI
 {
-    protected List<RecipeObject> reciptObjectLists = new List<RecipeObject>();
+    protected List<RecipeObject> recipeObjectLists = new List<RecipeObject>();
     [SerializeField] protected TextMeshProUGUI ingameTimer;
     [SerializeField] protected TextMeshProUGUI ingameScore;
     [SerializeField] private List<PlayingTimeInfo> playingAnim = new List<PlayingTimeInfo>();
     [SerializeField] private Transform startUITransform;
 
+    [Header("recipe properties")]
+    [SerializeField] private float recipeDistance = 120f;
     private float currentTimer = 0.0f;
     private int currentScore = 0;
     public void StartStoryRefresh()
@@ -108,10 +110,15 @@ public class StoryIngameUI : BaseIngameUI
         ingameTimer.text = CommonUtil.GetTimerString(currentTimer);
         ingameScore.text = $"{currentScore}";
     }
-    public override void RemoveRecipe(int index = 0)
+    public override void RepositionRecipe()
     {
-        GameResourceManager.Instance.DestroyObject(reciptObjectLists[index].gameObject);
-        reciptObjectLists.RemoveAt(index);
+        //레시피 위치로 이동
+    }
+    public override void RemoveRecipe(bool isSuccess = false,int index = 0)
+    {
+        //사라지게 하기
+        GameResourceManager.Instance.DestroyObject(recipeObjectLists[index].gameObject);
+        recipeObjectLists.RemoveAt(index);
     }
     public override void CreateRecipe(JRecipeData recipeData)
     {
@@ -130,14 +137,14 @@ public class StoryIngameUI : BaseIngameUI
 
         createdRecipe.SetRecipeFoodResult(recipeLists);
         recipeObject.InitRecipe(createdRecipe,recipeData);
-        reciptObjectLists.Add(recipeObject);
+        recipeObjectLists.Add(recipeObject);
     }
     public override (bool, int) CheckRecipe(BasicMaterialData reciptResult)
     {
         int index = 0;
-        for(int i=0;i< reciptObjectLists.Count; i++)
+        for(int i=0;i< recipeObjectLists.Count; i++)
         {
-            if(reciptObjectLists[i].CheckRecipe(reciptResult))
+            if(recipeObjectLists[i].CheckRecipe(reciptResult))
             {
                 index = i;
                 return (true, index);
@@ -147,9 +154,9 @@ public class StoryIngameUI : BaseIngameUI
     }
     public int CompleteFoodResult(int index)
     {
-        RecipeObject removeRecipe = reciptObjectLists[index];
+        RecipeObject removeRecipe = recipeObjectLists[index];
 
-        reciptObjectLists.RemoveAt(index);
+        recipeObjectLists.RemoveAt(index);
 
         int score = 10;
 

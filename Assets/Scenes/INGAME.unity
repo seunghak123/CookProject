@@ -1247,7 +1247,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490881914}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.9629746, w: 0.2695921}
+  m_LocalRotation: {x: 0, y: 0, z: -0.9675771, w: 0.25257596}
   m_LocalPosition: {x: 0.373734, y: -0.089496, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1489,7 +1489,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538351176}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.20961857, w: 0.97778326}
+  m_LocalRotation: {x: 0, y: 0, z: -0.12403445, w: 0.9922779}
   m_LocalPosition: {x: 0.205488, y: -0.002466, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2374,7 +2374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 783404992}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.4825946, w: 0.8758438}
+  m_LocalRotation: {x: 0, y: 0, z: 0.21882452, w: 0.9757643}
   m_LocalPosition: {x: 0.28269, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2766,7 +2766,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 981579912}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.9998337, w: -0.018237578}
+  m_LocalRotation: {x: 0, y: 0, z: 0.9598298, w: 0.28058293}
   m_LocalPosition: {x: 0.352296, y: 0.07786799, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3644,7 +3644,7 @@ MonoBehaviour:
   disableRenderingOnOverride: 1
   updateTiming: 1
   unscaledTime: 0
-  _animationName: Throw
+  _animationName: Idle
   loop: 1
   timeScale: 1
 --- !u!23 &1439776174
@@ -5472,11 +5472,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2085180009}
   - {fileID: 1921999306}
   - {fileID: 1966371537}
   - {fileID: 1475676349}
   - {fileID: 113962045}
+  - {fileID: 2085180009}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

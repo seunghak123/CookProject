@@ -19,14 +19,15 @@ public class IngameManager : MonoBehaviour
     [Header("SceneObject")]
     [SerializeField] private Transform mapSpawnPos = null;
     [SerializeField] private Transform uiSpawnPos = null;
-    [SerializeField] private Transform team1Parent = null;
-    [SerializeField] private Transform team2Parent = null;
 
+    //인게임 오브젝트 
     private IngameMapPrefab mapPrefabs = null;
     private List<UnitController> enemyUnits = new List<UnitController>();
     private List<UnitController> teamUnits = new List<UnitController>();
     private BaseIngameUI ingameUI = null;
+    private GameObject ingameMapObject = null;
 
+    //인게임 관련 데이터
     private List<JRecipeData> recipeDataLists = new List<JRecipeData>();
     private Dictionary<string, int> recipeOutputDic = new Dictionary<string, int>();
 
@@ -36,14 +37,6 @@ public class IngameManager : MonoBehaviour
     private void Awake()
     {
         currentManager = this;
-    }
-    public List<BaseAI> GetEnemyUnits()
-    {
-        List<BaseAI> enemyAIs = new List<BaseAI>();
-
-        enemyAIs = enemyUnits.ConvertAll<BaseAI>(find => find.UNIT_AI);
-
-        return enemyAIs;
     }
     private void Update()
     {
@@ -82,6 +75,17 @@ public class IngameManager : MonoBehaviour
         JRecipeData newRecipe = JsonDataManager.Instance.GetRecipeData(recipeId);
         currentClearRecipe.Add(newRecipe);
         ingameUI.CreateRecipe(newRecipe);
+    }
+    private void CreateUserCharacter()
+    {
+        List<CharacterSpawnPosGimmick> spawnPos = new List<CharacterSpawnPosGimmick>
+            (ingameMapObject.GetComponentsInChildren<CharacterSpawnPosGimmick>());
+
+
+        for(int i=0;i<spawnPos.Count;i++)
+        {
+            
+        }
     }
     private void CreateRandomRecipe(List<JRecipeData> recipeList)
     {
@@ -180,6 +184,22 @@ public class IngameManager : MonoBehaviour
         }
         return recipeBuilder.ToString();
     }
+    public bool FailRecipe(int index)
+    {
+        if (ingameUI != null)
+        {
+            int recipePos = index;
+
+            if(currentClearRecipe.Count > recipePos)
+            {
+                currentClearRecipe.RemoveAt(recipePos);
+                ingameUI.RemoveRecipe(false,recipePos);
+
+                return true;
+            }
+        }
+        return false;
+    }
     public bool CheckRecipeComplete(BasicMaterialData completeFood)
     {
         if(ingameUI!=null)
@@ -190,7 +210,7 @@ public class IngameManager : MonoBehaviour
             {
 
                 currentClearRecipe.RemoveAt(recipePos);
-                ingameUI.RemoveRecipe(recipePos);
+                ingameUI.RemoveRecipe(true,recipePos);
 
                 currentScore += recipeDataLists[recipePos].Score;
                 int stageType = 1;
@@ -245,6 +265,7 @@ public class IngameManager : MonoBehaviour
 
         CreateMapData(1);   
         CreateRandomRecipe(currentCopyRecipeLists);
+        CreateUserCharacter();
 
         StartGame();
     }
@@ -279,6 +300,10 @@ public class IngameManager : MonoBehaviour
                 DestroyImmediate(mapSpawnPos.GetChild(i).gameObject);
             }
         }
+        if (ingameMapObject != null)
+        {
+            Destroy(ingameMapObject);
+        }
         JStageData stageData = JsonDataManager.Instance.GetSingleData<JStageData>(stageId,E_JSON_TYPE.JStageData);
 
         UnityEngine.Object loadObject = GameResourceManager.Instance.LoadObject(stageData.StageFile);
@@ -309,6 +334,8 @@ public class IngameManager : MonoBehaviour
             stagePrefab.transform.position = Vector3.zero;
             stagePrefab.transform.localScale = Vector3.one;
         }
+
+        ingameMapObject = stagePrefab;
     }
     public void ReplayStage()
     {

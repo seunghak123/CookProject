@@ -1,14 +1,18 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace Seunghak.SceneManager
 {
+    public abstract class SceneDeliverData
+    {
+    }
     public abstract class SceneController : MonoBehaviour
     {
         protected virtual void Awake()
         {
             RegistSceneController();
         }
+        public virtual void SetSceneData(SceneDeliverData info) { }
         //현재 씬 컨트롤러 초기화 함수
         public virtual void InitSceneController() { }
         //씬 로드 시 씬 매니저에 현재 컨트롤러 등록하는 함수

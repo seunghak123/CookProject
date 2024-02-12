@@ -11,10 +11,11 @@ public class BaseIngameUI : MonoBehaviour
     public virtual void RefreshIngameUI() { }
     public virtual void CreateRecipe(JRecipeData recipeData){}
     public virtual (bool, int) CheckRecipe(BasicMaterialData reciptResult) { return (false, 0); }
-    public virtual void RemoveRecipe(int index = 0)
+    public virtual void RemoveRecipe(bool isSuccess = false,int index = 0)
     {
 
     }
+    public virtual void RepositionRecipe() { }
     public virtual async UniTask StartDirection()
     {
         await WaitTimeManager.WaitForRealTimeSeconds(Time.fixedDeltaTime);

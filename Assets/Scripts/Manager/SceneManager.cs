@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,12 +33,25 @@ namespace Seunghak.SceneManager
         [SerializeField] private bool isWatingSuccessSequence = false;
         // ------------------------테스트-------------------------------- 
         #region Property
-        private Dictionary<E_SCENESTEP_TYPE, Action> _addactionList = new Dictionary<E_SCENESTEP_TYPE, Action>();
-        private Dictionary<E_SCENESTEP_TYPE, Action> _baseactionList = new Dictionary<E_SCENESTEP_TYPE, Action>();
-        private E_SCENESTEP_TYPE _currentStepType = E_SCENESTEP_TYPE.NONE;
-        private E_SCENE_TYPE _currentSceneType = E_SCENE_TYPE.INTRO;
-        private E_SCENE_TYPE _nextSceneType = E_SCENE_TYPE.INTRO;
-        private SceneController _currentSceneController = null;
+        private Dictionary<E_SCENESTEP_TYPE, Action> addactionList = new Dictionary<E_SCENESTEP_TYPE, Action>();
+        private Dictionary<E_SCENESTEP_TYPE, Action> baseactionList = new Dictionary<E_SCENESTEP_TYPE, Action>();
+        private E_SCENESTEP_TYPE currentStepType = E_SCENESTEP_TYPE.NONE;
+        private E_SCENE_TYPE currentSceneType = E_SCENE_TYPE.INTRO;
+        private E_SCENE_TYPE nextSceneType = E_SCENE_TYPE.INTRO;
+        private SceneController currentSceneController = null;
+        private SceneDeliverData currentDeliverData = null;
+
+        public SceneDeliverData CurDeliverData
+        {
+            get { return currentDeliverData; }
+            set 
+            { 
+                if(value!=null)
+                {
+                    currentDeliverData = value;
+                }
+            }
+        }
         #endregion Property
 
         protected override void InitSingleton()
@@ -56,23 +69,23 @@ namespace Seunghak.SceneManager
         #region UtilityLogic
         public void RegistSceneController(SceneController addedSceneController)
         {
-            _currentSceneController = addedSceneController;
+            currentSceneController = addedSceneController;
         }
         public void AddStepAction(E_SCENESTEP_TYPE addStepType, Action addAction)
         {
-            if (_addactionList.ContainsKey(addStepType))
+            if (addactionList.ContainsKey(addStepType))
             {
-                _addactionList[addStepType] = addAction;
+                addactionList[addStepType] = addAction;
             }
             else
             {
-                _addactionList.Add(addStepType, addAction);
+                addactionList.Add(addStepType, addAction);
             }
         }
         //공용으로 사용할 씬 나갈때 스텝 
         public void ChangeScene(E_SCENE_TYPE nextScene)
         {
-            _nextSceneType = nextScene;
+            nextSceneType = nextScene;
             NextStep(E_SCENESTEP_TYPE.EXITSTEP);
         }
         //베이스가 되는 씬 기반으로 돌아가는 함수
@@ -84,13 +97,13 @@ namespace Seunghak.SceneManager
         #region BasicLogic
         private void InitSceneManager()
         {
-            _baseactionList.Add(E_SCENESTEP_TYPE.EXITSTEP, BaseExitStep);
-            _baseactionList.Add(E_SCENESTEP_TYPE.LOADSTEP, BaseLoadStep);
-            _baseactionList.Add(E_SCENESTEP_TYPE.OPENSTEP, BaseOpenStep);
+            baseactionList.Add(E_SCENESTEP_TYPE.EXITSTEP, BaseExitStep);
+            baseactionList.Add(E_SCENESTEP_TYPE.LOADSTEP, BaseLoadStep);
+            baseactionList.Add(E_SCENESTEP_TYPE.OPENSTEP, BaseOpenStep);
         }
         private void BaseExitStep()
         {
-            _currentSceneController = null;
+            currentSceneController = null;
             ExecuteAddStepAcion();
             NextStep(E_SCENESTEP_TYPE.LOADSTEP);
         }
@@ -109,13 +122,13 @@ namespace Seunghak.SceneManager
             loadingPopupUI = UIManager.UIManager.Instance.PushUI(UIManager.UI_TYPE.LoadingPopup) as LoadingPopup;
 
             ExecuteAddStepAcion();
-            AsyncOperation taskLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(_nextSceneType.ToString());
+            AsyncOperation taskLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(nextSceneType.ToString());
             while (!taskLoad.isDone || isWatingSuccessSequence)
             {
                 //m_TaskLoad.progress progress 표시 또는
                 yield return waitframe;
             }
-            while (_currentSceneController == null)
+            while (currentSceneController == null)
             {
                 yield return waitframe;
             }
@@ -126,18 +139,18 @@ namespace Seunghak.SceneManager
         }
         private void ExecuteStepAction()
         {
-            if (_baseactionList.ContainsKey(_currentStepType))
+            if (baseactionList.ContainsKey(currentStepType))
             {
-                _baseactionList[_currentStepType]();
+                baseactionList[currentStepType]();
             }
         }
         private void ExecuteAddStepAcion()
         {
-            if (_addactionList.ContainsKey(_currentStepType))
+            if (addactionList.ContainsKey(currentStepType))
             {
-                _addactionList[_currentStepType]();
+                addactionList[currentStepType]();
 
-                _addactionList.Remove(_currentStepType);
+                addactionList.Remove(currentStepType);
             }
         }
         private void NextStep(E_SCENESTEP_TYPE nextStepType)
@@ -145,17 +158,18 @@ namespace Seunghak.SceneManager
             if (nextStepType == E_SCENESTEP_TYPE.END)
             {
                 //모든 씬 로드 액션 끝
-                _currentStepType = E_SCENESTEP_TYPE.NONE;
-                _currentSceneType = _nextSceneType;
+                currentStepType = E_SCENESTEP_TYPE.NONE;
+                currentSceneType = nextSceneType;
                 //로딩 화면 종료
                 loadingPopupUI.CloseUI();
-                _currentSceneController.InitSceneController();
+                currentSceneController.SetSceneData(currentDeliverData);
+                currentSceneController.InitSceneController();
                 //각 씬 컨트롤러 여기서 초기화 함수 호출 씬 컨트롤러는 BaseSceneController 상속 받는다.
                 // 각 씬에서 반드시 해줘야 할 행동 리스트들을 나열해놓은 인터페이스를 상속받는다
                 //인터페이스 상속 받은것을 찾아서 실행만 시켜주면 된다.
                 return;
             }
-            _currentStepType = nextStepType;
+            currentStepType = nextStepType;
             ExecuteStepAction();
         }
         #endregion BasicLogic

@@ -56,6 +56,7 @@ public class RecipeObject : MonoBehaviour
             if (currentTimer > recipeData.LimitTime)
             {
                 //실패처리
+                //IngameManager.
                 break;
             }
             currentTimer += Time.deltaTime;

@@ -2,10 +2,19 @@ using System;
 using UnityEngine;
 namespace Seunghak.SceneManager
 {
+    using Seunghak.Common;
     using Seunghak.UIManager;
+    using System.Collections.Generic;
+
+    public class IngameSceneData : SceneDeliverData
+    {
+        public int stageId;
+        public List<string> userKey;
+    }
     public class IngameSceneController : SceneController
     {
         [SerializeField] private IngameCanvas ingameUICanvas;
+        private IngameSceneData ingameData;
         protected override void Awake()
         {
             base.Awake();
@@ -16,6 +25,8 @@ namespace Seunghak.SceneManager
             UIManager.Instance.CloseUI();
 
             //테스트 코드 SceneController에 데이터 넘기고 그걸 인게임 매니저에 전달 필요
+            //UserDataManager.Instance.
+
             IngameManager.currentManager.CreateGame(0);
 
             //선택한 덱 가져오기 , 유저 데이터 세팅
