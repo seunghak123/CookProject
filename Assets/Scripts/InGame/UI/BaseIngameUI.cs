@@ -20,4 +20,5 @@ public class BaseIngameUI : MonoBehaviour
     {
         await WaitTimeManager.WaitForRealTimeSeconds(Time.fixedDeltaTime);
     }
+    public virtual void FailRecipe() { }
 }

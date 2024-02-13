@@ -58,6 +58,7 @@ public class StoryIngameUI : BaseIngameUI
 
             if(IngameManager.currentManager.isGameEnd)
             {
+                //GameResourceManager.Instance.SpawnObject("")
                 break;
             }
             yield return WaitTimeManager.WaitForRealTimeSeconds(Time.fixedDeltaTime);
@@ -116,9 +117,22 @@ public class StoryIngameUI : BaseIngameUI
     }
     public override void RemoveRecipe(bool isSuccess = false,int index = 0)
     {
-        //사라지게 하기
+        //우선 해당 오브젝트 뭐시기 하고
+        if(isSuccess)
+        {
+            //여기에 성공 연출 대기
+        }
+        else
+        {
+            //여기에 실패 연출 대기
+        }
+        //사라지게 하기 및에는 코루틴이나 task로 넘길것
         GameResourceManager.Instance.DestroyObject(recipeObjectLists[index].gameObject);
         recipeObjectLists.RemoveAt(index);
+        for(int i=0;i<recipeObjectLists.Count;i++)
+        {
+            recipeObjectLists[i].Reposition(i);
+        }
     }
     public override void CreateRecipe(JRecipeData recipeData)
     {
@@ -136,6 +150,7 @@ public class StoryIngameUI : BaseIngameUI
         List<int> recipeLists = new List<int>(recipeData.AddFood);
 
         createdRecipe.SetRecipeFoodResult(recipeLists);
+        recipeObject.SetIndex(recipeObjectLists.Count);        
         recipeObject.InitRecipe(createdRecipe,recipeData);
         recipeObjectLists.Add(recipeObject);
     }
@@ -163,5 +178,12 @@ public class StoryIngameUI : BaseIngameUI
         GameResourceManager.Instance.DestroyObject(removeRecipe.gameObject);
 
         return score;
+    }
+    public override void FailRecipe()
+    {
+        int randomRecipe = UnityEngine.Random.Range(0, recipeObjectLists.Count);
+        RecipeObject removeRecipe = recipeObjectLists[randomRecipe];
+
+        removeRecipe.AddCurrentTimer(5.0f);
     }
 }

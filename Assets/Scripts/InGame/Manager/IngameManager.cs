@@ -87,6 +87,10 @@ public class IngameManager : MonoBehaviour
             
         }
     }
+    private void CreatePreParticles()
+    {
+        //미리 파티클 모음 모아서 생성해 놓는다. 이건 수집형등에나 씀
+    }
     private void CreateRandomRecipe(List<JRecipeData> recipeList)
     {
         UnityEngine.Random.InitState(((int)DateTime.Now.Ticks));
@@ -168,6 +172,10 @@ public class IngameManager : MonoBehaviour
 
         return baseUI;
     }
+    private void CreateSubUI(string uiName)
+    {
+        
+    }
     private StringBuilder recipeBuilder = new StringBuilder();
     public string MakeRecipeStringKey(List<int> foodLists)
     {
@@ -184,21 +192,20 @@ public class IngameManager : MonoBehaviour
         }
         return recipeBuilder.ToString();
     }
-    public bool FailRecipe(int index)
+    public void FailRecipe(int index)
     {
-        if (ingameUI != null)
+        int recipePos = index;
+
+        if (currentClearRecipe.Count > recipePos)
         {
-            int recipePos = index;
+            currentClearRecipe.RemoveAt(recipePos);
+            ingameUI.RemoveRecipe(false, recipePos);
 
-            if(currentClearRecipe.Count > recipePos)
-            {
-                currentClearRecipe.RemoveAt(recipePos);
-                ingameUI.RemoveRecipe(false,recipePos);
 
-                return true;
-            }
+            currentScore = currentScore - (int)(currentScore * 0.03f);
+            //코인 감소
+
         }
-        return false;
     }
     public bool CheckRecipeComplete(BasicMaterialData completeFood)
     {
@@ -226,15 +233,31 @@ public class IngameManager : MonoBehaviour
                     case 2:
                         break;
                 }
+
+
                 return true;
             }
             else
             {
-                //실패 했을 경우 벌칙 처리 필요
+                ingameUI.FailRecipe();
+
                 return false;
             }
         }
         return false;
+    }
+    public void CreateCompleteCoin(int score)
+    {
+        int count = 1;
+        int multiCount = 0;
+        while(score>0)
+        {
+            score = score/10;
+            multiCount++;
+        }
+        count = multiCount * 3 + count;
+
+        //GameResourceManager.Instance.SpawnObject("")
     }
     public int GetRecipeFoodResult(List<int> foodResult)
     {
@@ -274,6 +297,9 @@ public class IngameManager : MonoBehaviour
         await UniTask.NextFrame();
 
         await ingameUI.StartDirection();
+
+        //여기에 UI 킬거 킬 것,
+
         //CinemachineTrack cinemachineTrack ;
 
         //if (cinemachineTrack != null)
