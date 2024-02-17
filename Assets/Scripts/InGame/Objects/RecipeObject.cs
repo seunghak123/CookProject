@@ -31,8 +31,8 @@ public class RecipeData
 [Serializable]
 public class RecipeInfos
 {
-    [SerializeField] private Image recipeImages;
-    [SerializeField] private Image toolImages;
+    [SerializeField] public Image foodImages;
+    [SerializeField] public Image toolImages;
 }
 public class RecipeObject : MonoBehaviour
 {
@@ -73,12 +73,44 @@ public class RecipeObject : MonoBehaviour
         JFoodObjectData foodData = JsonDataManager.Instance.GetFoodObject(outputFood);
 
         recipeImage.sprite = SpriteManager.Instance.LoadSprite(foodData.IconFile);
-
+        SetRecipeLists(targetRecipeData);
         StartCoroutine(RecipeTimer());
     }
     private void SetRecipeLists(JRecipeData targetRecipeData)
     {
-        
+        //grid를 위해서 전부 active 꺼주기
+        for (int i = 0; i < 4; i++)
+        {
+            recipeImages[i].foodImages.gameObject.SetActive(false);
+            recipeImages[i].toolImages.gameObject.SetActive(false);
+        }
+
+        for(int i=0;i< targetRecipeData.AddFood.Length; i++)
+        {
+            RecipeResult toolComplex = IngameManager.currentManager.GetOriginFoodData(targetRecipeData.AddFood[i]);
+
+            if(toolComplex!=null)
+            {
+                recipeImages[i].foodImages.gameObject.SetActive(true);
+                recipeImages[i].toolImages.gameObject.SetActive(true);
+
+
+                string foodImage = JsonDataManager.Instance.GetFoodObject(toolComplex.inputFoodNum).IconFile;
+                string toolImage = JsonDataManager.Instance.GetToolId(toolComplex.toolNum).IconFile;
+
+
+                recipeImages[i].foodImages.sprite = SpriteManager.Instance.LoadSprite(foodImage);
+                recipeImages[i].toolImages.sprite = SpriteManager.Instance.LoadSprite(toolImage);
+            }
+            else
+            {
+                recipeImages[i].foodImages.gameObject.SetActive(true);
+                recipeImages[i].toolImages.gameObject.SetActive(false);
+
+                string foodImage = JsonDataManager.Instance.GetFoodObject(targetRecipeData.AddFood[i]).IconFile;
+                recipeImages[i].foodImages.sprite = SpriteManager.Instance.LoadSprite(foodImage);
+            }
+        }
     }
     public void Reposition(int index)
     {

@@ -204,6 +204,13 @@ namespace Seunghak.Common
         public string userNickName = string.Empty;
         public string userUserEmail = string.Empty;
     }
+    [Serializable]
+    public class UserLobbyInfoData
+    {
+        //1번이 기본 캐릭터
+        public int userCurrentId = 1;
+        //public int 
+    }
     /// <summary>
     /// 유저 옵션 데이터
     /// </summary>
@@ -211,9 +218,9 @@ namespace Seunghak.Common
     public class UserOptionData
     {
         //로컬 저장예정
-        [Range(0, 100)] public int masterVolume = 50;
-        [Range(0, 100)] public int soundVolume = 50;
-        [Range(0, 100)] public int fbxVolume = 50;
+        [Range(0, 100)] public int masterVolume = 100;
+        [Range(0, 100)] public int soundVolume = 100;
+        [Range(0, 100)] public int fbxVolume = 100;
         public E_LANGUAGE_TYPE userLangType = E_LANGUAGE_TYPE.KOREAN;
         public int MasterVolume { get { return masterVolume; } set { masterVolume = value; } }
         public int SoundVolume { get { return soundVolume; } set { soundVolume = value; } }
@@ -225,11 +232,16 @@ namespace Seunghak.Common
     /// 유저 스토리 데이터
     /// </summary>
     [Serializable]
+    public class StoryResultInfo
+    {
+        public int storyId;
+        public int maxScore;
+        public int starCount;
+    }
+    [Serializable]
     public class UserStoryDatas
     {
-        //어디 까지 꺳는지, 별 몇개인지 , 최대점수 몇점인지 - 
-
-        //스토리
+        public List<StoryResultInfo> storyResults = new List<StoryResultInfo>();
     }
     /// <summary>
     /// 유저 데이터 베이스 저장용 구조

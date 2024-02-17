@@ -8,6 +8,11 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.AI;
 
+public class RecipeResult
+{
+    public int toolNum;
+    public int inputFoodNum;
+}
 public class IngameManager : MonoBehaviour
 {
     public static IngameManager currentManager = null;
@@ -29,6 +34,7 @@ public class IngameManager : MonoBehaviour
 
     //인게임 관련 데이터
     private List<JRecipeData> recipeDataLists = new List<JRecipeData>();
+    private Dictionary<int, RecipeResult> recipeToolOutputDic = new Dictionary<int, RecipeResult>();
     private Dictionary<string, int> recipeOutputDic = new Dictionary<string, int>();
 
     private List<JRecipeData> currentClearRecipe = new List<JRecipeData>();
@@ -49,6 +55,10 @@ public class IngameManager : MonoBehaviour
         {
             isGameEnd = true;
         }
+    }
+    public JStageData GetCurrentStageData()
+    {
+        return currentStageData;
     }
     private void GameClear()
     {
@@ -91,15 +101,21 @@ public class IngameManager : MonoBehaviour
     {
         //미리 파티클 모음 모아서 생성해 놓는다. 이건 수집형등에나 씀
     }
-    private void CreateRandomRecipe(List<JRecipeData> recipeList)
+    public void CreateRandomRecipes()
     {
         UnityEngine.Random.InitState(((int)DateTime.Now.Ticks));
         for(int i=0;i< currentStageData.StartRecipeValue;i++)
         {
-            int randomPos = UnityEngine.Random.Range(0, recipeList.Count);
+            int randomPos = UnityEngine.Random.Range(0, currentCopyRecipeLists.Count);
 
-            CreateRecipe(recipeList[randomPos].ID);
+            CreateRecipe(currentCopyRecipeLists[randomPos].ID);
         }
+    }
+    public void CreateRandomRecipe()
+    {
+        int randomPos = UnityEngine.Random.Range(0, currentCopyRecipeLists.Count);
+
+        CreateRecipe(currentCopyRecipeLists[randomPos].ID);
     }
     private BaseIngameUI CreateUI(int stageType)
     {
@@ -137,6 +153,11 @@ public class IngameManager : MonoBehaviour
                 recipeList.Add(recipeDataLists[i].FoodName);
                 recipekey = MakeRecipeStringKey(recipeList);
                 recipeOutputDic[recipekey] = recipeDataLists[i].FoodOutput;
+
+                RecipeResult result = new RecipeResult();
+                result.inputFoodNum = recipeDataLists[i].FoodName;
+                result.toolNum = recipeDataLists[i].UseObject;
+                recipeToolOutputDic[recipeDataLists[i].FoodOutput] = result;
             }
             else if(recipeDataLists[i].Foodtype == 2)
             {
@@ -192,6 +213,14 @@ public class IngameManager : MonoBehaviour
         }
         return recipeBuilder.ToString();
     }
+    public RecipeResult GetOriginFoodData(int makedFoodId)
+    {
+        if(recipeToolOutputDic.ContainsKey(makedFoodId))
+        {
+            return recipeToolOutputDic[makedFoodId];
+        }
+        return null;
+    }
     public void FailRecipe(int index)
     {
         int recipePos = index;
@@ -204,7 +233,7 @@ public class IngameManager : MonoBehaviour
 
             currentScore = currentScore - (int)(currentScore * 0.03f);
             //코인 감소
-
+            CreateRandomRecipe();
         }
     }
     public bool CheckRecipeComplete(BasicMaterialData completeFood)
@@ -287,7 +316,6 @@ public class IngameManager : MonoBehaviour
         ingameUI = CreateUI(1);
 
         CreateMapData(1);   
-        CreateRandomRecipe(currentCopyRecipeLists);
         CreateUserCharacter();
 
         StartGame();

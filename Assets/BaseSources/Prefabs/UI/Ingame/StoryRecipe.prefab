@@ -62,13 +62,13 @@ MonoBehaviour:
   recipeImage: {fileID: 8555509765717101568}
   recipeTimerProgressBar: {fileID: 5237155157754853177}
   recipeImages:
-  - recipeImages: {fileID: 6484923393507248585}
+  - foodImages: {fileID: 6484923393507248585}
     toolImages: {fileID: 2306327867285867211}
-  - recipeImages: {fileID: 1480296728102378682}
+  - foodImages: {fileID: 1480296728102378682}
     toolImages: {fileID: 1039979934192423002}
-  - recipeImages: {fileID: 6336613519038472129}
+  - foodImages: {fileID: 6336613519038472129}
     toolImages: {fileID: 4803912284166929924}
-  - recipeImages: {fileID: 8687575404979236749}
+  - foodImages: {fileID: 8687575404979236749}
     toolImages: {fileID: 1454168501746355297}
   createTimer: 0.4
   moveTimer: 0.4

@@ -115,25 +115,29 @@ public class MovingPlatformGimmick : BaseGimmick
                     await UniTask.NextFrame(destroyCancellation.Token);
                     currentPos = Vector3.Lerp(targetPosLists[currentPosIndex], targetPosLists[nextPosIndex], delayTime / moveTime);
                     Vector3 direct = targetPosLists[nextPosIndex] - targetPosLists[currentPosIndex];
-                    if(direct.x >0)
+                    if (!IngameManager.currentManager.isPause)
                     {
-                        if (moveDirect.x>0)
+                        if (direct.x > 0)
                         {
-                            delayTime += Time.deltaTime;
-                        }else if(moveDirect.x<0)
-                        {
-                            delayTime -= Time.deltaTime;
+                            if (moveDirect.x > 0)
+                            {
+                                delayTime += Time.deltaTime;
+                            }
+                            else if (moveDirect.x < 0)
+                            {
+                                delayTime -= Time.deltaTime;
+                            }
                         }
-                    }
-                    else
-                    {
-                        if (moveDirect.x < 0)
+                        else
                         {
-                            delayTime += Time.deltaTime;
-                        }
-                        else if (moveDirect.x > 0)
-                        {
-                            delayTime -= Time.deltaTime;
+                            if (moveDirect.x < 0)
+                            {
+                                delayTime += Time.deltaTime;
+                            }
+                            else if (moveDirect.x > 0)
+                            {
+                                delayTime -= Time.deltaTime;
+                            }
                         }
                     }
                     MoveRelatedTransform(currentPos  - this.transform.position);

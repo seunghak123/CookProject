@@ -227,9 +227,9 @@ public class BaseAI : MonoBehaviour
         }
         else
         {
-            if (track != null && !(track.Animation.Name == "lift"))
+            if (track != null && !(track.Animation.Name == "Lift"))
             {
-                unitSpineAnim.AnimationState.SetAnimation(0, "lift", true);
+                unitSpineAnim.AnimationState.SetAnimation(0, "Lift", true);
             }
         }
     }

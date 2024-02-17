@@ -50,7 +50,10 @@ public class DisappearPlatform : BaseGimmick
             }
 
             await UniTask.NextFrame();
-            delayTime += Time.fixedDeltaTime;
+            if (!IngameManager.currentManager.isPause)
+            {
+                delayTime += Time.fixedDeltaTime;
+            }
 
             interActData.disappearPercent = delayTime / disappearTime;
 

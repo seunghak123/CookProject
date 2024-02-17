@@ -58,7 +58,12 @@ public class StoryIngameUI : BaseIngameUI
 
             if(IngameManager.currentManager.isGameEnd)
             {
-                //GameResourceManager.Instance.SpawnObject("")
+                StoryIngameEndUI ingameEndUI = GameResourceManager.Instance.SpawnObject("IngameEnd").GetComponent<StoryIngameEndUI>();
+                ingameEndUI.gameObject.transform.parent = this.transform;
+                ingameEndUI.gameObject.transform.localPosition = Vector3.zero;
+                ingameEndUI.gameObject.transform.localScale = Vector3.one;
+
+
                 break;
             }
             yield return WaitTimeManager.WaitForRealTimeSeconds(Time.fixedDeltaTime);
@@ -98,8 +103,11 @@ public class StoryIngameUI : BaseIngameUI
             await WaitTimeManager.WaitForRealTimeSeconds(Time.fixedDeltaTime);
         }
 
-
         startUITransform.gameObject.SetActive(false);
+
+        IngameManager.currentManager.CreateRandomRecipes();
+
+        await WaitTimeManager.WaitForRealTimeSeconds(0.5f);
         StartStoryRefresh();
     }
     public override void UpdateIngameData()
