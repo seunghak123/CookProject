@@ -20,6 +20,7 @@ namespace Seunghak.Common
         UserOptionData,
         UserItemDatas,
         UserStoryDatas,
+        UserLobbyDatas,
     }
     public class UserDataManager : UnitySingleton<UserDataManager>
     {
@@ -207,9 +208,7 @@ namespace Seunghak.Common
     [Serializable]
     public class UserLobbyInfoData
     {
-        //1번이 기본 캐릭터
-        public int userCurrentId = 1;
-        //public int 
+        public int userCharacterCurrentId = 1;
     }
     /// <summary>
     /// 유저 옵션 데이터
@@ -253,5 +252,6 @@ namespace Seunghak.Common
         public UserOptionData userOption = new UserOptionData();
         public UserItemDatas userItemDatas = new UserItemDatas();
         public UserStoryDatas userStoryDatas = new UserStoryDatas();
+        public UserLobbyInfoData userLobbyInfoDatas = new UserLobbyInfoData();
     }
 }

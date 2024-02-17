@@ -24,4 +24,17 @@ public class StoryIngameEndUI : MonoBehaviour
     [SerializeField] private GainStars[] gainStars;
     [SerializeField] private TextMeshProUGUI gainScores;
     [SerializeField] private TextMeshProUGUI gainCoins;
+
+    private void OnClickHomeButton()
+    {
+        //로비
+        //스테이지 창으로 넘길건지
+        //로비화면으로 갈건지
+
+    }
+
+    public void SetEndInfo()
+    {
+
+    }
 }

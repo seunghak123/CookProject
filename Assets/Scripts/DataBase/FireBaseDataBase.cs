@@ -19,6 +19,9 @@ public class FireBaseDataBase : BaseDataBase
         firebaseDBs[E_DATABASE_TYPE.USER_ITEM].SetRawJsonValueAsync(JsonConvert.SerializeObject(saveData.userItemDatas));
 
         firebaseDBs[E_DATABASE_TYPE.USER_STAGE].SetRawJsonValueAsync(JsonConvert.SerializeObject(saveData.userStoryDatas));
+
+        firebaseDBs[E_DATABASE_TYPE.USER_LOBBYINFO].SetRawJsonValueAsync(JsonConvert.SerializeObject(saveData.userLobbyInfoDatas));
+
         CommonUtil.SavePlayerPref<UserOptionData>(PlayerPrefKey.UserOptionData, saveData.userOption);
     }
     public UserDataInfo LoadDB()
@@ -65,6 +68,19 @@ public class FireBaseDataBase : BaseDataBase
             }
         });
 
+        firebaseDBs[E_DATABASE_TYPE.USER_LOBBYINFO].GetValueAsync().ContinueWith(task =>
+        {
+            if (task.IsFaulted)
+            {
+
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapShot = task.Result;
+                userDB.userLobbyInfoDatas = JsonConvert.DeserializeObject<UserLobbyInfoData>(snapShot.GetRawJsonValue());
+            }
+        });
+
         userDB.userOption = CommonUtil.GetPlayerPref<UserOptionData>(PlayerPrefKey.UserOptionData);
 
         return userDB;
@@ -98,6 +114,8 @@ public class FireBaseDataBase : BaseDataBase
         firebaseDBs[E_DATABASE_TYPE.USER_ITEM].SetRawJsonValueAsync(JsonConvert.SerializeObject(updateData.userItemDatas));
 
         firebaseDBs[E_DATABASE_TYPE.USER_STAGE].SetRawJsonValueAsync(JsonConvert.SerializeObject(updateData.userStoryDatas));
+
+        firebaseDBs[E_DATABASE_TYPE.USER_LOBBYINFO].SetRawJsonValueAsync(JsonConvert.SerializeObject(updateData.userLobbyInfoDatas));
 
         CommonUtil.SavePlayerPref<UserOptionData>(PlayerPrefKey.UserOptionData, updateData.userOption);
     }

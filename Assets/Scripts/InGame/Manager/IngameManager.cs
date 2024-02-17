@@ -314,7 +314,6 @@ public class IngameManager : MonoBehaviour
         currentCopyRecipeLists = JsonDataManager.Instance.GetRecipeGroupData(currentStageData.ProbabilityGroupID);
         currentTimer = currentStageData.StageTimer;
         ingameUI = CreateUI(1);
-
         CreateMapData(1);   
         CreateUserCharacter();
 

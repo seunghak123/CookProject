@@ -1,4 +1,4 @@
-﻿#region ResourceType
+#region ResourceType
 public enum E_ANIMATION_EVENT
 {
     CREATE_OBJECT,          //오브젝트 생성 이벤트
@@ -39,6 +39,7 @@ public enum E_DATABASE_TYPE
     USER_STAGE,
     USER_ITEM,
     USER_OPTION,
+    USER_LOBBYINFO,
 }
 #endregion EnviromentType
 #region UserInfoType

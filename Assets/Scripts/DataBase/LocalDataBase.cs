@@ -22,6 +22,8 @@ public class LocalDataBase : BaseDataBase
 
         userInfo.userStoryDatas = CommonUtil.GetPlayerPref<UserStoryDatas>(PlayerPrefKey.UserStoryDatas);
 
+        userInfo.userLobbyInfoDatas = CommonUtil.GetPlayerPref<UserLobbyInfoData>(PlayerPrefKey.UserLobbyDatas);
+
         return userInfo;
     }
     public void SaveDB(UserDataInfo saveData)
@@ -33,6 +35,8 @@ public class LocalDataBase : BaseDataBase
         CommonUtil.SavePlayerPref<UserItemDatas>(PlayerPrefKey.UserItemDatas, saveData.userItemDatas);
 
         CommonUtil.SavePlayerPref<UserStoryDatas>(PlayerPrefKey.UserStoryDatas, saveData.userStoryDatas);
+
+        CommonUtil.SavePlayerPref<UserLobbyInfoData>(PlayerPrefKey.UserLobbyDatas, saveData.userLobbyInfoDatas);
     }
     public void UpdateDB(UserDataInfo updateData)
     {
@@ -43,5 +47,7 @@ public class LocalDataBase : BaseDataBase
         CommonUtil.SavePlayerPref<UserItemDatas>(PlayerPrefKey.UserItemDatas, updateData.userItemDatas);
 
         CommonUtil.SavePlayerPref<UserStoryDatas>(PlayerPrefKey.UserStoryDatas, updateData.userStoryDatas);
+
+        CommonUtil.SavePlayerPref<UserLobbyInfoData>(PlayerPrefKey.UserLobbyDatas, updateData.userLobbyInfoDatas);
     }
 }

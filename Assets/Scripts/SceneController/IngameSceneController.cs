@@ -9,12 +9,12 @@ namespace Seunghak.SceneManager
     public class IngameSceneData : SceneDeliverData
     {
         public int stageId;
+        public int currentCharacterId;
         public List<string> userKey;
     }
     public class IngameSceneController : SceneController
     {
         [SerializeField] private IngameCanvas ingameUICanvas;
-        private IngameSceneData ingameData;
         protected override void Awake()
         {
             base.Awake();
@@ -27,6 +27,8 @@ namespace Seunghak.SceneManager
             //테스트 코드 SceneController에 데이터 넘기고 그걸 인게임 매니저에 전달 필요
             //UserDataManager.Instance.
 
+            //인게임 타입마다 DeliverData를 형변환해서 IngameManager에게 넘겨주기
+
             IngameManager.currentManager.CreateGame(0);
 
             //선택한 덱 가져오기 , 유저 데이터 세팅
@@ -36,6 +38,12 @@ namespace Seunghak.SceneManager
             //유저 데이터 가져와주고
             ingameUICanvas.InitIngameCanvas();
             //로비씬으로 변경시 현재 데이터 보내주고
+        }
+        //DataType
+        //public 
+        public SceneDeliverData GetSceneData()
+        {
+            return sceneLoadData;
         }
         //�� �ε� �� �� �Ŵ����� ���� ��Ʈ�ѷ� ����ϴ� �Լ�
         public override void RegistSceneController()

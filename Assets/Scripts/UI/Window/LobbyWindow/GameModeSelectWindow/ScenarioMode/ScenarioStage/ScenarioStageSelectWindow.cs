@@ -1,4 +1,5 @@
 using Seunghak.Common;
+using Seunghak.SceneManager;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -67,7 +68,11 @@ namespace Seunghak.UIManager
 
         public void OnClickPlay()
         {
+            IngameSceneData ingameSceneData = new IngameSceneData();
+            ingameSceneData.stageId = 1;//선택한 stageId
+            //ingameSceneData. userKey  = // - 현재 선택한 캐릭터 id 
             // 플레이 가능한 스테이지인지 확인하고 플레이할 스테이지 정보 세팅하고 이동해야 함
+            SceneManager.SceneManager.Instance.CurDeliverData = ingameSceneData;
             SceneManager.SceneManager.Instance.ChangeScene(E_SCENE_TYPE.INGAME);
         }
         public void OnClickPrevStage()
