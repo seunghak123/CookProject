@@ -11,6 +11,13 @@ namespace Seunghak.SceneManager
         public int stageId;
         public int currentCharacterId;
         public List<string> userKey;
+
+        public IngameSceneData(int stageId, int currentCharacterId, List<string> userKey)
+        {
+            this.stageId = stageId;
+            this.currentCharacterId = currentCharacterId;
+            this.userKey = userKey;
+        }
     }
     public class IngameSceneController : SceneController
     {
