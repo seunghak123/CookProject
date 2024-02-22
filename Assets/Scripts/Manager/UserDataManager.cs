@@ -93,6 +93,10 @@ namespace Seunghak.Common
         {
             userDataInfo.userItemDatas.AddItem(1, 10000);
         }
+        public UserLobbyInfoData GetUserLobbyInfoData()
+        {
+            return userDataInfo.userLobbyInfoDatas;
+        }
         public UserItemDatas GetUserItemData()
         {
             return userDataInfo.userItemDatas;

@@ -71,12 +71,16 @@ namespace Seunghak.UIManager
 
         public void OnClickPlay()
         {
-            // 플레이 가능한 스테이지인지 확인해야 합니다~
+            // 플레이 가능한 스테이지인지 확인해야 함
 
-            // 선택한 스테이지ID, 캐릭터ID(임시 1), userKey는 뭔지 모르겠어서 일단 빈 리스트
-            IngameSceneData ingameSceneData = new IngameSceneData(SelectedStageID, 1, new List<string>());
+            // 아직 유저데이터매니저에 값 세팅이 안되어 있는 것으로 보임
+            // int selectedCharacterID = UserDataManager.Instance.GetUserLobbyInfoData().userCharacterCurrentId;
+            int selectedCharacterID = 1; // 임시 코드
+            var userKeyList = new List<string>() { UserDataManager.Instance.UserIDToken };
             
-            SceneManager.SceneManager.Instance.CurDeliverData = ingameSceneData;
+            // 데이터 세팅 및 씬 이동
+            SceneManager.SceneManager.Instance.CurDeliverData = new IngameSceneData(
+                SelectedStageID, selectedCharacterID, userKeyList);
             SceneManager.SceneManager.Instance.ChangeScene(E_SCENE_TYPE.INGAME);
         }
         public void OnClickPrevStage()
