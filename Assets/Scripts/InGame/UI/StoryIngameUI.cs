@@ -63,7 +63,8 @@ public class StoryIngameUI : BaseIngameUI
                 ingameEndUI.gameObject.transform.localPosition = Vector3.zero;
                 ingameEndUI.gameObject.transform.localScale = Vector3.one;
 
-
+                StoryEndData storyData = new StoryEndData(IngameManager.currentManager.GetCurrentStageData(), IngameManager.currentManager.currentScore);
+                ingameEndUI.SetEndInfo(storyData);
                 break;
             }
             yield return WaitTimeManager.WaitForRealTimeSeconds(Time.fixedDeltaTime);

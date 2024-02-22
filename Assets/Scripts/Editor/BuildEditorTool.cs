@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEngine;
 using System;
 using System.IO;
@@ -15,13 +15,20 @@ public class BuildEditorTool : MonoBehaviour
 #elif UNITY_IOS
     private static string buildPath = "IOS";
 #endif
-#if UNITY_ANDROID || UNITY_IOS
-    [MenuItem("Build/AndroidAAB",true)]
-    public static bool SetAndroidAAB()
+
+    const string isApkBuild = "Tools/IsAABBuild";
+    [MenuItem(isApkBuild)]
+    public static void ToggleSimulationMode()
     {
         isAABBundle = !isAABBundle;
-        return isAABBundle;
     }
+    [MenuItem(isApkBuild, true)]
+    public static bool ToggleSimulationModeValidate()
+    {
+        Menu.SetChecked(isApkBuild, BuildEditorTool.isAABBundle);
+        return true;
+    }
+#if UNITY_ANDROID || UNITY_IOS
     [MenuItem("Build/BuildAssetBundles", false, 1002)]
     public static void BuildBundles()
     {
@@ -32,12 +39,11 @@ public class BuildEditorTool : MonoBehaviour
     public static void BuildPlatform()
     {
         BuildPlayerOptions buildOption = new BuildPlayerOptions();
-
-        buildOption.locationPathName = $"./Build/{buildPath}/{System.DateTime.UtcNow.ToString("yy_MM_dd_HH_mm")}.aab";
+        buildOption.locationPathName = $"./Build/{buildPath}/{System.DateTime.UtcNow.ToString("yy_MM_dd_hh_mm")}";
         PlayerSettings.bundleVersion = "1.0.1";
         PlayerSettings.Android.bundleVersionCode = 1;
 #if UNITY_ANDROID
-        EditorUserBuildSettings.buildAppBundle = true;
+        EditorUserBuildSettings.buildAppBundle = isAABBundle;
         BuildForAndroid();
         buildOption.target = BuildTarget.Android;
         buildOption.locationPathName = buildOption.locationPathName;
@@ -79,7 +85,8 @@ public class BuildEditorTool : MonoBehaviour
     {
         PlayerSettings.Android.keystorePass = "asdf1234";
         PlayerSettings.Android.keyaliasPass = "asdf1234";
-        PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
+        PlayerSettings.Android.targetArchitectures = isAABBundle ? AndroidArchitecture.ARM64 : AndroidArchitecture.ARMv7;
+
         //build aab
         PlayerSettings.Android.buildApkPerCpuArchitecture = true;
     }

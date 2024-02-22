@@ -41,6 +41,7 @@ public class RecipeObject : MonoBehaviour
     [SerializeField] private Image recipeImage;
     [SerializeField] private Image recipeTimerProgressBar;
     [SerializeField] private List<RecipeInfos> recipeImages;
+    [SerializeField] private Image recipeTimer;
 
     [Header("Recipe Animation Properties")]
     [SerializeField] private float createTimer = 0.4f;
@@ -66,9 +67,10 @@ public class RecipeObject : MonoBehaviour
     public void InitRecipe(RecipeData targetRecipe,JRecipeData targetRecipeData)
     {
         moveVector = new Vector2(0, this.GetComponent<RectTransform>().sizeDelta.y);
+        totalTransform.localPosition = Vector3.zero;
         recipe = targetRecipe;
         recipeData = targetRecipeData;
-
+        currentTimer = 0.0f;
         int outputFood = recipeData.FoodOutput;
         JFoodObjectData foodData = JsonDataManager.Instance.GetFoodObject(outputFood);
 
@@ -114,7 +116,7 @@ public class RecipeObject : MonoBehaviour
     }
     public void Reposition(int index)
     {
-        moveVector = new Vector2((index - currentIndex) * this.GetComponent<RectTransform>().sizeDelta.x , 0);
+        moveVector = new Vector2((currentIndex - index) * this.GetComponent<RectTransform>().sizeDelta.x , 0);
         StartCoroutine(RecipeMove());
         currentIndex = index;
     }
@@ -130,7 +132,7 @@ public class RecipeObject : MonoBehaviour
 
             yield return WaitTimeManager.WaitForEndFrame();
         }
-        totalTransform.transform.position = Vector2.zero;
+        totalTransform.transform.localPosition = Vector2.zero;
     }
     private IEnumerator RecipeTimer()
     {
@@ -140,7 +142,7 @@ public class RecipeObject : MonoBehaviour
         {
             recentTime -= Time.deltaTime;
 
-            totalTransform.transform.position =  moveVector * (recentTime / createTimer);
+            totalTransform.transform.localPosition =  moveVector * (recentTime / createTimer);
 
             yield return WaitTimeManager.WaitForEndFrame();
         }
@@ -152,6 +154,7 @@ public class RecipeObject : MonoBehaviour
                 IngameManager.currentManager.FailRecipe(currentIndex);
                 break;
             }
+            recipeTimer.fillAmount = (recipeData.LimitTime - currentTimer) / recipeData.LimitTime;
             currentTimer += Time.deltaTime;
             yield return WaitTimeManager.WaitForEndFrame();
         }

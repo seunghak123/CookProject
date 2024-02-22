@@ -16,7 +16,7 @@ public class RecipeResult
 public class IngameManager : MonoBehaviour
 {
     public static IngameManager currentManager = null;
-    public static int currentScore = 0;
+    public int currentScore = 0;
     public float currentTimer = 90.0f;
     public bool isStart = false;
     public bool isPause = false;

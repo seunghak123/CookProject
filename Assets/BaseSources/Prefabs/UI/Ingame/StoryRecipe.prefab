@@ -70,6 +70,7 @@ MonoBehaviour:
     toolImages: {fileID: 4803912284166929924}
   - foodImages: {fileID: 8687575404979236749}
     toolImages: {fileID: 1454168501746355297}
+  recipeTimer: {fileID: 64215882831073384}
   createTimer: 0.4
   moveTimer: 0.4
 --- !u!1 &1254232530511224741
@@ -1113,7 +1114,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
