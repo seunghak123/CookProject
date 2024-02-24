@@ -11,10 +11,10 @@ public class BuildEditorTool : MonoBehaviour
 {
 #if UNITY_ANDROID
     private static string buildPath = "AOS";
-    static private bool isAABBundle = false;
 #elif UNITY_IOS
     private static string buildPath = "IOS";
 #endif
+    static private bool isAABBundle = false;
 
     const string isApkBuild = "Tools/IsAABBuild";
     [MenuItem(isApkBuild)]
