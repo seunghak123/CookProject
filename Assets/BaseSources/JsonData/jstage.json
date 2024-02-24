@@ -8,8 +8,8 @@
     "score1": 100,
     "score2": 200,
     "score3": 300,
-    "StageFile": 0.0,
-    "StagePrefab": "stage1-1",
+    "StageFile": "1_1stagedata",
+    "StagePrefab": "Stage1-1",
     "StageTimer": 120,
     "StartRecipeValue": 2
   },
