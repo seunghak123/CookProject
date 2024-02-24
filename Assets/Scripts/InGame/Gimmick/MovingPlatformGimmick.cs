@@ -237,6 +237,11 @@ public class MovingPlatformButton : Editor
         {
             targetObject.AddTargetVector(targetObject.transform.position);
         }
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            EditorUtility.SetDirty(targetObject);
+        }
     }
 }
 #endif

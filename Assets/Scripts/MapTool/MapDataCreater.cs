@@ -38,10 +38,10 @@ public class MapDataCreater : MonoBehaviour
         {
             for(int i=0;i<newMapInfos.objectLists.Count;i++)
             {
-                //∏∏µÂΩ≈ Creater¿ÃøÎ«ÿº≠ ª˝º∫
+                //ÎßåÎìúÏã† CreaterÏù¥Ïö©Ìï¥ÏÑú ÏÉùÏÑ±
             }
         }
-        //∆ƒ¿œ¿ª ¿–∞Ì ª˝º∫«œ¥¬ ¿€æ˜
+        //ÌååÏùºÏùÑ ÏùΩÍ≥† ÏÉùÏÑ±ÌïòÎäî ÏûëÏóÖ
     }
     public void ReadMapFile()
     {
@@ -68,7 +68,7 @@ public class MapDataCreater : MonoBehaviour
         mapInfos.objectLists = new List<IngameMapObject>();
         for (int i = createTransform.childCount - 1; i >= 0; i--)
         {
-            //¿–∞Ì ¿˙¿Â
+            //ÏùΩÍ≥† Ï†ÄÏû•
             GameObject subObject = createTransform.GetChild(i).gameObject;
 
             BaseToolObject baseSubObject = subObject.GetComponent<BaseToolObject>();
@@ -107,6 +107,9 @@ public class MapDataCreater : MonoBehaviour
         GameObject createObject = IngameCreater.CreateFoodObject(createId);
 
         createObject.transform.parent = createTransform;
+        JToolObjectData toolData = JsonDataManager.Instance.GetToolId(createId);
+        BaseToolObject ojbect = createObject.GetComponent<BaseToolObject>();
+        ojbect.GetComponent<SpriteRenderer>().sprite = SpriteManager.Instance.LoadSprite(toolData.IconFile);
     }
 #endif
 }
