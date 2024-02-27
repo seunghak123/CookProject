@@ -63,14 +63,10 @@ SpriteAtlas:
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
-    - fb38c99089be2b44c8c0dee65b8f27a4: 21300000
     - 68d13432e205ab74fb70d755ca6a0650: 21300000
     - 9508209248a2b4445b4cb7c6978ab9ad: 21300000
     - f5dcbd9295483f24195fd15eefffbf50: 21300000
-    - 185cf333a9491064298eac9c47d271a1: 21300000
-    - e75de5c344848b94397dec52f4909d77: 21300000
     - b6675af3c5877da43ae59685a86b5341: 21300000
-    - 3fbe4144955b0a547810287bccf125c7: 21300000
     - 9bbd49c59e7d02542901c3be4713ecc7: 21300000
     - b70dd596d686b554593261e6218cc4e1: 21300000
     - e537d1d678d3f3443aa189a6bed7af19: 21300000
@@ -88,14 +84,10 @@ SpriteAtlas:
     - 915fbffd25794db4fb20cc64cfe9eb7a: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: fb38c99089be2b44c8c0dee65b8f27a4, type: 3}
   - {fileID: 21300000, guid: 68d13432e205ab74fb70d755ca6a0650, type: 3}
   - {fileID: 21300000, guid: 9508209248a2b4445b4cb7c6978ab9ad, type: 3}
   - {fileID: 21300000, guid: f5dcbd9295483f24195fd15eefffbf50, type: 3}
-  - {fileID: 21300000, guid: 185cf333a9491064298eac9c47d271a1, type: 3}
-  - {fileID: 21300000, guid: e75de5c344848b94397dec52f4909d77, type: 3}
   - {fileID: 21300000, guid: b6675af3c5877da43ae59685a86b5341, type: 3}
-  - {fileID: 21300000, guid: 3fbe4144955b0a547810287bccf125c7, type: 3}
   - {fileID: 21300000, guid: 9bbd49c59e7d02542901c3be4713ecc7, type: 3}
   - {fileID: 21300000, guid: b70dd596d686b554593261e6218cc4e1, type: 3}
   - {fileID: 21300000, guid: e537d1d678d3f3443aa189a6bed7af19, type: 3}
@@ -112,24 +104,20 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c2886acd12933034ba0c8939424322d5, type: 3}
   - {fileID: 21300000, guid: 915fbffd25794db4fb20cc64cfe9eb7a, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Pot
   - Box_Bread
   - Table
   - Pen
-  - table1
-  - bg_cooking tool
   - out
-  - bg-fire wood
   - doma
   - PlateTable
   - Board
-  - Box_fish
+  - Box_Fish
   - Food_Delivery
   - Box_Lettuce
-  - plate
+  - Plate
   - brick1
   - brick2
-  - bob
+  - Bob
   - Box_Meat
   - pabox
   - Box_Tomato
