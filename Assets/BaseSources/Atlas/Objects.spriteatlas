@@ -63,12 +63,18 @@ SpriteAtlas:
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
+    - e92a786129ad8874792adb2a6f9c56b2: 21300000
     - 68d13432e205ab74fb70d755ca6a0650: 21300000
     - 9508209248a2b4445b4cb7c6978ab9ad: 21300000
     - f5dcbd9295483f24195fd15eefffbf50: 21300000
+    - 1c4d84a3924757a4a90cb0bde3eaa229: 21300000
     - b6675af3c5877da43ae59685a86b5341: 21300000
+    - d4159354194bc48498dba9ac24169341: 21300000
+    - 4dab79f484b785f41b838fab24606d4b: 21300000
     - 9bbd49c59e7d02542901c3be4713ecc7: 21300000
+    - d45a2736b4da0864d91f5afcb35eb44d: 21300000
     - b70dd596d686b554593261e6218cc4e1: 21300000
+    - c18ebac6e9fdb954e860c122a86fde4b: 21300000
     - e537d1d678d3f3443aa189a6bed7af19: 21300000
     - a23140b72db602548956146770c2f4c0: 21300000
     - 61c6c2c79ad33a44cbd67bfaad0c9a4f: 21300000
@@ -81,16 +87,24 @@ SpriteAtlas:
     - e80b2fbb65dfe174a9bd2c01e946d3bc: 21300000
     - d97e5b2c64df3a4439d3e5a6e5377c5d: 21300000
     - 9999b6ac89513764c8d774b2f6291299: 21300000
+    - dabfbb7dacab91c45a02e6d7ced9893c: 21300000
     - c2886acd12933034ba0c8939424322d5: 21300000
     - 915fbffd25794db4fb20cc64cfe9eb7a: 21300000
+    - 2990b4efb5f880f49b9a05a573623df5: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: e92a786129ad8874792adb2a6f9c56b2, type: 3}
   - {fileID: 21300000, guid: 68d13432e205ab74fb70d755ca6a0650, type: 3}
   - {fileID: 21300000, guid: 9508209248a2b4445b4cb7c6978ab9ad, type: 3}
   - {fileID: 21300000, guid: f5dcbd9295483f24195fd15eefffbf50, type: 3}
+  - {fileID: 21300000, guid: 1c4d84a3924757a4a90cb0bde3eaa229, type: 3}
   - {fileID: 21300000, guid: b6675af3c5877da43ae59685a86b5341, type: 3}
+  - {fileID: 21300000, guid: d4159354194bc48498dba9ac24169341, type: 3}
+  - {fileID: 21300000, guid: 4dab79f484b785f41b838fab24606d4b, type: 3}
   - {fileID: 21300000, guid: 9bbd49c59e7d02542901c3be4713ecc7, type: 3}
+  - {fileID: 21300000, guid: d45a2736b4da0864d91f5afcb35eb44d, type: 3}
   - {fileID: 21300000, guid: b70dd596d686b554593261e6218cc4e1, type: 3}
+  - {fileID: 21300000, guid: c18ebac6e9fdb954e860c122a86fde4b, type: 3}
   - {fileID: 21300000, guid: e537d1d678d3f3443aa189a6bed7af19, type: 3}
   - {fileID: 21300000, guid: a23140b72db602548956146770c2f4c0, type: 3}
   - {fileID: 21300000, guid: 61c6c2c79ad33a44cbd67bfaad0c9a4f, type: 3}
@@ -103,15 +117,23 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e80b2fbb65dfe174a9bd2c01e946d3bc, type: 3}
   - {fileID: 21300000, guid: d97e5b2c64df3a4439d3e5a6e5377c5d, type: 3}
   - {fileID: 21300000, guid: 9999b6ac89513764c8d774b2f6291299, type: 3}
+  - {fileID: 21300000, guid: dabfbb7dacab91c45a02e6d7ced9893c, type: 3}
   - {fileID: 21300000, guid: c2886acd12933034ba0c8939424322d5, type: 3}
   - {fileID: 21300000, guid: 915fbffd25794db4fb20cc64cfe9eb7a, type: 3}
+  - {fileID: 21300000, guid: 2990b4efb5f880f49b9a05a573623df5, type: 3}
   m_PackedSpriteNamesToIndex:
+  - bg_tree
   - Box_Bread
   - Table
   - Pen
+  - bg_body_side1
   - out
+  - bg_sky
+  - Lever
   - doma
+  - bg_hangari
   - PlateTable
+  - bg_top
   - Board
   - Box_Fish
   - Food_Delivery
@@ -124,8 +146,10 @@ SpriteAtlas:
   - Box_Meat
   - pabox
   - Box_Tomato
+  - bg_dam
   - pa
   - tomato
+  - bg_body_side2
   m_RenderDataMap: {}
   m_Tag: Objects
   m_IsVariant: 0
