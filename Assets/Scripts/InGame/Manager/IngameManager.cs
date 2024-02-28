@@ -365,7 +365,7 @@ public class IngameManager : MonoBehaviour
         for(int i=0;i< loadData.objectLists.Count; i++)
         {
             IngameMapObject objectInfo = loadData.objectLists[i];
-            if(objectInfo==null || objectInfo.objectPosition.Count!=3 || objectInfo.objectScale.Count !=3)
+            if(objectInfo==null || objectInfo.objectPosition.Count!=3 || objectInfo.objectScale.Count !=3 || objectInfo.toolObjectId ==0)
             {
                 continue;
             }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -57,7 +57,7 @@ public class BasicMaterialData
         //동일한 것이 있을때도 추가
         materialLists.Add(materialId);
 
-        currentFoodId = IngameManager.currentManager.GetRecipeFoodResult(materialLists);
+        currentFoodId = materialId;
     }  
     public void PushMaterialList(List<int> pushedMaterialLists)
     {

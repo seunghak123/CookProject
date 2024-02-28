@@ -76,6 +76,11 @@ public class MapDataCreater : MonoBehaviour
             {
                 continue;
             }
+
+            if(baseSubObject.OBJECT_ID == 0)
+            {
+                continue;
+            }
             IngameMapObject objectInfo = new IngameMapObject();
             objectInfo.toolObjectId = baseSubObject.OBJECT_ID;
             objectInfo.objectPosition = new List<float>();
