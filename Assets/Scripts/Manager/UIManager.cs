@@ -291,9 +291,9 @@ namespace Seunghak.UIManager
         {
             return GetUI(windowStack.Peek()) as BaseUIWindow;
         }
-        public void SetTopUI(UI_TYPE curUIType)
+        public void SetTopUI(UI_TYPE curUIType, bool isActive = false)
         {
-            baseCanvasObject.OpenBaseTopUI(curUIType);
+            baseCanvasObject.SetBaseTopUI(curUIType, isActive);
         }
         public void CloseUI()
         {

@@ -27,6 +27,7 @@ namespace Seunghak.UIManager
         {
             base.EnterWindow();
 
+            IsActiveTopUI = true;
             //userInfoDataUI.SetData();
         }
 

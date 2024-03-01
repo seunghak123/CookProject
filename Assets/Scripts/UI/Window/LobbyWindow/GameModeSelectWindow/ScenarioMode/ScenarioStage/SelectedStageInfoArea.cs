@@ -14,7 +14,7 @@ namespace Seunghak.UIManager
         [SerializeField] Image[] clearStarImages = new Image[3];
         [SerializeField] TextMeshProUGUI[] clearConditionTexts = new TextMeshProUGUI[3];
 
-        // 일단 임시로 박아놓고 나중에 필요성이 느껴지면 런타임에 불러오겠읍니다
+        // 일단 임시로 박아놓고 나중에 필요성이 느껴지면 런타임에 불러올 예정
         [SerializeField] Sprite clearStarSprite;
         [SerializeField] Sprite unclearStarSprite;
 

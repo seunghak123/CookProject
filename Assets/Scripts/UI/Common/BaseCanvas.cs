@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,11 +11,11 @@ namespace Seunghak.UIManager
         [SerializeField] public Transform utilUIParent;
         [SerializeField] public BaseTopUI baseTopUI;
 
-        public void OpenBaseTopUI(UI_TYPE curUIType)
+        public void SetBaseTopUI(UI_TYPE curUIType, bool isActive = false)
         {
             if(baseTopUI != null)
             {
-                baseTopUI.gameObject.SetActive(true);
+                baseTopUI.gameObject.SetActive(isActive);
                 baseTopUI.InitTopUI(curUIType);
             }
         }
