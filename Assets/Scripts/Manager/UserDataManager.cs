@@ -254,7 +254,6 @@ namespace Seunghak.Common
     {
         public int storyId;
         public int maxScore;
-        public int starCount;
     }
     [Serializable]
     public class UserStoryDatas
