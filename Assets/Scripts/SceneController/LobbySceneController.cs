@@ -1,10 +1,19 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace Seunghak.SceneManager
 {
     using Seunghak.Common;
     using Seunghak.UIManager;
+
+    public class LobbySceneData : SceneDeliverData
+    {
+        public bool openLobbyWindow = true;
+        public LobbySceneData(bool openLobbyWindow = true)
+        {
+            this.openLobbyWindow = openLobbyWindow;
+        }
+    }
     public class LobbySceneController : SceneController
     {
         //메인 캐릭터 위치
@@ -21,8 +30,25 @@ namespace Seunghak.SceneManager
         public override void InitSceneController() 
         {
             UIManager.Instance.OpenUI();
-            UIManager.Instance.PushUI(UI_TYPE.LobbyWindow);
 
+            LobbySceneData sceneData = SceneManager.Instance.CurDeliverData as LobbySceneData;
+
+            if(sceneData!=null)
+            {
+                if (sceneData.openLobbyWindow)
+                {
+                    //상황에 맞네 LobbyWindow Push해줄것
+                    UIManager.Instance.PushUI(UI_TYPE.LobbyWindow);
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                UIManager.Instance.PushUI(UI_TYPE.LobbyWindow);
+            }
             //로그인 보상등등 이벤트 팝업 띄워주고, 
 
             //캐릭터 생성

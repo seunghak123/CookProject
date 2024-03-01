@@ -234,6 +234,8 @@ public class IngameManager : MonoBehaviour
             currentScore = currentScore - (int)(currentScore * 0.03f);
             //코인 감소
             CreateRandomRecipe();
+
+            ingameUI.UpdateIngameData();
         }
     }
     public bool CheckRecipeComplete(BasicMaterialData completeFood)
@@ -258,6 +260,8 @@ public class IngameManager : MonoBehaviour
 
                         storyInfoData.ingameScore = currentScore;
                         storyIngameUI.SetStoryScoreInfo(storyInfoData);
+
+                        CreateRandomRecipe();
                         break;
                     case 2:
                         break;

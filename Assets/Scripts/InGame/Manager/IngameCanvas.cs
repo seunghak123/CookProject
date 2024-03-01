@@ -66,6 +66,7 @@ public class IngameCanvas : MonoBehaviour
     }
     private void ExitInGame()
     {
+        SceneManager.Instance.CurDeliverData = new LobbySceneData(false);
         SceneManager.Instance.ChangeScene(E_SCENE_TYPE.LOBBY);
     }
     private void ContinueGame()

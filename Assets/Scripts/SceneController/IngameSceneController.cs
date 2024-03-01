@@ -29,6 +29,9 @@ namespace Seunghak.SceneManager
         //���� �� ��Ʈ�ѷ� �ʱ�ȭ �Լ�
         public override void InitSceneController() 
         {
+            IngameSceneData sceneData = SceneManager.Instance.CurDeliverData as IngameSceneData;
+            //sceneData.stageId
+            //
             UIManager.Instance.CloseUI();
 
             //테스트 코드 SceneController에 데이터 넘기고 그걸 인게임 매니저에 전달 필요
