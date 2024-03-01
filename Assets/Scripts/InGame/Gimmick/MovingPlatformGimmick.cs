@@ -104,112 +104,115 @@ public class MovingPlatformGimmick : BaseGimmick
         {
             nextPosIndex = currentPosIndex - 1;
         }
-        if (!IngameManager.currentManager.isPause) 
-        { 
-            switch (movingType)
-            {
-                case E_MOVINGPLATFORM_TYPE.E_DRIVE:
-                    isStop = false;
 
-                    while (!isStop)
+        switch (movingType)
+        {
+            case E_MOVINGPLATFORM_TYPE.E_DRIVE:
+                isStop = false;
+
+                while (!isStop)
+                {
+                    Vector3 moveDirect = movedAI.GetMoveDirect();
+                    await UniTask.NextFrame(destroyCancellation.Token);
+                    currentPos = Vector3.Lerp(targetPosLists[currentPosIndex], targetPosLists[nextPosIndex], delayTime / moveTime);
+                    Vector3 direct = targetPosLists[nextPosIndex] - targetPosLists[currentPosIndex];
+                    if (!IngameManager.currentManager.isPause)
                     {
-                        Vector3 moveDirect = movedAI.GetMoveDirect();
-                        await UniTask.NextFrame(destroyCancellation.Token);
-                        currentPos = Vector3.Lerp(targetPosLists[currentPosIndex], targetPosLists[nextPosIndex], delayTime / moveTime);
-                        Vector3 direct = targetPosLists[nextPosIndex] - targetPosLists[currentPosIndex];
-                        if (!IngameManager.currentManager.isPause)
+                        if (direct.x > 0)
                         {
-                            if (direct.x > 0)
+                            if (moveDirect.x > 0)
                             {
-                                if (moveDirect.x > 0)
-                                {
-                                    delayTime += Time.deltaTime;
-                                }
-                                else if (moveDirect.x < 0)
-                                {
-                                    delayTime -= Time.deltaTime;
-                                }
+                                delayTime += Time.deltaTime;
                             }
-                            else
+                            else if (moveDirect.x < 0)
                             {
-                                if (moveDirect.x < 0)
-                                {
-                                    delayTime += Time.deltaTime;
-                                }
-                                else if (moveDirect.x > 0)
-                                {
-                                    delayTime -= Time.deltaTime;
-                                }
+                                delayTime -= Time.deltaTime;
                             }
                         }
-                        MoveRelatedTransform(currentPos - this.transform.position);
-                        this.transform.position = currentPos;
-                        if (Vector3.Distance(currentPos, targetPosLists[nextPosIndex]) < 0.01f)
+                        else
                         {
-                            currentPosIndex = nextPosIndex;
-                            if (nextPosIndex == targetPosLists.Count - 1 || nextPosIndex == 0)
+                            if (moveDirect.x < 0)
                             {
-                                currentDirect = !currentDirect;
+                                delayTime += Time.deltaTime;
                             }
-                            delayTime = 0.0f;
-                            break;
+                            else if (moveDirect.x > 0)
+                            {
+                                delayTime -= Time.deltaTime;
+                            }
                         }
                     }
-                    break;
-                case E_MOVINGPLATFORM_TYPE.E_LEVER:
-                    delayTime = saveTime;
-
-                    isStop = false;
-                    while (!isStop)
+                    MoveRelatedTransform(currentPos - this.transform.position);
+                    this.transform.position = currentPos;
+                    if (Vector3.Distance(currentPos, targetPosLists[nextPosIndex]) < 0.01f)
                     {
-                        delayTime += Time.deltaTime;
-                        await UniTask.NextFrame(destroyCancellation.Token);
-                        currentPos = Vector3.Lerp(targetPosLists[currentPosIndex], targetPosLists[nextPosIndex], delayTime / moveTime);
-                        MoveRelatedTransform(currentPos - this.transform.position);
-                        this.transform.position = currentPos;
-                        if (Vector3.Distance(currentPos, targetPosLists[nextPosIndex]) < 0.01f)
+                        currentPosIndex = nextPosIndex;
+                        if (nextPosIndex == targetPosLists.Count - 1 || nextPosIndex == 0)
                         {
-                            if (nextPosIndex == targetPosLists.Count - 1 || nextPosIndex == 0)
-                            {
-                                currentDirect = !currentDirect;
-                            }
-                            currentPosIndex = nextPosIndex;
-                            delayTime = 0.0f;
-                            break;
+                            currentDirect = !currentDirect;
                         }
+                        delayTime = 0.0f;
+                        break;
                     }
-                    saveTime = delayTime;
-                    break;
-                case E_MOVINGPLATFORM_TYPE.E_AUTO:
-                    while (true)
+                }
+                break;
+            case E_MOVINGPLATFORM_TYPE.E_LEVER:
+                delayTime = saveTime;
+
+                isStop = false;
+                while (!isStop)
+                {
+                    if (!IngameManager.currentManager.isPause)
                     {
                         delayTime += Time.deltaTime;
-                        await UniTask.NextFrame(destroyCancellation.Token);
-                        currentPos = Vector3.Lerp(targetPosLists[currentPosIndex], targetPosLists[nextPosIndex], delayTime / moveTime);
-                        Vector3 moveDistance = currentPos - this.transform.position;
-                        this.transform.position = currentPos;
-                        MoveRelatedTransform(moveDistance);
-                        if (Vector3.Distance(currentPos, targetPosLists[nextPosIndex]) < 0.01f)
+                    }
+                    await UniTask.NextFrame(destroyCancellation.Token);
+                    currentPos = Vector3.Lerp(targetPosLists[currentPosIndex], targetPosLists[nextPosIndex], delayTime / moveTime);
+                    MoveRelatedTransform(currentPos - this.transform.position);
+                    this.transform.position = currentPos;
+                    if (Vector3.Distance(currentPos, targetPosLists[nextPosIndex]) < 0.01f)
+                    {
+                        if (nextPosIndex == targetPosLists.Count - 1 || nextPosIndex == 0)
                         {
-                            if (nextPosIndex == targetPosLists.Count - 1 || nextPosIndex == 0)
-                            {
-                                currentDirect = !currentDirect;
-                            }
-                            currentPosIndex = nextPosIndex;
+                            currentDirect = !currentDirect;
+                        }
+                        currentPosIndex = nextPosIndex;
+                        delayTime = 0.0f;
+                        break;
+                    }
+                }
+                saveTime = delayTime;
+                break;
+            case E_MOVINGPLATFORM_TYPE.E_AUTO:
+                while (true)
+                {
+                    if (!IngameManager.currentManager.isPause)
+                    {
+                        delayTime += Time.deltaTime;
+                    }
+                    await UniTask.NextFrame(destroyCancellation.Token);
+                    currentPos = Vector3.Lerp(targetPosLists[currentPosIndex], targetPosLists[nextPosIndex], delayTime / moveTime);
+                    Vector3 moveDistance = currentPos - this.transform.position;
+                    this.transform.position = currentPos;
+                    MoveRelatedTransform(moveDistance);
+                    if (Vector3.Distance(currentPos, targetPosLists[nextPosIndex]) < 0.01f)
+                    {
+                        if (nextPosIndex == targetPosLists.Count - 1 || nextPosIndex == 0)
+                        {
+                            currentDirect = !currentDirect;
+                        }
+                        currentPosIndex = nextPosIndex;
 
-                            delayTime = 0.0f;
-                            if (currentDirect)
-                            {
-                                nextPosIndex = currentPosIndex + 1;
-                            }
-                            if (!currentDirect)
-                            {
-                                nextPosIndex = currentPosIndex - 1;
-                            }
+                        delayTime = 0.0f;
+                        if (currentDirect)
+                        {
+                            nextPosIndex = currentPosIndex + 1;
+                        }
+                        if (!currentDirect)
+                        {
+                            nextPosIndex = currentPosIndex - 1;
                         }
                     }
-                    break;
-            }
+                }
         }
 
         isStop = true;

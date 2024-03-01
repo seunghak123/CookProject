@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.UI;
+using Seunghak.SceneManager;
+using Cysharp.Threading.Tasks;
 
 //EndData 상속구조 만들것
 public class StoryEndData
@@ -36,30 +38,47 @@ public class StoryIngameEndUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gainScores;
     [SerializeField] private TextMeshProUGUI gainCoins;
 
+    private void OnEnable()
+    {
+        homeButton.onClick.AddListener(OnClickHomeButton);
+        retryButton.onClick.AddListener(OnClickRetryButton);
+        nextStageButton.onClick.AddListener(OnClickNextStageButton);
+    }
+    private void OnDisable()
+    {
+        homeButton.onClick.RemoveListener(OnClickHomeButton);
+        retryButton.onClick.RemoveListener(OnClickRetryButton);
+        nextStageButton.onClick.RemoveListener(OnClickNextStageButton);
+    }
+
     private void OnClickHomeButton()
     {
-        //로비
-        //스테이지 창으로 넘길건지
-        //로비화면으로 갈건지
-
+        SceneManager.Instance.CurDeliverData = new LobbySceneData(false);
+        SceneManager.Instance.ChangeScene(E_SCENE_TYPE.LOBBY);
     }
     private void OnClickRetryButton()
     {
-        //로비
-        //스테이지 창으로 넘길건지
-        //로비화면으로 갈건지
+        //IngameSceneData ingameData = SceneManager.Instance.CurDeliverData as IngameSceneData;
 
+        //ingameData.stageId += 1;
+
+        SceneManager.Instance.ChangeScene(E_SCENE_TYPE.INGAME);
     }
     private void OnClickNextStageButton()
     {
-        //로비
-        //스테이지 창으로 넘길건지
-        //로비화면으로 갈건지
+        IngameSceneData ingameData = SceneManager.Instance.CurDeliverData as IngameSceneData;
 
+        ingameData.stageId += 1;
+
+        SceneManager.Instance.ChangeScene(E_SCENE_TYPE.INGAME);
     }
 
     public void SetEndInfo(StoryEndData stageInfo)
     {
 
+    }
+    public async UniTask StartIngameEnd()
+    {
+        await UniTask.NextFrame();
     }
 }

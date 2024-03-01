@@ -21,7 +21,10 @@ public class DisappearPlatform : BaseGimmick
             InterAct();
         }
     }
-
+    private void OnDisable()
+    {
+        
+    }
     public override void InitObject()
     {
         if (disappearViewData == null)

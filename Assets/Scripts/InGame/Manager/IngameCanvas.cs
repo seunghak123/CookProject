@@ -66,7 +66,7 @@ public class IngameCanvas : MonoBehaviour
     }
     private void ExitInGame()
     {
-        SceneManager.Instance.CurDeliverData = new LobbySceneData(false);
+        SceneManager.Instance.CurDeliverData = new LobbySceneData(true);
         SceneManager.Instance.ChangeScene(E_SCENE_TYPE.LOBBY);
     }
     private void ContinueGame()
@@ -76,7 +76,6 @@ public class IngameCanvas : MonoBehaviour
     }
     private void RetryGame()
     {
-        IngameManager.currentManager.ReplayStage();
-        optionPanel.SetActive(false);
+        SceneManager.Instance.ChangeScene(E_SCENE_TYPE.INGAME);
     }
 }

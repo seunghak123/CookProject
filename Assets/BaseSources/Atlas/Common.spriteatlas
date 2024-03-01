@@ -70,6 +70,7 @@ SpriteAtlas:
     - c52be5f2b9a368f46bcc07e43a244d47: 21300000
     - 346f98a353e43a947a107b1929c3b22f: 21300000
     - 8d2f24b372e2227468f09fa1ba0688a6: 21300000
+    - 95a05e24f68c99f468a03873b10c18ff: 21300000
     - b7b4d774d7a9c444a8a4f196387a58bc: 21300000
     - c3690ac4d6697b54c8de90a80e8363ce: 21300000
     - fe804405272865741b5743abea0e731c: 21300000
@@ -94,6 +95,7 @@ SpriteAtlas:
     - 8139828c57d2eb74bb72ca2d0c4ff4ff: 21300000
     - f451470d78b6d674cb633e530d29efbd: 21300000
     - 66a2cf0d8fcbb3546a8f4d16636f3d12: 21300000
+    - 0f8b08bd361cc144da84a9c8fccd58d6: 21300000
     - e9748ced627c5d543b5c2bb4a36f0b89: 21300000
     - 2982947f0a3f5514f8146348ac59e977: 21300000
   m_MasterAtlas: {fileID: 0}
@@ -105,6 +107,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c52be5f2b9a368f46bcc07e43a244d47, type: 3}
   - {fileID: 21300000, guid: 346f98a353e43a947a107b1929c3b22f, type: 3}
   - {fileID: 21300000, guid: 8d2f24b372e2227468f09fa1ba0688a6, type: 3}
+  - {fileID: 21300000, guid: 95a05e24f68c99f468a03873b10c18ff, type: 3}
   - {fileID: 21300000, guid: b7b4d774d7a9c444a8a4f196387a58bc, type: 3}
   - {fileID: 21300000, guid: c3690ac4d6697b54c8de90a80e8363ce, type: 3}
   - {fileID: 21300000, guid: fe804405272865741b5743abea0e731c, type: 3}
@@ -129,6 +132,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8139828c57d2eb74bb72ca2d0c4ff4ff, type: 3}
   - {fileID: 21300000, guid: f451470d78b6d674cb633e530d29efbd, type: 3}
   - {fileID: 21300000, guid: 66a2cf0d8fcbb3546a8f4d16636f3d12, type: 3}
+  - {fileID: 21300000, guid: 0f8b08bd361cc144da84a9c8fccd58d6, type: 3}
   - {fileID: 21300000, guid: e9748ced627c5d543b5c2bb4a36f0b89, type: 3}
   - {fileID: 21300000, guid: 2982947f0a3f5514f8146348ac59e977, type: 3}
   m_PackedSpriteNamesToIndex:
@@ -139,6 +143,7 @@ SpriteAtlas:
   - quest
   - characterframe
   - Chest
+  - coiin
   - Cursor_A
   - box1
   - heros
@@ -163,6 +168,7 @@ SpriteAtlas:
   - redbutton
   - buttonshadow
   - Bag
+  - Timer
   - Fail
   - backgroundbar
   m_RenderDataMap: {}
