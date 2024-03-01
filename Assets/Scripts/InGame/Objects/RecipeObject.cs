@@ -140,7 +140,10 @@ public class RecipeObject : MonoBehaviour
         float recentTime = createTimer;
         while (recentTime > 0)
         {
-            recentTime -= Time.deltaTime;
+            if (!IngameManager.currentManager.isPause)
+            {
+                recentTime -= Time.deltaTime;
+            }
 
             totalTransform.transform.localPosition =  moveVector * (recentTime / createTimer);
 
@@ -155,7 +158,10 @@ public class RecipeObject : MonoBehaviour
                 break;
             }
             recipeTimer.fillAmount = (recipeData.LimitTime - currentTimer) / recipeData.LimitTime;
-            currentTimer += Time.deltaTime;
+            if (!IngameManager.currentManager.isPause)
+            {
+                currentTimer += Time.deltaTime;
+            }
             yield return WaitTimeManager.WaitForEndFrame();
         }
         yield break;

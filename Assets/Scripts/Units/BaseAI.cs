@@ -57,7 +57,7 @@ public class BaseAI : MonoBehaviour
             isGround = value;
             if (unitAnim != null)
             {
-                unitAnim.SetBool("IsGround", isGround);
+                unitAnim?.SetBool("IsGround", isGround);
             }
         }
     }
@@ -102,17 +102,14 @@ public class BaseAI : MonoBehaviour
         {
             unitAIType = nextAIType;
 
-            if (unitAnim != null)
+            switch (unitAIType)
             {
-                switch (unitAIType)
-                {
-                    case E_INGAME_AI_TYPE.UNIT_INTERACTION:
-                        InterActObject();
-                        break;
-                    case E_INGAME_AI_TYPE.UNIT_EVENT:
-                        unitAnim.SetTrigger("Event");
-                        break;
-                }
+                case E_INGAME_AI_TYPE.UNIT_INTERACTION:
+                    InterActObject();
+                    break;
+                case E_INGAME_AI_TYPE.UNIT_EVENT:
+                    unitAnim?.SetTrigger("Event");
+                    break;
             }
         }
     }
@@ -212,7 +209,7 @@ public class BaseAI : MonoBehaviour
                     unitSpineAnim.AnimationState.SetAnimation(0, "Hold", true);
                 }
             }
-            unitAnim.SetFloat("Speed", 0);
+            unitAnim?.SetFloat("Speed", 0);
             IsGround = true;
             ChangeAI(E_INGAME_AI_TYPE.UNIT_IDLE);
             return;
@@ -246,7 +243,7 @@ public class BaseAI : MonoBehaviour
 
         if (IsGround)
         {
-            unitAnim.SetTrigger("Jump");
+            unitAnim?.SetTrigger("Jump");
             characterRigid.velocity = Vector3.zero;
             characterRigid.angularVelocity = 0.0f;
             characterRigid.AddForce(Vector2.up * characterJumpPower * Time.fixedDeltaTime, ForceMode2D.Impulse);
@@ -258,7 +255,7 @@ public class BaseAI : MonoBehaviour
 
         SetUnitDefaultSpineAnimation();
 
-        unitAnim.SetFloat("Speed", moveDirect.magnitude);
+        unitAnim?.SetFloat("Speed", moveDirect.magnitude);
 
         if (moveDirect.x < 0)
         {
@@ -274,7 +271,7 @@ public class BaseAI : MonoBehaviour
         //현재 점프중
         Vector3 gravityVector = characterRigid.velocity;
 
-        unitAnim.SetFloat("YSpeed", gravityVector.y);
+        unitAnim?.SetFloat("YSpeed", gravityVector.y);
     }
     public Vector3 GetMoveDirect()
     {
@@ -289,7 +286,7 @@ public class BaseAI : MonoBehaviour
     }
     protected virtual void UnitIdle()
     {
-        unitAnim.SetFloat("Speed", 0);
+        unitAnim?.SetFloat("Speed", 0);
         if (GetMoveDirect()!=Vector3.zero)
         {
             ChangeAI(E_INGAME_AI_TYPE.UNIT_MOVE);
