@@ -185,7 +185,7 @@ public class MovingPlatformGimmick : BaseGimmick
             case E_MOVINGPLATFORM_TYPE.E_AUTO:
                 while (true)
                 {
-                    if (!IngameManager.currentManager.isPause)
+                    if (IngameManager.currentManager!=null &&!IngameManager.currentManager.isPause)
                     {
                         delayTime += Time.deltaTime;
                     }

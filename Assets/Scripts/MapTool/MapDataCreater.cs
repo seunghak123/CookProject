@@ -12,8 +12,10 @@ using UnityEditor;
 public class IngameMapObject
 {
     public int toolObjectId;
+    public string toolSpriteName;
     public List<float> objectPosition;
     public List<float> objectScale;
+    public List<float> objectCollisionSize;
 }
 [Serializable]
 public struct IngameMapObjectInfos
@@ -57,7 +59,7 @@ public class MapDataCreater : MonoBehaviour
 
 #if UNITY_EDITOR
     [SerializeField] private string createFileName;
-    [SerializeField] private string createFilePath = $"{FileUtils.GetStreamingAssetsPath()}BaseSources/MapData/MapObjectData";
+    private string createFilePath = $"{FileUtils.GetStreamingAssetsPath()}BaseSources/MapData/MapObjectData";
     public void CreateMapDataFile()
     {
         if (createTransform.childCount == 0)
@@ -92,6 +94,14 @@ public class MapDataCreater : MonoBehaviour
             objectInfo.objectScale.Add(subObject.transform.localScale.x);
             objectInfo.objectScale.Add(subObject.transform.localScale.y);
             objectInfo.objectScale.Add(subObject.transform.localScale.z);
+            objectInfo.toolSpriteName = baseSubObject.GetComponent<SpriteRenderer>().sprite.name;
+            if(objectInfo.toolSpriteName.Contains("(Clone)"))
+            {
+                objectInfo.toolSpriteName = objectInfo.toolSpriteName.Replace("(Clone)", "");
+            }
+            objectInfo.objectCollisionSize = new List<float>();
+            objectInfo.objectCollisionSize.Add(baseSubObject.GetComponent<BoxCollider2D>().size.x);
+            objectInfo.objectCollisionSize.Add(baseSubObject.GetComponent<BoxCollider2D>().size.y);
             mapInfos.objectLists.Add(objectInfo);
         }
 

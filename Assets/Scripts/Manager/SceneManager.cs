@@ -161,7 +161,10 @@ namespace Seunghak.SceneManager
                 currentStepType = E_SCENESTEP_TYPE.NONE;
                 currentSceneType = nextSceneType;
                 //로딩 화면 종료
-                loadingPopupUI.CloseUI();
+                if(loadingPopupUI!=null)
+                {
+                    loadingPopupUI.CloseUI();
+                }
                 currentSceneController.SetSceneData(currentDeliverData);
                 currentSceneController.InitSceneController();
                 //각 씬 컨트롤러 여기서 초기화 함수 호출 씬 컨트롤러는 BaseSceneController 상속 받는다.
