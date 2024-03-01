@@ -1,3 +1,4 @@
+using Seunghak.Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,7 +18,8 @@ namespace Seunghak.UIManager
 
             for (int i = 0; i < scenarioStageElements.Length; i++)
             {
-                scenarioStageElements[i].Init(firstStageDataID + i, OnCilckStageElementCallBack);
+                bool isLockState = !UserDataManager.Instance.IsScenarioStageResult(firstStageDataID + i - 1);
+                scenarioStageElements[i].Init(firstStageDataID + i, isLockState, OnCilckStageElementCallBack);
             }
         }
     }

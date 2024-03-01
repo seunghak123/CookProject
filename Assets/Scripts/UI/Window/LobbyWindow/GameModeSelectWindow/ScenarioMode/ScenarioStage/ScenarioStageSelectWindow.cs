@@ -46,8 +46,17 @@ namespace Seunghak.UIManager
                 stageDatas[i] = JsonDataManager.Instance.GetStageData(firstStageDataID + i);
             }
 
-            // 현재 챕터의 스테이지 중에 플레이할 수 있는 최고 난이도로 스테이지를 세팅? (임시)
-            SetStageInfo(stageDatas[stageDatas.Length - 1].ID);
+            // 현재 챕터의 스테이지 중에 플레이할 수 있는 최고 난이도로 스테이지를 세팅
+            SelectedStageID = firstStageDataID;
+            for (int i = 0; i < 4; i++)
+            {
+                if (!UserDataManager.Instance.IsScenarioStageResult(firstStageDataID + i))
+                    break;
+
+                SelectedStageID = firstStageDataID + i + 1;
+            }
+
+            SetStageInfo(SelectedStageID);
 
             // 스테이지 세팅
             selectedStageGroup.Init(chapterDataID, SetStageInfo);
@@ -71,7 +80,15 @@ namespace Seunghak.UIManager
 
         public void OnClickPlay()
         {
-            // 플레이 가능한 스테이지인지 확인해야 함
+            if (SelectedStageID == -1)
+            {
+                Debug.LogError("SelectedStageID가 세팅되지 않음;;");
+                return;
+            }
+
+            // 플레이 가능한 스테이지인지 확인
+            if (!UserDataManager.Instance.IsScenarioStageResult(SelectedStageID - 1))
+                return;
 
             // 아직 유저데이터매니저에 값 세팅이 안되어 있는 것으로 보임
             // int selectedCharacterID = UserDataManager.Instance.GetUserLobbyInfoData().userCharacterCurrentId;

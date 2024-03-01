@@ -135,13 +135,13 @@ SpriteAtlas:
   - PlateTable
   - bg_top
   - Board
-  - Box_Fish
+  - Box_fish
   - Food_Delivery
   - Box_Lettuce
-  - Plate
+  - plate
   - brick1
   - brick2
-  - Bob
+  - bob
   - bg_body_bottom
   - Box_Meat
   - pabox

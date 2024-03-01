@@ -2,6 +2,7 @@ using Seunghak.LoginSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Seunghak.Common
@@ -104,6 +105,20 @@ namespace Seunghak.Common
         public UserOptionData GetUserOptionData()
         {
             return userDataInfo.userOption;
+        }
+        public ScenarioStageResultInfo GetScenarioStageResultData(int stageID)
+        {
+            if (userDataInfo.userStoryDatas.scenarioStageResults.TryGetValue(stageID, out ScenarioStageResultInfo data))
+                return data;
+
+            return null;
+        }
+        public bool IsScenarioStageResult(int stageID)
+        {
+            if (stageID == 0)
+                return true;
+
+            return userDataInfo.userStoryDatas.scenarioStageResults.ContainsKey(stageID);
         }
 #region DB_SAVE
         /// <summary>
@@ -235,7 +250,7 @@ namespace Seunghak.Common
     /// 유저 스토리 데이터
     /// </summary>
     [Serializable]
-    public class StoryResultInfo
+    public class ScenarioStageResultInfo
     {
         public int storyId;
         public int maxScore;
@@ -244,7 +259,7 @@ namespace Seunghak.Common
     [Serializable]
     public class UserStoryDatas
     {
-        public List<StoryResultInfo> storyResults = new List<StoryResultInfo>();
+        public Dictionary<int, ScenarioStageResultInfo> scenarioStageResults = new Dictionary<int, ScenarioStageResultInfo>();
     }
     /// <summary>
     /// 유저 데이터 베이스 저장용 구조

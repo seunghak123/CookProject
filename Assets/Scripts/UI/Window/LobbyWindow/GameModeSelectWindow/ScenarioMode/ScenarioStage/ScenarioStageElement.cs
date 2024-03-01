@@ -9,12 +9,13 @@ using UnityEngine.UI;
 public class ScenarioStageElement : MonoBehaviour
 {
     [SerializeField] Image lockImage;
+    [SerializeField] Image unlockImage;
     [SerializeField] TextMeshProUGUI stageNameText;
 
     Action<int> OnCilckStageElementCallBack = null;
     JStageData stageData;
 
-    public void Init(int stageDataID, Action<int> OnCilckStageElementCallBack)
+    public void Init(int stageDataID, bool isLockState, Action<int> OnCilckStageElementCallBack)
     {
         JStageData stageData = JsonDataManager.Instance.GetStageData(stageDataID);
 
@@ -29,13 +30,12 @@ public class ScenarioStageElement : MonoBehaviour
 
         stageNameText.text = stageData.Name;
 
-        // 잠금상태 확인해서 적용하고, 잠금여부를 체크해야 함
-
+        lockImage.gameObject.SetActive(isLockState);
+        unlockImage.gameObject.SetActive(!isLockState);
     }
 
     public void OnClickEvnet()
     {
-        if (stageData != null)
-            OnCilckStageElementCallBack?.Invoke(stageData.ID);
+        OnCilckStageElementCallBack?.Invoke(stageData.ID);
     }
 }
