@@ -59,7 +59,7 @@ public class MapDataCreater : MonoBehaviour
 
 #if UNITY_EDITOR
     [SerializeField] private string createFileName;
-    private string createFilePath = $"{FileUtils.GetStreamingAssetsPath()}BaseSources/MapData/MapObjectData";
+     private string createFilePath = $"{FileUtils.GetStreamingAssetsPath()}BaseSources/MapData/MapObjectData";
     public void CreateMapDataFile()
     {
         if (createTransform.childCount == 0)
@@ -107,6 +107,7 @@ public class MapDataCreater : MonoBehaviour
 
         if(mapInfos.objectLists.Count>0)
         {
+            createFilePath = $"{Application.dataPath}/BaseSources/MapData/MapObjectData";
             FileUtils.SaveFile<IngameMapObjectInfos>(createFilePath, $"{createFileName}.json", mapInfos);
         }
     }
