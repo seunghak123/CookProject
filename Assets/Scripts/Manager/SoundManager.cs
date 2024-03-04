@@ -1,13 +1,15 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+
 namespace Seunghak.Common
 {
     public class SoundManager : UnitySingleton<SoundManager>
     {
-        [SerializeField] private AudioSource bgmAudioSource;
-        [SerializeField] private AudioSource voiceAudioSource;
-        [SerializeField] private List<AudioSource> fxAudioSources;
+        [SerializeField] private StudioEventEmitter bgmAudioSource;
+        [SerializeField] private StudioEventEmitter voiceAudioSource;
+        [SerializeField] private List<StudioEventEmitter> fxAudioSources;
         private string currentPlayBGM;
         public void PlayBGM(string soundName)
         {
@@ -24,7 +26,7 @@ namespace Seunghak.Common
                 return;
             }
 
-            if (bgmAudioSource.clip.name.Equals(resourceAudio.name))
+            if (bgmAudioSource.name.Equals(resourceAudio.name))
             {
                 return;
             }
@@ -33,15 +35,15 @@ namespace Seunghak.Common
         }
         private IEnumerator PlayBGM(AudioClip playingClip, float soundVolume)
         {
-            while (bgmAudioSource.volume > 0)
-            {
-                bgmAudioSource.volume -= Time.deltaTime;
-                yield return WaitTimeManager.WaitForTimeSeconds(Time.deltaTime);
-            }
-            bgmAudioSource.volume = soundVolume;
-            bgmAudioSource.clip = playingClip;
-            bgmAudioSource.loop = true;
-            bgmAudioSource.Play();
+            //while (bgmAudioSource.Play() > 0)
+            //{
+            //    bgmAudioSource.volume -= Time.deltaTime;
+            //    yield return WaitTimeManager.WaitForTimeSeconds(Time.deltaTime);
+            //}
+            //bgmAudioSource.volume = soundVolume;
+            //bgmAudioSource.clip = playingClip;
+            //bgmAudioSource. = true;
+            //bgmAudioSource.Play();
             yield break;
         }
         public void PlaySound(string soundName, float soundVolume, bool isLoop/*,type도 넣어줄것*/)
@@ -85,10 +87,10 @@ namespace Seunghak.Common
         }
         private IEnumerator PlayVoice(AudioClip playingClip, float soundVolume, bool isLoop)
         {
-            voiceAudioSource.volume = soundVolume;
-            voiceAudioSource.clip = playingClip;
-            voiceAudioSource.loop = isLoop;
-            voiceAudioSource.Play();
+            //voiceAudioSource.volume = soundVolume;
+            //voiceAudioSource.clip = playingClip;
+            //voiceAudioSource.loop = isLoop;
+            //voiceAudioSource.Play();
             yield break;
 
         }
@@ -99,31 +101,31 @@ namespace Seunghak.Common
 
             for(int i=0;i< fxAudioSources.Count;i++)
             {
-                if(fxAudioSources[i].clip.name.Equals(playingClip))
-                {
-                    fxAudioSources[i].volume = soundVolume;
-                    fxAudioSources[i].clip = playingClip;
-                    fxAudioSources[i].loop = false;
-                    fxAudioSources[i].Play();
-                    yield break;
-                }
+                //if(fxAudioSources[i].clip.name.Equals(playingClip))
+                //{
+                //    fxAudioSources[i].volume = soundVolume;
+                //    fxAudioSources[i].clip = playingClip;
+                //    fxAudioSources[i].loop = false;
+                //    fxAudioSources[i].Play();
+                //    yield break;
+                //}
             }
             for(int i=0;i< fxAudioSources.Count; i++)
             {
-                if (!fxAudioSources[i].isPlaying)
-                {
-                    fxAudioSources[i].volume = soundVolume;
-                    fxAudioSources[i].clip = playingClip;
-                    fxAudioSources[i].loop = false;
-                    fxAudioSources[i].Play();
-                    isPlaying = true;
-                }
+                //if (!fxAudioSources[i].isPlaying)
+                //{
+                //    fxAudioSources[i].volume = soundVolume;
+                //    fxAudioSources[i].clip = playingClip;
+                //    fxAudioSources[i].loop = false;
+                //    fxAudioSources[i].Play();
+                //    isPlaying = true;
+                //}
             }
             if (!isPlaying)
             {
                 GameObject newObject = new GameObject();
                 AudioSource newaudio = newObject.AddComponent<AudioSource>();
-                fxAudioSources.Add(newaudio);
+                //fxAudioSources.Add(newaudio);
                 newaudio.volume = soundVolume;
                 newaudio.clip = playingClip;
                 newaudio.loop = false;
