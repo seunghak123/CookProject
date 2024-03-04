@@ -94,7 +94,7 @@ public class MapDataCreater : MonoBehaviour
             objectInfo.objectScale.Add(subObject.transform.localScale.x);
             objectInfo.objectScale.Add(subObject.transform.localScale.y);
             objectInfo.objectScale.Add(subObject.transform.localScale.z);
-            objectInfo.toolSpriteName = baseSubObject.GetComponent<SpriteRenderer>().sprite.name;
+            objectInfo.toolSpriteName = baseSubObject.GetComponent<SpriteRenderer>().sprite?.name;
             if(objectInfo.toolSpriteName.Contains("(Clone)"))
             {
                 objectInfo.toolSpriteName = objectInfo.toolSpriteName.Replace("(Clone)", "");
