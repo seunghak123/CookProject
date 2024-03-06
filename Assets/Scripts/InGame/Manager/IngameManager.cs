@@ -362,7 +362,7 @@ public class IngameManager : MonoBehaviour
             Destroy(ingameMapObject);
         }
         JStageData stageData = JsonDataManager.Instance.GetSingleData<JStageData>(stageId,E_JSON_TYPE.JStageData);
-
+        stageData.StageFile = "1_3stagedata";
         UnityEngine.Object loadObject = GameResourceManager.Instance.LoadObject(stageData.StageFile);
         IngameMapObjectInfos loadData = JsonConvert.DeserializeObject<IngameMapObjectInfos>(loadObject.ToString());
 

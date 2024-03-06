@@ -65,7 +65,6 @@ SpriteAtlas:
     packedSpriteRenderDataKeys:
     - 7d1b43e0bd8200e408888fe7e87e2c66: 21300000
     - 3d710191fb288c1458cd4595f376eedb: 21300000
-    - 5e549d02f337bc24b965d441761083e0: 21300000
     - 91b708e25f784dd4e905222269e71c9c: 21300000
     - b1698693869e7fe47aad091b299b4f44: 21300000
     - f21050d34ef93124ba45127b7272f36b: 21300000
@@ -74,21 +73,15 @@ SpriteAtlas:
     - 41b41d26322bda54eacf16971c769b5e: 21300000
     - da264b5691e03654dbf273009c90de51: 21300000
     - 318cfb66964488647b318536ecaa1445: 21300000
-    - 88bcbba6df479f84abf37185325c9a5a: 21300000
     - 93a54fb7ae1e8ff45a6886c3f76b0577: 21300000
-    - 90ddef38d00fb5544bcb73295adaa9aa: 21300000
     - f3b7f398f05c9ca4dabf3561b0d2fd74: 21300000
     - 5fb1b68993ae722459504955d7c75c00: 21300000
     - 8a8348abad3d9324094ee6ef370c44bf: 21300000
     - 0c5f8b2eea8f67743bba0afe2ba799a4: 21300000
-    - d4e6d45ed5b46864f8419cf66ed58bee: 21300000
-    - f2ed068ea38211346b129d187f5a6b01: 21300000
-    - 53767aef0056853459d800333dc3dd72: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 7d1b43e0bd8200e408888fe7e87e2c66, type: 3}
   - {fileID: 21300000, guid: 3d710191fb288c1458cd4595f376eedb, type: 3}
-  - {fileID: 21300000, guid: 5e549d02f337bc24b965d441761083e0, type: 3}
   - {fileID: 21300000, guid: 91b708e25f784dd4e905222269e71c9c, type: 3}
   - {fileID: 21300000, guid: b1698693869e7fe47aad091b299b4f44, type: 3}
   - {fileID: 21300000, guid: f21050d34ef93124ba45127b7272f36b, type: 3}
@@ -97,20 +90,14 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 41b41d26322bda54eacf16971c769b5e, type: 3}
   - {fileID: 21300000, guid: da264b5691e03654dbf273009c90de51, type: 3}
   - {fileID: 21300000, guid: 318cfb66964488647b318536ecaa1445, type: 3}
-  - {fileID: 21300000, guid: 88bcbba6df479f84abf37185325c9a5a, type: 3}
   - {fileID: 21300000, guid: 93a54fb7ae1e8ff45a6886c3f76b0577, type: 3}
-  - {fileID: 21300000, guid: 90ddef38d00fb5544bcb73295adaa9aa, type: 3}
   - {fileID: 21300000, guid: f3b7f398f05c9ca4dabf3561b0d2fd74, type: 3}
   - {fileID: 21300000, guid: 5fb1b68993ae722459504955d7c75c00, type: 3}
   - {fileID: 21300000, guid: 8a8348abad3d9324094ee6ef370c44bf, type: 3}
   - {fileID: 21300000, guid: 0c5f8b2eea8f67743bba0afe2ba799a4, type: 3}
-  - {fileID: 21300000, guid: d4e6d45ed5b46864f8419cf66ed58bee, type: 3}
-  - {fileID: 21300000, guid: f2ed068ea38211346b129d187f5a6b01, type: 3}
-  - {fileID: 21300000, guid: 53767aef0056853459d800333dc3dd72, type: 3}
   m_PackedSpriteNamesToIndex:
   - Bread
   - Meat_SandWich
-  - Salad
   - Cut_Tomato
   - Potato_SandWich
   - Cut_Lettuce
@@ -119,16 +106,11 @@ SpriteAtlas:
   - SandWich
   - Lettuce
   - Cut_Meat
-  - Fruit_Salad
   - Tomato_SandWich
-  - Cheese_Salad
   - Pineapple_SandWich
   - Meat
   - Tomato
   - Fish_SandWich
-  - Potato_Salad
-  - Meat_Salad
-  - Fish_Salad
   m_RenderDataMap: {}
   m_Tag: Foods
   m_IsVariant: 0

@@ -526,8 +526,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: 
-  sourceBankPath: 
+  sourceProjectPath: Assets/BaseSources/Fmod/PJT_Cookeep_Sound_Fmod_2.02.19/PJT_Cookeep_Sound.fspro
+  sourceBankPath: Assets/BaseSources/Fmod/PJT_Cookeep_Sound_Fmod_2.02.19/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -548,7 +548,8 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks: []
+  MasterBanks:
+  - Master
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
