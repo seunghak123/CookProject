@@ -86,9 +86,11 @@ namespace Seunghak.UIManager
                 return;
             }
 
+            /* 
             // 플레이 가능한 스테이지인지 확인
             if (!UserDataManager.Instance.IsScenarioStageResult(SelectedStageID - 1))
                 return;
+            */
 
             // 아직 유저데이터매니저에 값 세팅이 안되어 있는 것으로 보임
             // int selectedCharacterID = UserDataManager.Instance.GetUserLobbyInfoData().userCharacterCurrentId;
