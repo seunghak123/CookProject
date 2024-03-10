@@ -1,77 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4866125616665194884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Footsteps_2D
-  m_EditorClassIdentifier: 
-  Path: event:/Footsteps_2D
-  Guid:
-    Data1: 189843296
-    Data2: 1207273915
-    Data3: 606214546
-    Data4: 1709417365
-  Banks:
-  - {fileID: -2490875820707678720}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 320
---- !u!114 &-2490875820707678720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/BaseSources/Fmod/PJT_Cookeep_Sound_Fmod_2.02.19/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638445410240000000
-  FileSizes:
-  - Name: Desktop
-    Value: 26304
-  Exists: 1
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: 1658385698087783939}
-  - {fileID: -2490875820707678720}
-  EditorEvents:
-  - {fileID: -4866125616665194884}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: -2490875820707678720}
-  StringsBanks:
-  - {fileID: 1658385698087783939}
-  cacheTime: 638445410240000000
-  cacheVersion: 131616
---- !u!114 &1658385698087783939
+--- !u!114 &-2149504434712055018
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,3 +20,74 @@ MonoBehaviour:
   - Name: Desktop
     Value: 762
   Exists: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -2149504434712055018}
+  - {fileID: 7404413649239713609}
+  EditorEvents:
+  - {fileID: 8549270995746806685}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 7404413649239713609}
+  StringsBanks:
+  - {fileID: -2149504434712055018}
+  cacheTime: 638445410240000000
+  cacheVersion: 131616
+--- !u!114 &7404413649239713609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/BaseSources/Fmod/PJT_Cookeep_Sound_Fmod_2.02.19/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638445410240000000
+  FileSizes:
+  - Name: Desktop
+    Value: 26304
+  Exists: 1
+--- !u!114 &8549270995746806685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Footsteps_2D
+  m_EditorClassIdentifier: 
+  Path: event:/Footsteps_2D
+  Guid:
+    Data1: 189843296
+    Data2: 1207273915
+    Data3: 606214546
+    Data4: 1709417365
+  Banks:
+  - {fileID: 7404413649239713609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 320

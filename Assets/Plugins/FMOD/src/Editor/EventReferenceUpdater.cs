@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -517,6 +517,10 @@ namespace FMODUnity
 
         private static IEnumerable<Task> GetGenericUpdateTasks(object target, string subObjectPath = null, IEnumerable<object> parents = null)
         {
+            if(target==null)
+            {
+                yield break;
+            }
             Type targetType = target.GetType();
             FieldInfo[] fields = targetType.GetFields(DefaultBindingFlags);
 

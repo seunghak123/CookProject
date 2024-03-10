@@ -80,3 +80,4 @@ crashlytics-build.properties
 /ExcelConverter/JsonFiles/*
 /ExcelConverter/Script/*
 /Assets/StreamingAssets/*
+/fmod_editor.log
