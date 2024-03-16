@@ -46,11 +46,6 @@ public class IngameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            CreateRecipe(1);
-        }
-
         if(currentTimer<=0)
         {
             isGameEnd = true;

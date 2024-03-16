@@ -32,6 +32,28 @@ namespace Seunghak.Common
             StartCoroutine(PlayBGM(resourceAudio, percentVolume));
 
         }
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.V))
+            {
+                //RuntimeManager.PlayOneShot(voiceAudioSource.EventReference);
+                var instance = FMODUnity.RuntimeManager.CreateInstance("event:/Footsteps_2D");
+                instance.start(); 
+                //voiceAudioSource.Play();
+                //RuntimeManager.IsMuted = false;
+                //RuntimeManager.GetBus()
+                //RuntimeManager.
+                //if (voiceAudioSource != null)
+                //{
+                //    voiceAudioSource.Play();
+                //}
+            }
+        }
+        public void PlaySFX(string soundName)
+        {
+            var instance = FMODUnity.RuntimeManager.CreateInstance("event:/Footsteps_2D");
+        }
+      
         private IEnumerator PlayBGM(AudioClip playingClip, float soundVolume)
         {
             //while (bgmAudioSource.volume > 0)
