@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/BaseSources/Fmod/PJT_Cookeep_Sound_Fmod_2.02.19/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638445410240000000
+  lastModified: 638458595452681484
   FileSizes:
   - Name: Desktop
     Value: 762
@@ -42,7 +42,7 @@ MonoBehaviour:
   - {fileID: 7404413649239713609}
   StringsBanks:
   - {fileID: -2149504434712055018}
-  cacheTime: 638445410240000000
+  cacheTime: 638458595452681484
   cacheVersion: 131616
 --- !u!114 &7404413649239713609
 MonoBehaviour:
@@ -59,7 +59,7 @@ MonoBehaviour:
   Path: Assets/BaseSources/Fmod/PJT_Cookeep_Sound_Fmod_2.02.19/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638445410240000000
+  lastModified: 638458595452681484
   FileSizes:
   - Name: Desktop
     Value: 26304
