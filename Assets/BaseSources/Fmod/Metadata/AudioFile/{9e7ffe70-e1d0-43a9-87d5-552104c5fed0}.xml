@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{9e7ffe70-e1d0-43a9-87d5-552104c5fed0}">
+		<property name="assetPath">
+			<value>SFX_Food_Addfood.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.55200000000000005</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{cf7025f8-a521-4ae0-a159-633ae88a95c8}</destination>
+		</relationship>
+	</object>
+</objects>

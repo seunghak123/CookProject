@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{4a078b27-0db1-4471-aee1-33fc1283b57c}">
+		<property name="assetPath">
+			<value>SFX_Timer_Overcooked_mixed.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>10.055999999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{cf7025f8-a521-4ae0-a159-633ae88a95c8}</destination>
+		</relationship>
+	</object>
+</objects>

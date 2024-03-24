@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{a31c440a-4923-4f76-aaa7-d27d35fbfec0}">
+		<property name="assetPath">
+			<value>SFX_Food_Frying(튀김기).mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>9.5519999999999996</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{cf7025f8-a521-4ae0-a159-633ae88a95c8}</destination>
+		</relationship>
+	</object>
+</objects>
