@@ -170,6 +170,8 @@ public class BaseAI : MonoBehaviour
             return;
         }
 
+        IngameManager.currentManager.SetDroppedObject(dropObject.gameObject);
+
         dropObject.SetObjectInfo(HandleObjectData.GetFoodId());
         HandleObjectData = null;
 

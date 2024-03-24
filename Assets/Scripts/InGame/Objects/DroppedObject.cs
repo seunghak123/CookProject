@@ -7,10 +7,13 @@ public class DroppedObject : BaseToolObject
 {
     [SerializeField] private SpriteRenderer droppedSprite;
     private bool isPlate = false;
+    private float lifeTime = 10.0f;
+    private float currentLifeTime = 0.0f;
     public override void InitObject()
     {
         holdCharacter = false;
         isBlockCharacter = false;
+        currentLifeTime = 0;
     }
     protected override bool IsCanInterAct(int interActObject)
     {
@@ -32,22 +35,20 @@ public class DroppedObject : BaseToolObject
     {
         return 100.0f;
     }
-
-    RaycastHit2D hitresult;
-    public void FixedUpdate()
+    private void Update()
     {
-        hitresult = Physics2D.Raycast(this.transform.position, Vector3.down, 0.51f, 1 << 9);
-        if (hitresult.collider != null)
-        {
-            //지상 충돌 꺠질것
-            //만약 꺠져야하는 애면
-            GameResourceManager.Instance.DestroyObject(this.gameObject);
-        }
+        currentLifeTime += Time.deltaTime;
 
-        if(this.transform.position.y<-1000)
+        if(currentLifeTime>lifeTime)
         {
-            //무한히 떨어지는중
-            GameResourceManager.Instance.DestroyObject(this.gameObject);
+            IngameManager.currentManager.RemoveDroppedObject(this.gameObject);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+
         }
     }
 }

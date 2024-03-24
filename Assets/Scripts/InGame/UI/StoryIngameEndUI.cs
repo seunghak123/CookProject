@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.UI;
 using Seunghak.SceneManager;
 using Cysharp.Threading.Tasks;
+using Seunghak.Common;
 
 //EndData 상속구조 만들것
 public class StoryEndData
@@ -75,7 +76,8 @@ public class StoryIngameEndUI : MonoBehaviour
 
     public void SetEndInfo(StoryEndData stageInfo)
     {
-
+        //여기에 스토리 끝 처리
+        UserDataManager.Instance.SetUserStoryInfo(stageInfo);
     }
     public async UniTask StartIngameEnd()
     {

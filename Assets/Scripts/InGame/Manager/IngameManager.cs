@@ -40,6 +40,8 @@ public class IngameManager : MonoBehaviour
     private List<JRecipeData> currentClearRecipe = new List<JRecipeData>();
     private JStageData currentStageData;
     private List<JRecipeData> currentCopyRecipeLists = new List<JRecipeData>();
+
+    private List<GameObject> currentDroppedObjects = new List<GameObject>();
     private void Awake()
     {
         currentManager = this;
@@ -306,14 +308,36 @@ public class IngameManager : MonoBehaviour
             }
         }
     }
+    public void SetDroppedObject(GameObject newObject)
+    {
+        if (currentDroppedObjects.Count>10)
+        {
+            GameResourceManager.Instance.DestroyObject(currentDroppedObjects[0]);
+            currentDroppedObjects.RemoveAt(0);
+
+            currentDroppedObjects.Add(newObject);
+        }
+    }
+    public void RemoveDroppedObject(GameObject removeObject)
+    {
+        for(int i=0;i<currentDroppedObjects.Count;i++)
+        {
+            if(currentDroppedObjects[i] == removeObject)
+            {
+                GameResourceManager.Instance.DestroyObject(currentDroppedObjects[i]);
+                currentDroppedObjects.RemoveAt(i);
+                break;
+            }
+        }
+    }
     public void CreateGame(int stageId)
     {
         //테스트 코드 작성
-        currentStageData = JsonDataManager.Instance.GetStageData(1);
+        currentStageData = JsonDataManager.Instance.GetStageData(stageId);
         currentCopyRecipeLists = JsonDataManager.Instance.GetRecipeGroupData(currentStageData.ProbabilityGroupID);
         currentTimer = currentStageData.StageTimer;
-        ingameUI = CreateUI(1);
-        CreateMapData(1);   
+        ingameUI = CreateUI(stageId);
+        CreateMapData(stageId);   
         CreateUserCharacter();
 
         StartGame();
@@ -325,7 +349,15 @@ public class IngameManager : MonoBehaviour
         await ingameUI.StartDirection();
 
         //여기에 UI 킬거 킬 것,
+        bool isRecipeEnd = false;
+        StoryIngameRecipePopup ingameEndUI = GameResourceManager.Instance.SpawnObject("IngameRecipePopup").GetComponent<StoryIngameRecipePopup>();
+        ingameEndUI.SetData(null, () => { isRecipeEnd = true; });
 
+
+        while (!isRecipeEnd)
+        {
+            await UniTask.NextFrame();
+        }
         //CinemachineTrack cinemachineTrack ;
 
         //if (cinemachineTrack != null)
@@ -357,7 +389,6 @@ public class IngameManager : MonoBehaviour
             Destroy(ingameMapObject);
         }
         JStageData stageData = JsonDataManager.Instance.GetSingleData<JStageData>(stageId,E_JSON_TYPE.JStageData);
-        stageData.StageFile = "1_3stagedata";
         UnityEngine.Object loadObject = GameResourceManager.Instance.LoadObject(stageData.StageFile);
         IngameMapObjectInfos loadData = JsonConvert.DeserializeObject<IngameMapObjectInfos>(loadObject.ToString());
 

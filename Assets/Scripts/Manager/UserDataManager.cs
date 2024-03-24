@@ -94,6 +94,22 @@ namespace Seunghak.Common
         {
             userDataInfo.userItemDatas.AddItem(1, 10000);
         }
+        public void SetUserStoryInfo(StoryEndData info)
+        {
+            ScenarioStageResultInfo resultInfo;
+            if (userDataInfo.userStoryDatas.scenarioStageResults.ContainsKey(info.stageData.ID))
+            {
+                resultInfo = userDataInfo.userStoryDatas.scenarioStageResults[info.stageData.ID];
+            }
+            else
+            {
+                resultInfo = new ScenarioStageResultInfo();
+            }
+            resultInfo.storyId = info.stageData.ID;
+            resultInfo.maxScore = resultInfo.maxScore > info.stageScore ? resultInfo.maxScore : info.stageScore;
+
+            userDataInfo.userStoryDatas.scenarioStageResults[resultInfo.storyId] = resultInfo;
+        }
         public UserLobbyInfoData GetUserLobbyInfoData()
         {
             return userDataInfo.userLobbyInfoDatas;
