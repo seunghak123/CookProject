@@ -39,7 +39,7 @@ namespace Seunghak.SceneManager
 
             //인게임 타입마다 DeliverData를 형변환해서 IngameManager에게 넘겨주기
 
-            IngameManager.currentManager.CreateGame(0);
+            IngameManager.currentManager.CreateGame(sceneData.stageId);
 
             //선택한 덱 가져오기 , 유저 데이터 세팅
             //스킬 파티클 선행 생성

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using Seunghak.Common;
 
 public class StoryIngameRecipePopup : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class StoryIngameRecipePopup : MonoBehaviour
             {
                 popupCloseAction();
             }
+            GameResourceManager.Instance.DestroyObject(this.gameObject);
         }
         );
     }
