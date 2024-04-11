@@ -6,13 +6,12 @@ public class BaseToolObject : BaseObject
 {
     [SerializeField] protected bool holdCharacter = false;
     [SerializeField] protected bool isBlockCharacter = false;
-
+    [SerializeField] public int objectDataID;
     protected bool workEnd = false;
     protected bool currentWork = false;
     protected BaseAI currentWorker = null;
     protected JToolObjectData toolData = null;
     protected Coroutine currentWorkRoutine = null;
-    private int objectDataID;
     public int OBJECT_ID
     {
         get { return objectDataID; }
