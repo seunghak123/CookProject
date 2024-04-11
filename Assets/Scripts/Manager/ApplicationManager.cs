@@ -1,4 +1,4 @@
-﻿using Seunghak.UIManager;
+using Seunghak.UIManager;
 using System;
 using System.Collections;
 using System.Collections.Generic;

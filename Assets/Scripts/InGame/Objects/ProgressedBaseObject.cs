@@ -81,7 +81,11 @@ public class ProgressedBaseObject : BaseToolObject
         ProgressedViewDataClass viewData = new ProgressedViewDataClass();
         viewData.progressActive = true;
 
-        currentWorker.SetAnimationWithName("Chop");
+        if(workingTimeArrays.Length>0)
+        {
+            currentWorker.SetAnimationWithName("Chop");
+        }
+
         for (int i = 0; i < workingTimeArrays.Length;)
         {
             if (timerWorkingAction != null)
@@ -89,7 +93,7 @@ public class ProgressedBaseObject : BaseToolObject
                 viewData.currentPercent = timer / workingTimeArrays[i];
                 timerWorkingAction(viewData);
             }
-            if (timer> workingTimeArrays[i])
+            if (timer>= workingTimeArrays[i])
             {
                 timer = 0;
                 i++;

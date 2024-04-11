@@ -13,6 +13,7 @@ namespace Seunghak.Common
         public void PlayBGM(string soundName)
         {
             AudioClip resourceAudio = GameResourceManager.Instance.LoadObject(soundName,true) as AudioClip;
+            //JStageData soundData = JsonDataManager.Instance.GetSingleData<JStageData>(soundName, E_JSON_TYPE.JStageData);
             UserOptionData optionData = UserDataManager.Instance.GetUserOptionData();
             if (optionData.IsMute)
             {

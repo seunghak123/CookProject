@@ -3,21 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DroppedObject : BaseToolObject
+public class DroppedObject : BaseObject
 {
     [SerializeField] private SpriteRenderer droppedSprite;
     private bool isPlate = false;
     private float lifeTime = 10.0f;
     private float currentLifeTime = 0.0f;
+    private int currentFoodId = 0;
+
+    public override bool GetIsHold()
+    {
+        return false;
+    }
     public override void InitObject()
     {
-        holdCharacter = false;
-        isBlockCharacter = false;
         currentLifeTime = 0;
-    }
-    protected override bool IsCanInterAct(int interActObject)
-    {
-        return true;
     }
     public void SetObjectInfo(int setInfoId)
     {
@@ -25,6 +25,7 @@ public class DroppedObject : BaseToolObject
         {
             isPlate = true;
         }
+        currentFoodId = setInfoId;
         JFoodObjectData foodObject = JsonDataManager.Instance.GetSingleData<JFoodObjectData>(setInfoId, E_JSON_TYPE.JFoodObjectData);
         droppedSprite.sprite = SpriteManager.Instance.LoadSprite(foodObject.IconFile);
         //Id에 따라 이미지 세팅 setInfoId통해서 아이디 받는다
@@ -48,7 +49,13 @@ public class DroppedObject : BaseToolObject
     {
         if(other.gameObject.tag == "Player")
         {
-
+            if(currentFoodId!=0)
+            {
+                
+            }
+            //other.GetComponent<BaseAI>()
+            //플레이어 부딪치면 바로 들어지게 처리
+            //other.gameObject.
         }
     }
 }

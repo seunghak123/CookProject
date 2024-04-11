@@ -13,7 +13,7 @@ public class StoryIngameRecipePopup : MonoBehaviour
     [SerializeField] private Button exitButton;
     private Action popupCloseAction = null;
 
-    private void Awake()
+    private void OnEnable()
     {
         nextButton.onClick.AddListener(() => { });
         preButton.onClick.AddListener(() => { });

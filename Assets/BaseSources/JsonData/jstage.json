@@ -22,8 +22,8 @@
     "score1": 100,
     "score2": 200,
     "score3": 300,
-    "StageFile": 0.0,
-    "StagePrefab": "stage1-2",
+    "StageFile": "1_2stagedata",
+    "StagePrefab": "Stage1-2",
     "StageTimer": 150,
     "StartRecipeValue": 2
   },
@@ -36,8 +36,8 @@
     "score1": 100,
     "score2": 200,
     "score3": 300,
-    "StageFile": 0.0,
-    "StagePrefab": "stage1-3",
+    "StageFile": "1_3stagedata",
+    "StagePrefab": "Stage1-3",
     "StageTimer": 240,
     "StartRecipeValue": 3
   },
@@ -50,8 +50,8 @@
     "score1": 100,
     "score2": 200,
     "score3": 300,
-    "StageFile": 0.0,
-    "StagePrefab": "stage1-4",
+    "StageFile": "1_4stagedata",
+    "StagePrefab": "Stage1-4",
     "StageTimer": 240,
     "StartRecipeValue": 4
   },
