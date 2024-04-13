@@ -63,14 +63,20 @@ SpriteAtlas:
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
+    - e6d26c7158a649c44b67f1011b847644: 21300000
     - 8aaa5245b4d5c7c4aa216356f79d1c65: 21300000
+    - 9af8ff67a0bcdd44589efda217d452ad: 21300000
     - 48d2acfb604a485448d8a941f9d5957c: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: e6d26c7158a649c44b67f1011b847644, type: 3}
   - {fileID: 21300000, guid: 8aaa5245b4d5c7c4aa216356f79d1c65, type: 3}
+  - {fileID: 21300000, guid: 9af8ff67a0bcdd44589efda217d452ad, type: 3}
   - {fileID: 21300000, guid: 48d2acfb604a485448d8a941f9d5957c, type: 3}
   m_PackedSpriteNamesToIndex:
+  - UI_throw
   - LodingBar2
+  - RecipeIcon
   - LodingBar_
   m_RenderDataMap: {}
   m_Tag: IngameUI
