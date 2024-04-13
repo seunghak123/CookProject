@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DroppedObject : BaseObject
+public class DroppedObject : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer droppedSprite;
     private bool isPlate = false;
@@ -11,11 +11,7 @@ public class DroppedObject : BaseObject
     private float currentLifeTime = 0.0f;
     private int currentFoodId = 0;
 
-    public override bool GetIsHold()
-    {
-        return false;
-    }
-    public override void InitObject()
+    public void InitObject()
     {
         currentLifeTime = 0;
     }
@@ -51,11 +47,9 @@ public class DroppedObject : BaseObject
         {
             if(currentFoodId!=0)
             {
-                
+                other.GetComponent<BaseAI>().GrabDroppedFood(currentFoodId);
+                IngameManager.currentManager.RemoveDroppedObject(this.gameObject);
             }
-            //other.GetComponent<BaseAI>()
-            //플레이어 부딪치면 바로 들어지게 처리
-            //other.gameObject.
         }
     }
 }

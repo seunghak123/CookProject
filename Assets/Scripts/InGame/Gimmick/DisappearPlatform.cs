@@ -18,7 +18,11 @@ public class DisappearPlatform : BaseGimmick
         if (collision != null && collision.tag == "Player" && !isWork)
         {
             isWork = true;
-            InterAct();
+
+            if(collision.transform.position.y > this.transform.position.y)
+            {
+                InterAct();
+            }
         }
     }
     private void OnDisable()

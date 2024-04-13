@@ -62,4 +62,22 @@ public class FoodStorageObject : ProgressedBaseObject
 
         return false;
     }
+
+    public override IEnumerator Working()
+    {
+        currentWork = true;
+
+        workEnd = true;
+        if (IsWorkEnd())
+        {
+            if (workingEndAction != null)
+            {
+                workingEndAction();
+            }
+
+            currentWorker = null;
+        }
+
+        yield break;
+    }
 }

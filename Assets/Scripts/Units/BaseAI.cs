@@ -68,6 +68,18 @@ public class BaseAI : MonoBehaviour
         unitAnim = GetComponentInChildren<Animator>();
         RegistAction();
     }
+    public void GrabDroppedFood(int foodId)
+    {
+        if (HandleObjectData.IsEmpty())
+        {
+            BasicMaterialData makedMaterial = new BasicMaterialData();
+
+            makedMaterial.PushMaterial(foodId);
+            makedMaterial.SetFoodId(foodId);
+
+            HandleObjectData = makedMaterial;
+        }
+    }
     private void RegistAction()
     {
         userActionDic[E_INGAME_AI_TYPE.UNIT_IDLE] = UnitIdle;
@@ -282,8 +294,17 @@ public class BaseAI : MonoBehaviour
         if (joyStick != null)
         {
             Vector3 direct = new Vector3(joyStick.Horizontal, joyStick.Vertical);
+
+#if UNITY_EDITOR
+            if (direct == Vector3.zero)
+            {
+                direct.x = Input.GetAxis("Horizontal");
+                direct.y = Input.GetAxis("Vertical");
+            }
+#endif
             return direct.normalized;
         }
+
         return Vector3.zero;
     }
     protected virtual void UnitIdle()
