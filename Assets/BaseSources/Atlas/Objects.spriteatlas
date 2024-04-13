@@ -178,17 +178,17 @@ SpriteAtlas:
   - bg_top
   - Board
   - background_usa
-  - Box_fish
+  - Box_Fish
   - Food_Delivery
   - Box_Lettuce
   - bg_firewood
-  - plate
+  - Plate
   - bg_flower
   - bg_flowershop_usa
   - brick1
   - brick2
   - bg_middle_usa
-  - bob
+  - Bob
   - bg_body_bottom
   - Box_Meat
   - pabox

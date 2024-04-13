@@ -1,6 +1,60 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2149504434712055018
+--- !u!114 &-8026562850034647465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_Timer_Overcooked_warning_2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_Timer_Overcooked_warning_2
+  Guid:
+    Data1: -1903813284
+    Data2: 1204311523
+    Data3: 167430568
+    Data4: -1827206116
+  Banks:
+  - {fileID: -2931229735753612637}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10056
+--- !u!114 &-3813115078008486512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM_Cookeep_MAP_Korean
+  m_EditorClassIdentifier: 
+  Path: event:/BGM_Cookeep_MAP_Korean
+  Guid:
+    Data1: -1596669046
+    Data2: 1111429266
+    Data3: 1396767410
+    Data4: -384739856
+  Banks:
+  - {fileID: 4957838606890496570}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 90000
+--- !u!114 &-2931229735753612637
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,16 +64,70 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
+  m_Name: bank:/SFX_UI.bank
   m_EditorClassIdentifier: 
-  Path: Assets/BaseSources/Fmod/PJT_Cookeep_Sound_Fmod_2.02.19/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638458595452681484
+  Path: Assets/BaseSources/Fmod/Build/Desktop/SFX_UI.bank
+  Name: SFX_UI
+  StudioPath: bank:/SFX_UI
+  lastModified: 638470083719368450
   FileSizes:
   - Name: Desktop
-    Value: 762
+    Value: 650144
   Exists: 1
+--- !u!114 &-2218697636041574748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_coin_2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_coin_2
+  Guid:
+    Data1: 83048376
+    Data2: 1211320476
+    Data3: 214966715
+    Data4: 141210840
+  Banks:
+  - {fileID: -2931229735753612637}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 696
+--- !u!114 &-136802548778850059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM_Cookeep_Disco_Funk_Intro Scene
+  m_EditorClassIdentifier: 
+  Path: event:/BGM_Cookeep_Disco_Funk_Intro Scene
+  Guid:
+    Data1: -1942271861
+    Data2: 1125730352
+    Data3: 1187696563
+    Data4: 1088047587
+  Banks:
+  - {fileID: 4957838606890496570}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 124560
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,18 +141,437 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -2149504434712055018}
-  - {fileID: 7404413649239713609}
+  - {fileID: 7763162812942038980}
+  - {fileID: 4957838606890496570}
+  - {fileID: 7531705515787136852}
+  - {fileID: 1913746063704148747}
+  - {fileID: -2931229735753612637}
   EditorEvents:
-  - {fileID: 8549270995746806685}
+  - {fileID: -3813115078008486512}
+  - {fileID: -136802548778850059}
+  - {fileID: 8394387563313987364}
+  - {fileID: 66664549045212357}
+  - {fileID: 7659280483507988410}
+  - {fileID: 2590287144717682159}
+  - {fileID: 4411802108208875621}
+  - {fileID: 4377158784280333175}
+  - {fileID: 7304219185619445458}
+  - {fileID: 3702628626622380193}
+  - {fileID: 5706984474157795137}
+  - {fileID: 6529584714569490154}
+  - {fileID: 4698512246445751297}
+  - {fileID: 1718908369410907829}
+  - {fileID: 5654740959424122129}
+  - {fileID: -8026562850034647465}
+  - {fileID: 220045709694665473}
+  - {fileID: -2218697636041574748}
+  - {fileID: 7698671277128847332}
+  - {fileID: 2274522850814555125}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 7404413649239713609}
+  - {fileID: 7531705515787136852}
   StringsBanks:
-  - {fileID: -2149504434712055018}
-  cacheTime: 638458595452681484
+  - {fileID: 7763162812942038980}
+  cacheTime: 638470083719368450
   cacheVersion: 131616
---- !u!114 &7404413649239713609
+--- !u!114 &66664549045212357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGSFX_Main_Space_Loop_Cookeep
+  m_EditorClassIdentifier: 
+  Path: event:/BGSFX_Main_Space_Loop_Cookeep
+  Guid:
+    Data1: 96262085
+    Data2: 1074859084
+    Data3: 1755225242
+    Data4: -1863723055
+  Banks:
+  - {fileID: 4957838606890496570}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 56568
+--- !u!114 &220045709694665473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_STAR_score
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_STAR_score
+  Guid:
+    Data1: -180179852
+    Data2: 1129792543
+    Data3: -1892142161
+    Data4: 1450502179
+  Banks:
+  - {fileID: -2931229735753612637}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3216
+--- !u!114 &1718908369410907829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_UI_soft
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_UI_soft
+  Guid:
+    Data1: 1118670669
+    Data2: 1302411367
+    Data3: -1881115261
+    Data4: -223814118
+  Banks:
+  - {fileID: -2931229735753612637}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 840
+--- !u!114 &1913746063704148747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX_CHA.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/BaseSources/Fmod/Build/Desktop/SFX_CHA.bank
+  Name: SFX_CHA
+  StudioPath: bank:/SFX_CHA
+  lastModified: 638470083719348520
+  FileSizes:
+  - Name: Desktop
+    Value: 306656
+  Exists: 1
+--- !u!114 &2274522850814555125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_coin_1
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_coin_1
+  Guid:
+    Data1: -489646898
+    Data2: 1180757089
+    Data3: 1133055629
+    Data4: 1608060524
+  Banks:
+  - {fileID: -2931229735753612637}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 552
+--- !u!114 &2590287144717682159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CHA_Footsteps
+  m_EditorClassIdentifier: 
+  Path: event:/CHA_Footsteps
+  Guid:
+    Data1: 189843296
+    Data2: 1207273915
+    Data3: 606214546
+    Data4: 1709417365
+  Banks:
+  - {fileID: 1913746063704148747}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 320
+--- !u!114 &3702628626622380193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_cut_vegi
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_cut_vegi
+  Guid:
+    Data1: 1086804401
+    Data2: 1151794350
+    Data3: 1192492688
+    Data4: 1269471630
+  Banks:
+  - {fileID: 1913746063704148747}
+  - {fileID: -2931229735753612637}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 360
+--- !u!114 &4377158784280333175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_Food_Destroyed
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_Food_Destroyed
+  Guid:
+    Data1: 1491543672
+    Data2: 1131885589
+    Data3: 961120444
+    Data4: -672102729
+  Banks:
+  - {fileID: 1913746063704148747}
+  - {fileID: -2931229735753612637}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1056
+--- !u!114 &4411802108208875621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_Food_Addfood
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_Food_Addfood
+  Guid:
+    Data1: -636967322
+    Data2: 1128339682
+    Data3: -440466271
+    Data4: -1581542227
+  Banks:
+  - {fileID: 1913746063704148747}
+  - {fileID: -2931229735753612637}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 552
+--- !u!114 &4698512246445751297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_cash_register
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_cash_register
+  Guid:
+    Data1: 1769013807
+    Data2: 1202611753
+    Data3: 281345418
+    Data4: 417603798
+  Banks:
+  - {fileID: -2931229735753612637}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3168
+--- !u!114 &4957838606890496570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/BGM.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/BaseSources/Fmod/Build/Desktop/BGM.bank
+  Name: BGM
+  StudioPath: bank:/BGM
+  lastModified: 638470083719318615
+  FileSizes:
+  - Name: Desktop
+    Value: 4703232
+  Exists: 1
+--- !u!114 &5654740959424122129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_Timer_Overcooked_mixed
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_Timer_Overcooked_mixed
+  Guid:
+    Data1: 1954904654
+    Data2: 1241367017
+    Data3: -475019858
+    Data4: 1799604454
+  Banks:
+  - {fileID: -2931229735753612637}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10056
+--- !u!114 &5706984474157795137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_Food_Fryingpan
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_Food_Fryingpan
+  Guid:
+    Data1: 257239222
+    Data2: 1328003420
+    Data3: -1671879751
+    Data4: -1924650282
+  Banks:
+  - {fileID: 1913746063704148747}
+  - {fileID: -2931229735753612637}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5112
+--- !u!114 &6529584714569490154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_Food_Boiling
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_Food_Boiling
+  Guid:
+    Data1: -632011555
+    Data2: 1205563984
+    Data3: 864440494
+    Data4: 1806042201
+  Banks:
+  - {fileID: 1913746063704148747}
+  - {fileID: -2931229735753612637}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2016
+--- !u!114 &7304219185619445458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_Food_Frying
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_Food_Frying
+  Guid:
+    Data1: 925563009
+    Data2: 1272396087
+    Data3: -274055767
+    Data4: 358523955
+  Banks:
+  - {fileID: 1913746063704148747}
+  - {fileID: -2931229735753612637}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 9552
+--- !u!114 &7531705515787136852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,15 +583,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: Assets/BaseSources/Fmod/PJT_Cookeep_Sound_Fmod_2.02.19/Build/Desktop/Master.bank
+  Path: Assets/BaseSources/Fmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638458595452681484
+  lastModified: 638470083719328582
   FileSizes:
   - Name: Desktop
-    Value: 26304
+    Value: 1340
   Exists: 1
---- !u!114 &8549270995746806685
+--- !u!114 &7659280483507988410
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,20 +601,95 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Footsteps_2D
+  m_Name: event:/SFX_cut_meat
   m_EditorClassIdentifier: 
-  Path: event:/Footsteps_2D
+  Path: event:/SFX_cut_meat
   Guid:
-    Data1: 189843296
-    Data2: 1207273915
-    Data3: 606214546
-    Data4: 1709417365
+    Data1: 587940869
+    Data2: 1121569366
+    Data3: -1675206222
+    Data4: 400121386
   Banks:
-  - {fileID: 7404413649239713609}
+  - {fileID: 1913746063704148747}
+  - {fileID: -2931229735753612637}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 320
+  Length: 240
+--- !u!114 &7698671277128847332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX_Timer_Overcooked_warning_1
+  m_EditorClassIdentifier: 
+  Path: event:/SFX_Timer_Overcooked_warning_1
+  Guid:
+    Data1: 1634286266
+    Data2: 1322308166
+    Data3: 1525678985
+    Data4: -713420206
+  Banks:
+  - {fileID: -2931229735753612637}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10152
+--- !u!114 &7763162812942038980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/BaseSources/Fmod/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638470083719338553
+  FileSizes:
+  - Name: Desktop
+    Value: 1894
+  Exists: 1
+--- !u!114 &8394387563313987364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM_Cookeep_Rockabilly_Map_American
+  m_EditorClassIdentifier: 
+  Path: event:/BGM_Cookeep_Rockabilly_Map_American
+  Guid:
+    Data1: -1364101448
+    Data2: 1167287274
+    Data3: 1205538434
+    Data4: 991767046
+  Banks:
+  - {fileID: 4957838606890496570}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 93000
