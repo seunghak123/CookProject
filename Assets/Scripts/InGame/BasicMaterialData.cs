@@ -13,6 +13,10 @@ public class BasicMaterialData
         {
             return true;
         }
+        if(IsPlate)
+        {
+            return true;
+        }
         return false;
     }
     public void SetFoodId(int foodId)

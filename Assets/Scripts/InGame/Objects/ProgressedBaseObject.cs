@@ -30,6 +30,11 @@ public class ProgressedBaseObject : BaseToolObject
         //View초기화
         progressedView = GetComponent<ProgressObjectView>();
     }
+    public override void ExitWork()
+    {
+        base.ExitWork();
+        // exit action
+    }
     public override void SetToolData(JToolObjectData newToolData)
     {
         base.SetToolData(newToolData);

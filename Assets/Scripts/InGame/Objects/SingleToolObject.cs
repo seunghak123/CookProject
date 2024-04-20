@@ -42,8 +42,8 @@ public class SingleToolObject : ProgressedBaseObject
                         workingEndAction();
                     }
                     preMaterial = null;
+                    StopCoroutine(currentWorkRoutine);
                 }
-                //음식을 뺴온다
             }
             else
             {

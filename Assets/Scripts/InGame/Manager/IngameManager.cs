@@ -317,6 +317,10 @@ public class IngameManager : MonoBehaviour
 
             currentDroppedObjects.Add(newObject);
         }
+        else
+        {
+            currentDroppedObjects.Add(newObject);
+        }
     }
     public void RemoveDroppedObject(GameObject removeObject)
     {
@@ -438,6 +442,7 @@ public class IngameCreater
         if(foodObjectData==null)
         {
             Debug.Log("food data null");
+            return null;
         }
         // SpawnObejct
         GameObject foodObject = GameResourceManager.Instance.SpawnObject($"{foodObjectData.ObjectFile}");

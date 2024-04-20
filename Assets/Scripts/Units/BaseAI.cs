@@ -35,10 +35,18 @@ public class BaseAI : MonoBehaviour
             handleObjectData = value;
             if(handleObjectData!=null&&!handleObjectData.IsEmpty())
             {
-                int foodId = handleObjectData.GetFoodId();
-                JFoodObjectData foodObject = JsonDataManager.Instance.GetSingleData<JFoodObjectData>(foodId, E_JSON_TYPE.JFoodObjectData);
-                foodHoldSpriteRender.sprite = SpriteManager.Instance.LoadSprite(foodObject.IconFile);
-                foodHoldSpriteRender.gameObject.SetActive(true);
+                if (handleObjectData.HasPlate())
+                {
+                    //음식 + 접시로 보여줄것
+                }
+                else
+                {
+                    int foodId = handleObjectData.GetFoodId();
+
+                    JFoodObjectData foodObject = JsonDataManager.Instance.GetSingleData<JFoodObjectData>(foodId, E_JSON_TYPE.JFoodObjectData);
+                    foodHoldSpriteRender.sprite = SpriteManager.Instance.LoadSprite(foodObject.IconFile);
+                    foodHoldSpriteRender.gameObject.SetActive(true);
+                }
             }
             else
             {
@@ -70,7 +78,7 @@ public class BaseAI : MonoBehaviour
     }
     public void GrabDroppedFood(int foodId)
     {
-        if (HandleObjectData.IsEmpty())
+        if (HandleObjectData==null || HandleObjectData.IsEmpty())
         {
             BasicMaterialData makedMaterial = new BasicMaterialData();
 
@@ -367,6 +375,7 @@ public class BaseAI : MonoBehaviour
     {
         if (targetObject!=null && targetObject.gameObject == collision.gameObject)
         {
+            //
            targetObject.ExitWork();
            targetObject = null;
         }

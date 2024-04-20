@@ -122,6 +122,10 @@ public class MapDataCreater : MonoBehaviour
 
         GameObject createObject = IngameCreater.CreateFoodObject(createId);
 
+        if(createObject==null)
+        {
+            return;
+        }
         createObject.transform.parent = createTransform;
         JToolObjectData toolData = JsonDataManager.Instance.GetToolId(createId);
         BaseToolObject ojbect = createObject.GetComponent<BaseToolObject>();

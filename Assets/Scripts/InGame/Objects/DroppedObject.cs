@@ -21,6 +21,7 @@ public class DroppedObject : MonoBehaviour
         {
             isPlate = true;
         }
+        InitObject();
         currentFoodId = setInfoId;
         JFoodObjectData foodObject = JsonDataManager.Instance.GetSingleData<JFoodObjectData>(setInfoId, E_JSON_TYPE.JFoodObjectData);
         droppedSprite.sprite = SpriteManager.Instance.LoadSprite(foodObject.IconFile);
@@ -41,13 +42,18 @@ public class DroppedObject : MonoBehaviour
             IngameManager.currentManager.RemoveDroppedObject(this.gameObject);
         }
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(other.gameObject.tag == "Player")
+        if(currentLifeTime<1.5f)
         {
-            if(currentFoodId!=0)
+            return;
+        }
+        if (collision.gameObject.tag == "Player")
+        {
+            if (currentFoodId != 0)
             {
-                other.GetComponent<BaseAI>().GrabDroppedFood(currentFoodId);
+                collision.GetComponent<BaseAI>().GrabDroppedFood(currentFoodId);
                 IngameManager.currentManager.RemoveDroppedObject(this.gameObject);
             }
         }

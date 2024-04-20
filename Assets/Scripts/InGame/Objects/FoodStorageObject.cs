@@ -25,6 +25,10 @@ public class FoodStorageObject : ProgressedBaseObject
         {
             if(toolData.ID.Equals(1015))
             {
+                if(workingAI.HandleObjectData == null)
+                {
+                    workingAI.HandleObjectData = new BasicMaterialData();
+                }
                 workingAI.HandleObjectData.PushMaterial(1);
                 workingAI.SetUnitDefaultSpineAnimation();
             }
